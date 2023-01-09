@@ -3,3 +3,82 @@ title: "Lecture 01 Notes"
 author: "Alec L. Robitaille"
 date: "2023-01-09"
 ---
+
+
+## Directed acyclic graphs
+
+Statistical models process data but to provide insight, we require scientific
+models. Causes of data cannot be extracted alone using a statistical model, we
+need causal models.
+
+Causal inference is the prediction of intervention and imputation of missing
+observations.
+
+Causal prediction: knowing a cause means being able to predict the consequences
+of an intervention. Causal imputation: knowing a cause means being able to
+construct unobserved counterfactual outcomes.
+
+
+```{r 01_dag, echo = FALSE}
+suppressPackageStartupMessages(library(ggdag))
+ggdag(dagify(
+  Y ~ X + C + B,
+  X ~ A + C,
+  exposure = 'X',
+  outcome = 'Y'
+)) + theme_dag()
+```
+
+- X is a treatment
+- Y is an outcome
+- B is a competing cause of Y
+- A is an influence of the treatment X
+- C is a common cause of X and Y (a confound)
+
+Relationships between *all* variables can impact outcomes. 
+
+
+::: {.callout-note}
+At one moment in time, DAGs are unidirectional. With a time series, 
+you can have reciprocal relationships. 
+:::
+
+
+DAGs are not specific to one model and therefore can be used for different
+queries and related models. These different models should not necessarily
+include all variables, and DAGs help us determine good and bad controls
+for each question. DAGs are logically specific and can be used to test and 
+refine the causal model. 
+
+::: {.callout-note}
+How do we justify controls in eg. the relationship between X and Y?
+
+1. We need a DAG
+1. then we analyse it to determine the adjustment set
+:::
+
+## Golems
+
+Statistical models are powerful but dangerous and have no wisdom or foresight. 
+Flowcharts of tests that are isolated for specific uses are not intuitive or 
+appropriate for research science. Null hypothesis rejection is not 
+appropriate, feasible or ethical in many contexts. 
+
+::: {.callout-tip}
+## Reflect 
+
+What are other process models that are consistent with this same fact?
+:::
+
+
+## Owls
+
+Emphasis on documenting and testing code, using a *respectable* workflow
+
+1. Theoretical estimand
+1. Scientific (causal) model
+1. Use the theoretical estimand and the scientific model to build a statistical
+model
+1. Simulate from the scientific model to validate that the statistical model 
+yields the theoretical estimand
+1. Analyse the real data
