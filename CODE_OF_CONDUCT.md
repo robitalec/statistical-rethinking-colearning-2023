@@ -37,7 +37,7 @@ Community leaders have the right and responsibility to remove, edit, or reject c
 This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.
 Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to Alec (robit.alec@gmail.com), or Bella (isabella.richmond@mail.concordia.ca). All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to Alec (robit.alec@gmail.com), or Bella (isabella.richmond@mail.concordia.ca). If any concerns are related to Alec or Bella, please contact Eric Vander Wal (eric.vanderwal@mun.ca). All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 
