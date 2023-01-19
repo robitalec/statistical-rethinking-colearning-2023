@@ -5,3 +5,21 @@ Second round of colearning the Statistical Rethinking
 [homework](https://github.com/rmcelreath/stat_rethinking_2023/tree/main/homework).
 First round of colearning (2022) is available [here](https://github.com/robitalec/statistical-rethinking-colearning-2022).
 
+
+## Schedule
+
+### Lectures
+
+| Meeting date   | Reading       | Lectures               |
+| -------------- | ------------- | ---------------------- |
+| 26 January  | Chapters 1, 2 and 3 | [1] <[Science Before Statistics](https://www.youtube.com/watch?v=FdnMWdICdRs&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=1)> <[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-01)> <br> [2] <[Garden of Forking Data](https://www.youtube.com/watch?v=R1vcdhPBlXA&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=2)> <[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-02)>
+| | Chapter 4 | [3] <[Geocentric Models](https://www.youtube.com/watch?v=tNOu-SEacNU&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=3)> <[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-03)> <br> [4] <[Categories and Curves](https://www.youtube.com/watch?v=F0N4b7K_iYQ&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=4)> <[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-04)>
+| | Chapters 5 and 6 |  [5] <[Elemental Confounds](https://www.youtube.com/watch?v=mBEA7PKDmiY&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=5)> <[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-05)> <br> [6] <[Good and Bad Controls](https://www.youtube.com/watch?v=uanZZLlzKHw&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=6)> <[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-06)>
+| | Chapters 7 and 8 | [7] Overfitting <br> [8] Interactions
+| | Chapters 9, 10 and 11 | [9] Markov chain Monte Carlo <br> [10] Binomial GLMs
+| | Chapters 11 and 12 | [11] Poisson GLMs <br> [12] Ordered Categories
+| | Chapter 13 | [13] Multilevel Models <br> [14] Multi-Multilevel Models
+| | Chapter 14 | [15] Varying Slopes <br> [16] Gaussian Processes
+| | Chapter 15 | [17] Measurement Error <br> [18] Missing Data
+| | Chapters 16 and 17 | [19] Beyond GLMs: State-space Models, ODEs <br> [20] Horoscopes
+
