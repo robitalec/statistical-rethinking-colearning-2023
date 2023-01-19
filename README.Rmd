@@ -22,6 +22,8 @@ Second round of colearning the Statistical Rethinking
 The first round of colearning (2022) is available [here](https://github.com/robitalec/statistical-rethinking-colearning-2022).
 
 
+
+
 ## Schedule
 
 ### Lectures
@@ -38,6 +40,8 @@ The first round of colearning (2022) is available [here](https://github.com/robi
 | | Chapter 14 | [15] Varying Slopes <br> [16] Gaussian Processes
 | | Chapter 15 | [17] Measurement Error <br> [18] Missing Data
 | | Chapters 16 and 17 | [19] Beyond GLMs: State-space Models, ODEs <br> [20] Horoscopes
+
+
 
 ### Homework
 
@@ -62,6 +66,23 @@ The first round of colearning (2022) is available [here](https://github.com/robi
 - 
 - 
 
+
+
+## Resources
+
+* Lectures: https://github.com/rmcelreath/stat_rethinking_2022#calendar--topical-outline
+* Homework: https://github.com/rmcelreath/stat_rethinking_2022/tree/main/homework
+
+Additional material using other packages or languages
+
+* Original R: https://github.com/rmcelreath/rethinking/
+* R + Tidyverse + ggplot2 + brms: https://bookdown.org/content/4857/
+* Python and PyMC3: Python/PyMC3
+* Julia and Turing: https://github.com/StatisticalRethinkingJulia and https://github.com/StatisticalRethinkingJulia/TuringModels.jl
+
+See Richard's comments about these here: https://github.com/rmcelreath/stat_rethinking_2022#original-r-flavor
+
+Also, Alec's notes and solutions of the 2019 material: https://github.com/robitalec/statistical-rethinking and https://www.statistical-rethinking.robitalec.ca/
 
 
 
