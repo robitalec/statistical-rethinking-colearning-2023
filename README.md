@@ -41,3 +41,9 @@ First round of colearning (2022) is available [here](https://github.com/robitale
 
 https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week01.pdf
 
+
+## Participant notes and homework solutions
+
+- [Alec](https://github.com/robitalec/statistical-rethinking-colearning-2023) (this repo)
+- 
+- 
