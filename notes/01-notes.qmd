@@ -26,7 +26,7 @@ ggdag(dagify(
   X ~ A + C,
   exposure = 'X',
   outcome = 'Y'
-)) + theme_dag()
+), seed = 2, layout = 'auto') + theme_dag()
 ```
 
 - X is a treatment
