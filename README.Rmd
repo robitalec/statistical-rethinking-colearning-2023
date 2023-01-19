@@ -86,6 +86,33 @@ Also, Alec's notes and solutions of the 2019 material: https://github.com/robita
 
 
 
+## Installation
+
+Package specific install directions. We'll update these as we go!
+
+Rethinking
+
+* [`rethinking`](https://github.com/rmcelreath/rethinking#installation)
+
+Stan
+
+* [`cmdstanr`](https://mc-stan.org/cmdstanr/articles/cmdstanr.html)
+* [`RStan`](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started)
+* [`brms`](r/brms/#how-do-i-install-brms)
+
+
+Targets
+
+* [`targets`](https://github.com/ropensci/targets/#installation)
+* [`stantargets`](https://github.com/ropensci/stantargets/#installation)
+
+V8, needed for the `dagitty` package
+
+* [`V8`](https://github.com/jeroen/v8#installation)
+
+
+
+
 ## Code of Conduct
 
 Please note that this project is released with a [Code of
