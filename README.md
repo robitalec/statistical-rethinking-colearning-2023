@@ -23,3 +23,21 @@ First round of colearning (2022) is available [here](https://github.com/robitale
 | | Chapter 15 | [17] Measurement Error <br> [18] Missing Data
 | | Chapters 16 and 17 | [19] Beyond GLMs: State-space Models, ODEs <br> [20] Horoscopes
 
+### Homework
+
+| Meeting date | Homework    | Solutions | 
+| :----------- | :---------- | :-------- |
+| 2 February   | [Homework 1](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week01.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week01-solutions.pdf) | 
+|              | [Homework 2](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week02.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week02-solutions.pdf) | 
+|              | [Homework 3](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week03.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week03-solutions.pdf) | 
+|              | [Homework 4](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week04.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week04-solutions.pdf) | 
+|              | [Homework 5](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week05.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week05-solutions.pdf) | 
+|              | [Homework 6](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week06.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week06-solutions.pdf) | 
+|              | [Homework 7](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week07.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week07-solutions.pdf) | 
+|              | [Homework 8](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week08.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week08-solutions.pdf) | 
+|              | [Homework 9](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week09.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week09-solutions.pdf) | 
+|              | [Homework 10](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week10.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week10-solutions.pdf) | 
+
+
+https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week01.pdf
+
