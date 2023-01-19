@@ -71,9 +71,6 @@ The first round of Statistical Rethinking colearning (2022) is available [here](
 
 ## Resources
 
-* Lectures: https://github.com/rmcelreath/stat_rethinking_2022#calendar--topical-outline
-* Homework: https://github.com/rmcelreath/stat_rethinking_2022/tree/main/homework
-
 Additional material using other packages or languages
 
 * Original R: https://github.com/rmcelreath/rethinking/
@@ -81,7 +78,13 @@ Additional material using other packages or languages
 * Python and PyMC3: Python/PyMC3
 * Julia and Turing: https://github.com/StatisticalRethinkingJulia and https://github.com/StatisticalRethinkingJulia/TuringModels.jl
 
-See Richard's comments about these here: https://github.com/rmcelreath/stat_rethinking_2022#original-r-flavor
+See Richard's comments about these here: https://github.com/rmcelreath/stat_rethinking_2023#coding
+
+
+2022 colearning:
+
+* Lectures: https://github.com/rmcelreath/stat_rethinking_2022#calendar--topical-outline
+* Homework: https://github.com/rmcelreath/stat_rethinking_2022/tree/main/homework
 
 Also, Alec's notes and solutions of the 2019 material: https://github.com/robitalec/statistical-rethinking and https://www.statistical-rethinking.robitalec.ca/
 
