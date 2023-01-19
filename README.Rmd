@@ -61,3 +61,11 @@ The first round of colearning (2022) is available [here](https://github.com/robi
 - [Alec](https://github.com/robitalec/statistical-rethinking-colearning-2023) (this repo)
 - 
 - 
+
+
+
+
+## Code of Conduct
+
+Please note that this project is released with a [Code of
+Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
