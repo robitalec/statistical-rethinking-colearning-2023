@@ -15,12 +15,14 @@ statistical-rethinking-colearning-2023
 
 ------------------------------------------------------------------------
 
-Second round of colearning the Statistical Rethinking
-[book](https://xcelab.net/rm/statistical-rethinking/), 2023
+Second round of [Statistical
+Rethinking](https://xcelab.net/rm/statistical-rethinking/) colearning,
+this time with 2023
 [lectures](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus)
 and
 [homework](https://github.com/rmcelreath/stat_rethinking_2023/tree/main/homework).
-The first round of colearning (2022) is available
+
+The first round of Statistical Rethinking colearning (2022) is available
 [here](https://github.com/robitalec/statistical-rethinking-colearning-2022).
 
 ## Schedule
@@ -64,11 +66,6 @@ The first round of colearning (2022) is available
 
 ## Resources
 
-- Lectures:
-  <https://github.com/rmcelreath/stat_rethinking_2022#calendar--topical-outline>
-- Homework:
-  <https://github.com/rmcelreath/stat_rethinking_2022/tree/main/homework>
-
 Additional material using other packages or languages
 
 - Original R: <https://github.com/rmcelreath/rethinking/>
@@ -78,7 +75,14 @@ Additional material using other packages or languages
   <https://github.com/StatisticalRethinkingJulia/TuringModels.jl>
 
 See Richard’s comments about these here:
-<https://github.com/rmcelreath/stat_rethinking_2022#original-r-flavor>
+<https://github.com/rmcelreath/stat_rethinking_2023#coding>
+
+2022 colearning:
+
+- Lectures:
+  <https://github.com/rmcelreath/stat_rethinking_2022#calendar--topical-outline>
+- Homework:
+  <https://github.com/rmcelreath/stat_rethinking_2022/tree/main/homework>
 
 Also, Alec’s notes and solutions of the 2019 material:
 <https://github.com/robitalec/statistical-rethinking> and
