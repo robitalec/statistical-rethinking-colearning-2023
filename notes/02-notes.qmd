@@ -1,0 +1,6 @@
+---
+title: "Lecture 02 Notes"
+author: "Alec L. Robitaille"
+date: "2023-01-09"
+---
+
