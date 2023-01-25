@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Statistical Rethinking colearning 2023",
+    "section": "",
+    "text": "Second round of Statistical Rethinking colearning, this time with 2023 lectures and homework.\nThe first round of Statistical Rethinking colearning (2022) is available here.\n\n\n\n\n\n\n\nMeeting date\nReading\nLectures\n\n\n\n\n26 January\nChapters 1, 2 and 3\n[1] <Science Before Statistics> <Slides>  [2] <Garden of Forking Data> <Slides>\n\n\n\nChapter 4\n[3] <Geocentric Models> <Slides>  [4] <Categories and Curves> <Slides>\n\n\n\nChapters 5 and 6\n[5] <Elemental Confounds> <Slides>  [6] <Good and Bad Controls> <Slides>\n\n\n\nChapters 7 and 8\n[7] Overfitting  [8] Interactions\n\n\n\nChapters 9, 10 and 11\n[9] Markov chain Monte Carlo  [10] Binomial GLMs\n\n\n\nChapters 11 and 12\n[11] Poisson GLMs  [12] Ordered Categories\n\n\n\nChapter 13\n[13] Multilevel Models  [14] Multi-Multilevel Models\n\n\n\nChapter 14\n[15] Varying Slopes  [16] Gaussian Processes\n\n\n\nChapter 15\n[17] Measurement Error  [18] Missing Data\n\n\n\nChapters 16 and 17\n[19] Beyond GLMs: State-space Models, ODEs  [20] Horoscopes\n\n\n\n\n\n\n\n\n\nMeeting date\nHomework\nSolutions\n\n\n\n\n2 February\nHomework 1\nSolutions\n\n\n\nHomework 2\nSolutions\n\n\n\nHomework 3\nSolutions\n\n\n\nHomework 4\nSolutions\n\n\n\nHomework 5\nSolutions\n\n\n\nHomework 6\nSolutions\n\n\n\nHomework 7\nSolutions\n\n\n\nHomework 8\nSolutions\n\n\n\nHomework 9\nSolutions\n\n\n\nHomework 10\nSolutions\n\n\n\n\n\n\n\n\nAlec (this repo)\n\n\n\n\n\n\nAdditional material using other packages or languages\n\nOriginal R: https://github.com/rmcelreath/rethinking/\nR + Tidyverse + ggplot2 + brms: https://bookdown.org/content/4857/\nPython and PyMC3: Python/PyMC3\nJulia and Turing: https://github.com/StatisticalRethinkingJulia and https://github.com/StatisticalRethinkingJulia/TuringModels.jl\n\nSee Richard’s comments about these here: https://github.com/rmcelreath/stat_rethinking_2023#coding\n2022 colearning:\n\nLectures: https://github.com/rmcelreath/stat_rethinking_2022#calendar–topical-outline\nHomework: https://github.com/rmcelreath/stat_rethinking_2022/tree/main/homework\n\nAlso, Alec’s notes and solutions of the 2019 material: https://github.com/robitalec/statistical-rethinking and https://www.statistical-rethinking.robitalec.ca/\n\n\n\nPackage specific install directions. We’ll update these as we go!\nRethinking\n\nrethinking\n\nStan\n\ncmdstanr\nRStan\nbrms\n\nTargets\n\ntargets\nstantargets\n\nV8, needed for the dagitty package\n\nV8\n\n\n\n\nPlease note that this project is released with a Code of Conduct. By participating in this project you agree to abide by its terms."
+  },
+  {
+    "objectID": "notes/01-notes.html",
+    "href": "notes/01-notes.html",
+    "title": "Lecture 01 Notes",
+    "section": "",
+    "text": "Statistical models process data but to provide insight, we require scientific models. Causes of data cannot be extracted alone using a statistical model, we need causal models.\nCausal inference is the prediction of intervention and imputation of missing observations.\nCausal prediction: knowing a cause means being able to predict the consequences of an intervention. Causal imputation: knowing a cause means being able to construct unobserved counterfactual outcomes.\n\n\n\n\n\n\nX is a treatment\nY is an outcome\nB is a competing cause of Y\nA is an influence of the treatment X\nC is a common cause of X and Y (a confound)\n\nRelationships between all variables can impact outcomes.\n\n\n\n\n\n\nNote\n\n\n\nAt one moment in time, DAGs are unidirectional. With a time series, you can have reciprocal relationships.\n\n\nDAGs are not specific to one model and therefore can be used for different queries and related models. These different models should not necessarily include all variables, and DAGs help us determine good and bad controls for each question. DAGs are logically specific and can be used to test and refine the causal model.\n\n\n\n\n\n\nNote\n\n\n\nHow do we justify controls in eg. the relationship between X and Y?\n\nWe need a DAG\nthen we analyse it to determine the adjustment set"
+  },
+  {
+    "objectID": "notes/01-notes.html#golems",
+    "href": "notes/01-notes.html#golems",
+    "title": "Lecture 01 Notes",
+    "section": "Golems",
+    "text": "Golems\nStatistical models are powerful but dangerous and have no wisdom or foresight. Flowcharts of tests that are isolated for specific uses are not intuitive or appropriate for research science. Null hypothesis rejection is not appropriate, feasible or ethical in many contexts.\n\n\n\n\n\n\nReflect\n\n\n\nWhat are other process models that are consistent with this same fact?"
+  },
+  {
+    "objectID": "notes/01-notes.html#owls",
+    "href": "notes/01-notes.html#owls",
+    "title": "Lecture 01 Notes",
+    "section": "Owls",
+    "text": "Owls\nEmphasis on documenting and testing code, using a respectable workflow\n\nTheoretical estimand\nScientific (causal) model\nUse the theoretical estimand and the scientific model to build a statistical model\nSimulate from the scientific model to validate that the statistical model yields the theoretical estimand\nAnalyse the real data"
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html",
+    "href": "CODE_OF_CONDUCT.html",
+    "title": "Statistical Rethinking colearning 2023",
+    "section": "",
+    "text": "We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.\nWe pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.\n\n\n\nExamples of behavior that contributes to a positive environment for our community include:\n\nDemonstrating empathy and kindness toward other people\nBeing respectful of differing opinions, viewpoints, and experiences\nGiving and gracefully accepting constructive feedback\nAccepting responsibility and apologizing to those affected by our mistakes, and learning from the experience\nFocusing on what is best not just for us as individuals, but for the overall community\n\nExamples of unacceptable behavior include:\n\nThe use of sexualized language or imagery, and sexual attention or advances of any kind\nTrolling, insulting or derogatory comments, and personal or political attacks\nPublic or private harassment\nPublishing others’ private information, such as a physical or email address, without their explicit permission\nOther conduct which could reasonably be considered inappropriate in a professional setting\n\n\n\n\nCommunity leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.\nCommunity leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate.\n\n\n\nThis Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Enforcement\nInstances of abusive, harassing, or otherwise unacceptable behavior may be reported to Alec (robit.alec@gmail.com), or Bella (isabella.richmond@mail.concordia.ca). If any concerns are related to Alec or Bella, please contact Eric Vander Wal (eric.vanderwal@mun.ca). All complaints will be reviewed and investigated promptly and fairly.\nAll community leaders are obligated to respect the privacy and security of the reporter of any incident.\n\n\n\nCommunity leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:\n\n\nCommunity Impact: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.\nConsequence: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.\n\n\n\nCommunity Impact: A violation through a single incident or series of actions.\nConsequence: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban.\n\n\n\nCommunity Impact: A serious violation of community standards, including sustained inappropriate behavior.\nConsequence: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban.\n\n\n\nCommunity Impact: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.\nConsequence: A permanent ban from any sort of public interaction within the community."
+  },
+  {
+    "objectID": "CODE_OF_CONDUCT.html#attribution",
+    "href": "CODE_OF_CONDUCT.html#attribution",
+    "title": "Statistical Rethinking colearning 2023",
+    "section": "Attribution",
+    "text": "Attribution\nThis Code of Conduct is adapted from the Contributor Covenant homepage, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at ttps://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
+  },
+  {
+    "objectID": "notes/02-notes.html",
+    "href": "notes/02-notes.html",
+    "title": "Lecture 02 Notes",
+    "section": "",
+    "text": "Bayesian data analysis is Bayesian inference applied to scientific data analysis. For each possible explanation of the sample, count all the ways the sample could have happened and explanations with more ways to produce the sample are more plausible.\nNo guarantees except logical. Probability theory is a method of logically deducing the implications of data under the assumptions that you must choose."
+  },
+  {
+    "objectID": "notes/02-notes.html#workflow",
+    "href": "notes/02-notes.html#workflow",
+    "title": "Lecture 02 Notes",
+    "section": "Workflow",
+    "text": "Workflow\n\nDefine generative model of the sample\nDefine a specific estimand\nDesign a statistical way to produce estimand\nTest the statistical method using the generative model\nAnalyse the sample, summarize"
+  },
+  {
+    "objectID": "notes/02-notes.html#globe-tossing-model",
+    "href": "notes/02-notes.html#globe-tossing-model",
+    "title": "Lecture 02 Notes",
+    "section": "Globe tossing model",
+    "text": "Globe tossing model\nEstimand: proportion of globe covered in water\nGiven N samples, how should we use the sample? Produce a summary of the sample? Represent uncertainty?\nFirst, think about how sample is produced and how variables influence on another.\n\nP = proportion of water\nW = land observations\nW = water observations\nN = number of tosses\n\n\n\n\n\n\n\nNote\n\n\n\nVariables can be things you observed or things you want to estimate\n\n\n\n\n\n\n\nN influences W and L: if you were to intervene on N (eg. increase the number of observations), it would change W and L.\nTo make the DAG generative, we need to define these relationships as a function.\n\\(W, L = f (P, N)\\)\nWhat is the function?\n\n\n\n\nW L W\nW\n\n\n\n\n\n4 L\n0 x 4 x 0\n0 x 0\n0\n\n\n3 L 1 W\n1 x 3 x 1\n3 x 1\n3\n\n\n2 L 2 W\n2 x 2 x 2\n8 x 2\n16\n\n\n1 L 3 W\n3 x 1 x 3\n9 x 3\n27\n\n\n4 W\n4 x 0 x 4\n0 x 4\n0\n\n\n\nGiven the table and our scientific understanding, the function is:\n\\(W, L = (4p) ^ {W} * (4-4p) ^ {L}\\)"
+  },
+  {
+    "objectID": "notes/02-notes.html#generative-simulation",
+    "href": "notes/02-notes.html#generative-simulation",
+    "title": "Lecture 02 Notes",
+    "section": "Generative simulation",
+    "text": "Generative simulation\nSimulate a data set with known parameters, then test if your statistical estimator returns these known parameters.\nRepeat with different sampling designs, with extreme simulations (eg. all W or all L)."
+  },
+  {
+    "objectID": "notes/02-notes.html#bayesian-inference",
+    "href": "notes/02-notes.html#bayesian-inference",
+    "title": "Lecture 02 Notes",
+    "section": "Bayesian inference",
+    "text": "Bayesian inference\n\nNo minimum sample size\nThe shape of the posterior distribution embodies the sample size\nNo point estimate. The distribution is the estimate, always use the entire distribution.\nNo one true interval. Nothing happens at the boundary."
+  },
+  {
+    "objectID": "notes/02-notes.html#posterior-predictive-simulations",
+    "href": "notes/02-notes.html#posterior-predictive-simulations",
+    "title": "Lecture 02 Notes",
+    "section": "Posterior predictive simulations",
+    "text": "Posterior predictive simulations\nUse samples from the entire posterior distribution to determine implications of the model.\nUncertainty -> causal model -> implications\nTypes:\n\nmodel-based forecasts\ncausal effects\ncounterfactuals\nprior predictions"
+  }
+]
