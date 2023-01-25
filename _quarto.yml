@@ -1,0 +1,17 @@
+project:
+  type: website
+  output-dir: docs
+
+
+website:
+  title: "statistical-rethinking-colearning-2023"
+
+navbar:
+  left:
+    - href: README.qmd
+      text: Home
+
+format:
+  html:
+    theme: darkly
+    toc: true
