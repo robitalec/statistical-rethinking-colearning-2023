@@ -1,16 +1,14 @@
 project:
   type: website
   output-dir: docs
-  render:
-    - README.qmd
 
 website:
   title: "statistical-rethinking-colearning-2023"
 
-navbar:
-  left:
-    - href: README.qmd
-      text: Home
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
 
 format:
   html:
