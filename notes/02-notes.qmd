@@ -4,3 +4,30 @@ author: "Alec L. Robitaille"
 date: "2023-01-09"
 ---
 
+## Globe tossing model
+
+Estimand: proportion of globe covered in water
+
+Given N samples, how should we use the sample? Produce a summary of the sample? Represent uncertainty?
+
+
+First, think about how sample is produced and how variables influence on another. 
+
+
+- P = proportion of water
+- W = land observations
+- W = water observations
+- N = number of tosses
+
+::: {.callout-note}
+Variables can be things you observed or things you want to estimate
+:::
+
+
+```{r 01_dag, echo = FALSE}
+suppressPackageStartupMessages(library(ggdag))
+ggdag(dagify(
+  L ~ P + N,
+  W ~ P + N
+), seed = 2, layout = 'auto') + theme_dag()
+```
