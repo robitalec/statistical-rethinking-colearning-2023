@@ -48,7 +48,7 @@ The first round of Statistical Rethinking colearning (2022) is available [here](
 ## Participant notes and homework solutions
 
 - [Alec](https://github.com/robitalec/statistical-rethinking-colearning-2023) (this repo)
-- 
+- [Bella](https://github.com/icrichmond/statistical-rethinking-colearning)
 - 
 
 
