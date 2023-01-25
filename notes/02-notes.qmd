@@ -80,9 +80,42 @@ Given the table and our scientific understanding, the function is:
 
 $W, L = (4p) ^ {W} *  (4-4p) ^ {L}$
 
-## Bayesian data analysis
 
-Bayesian data analysis is Bayesian inference applied to scientific data
-analysis. For each possible explanation of the sample, count all the ways the
-sample could have happened and explanations with more ways to produce the sample
-are more plausible.
+## Generative simulation
+
+Simulate a data set with known parameters, then test if your statistical 
+estimator returns these known parameters. 
+
+Repeat with different sampling designs, with extreme simulations (eg. all W or
+all L).
+
+
+## Bayesian inference
+
+- No minimum sample size
+- The shape of the posterior distribution embodies the sample size
+- No point estimate. The distribution is the estimate, **always use the entire distribution**. 
+- No one true interval. Nothing happens at the boundary. 
+
+
+## Posterior predictive simulations
+
+Use samples from the entire posterior distribution to determine
+implications of the model. 
+
+Uncertainty -> causal model -> implications
+
+
+Types:
+
+- model-based forecasts
+- causal effects
+- counterfactuals
+- prior predictions
+
+
+<!-- ## Misclassification 
+
+TODO
+
+-->
