@@ -4,3 +4,118 @@ author: "Alec L. Robitaille"
 date: "2023-01-09"
 ---
 
+## Bayesian data analysis
+
+Bayesian data analysis is Bayesian inference applied to scientific data
+analysis. For each possible explanation of the sample, count all the ways the
+sample could have happened and explanations with more ways to produce the sample
+are more plausible.
+
+No guarantees except logical. Probability theory is a  method
+of logically deducing the implications of data under the assumptions
+that you must choose. 
+
+
+
+## Workflow
+
+1. Define generative model of the sample
+1. Define a specific estimand
+1. Design a statistical way to produce estimand
+1. Test the statistical method using the generative model
+1. Analyse the sample, summarize
+
+
+## Globe tossing model
+
+Estimand: proportion of globe covered in water
+
+Given N samples, how should we use the sample? Produce a summary of the sample?
+Represent uncertainty?
+
+
+First, think about how sample is produced and how variables influence on
+another.
+
+
+- P = proportion of water
+- W = land observations
+- W = water observations
+- N = number of tosses
+
+::: {.callout-note}
+Variables can be things you observed or things you want to estimate
+:::
+
+
+```{r 01_dag, echo = FALSE}
+suppressPackageStartupMessages(library(ggdag))
+ggdag(dagify(
+  L ~ P + N,
+  W ~ P + N
+), seed = 2, layout = 'auto') + theme_dag()
+```
+
+
+N influences W and L: if you were to intervene on N (eg. increase the number of
+observations), it would change W and L.
+
+
+To make the DAG **generative**, we need to define these relationships as a function. 
+
+$W, L = f (P, N)$
+
+What is the function?
+
+|         | W L W      | W     |    |
+|---------|------------|-------|----|
+| 4 L     | 0 x 4 x 0  | 0 x 0 | 0  |
+| 3 L 1 W | 1 x 3 x 1  | 3 x 1 | 3  |
+| 2 L 2 W | 2 x 2 x 2  | 8 x 2 | 16 |
+| 1 L 3 W | 3 x 1 x 3  | 9 x 3 | 27 |
+| 4 W     | 4 x 0 x 4  | 0 x 4 | 0  |
+
+
+Given the table and our scientific understanding, the function is:
+
+$W, L = (4p) ^ {W} *  (4-4p) ^ {L}$
+
+
+## Generative simulation
+
+Simulate a data set with known parameters, then test if your statistical 
+estimator returns these known parameters. 
+
+Repeat with different sampling designs, with extreme simulations (eg. all W or
+all L).
+
+
+## Bayesian inference
+
+- No minimum sample size
+- The shape of the posterior distribution embodies the sample size
+- No point estimate. The distribution is the estimate, **always use the entire distribution**. 
+- No one true interval. Nothing happens at the boundary. 
+
+
+## Posterior predictive simulations
+
+Use samples from the entire posterior distribution to determine
+implications of the model. 
+
+Uncertainty -> causal model -> implications
+
+
+Types:
+
+- model-based forecasts
+- causal effects
+- counterfactuals
+- prior predictions
+
+
+<!-- ## Misclassification 
+
+TODO
+
+-->
