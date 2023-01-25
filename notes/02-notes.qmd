@@ -4,6 +4,18 @@ author: "Alec L. Robitaille"
 date: "2023-01-09"
 ---
 
+## Bayesian data analysis
+
+Bayesian data analysis is Bayesian inference applied to scientific data
+analysis. For each possible explanation of the sample, count all the ways the
+sample could have happened and explanations with more ways to produce the sample
+are more plausible.
+
+No guarantees except logical. Probability theory is a  method
+of logically deducing the implications of data under the assumptions
+that you must choose. 
+
+
 
 ## Workflow
 
