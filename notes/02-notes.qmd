@@ -4,6 +4,16 @@ author: "Alec L. Robitaille"
 date: "2023-01-09"
 ---
 
+
+## Workflow
+
+1. Define generative model of the sample
+1. Define a specific estimand
+1. Design a statistical way to produce estimand
+1. Test the statistical method using the generative model
+1. Analyse the sample, summarize
+
+
 ## Globe tossing model
 
 Estimand: proportion of globe covered in water
