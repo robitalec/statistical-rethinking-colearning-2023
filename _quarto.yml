@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Statistical Rethinking colearning 2023"
+
+  sidebar:
+    contents:
+      - href: index.qmd
+        text: Home
+      - section: "Notes"
+        contents:
+          - href: notes/01-notes.qmd
+            text: Lecture 01
+
+format:
+  html:
+    theme:
+      dark: darkly
+      light: flatly
+    toc: true
