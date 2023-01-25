@@ -13,6 +13,8 @@ website:
         contents:
           - href: notes/01-notes.qmd
             text: Lecture 01
+          - href: notes/02-notes.qmd
+            text: Lecture 02
 
 format:
   html:
