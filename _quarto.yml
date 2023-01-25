@@ -3,10 +3,10 @@ project:
   output-dir: docs
 
 website:
-  title: "statistical-rethinking-colearning-2023"
+  title: "Statistical Rethinking colearning 2023"
 
-  navbar:
-    left:
+  sidebar:
+    contents:
       - href: index.qmd
         text: Home
 
