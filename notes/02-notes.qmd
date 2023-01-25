@@ -18,10 +18,12 @@ date: "2023-01-09"
 
 Estimand: proportion of globe covered in water
 
-Given N samples, how should we use the sample? Produce a summary of the sample? Represent uncertainty?
+Given N samples, how should we use the sample? Produce a summary of the sample?
+Represent uncertainty?
 
 
-First, think about how sample is produced and how variables influence on another. 
+First, think about how sample is produced and how variables influence on
+another.
 
 
 - P = proportion of water
