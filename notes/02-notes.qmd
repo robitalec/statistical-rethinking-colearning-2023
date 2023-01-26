@@ -38,7 +38,7 @@ First, think about how sample is produced and how variables influence on
 another.
 
 
-- P = proportion of water
+- p = proportion of water
 - W = land observations
 - W = water observations
 - N = number of tosses
@@ -48,12 +48,18 @@ Variables can be things you observed or things you want to estimate
 :::
 
 
-```{r 01_dag, echo = FALSE}
+```{r 02_dag, echo = FALSE, fig.height = 4}
 suppressPackageStartupMessages(library(ggdag))
-ggdag(dagify(
-  L ~ P + N,
-  W ~ P + N
-), seed = 2, layout = 'auto') + theme_dag()
+coords <- data.frame(
+	name = c('W', 'L', 'p', 'N', 'W_star', 'M'),
+	x =    c(1,    1,   0,   0,   2,       3),
+	y =    c(1,    0,   1,   0,   1,       1)
+)
+dagify(
+  L ~ p + N,
+  W ~ p + N,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
 ```
 
 
@@ -114,8 +120,33 @@ Types:
 - prior predictions
 
 
-<!-- ## Misclassification 
+## Misclassification 
 
-TODO
+Consider the true number of water samples is unobserved, eg. due to measurement
+error. W* (W_star) is misclassified sample, influenced by the measurement 
+process (M). 
 
--->
+
+Note: this DAG is simplified to remove L since N - L = W
+
+```{r 02_dag_misclassified, echo = FALSE, fig.height = 4}
+dagify(
+    W ~ p + N,
+    W_star ~ W + M,
+    latent = c('p', 'W'),
+    coords = coords
+) |> ggdag_status(seed = 2, layout = 'auto') + theme_dag()
+```
+
+
+Next, use a simulation to determine the potential impact of misclassification. 
+
+Define a function with a new variable X, the misclassification rate, that 
+takes a simulated sample then introduces error. The misclassification estimator
+returns a new formula for the posterior distribution. 
+
+If there is measurement error, better to model it than to ignore it. Samples
+do not need to be representative of the population in order to provide 
+good estimates of the population. The priority is to determine in which ways 
+(why) the sample differs from the population. Then you can modeol the sample
+process and the causal differences for the population. 

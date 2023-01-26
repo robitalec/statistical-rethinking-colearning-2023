@@ -139,6 +139,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#generative-simulation" id="toc-generative-simulation" class="nav-link" data-scroll-target="#generative-simulation">Generative simulation</a></li>
   <li><a href="#bayesian-inference" id="toc-bayesian-inference" class="nav-link" data-scroll-target="#bayesian-inference">Bayesian inference</a></li>
   <li><a href="#posterior-predictive-simulations" id="toc-posterior-predictive-simulations" class="nav-link" data-scroll-target="#posterior-predictive-simulations">Posterior predictive simulations</a></li>
+  <li><a href="#misclassification" id="toc-misclassification" class="nav-link" data-scroll-target="#misclassification">Misclassification</a></li>
   </ul>
 </nav>
     </div>
@@ -195,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Given N samples, how should we use the sample? Produce a summary of the sample? Represent uncertainty?</p>
 <p>First, think about how sample is produced and how variables influence on another.</p>
 <ul>
-<li>P = proportion of water</li>
+<li>p = proportion of water</li>
 <li>W = land observations</li>
 <li>W = water observations</li>
 <li>N = number of tosses</li>
@@ -215,7 +216,7 @@ Note
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="02-notes_files/figure-html/01_dag-1.png" class="img-fluid" width="672"></p>
+<p><img src="02-notes_files/figure-html/02_dag-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>N influences W and L: if you were to intervene on N (eg. increase the number of observations), it would change W and L.</p>
@@ -292,11 +293,19 @@ Note
 <li>counterfactuals</li>
 <li>prior predictions</li>
 </ul>
-<!-- ## Misclassification 
-
-TODO
-
--->
+</section>
+<section id="misclassification" class="level2">
+<h2 class="anchored" data-anchor-id="misclassification">Misclassification</h2>
+<p>Consider the true number of water samples is unobserved, eg. due to measurement error. W* (W_star) is misclassified sample, influenced by the measurement process (M).</p>
+<p>Note: this DAG is simplified to remove L since N - L = W</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="02-notes_files/figure-html/02_dag_misclassified-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Next, use a simulation to determine the potential impact of misclassification.</p>
+<p>Define a function with a new variable X, the misclassification rate, that takes a simulated sample then introduces error. The misclassification estimator returns a new formula for the posterior distribution.</p>
+<p>If there is measurement error, better to model it than to ignore it. Samples do not need to be representative of the population in order to provide good estimates of the population. The priority is to determine in which ways (why) the sample differs from the population. Then you can modeol the sample process and the causal differences for the population.</p>
 
 
 </section>

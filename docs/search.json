@@ -60,7 +60,7 @@
     "href": "notes/02-notes.html#globe-tossing-model",
     "title": "Lecture 02 Notes",
     "section": "Globe tossing model",
-    "text": "Globe tossing model\nEstimand: proportion of globe covered in water\nGiven N samples, how should we use the sample? Produce a summary of the sample? Represent uncertainty?\nFirst, think about how sample is produced and how variables influence on another.\n\nP = proportion of water\nW = land observations\nW = water observations\nN = number of tosses\n\n\n\n\n\n\n\nNote\n\n\n\nVariables can be things you observed or things you want to estimate\n\n\n\n\n\n\n\nN influences W and L: if you were to intervene on N (eg. increase the number of observations), it would change W and L.\nTo make the DAG generative, we need to define these relationships as a function.\n\\(W, L = f (P, N)\\)\nWhat is the function?\n\n\n\n\nW L W\nW\n\n\n\n\n\n4 L\n0 x 4 x 0\n0 x 0\n0\n\n\n3 L 1 W\n1 x 3 x 1\n3 x 1\n3\n\n\n2 L 2 W\n2 x 2 x 2\n8 x 2\n16\n\n\n1 L 3 W\n3 x 1 x 3\n9 x 3\n27\n\n\n4 W\n4 x 0 x 4\n0 x 4\n0\n\n\n\nGiven the table and our scientific understanding, the function is:\n\\(W, L = (4p) ^ {W} * (4-4p) ^ {L}\\)"
+    "text": "Globe tossing model\nEstimand: proportion of globe covered in water\nGiven N samples, how should we use the sample? Produce a summary of the sample? Represent uncertainty?\nFirst, think about how sample is produced and how variables influence on another.\n\np = proportion of water\nW = land observations\nW = water observations\nN = number of tosses\n\n\n\n\n\n\n\nNote\n\n\n\nVariables can be things you observed or things you want to estimate\n\n\n\n\n\n\n\nN influences W and L: if you were to intervene on N (eg. increase the number of observations), it would change W and L.\nTo make the DAG generative, we need to define these relationships as a function.\n\\(W, L = f (P, N)\\)\nWhat is the function?\n\n\n\n\nW L W\nW\n\n\n\n\n\n4 L\n0 x 4 x 0\n0 x 0\n0\n\n\n3 L 1 W\n1 x 3 x 1\n3 x 1\n3\n\n\n2 L 2 W\n2 x 2 x 2\n8 x 2\n16\n\n\n1 L 3 W\n3 x 1 x 3\n9 x 3\n27\n\n\n4 W\n4 x 0 x 4\n0 x 4\n0\n\n\n\nGiven the table and our scientific understanding, the function is:\n\\(W, L = (4p) ^ {W} * (4-4p) ^ {L}\\)"
   },
   {
     "objectID": "notes/02-notes.html#generative-simulation",
@@ -89,5 +89,12 @@
     "title": "Notes",
     "section": "",
     "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nLecture 01 Notes\n\n\nAlec L. Robitaille\n\n\n\n\nLecture 02 Notes\n\n\nAlec L. Robitaille\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "notes/02-notes.html#misclassification",
+    "href": "notes/02-notes.html#misclassification",
+    "title": "Lecture 02 Notes",
+    "section": "Misclassification",
+    "text": "Misclassification\nConsider the true number of water samples is unobserved, eg. due to measurement error. W* (W_star) is misclassified sample, influenced by the measurement process (M).\nNote: this DAG is simplified to remove L since N - L = W\n\n\n\n\n\nNext, use a simulation to determine the potential impact of misclassification.\nDefine a function with a new variable X, the misclassification rate, that takes a simulated sample then introduces error. The misclassification estimator returns a new formula for the posterior distribution.\nIf there is measurement error, better to model it than to ignore it. Samples do not need to be representative of the population in order to provide good estimates of the population. The priority is to determine in which ways (why) the sample differs from the population. Then you can modeol the sample process and the causal differences for the population."
   }
 ]
