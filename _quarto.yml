@@ -10,6 +10,7 @@ website:
       - href: index.qmd
         text: Home
       - section: "Notes"
+        href: notes/00-notes-listing.qmd
         contents:
           - href: notes/01-notes.qmd
             text: Lecture 01
