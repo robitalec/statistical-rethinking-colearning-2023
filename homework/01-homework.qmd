@@ -98,3 +98,17 @@ a second or third time. Suppose you observe W = 5 water points, but you forgot
 to write down how many times the globe was tossed, so you don’t know the number
 of land points L. Assume that p = 0.7 and compute the posterior distribution of
 the number of tosses N. Hint: Use the binomial distribution.
+
+```{r}
+p <- 0.7
+n_water <- 5
+
+n_samples <- seq(5, 15)
+
+d <- vapply(n_samples, dbinom, x = n_water, prob = p, FUN.VALUE = 42)
+
+kable(data.table(
+	n_samples = n_samples,
+	post = d
+))
+```
