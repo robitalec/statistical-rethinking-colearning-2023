@@ -11,16 +11,23 @@ water and 11 land. Construct the posterior distribution.
 
 
 ```{r}
-source('../R/packages.R')
-source('../R/compute_posterior_globe.R')
+source('R/packages.R')
+source('R/compute_posterior_globe.R')
 ```
 
 
 ```{r}
-x <- c(rep('W', 4), rep('L', 11))
-post <- compute_posterior_globe(x)
+n_water <- 4
+n_land <- 11
+x <- c(rep('W', n_water), rep('L', n_land))
+n_possibilities <- 5
+posterior <- compute_posterior_globe(x, n_possibilities = n_possibilities)
 
-kable(post)
+kable(posterior, digits = 2)
+
+# Using a finer grid with more potential possibilities
+n_possibilities <- 100
+posterior <- compute_posterior_globe(x, n_possibilities = n_possibilities)
 ```
 
 
