@@ -23,7 +23,7 @@ x <- c(rep('W', n_water), rep('L', n_land))
 n_possibilities <- 5
 posterior <- compute_posterior_globe(x, n_possibilities = n_possibilities)
 
-kable(posterior, digits = 2)
+kable(posterior, digits = 4)
 
 # Using a finer grid with more potential possibilities
 n_possibilities <- 100
