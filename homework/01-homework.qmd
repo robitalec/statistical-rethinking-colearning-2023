@@ -3,3 +3,29 @@ title: "Homework 01"
 author: "Alec L. Robitaille"
 date: "2023-02-01"
 ---
+
+
+## Question 1
+> Suppose the globe tossing data (Lecture 2, Chapter 2) had turned out to be 4
+water and 11 land. Construct the posterior distribution.
+
+
+
+## Question 2
+> Using the posterior distribution from 1, compute the posterior predictive
+distribution for the next 5 tosses of the same globe. I recommend you use the
+sampling method.
+
+
+## Question 3
+> Use the posterior predictive distribution from 2 to calculate the probability
+of 3 or more water samples in the next 5 tosses.
+
+
+
+## Question 4 (optional)
+> This problem is an optional challenge for people who are taking the course for
+a second or third time. Suppose you observe W = 5 water points, but you forgot
+to write down how many times the globe was tossed, so you don’t know the number
+of land points L. Assume that p = 0.7 and compute the posterior distribution of
+the number of tosses N. Hint: Use the binomial distribution.
