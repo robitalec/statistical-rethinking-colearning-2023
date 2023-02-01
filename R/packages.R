@@ -3,4 +3,7 @@
 
 
 library(ggdag)
-library(daggity)
+library(dagitty)
+
+
+library(knitr)
