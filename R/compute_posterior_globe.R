@@ -15,7 +15,7 @@ compute_posterior_globe <- function(x, possibilities = c(0, 0.25, 0.5, 0.75, 1))
 	)
 
 	f <- function(W, L, possibility) {
-		((possibility * 4) ^ W)  * ((1 - possibility) * 4 ^ L)
+		(possibility * 4) ^ W  * ((1 - possibility) * 4) ^ L
 	}
 
 	DT[, ways := f(W, L, possibility)]
