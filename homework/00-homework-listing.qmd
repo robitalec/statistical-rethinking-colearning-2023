@@ -1,5 +1,5 @@
 ---
-title: "Notes"
+title: "Homework"
 listing:
   type: table
   sort:

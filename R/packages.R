@@ -1,6 +1,11 @@
 # Packages ----------------------------------------------------------------
 # Alec L. Robitaille
 
+library(data.table)
+
 
 library(ggdag)
-library(daggity)
+library(dagitty)
+
+
+library(knitr)
