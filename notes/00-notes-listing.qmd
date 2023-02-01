@@ -4,6 +4,6 @@ listing:
   type: table
   sort:
     - "title asc"
-  fields: [title, author]
+  fields: [title, date, author]
 ---
 
