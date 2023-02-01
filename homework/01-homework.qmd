@@ -38,6 +38,45 @@ distribution for the next 5 tosses of the same globe. I recommend you use the
 sampling method.
 
 
+```{r}
+possibilities <- seq(0, 1, length.out = n_possibilities)
+size <- 1e4
+n_tosses <- 5
+
+
+# == Sampling approach from posterior
+# Sample with probability posterior distribution calculated in Question 1
+# using the grid of possibilities (sequence of numbers between 0 and 1)
+posterior_samples <- sample(
+	possibilities,
+	size = size,
+	prob = posterior$post,
+	replace = TRUE
+)
+
+# Using the posterior predicted proportion of water, simulate 5 tosses for each
+posterior_predict <- rbinom(size, size = n_tosses, p = posterior_samples)
+
+# Plot number of W tosses 
+plot(table(posterior_predict), xlab = 'number of W tosses', ylab = '', 
+		 main = 'Posterior predicted')
+
+# === Sampling approach from representative Beta distribution
+beta_samples <- rbeta(
+	size,
+	n_water + 1,
+	n_land + 1
+)
+
+# Using the beta distribution predicted proportion of water, simulate 5 tosses for each
+beta_predict <- rbinom(size, size = n_tosses, p = beta_samples)
+
+# Plot number of W tosses 
+plot(table(beta_predict), xlab = 'number of W tosses', ylab = '', 
+		 main = 'Beta distribution predicted')
+```
+
+
 ## Question 3
 > Use the posterior predictive distribution from 2 to calculate the probability
 of 3 or more water samples in the next 5 tosses.
