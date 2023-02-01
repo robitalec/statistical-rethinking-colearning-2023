@@ -4,7 +4,7 @@
     "href": "homework/01-homework.html",
     "title": "Homework 01",
     "section": "",
-    "text": "Suppose the globe tossing data (Lecture 2, Chapter 2) had turned out to be 4 water and 11 land. Construct the posterior distribution.\n\n\nsource('R/packages.R')\n\n\nAttaching package: 'ggdag'\n\n\nThe following object is masked from 'package:stats':\n\n    filter\n\nsource('R/compute_posterior_globe.R')\n\n\nn_water <- 4\nn_land <- 11\nx <- c(rep('W', n_water), rep('L', n_land))\nn_possibilities <- 5\nposterior <- compute_posterior_globe(x, n_possibilities = n_possibilities)\n\nkable(posterior, digits = 2)\n\n\n\n\nW\nL\npossibility\nways\npost\n\n\n\n\n4\n11\n0.00\n0\n0.00\n\n\n4\n11\n0.25\n177147\n0.84\n\n\n4\n11\n0.50\n32768\n0.16\n\n\n4\n11\n0.75\n81\n0.00\n\n\n4\n11\n1.00\n0\n0.00\n\n\n\n\n# Using a finer grid with more potential possibilities\nn_possibilities <- 100\nposterior <- compute_posterior_globe(x, n_possibilities = n_possibilities)"
+    "text": "Suppose the globe tossing data (Lecture 2, Chapter 2) had turned out to be 4 water and 11 land. Construct the posterior distribution.\n\n\nsource('R/packages.R')\n\n\nAttaching package: 'ggdag'\n\n\nThe following object is masked from 'package:stats':\n\n    filter\n\nsource('R/compute_posterior_globe.R')\n\n\nn_water <- 4\nn_land <- 11\nx <- c(rep('W', n_water), rep('L', n_land))\nn_possibilities <- 5\nposterior <- compute_posterior_globe(x, n_possibilities = n_possibilities)\n\nkable(posterior, digits = 4)\n\n\n\n\nW\nL\npossibility\nways\npost\n\n\n\n\n4\n11\n0.00\n0\n0.0000\n\n\n4\n11\n0.25\n177147\n0.8436\n\n\n4\n11\n0.50\n32768\n0.1560\n\n\n4\n11\n0.75\n81\n0.0004\n\n\n4\n11\n1.00\n0\n0.0000\n\n\n\n\n# Using a finer grid with more potential possibilities\nn_possibilities <- 100\nposterior <- compute_posterior_globe(x, n_possibilities = n_possibilities)"
   },
   {
     "objectID": "homework/01-homework.html#question-2",
@@ -18,7 +18,7 @@
     "href": "homework/01-homework.html#question-3",
     "title": "Homework 01",
     "section": "Question 3",
-    "text": "Question 3\n\nUse the posterior predictive distribution from 2 to calculate the probability of 3 or more water samples in the next 5 tosses.\n\n\n# Predicted probability of 3 or more water samples in the next 5 tosses\n#  given posterior predictive distribution\ntable(posterior_predict >= 3) / size\n\n\n FALSE   TRUE \n0.8154 0.1846 \n\n# and beta distribution prediction\ntable(beta_predict >= 3) / size\n\n\n FALSE   TRUE \n0.8186 0.1814"
+    "text": "Question 3\n\nUse the posterior predictive distribution from 2 to calculate the probability of 3 or more water samples in the next 5 tosses.\n\n\n# Predicted probability of 3 or more water samples in the next 5 tosses\n#  given posterior predictive distribution\ntable(posterior_predict >= 3) / size\n\n\n FALSE   TRUE \n0.8192 0.1808 \n\n# and beta distribution prediction\ntable(beta_predict >= 3) / size\n\n\n FALSE   TRUE \n0.8246 0.1754"
   },
   {
     "objectID": "homework/01-homework.html#question-4-optional",
@@ -124,5 +124,12 @@
     "title": "Statistical Rethinking colearning 2023",
     "section": "Attribution",
     "text": "Attribution\nThis Code of Conduct is adapted from the Contributor Covenant homepage, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at ttps://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Statistical Rethinking colearning 2023",
+    "section": "",
+    "text": "Second round of Statistical Rethinking colearning, this time with 2023 lectures and homework.\nThe first round of Statistical Rethinking colearning (2022) is available here.\n\n\n\n\n\n\n\nMeeting date\nReading\nLectures\n\n\n\n\n26 January\nChapters 1, 2 and 3\n[1] <Science Before Statistics> <Slides>  [2] <Garden of Forking Data> <Slides>\n\n\n\n\n\n\n\n\n\nMeeting date\nHomework\nSolutions\n\n\n\n\n2 February\nHomework 1\nSolutions\n\n\n\n\n\n\n\n\nAlec (this repo)\nBella\n\n\n\n\n\nAdditional material using other packages or languages\n\nOriginal R: https://github.com/rmcelreath/rethinking/\nR + Tidyverse + ggplot2 + brms: https://bookdown.org/content/4857/\nPython and PyMC3: Python/PyMC3\nJulia and Turing: https://github.com/StatisticalRethinkingJulia and https://github.com/StatisticalRethinkingJulia/TuringModels.jl\n\nSee Richard’s comments about these here: https://github.com/rmcelreath/stat_rethinking_2023#coding\n2022 colearning:\n\nLectures: https://github.com/rmcelreath/stat_rethinking_2022#calendar–topical-outline\nHomework: https://github.com/rmcelreath/stat_rethinking_2022/tree/main/homework\n\nAlso, Alec’s notes and solutions of the 2019 material: https://github.com/robitalec/statistical-rethinking and https://www.statistical-rethinking.robitalec.ca/\n\n\n\nPackage specific install directions. We’ll update these as we go!\nRethinking\n\nrethinking\n\nStan\n\ncmdstanr\nRStan\nbrms\n\nTargets\n\ntargets\nstantargets\n\nV8, needed for the dagitty package\n\nV8\n\n\n\n\nPlease note that this project is released with a Code of Conduct. By participating in this project you agree to abide by its terms."
   }
 ]
