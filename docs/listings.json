@@ -1,5 +1,11 @@
 [
   {
+    "listing": "/homework/00-homework-listing.html",
+    "items": [
+      "/homework/01-homework.html"
+    ]
+  },
+  {
     "listing": "/notes/00-notes-listing.html",
     "items": [
       "/notes/01-notes.html",
