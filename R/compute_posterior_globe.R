@@ -1,17 +1,17 @@
 #' Compute globe tossing posterior
 #'
 #' @param x sampled vector
-#' @param possibilities vector of possibilities to test
+#' @param n_possibilities number of possibilities to test
 #'
 #' @return
 #' @export
 #'
 #' @examples
-compute_posterior_globe <- function(x, possibilities = c(0, 0.25, 0.5, 0.75, 1)) {
+compute_posterior_globe <- function(x, n_possibilities = 5) {
 	DT <- data.table(
 		W = sum(x == 'W'),
 		L = sum(x == 'L'),
-		possibility = possibilities
+		possibility = seq(0, 1, length.out = n_possibilities)
 	)
 
 	f <- function(W, L, possibility) {
