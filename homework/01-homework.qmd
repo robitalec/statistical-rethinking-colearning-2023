@@ -10,6 +10,20 @@ date: "2023-02-01"
 water and 11 land. Construct the posterior distribution.
 
 
+```{r}
+source('../R/packages.R')
+source('../R/compute_posterior_globe.R')
+```
+
+
+```{r}
+x <- c(rep('W', 4), rep('L', 11))
+post <- compute_posterior_globe(x)
+
+kable(post)
+```
+
+
 
 ## Question 2
 > Using the posterior distribution from 1, compute the posterior predictive
