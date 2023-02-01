@@ -81,6 +81,15 @@ plot(table(beta_predict), xlab = 'number of W tosses', ylab = '',
 > Use the posterior predictive distribution from 2 to calculate the probability
 of 3 or more water samples in the next 5 tosses.
 
+```{r}
+# Predicted probability of 3 or more water samples in the next 5 tosses
+#  given posterior predictive distribution
+table(posterior_predict >= 3) / size
+
+# and beta distribution prediction
+table(beta_predict >= 3) / size
+
+```
 
 
 ## Question 4 (optional)
