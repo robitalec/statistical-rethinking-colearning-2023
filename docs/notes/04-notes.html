@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Alec L. Robitaille">
-<meta name="dcterms.date" content="2023-01-09">
+<meta name="dcterms.date" content="2023-01-26">
 
-<title>Statistical Rethinking colearning 2023 - Lecture 02 Notes</title>
+<title>Statistical Rethinking colearning 2023 - Lecture 04 Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -63,7 +63,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -73,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Lecture 02 Notes</h1>
+      <h1 class="quarto-secondary-nav-title">Lecture 04 Notes</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -134,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/02-notes.html" class="sidebar-item-text sidebar-link active">Lecture 02</a>
+  <a href="../notes/02-notes.html" class="sidebar-item-text sidebar-link">Lecture 02</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -153,13 +152,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#bayesian-data-analysis" id="toc-bayesian-data-analysis" class="nav-link active" data-scroll-target="#bayesian-data-analysis">Bayesian data analysis</a></li>
-  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
-  <li><a href="#globe-tossing-model" id="toc-globe-tossing-model" class="nav-link" data-scroll-target="#globe-tossing-model">Globe tossing model</a></li>
-  <li><a href="#generative-simulation" id="toc-generative-simulation" class="nav-link" data-scroll-target="#generative-simulation">Generative simulation</a></li>
-  <li><a href="#bayesian-inference" id="toc-bayesian-inference" class="nav-link" data-scroll-target="#bayesian-inference">Bayesian inference</a></li>
-  <li><a href="#posterior-predictive-simulations" id="toc-posterior-predictive-simulations" class="nav-link" data-scroll-target="#posterior-predictive-simulations">Posterior predictive simulations</a></li>
-  <li><a href="#misclassification" id="toc-misclassification" class="nav-link" data-scroll-target="#misclassification">Misclassification</a></li>
+  <li><a href="#categories-and-curves" id="toc-categories-and-curves" class="nav-link active" data-scroll-target="#categories-and-curves">Categories and curves</a></li>
   </ul>
 </nav>
     </div>
@@ -168,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Lecture 02 Notes</h1>
+<h1 class="title d-none d-lg-block">Lecture 04 Notes</h1>
 </div>
 
 
@@ -185,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 9, 2023</p>
+      <p class="date">January 26, 2023</p>
     </div>
   </div>
   
@@ -195,137 +188,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="bayesian-data-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="bayesian-data-analysis">Bayesian data analysis</h2>
-<p>Bayesian data analysis is Bayesian inference applied to scientific data analysis. For each possible explanation of the sample, count all the ways the sample could have happened and explanations with more ways to produce the sample are more plausible.</p>
-<p>No guarantees except logical. Probability theory is a method of logically deducing the implications of data under the assumptions that you must choose.</p>
-</section>
-<section id="workflow" class="level2">
-<h2 class="anchored" data-anchor-id="workflow">Workflow</h2>
-<ol type="1">
-<li>Define generative model of the sample</li>
-<li>Define a specific estimand</li>
-<li>Design a statistical way to produce estimand</li>
-<li>Test the statistical method using the generative model</li>
-<li>Analyse the sample, summarize</li>
-</ol>
-</section>
-<section id="globe-tossing-model" class="level2">
-<h2 class="anchored" data-anchor-id="globe-tossing-model">Globe tossing model</h2>
-<p>Estimand: proportion of globe covered in water</p>
-<p>Given N samples, how should we use the sample? Produce a summary of the sample? Represent uncertainty?</p>
-<p>First, think about how sample is produced and how variables influence on another.</p>
-<ul>
-<li>p = proportion of water</li>
-<li>W = land observations</li>
-<li>W = water observations</li>
-<li>N = number of tosses</li>
-</ul>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Variables can be things you observed or things you want to estimate</p>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="02-notes_files/figure-html/02_dag-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>N influences W and L: if you were to intervene on N (eg. increase the number of observations), it would change W and L.</p>
-<p>To make the DAG <strong>generative</strong>, we need to define these relationships as a function.</p>
-<p><span class="math inline">\(W, L = f (P, N)\)</span></p>
-<p>What is the function?</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th>W L W</th>
-<th>W</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>4 L</td>
-<td>0 x 4 x 0</td>
-<td>0 x 0</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>3 L 1 W</td>
-<td>1 x 3 x 1</td>
-<td>3 x 1</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td>2 L 2 W</td>
-<td>2 x 2 x 2</td>
-<td>8 x 2</td>
-<td>16</td>
-</tr>
-<tr class="even">
-<td>1 L 3 W</td>
-<td>3 x 1 x 3</td>
-<td>9 x 3</td>
-<td>27</td>
-</tr>
-<tr class="odd">
-<td>4 W</td>
-<td>4 x 0 x 4</td>
-<td>0 x 4</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-<p>Given the table and our scientific understanding, the function is:</p>
-<p><span class="math inline">\(W, L = (4p) ^ {W} * (4-4p) ^ {L}\)</span></p>
-</section>
-<section id="generative-simulation" class="level2">
-<h2 class="anchored" data-anchor-id="generative-simulation">Generative simulation</h2>
-<p>Simulate a data set with known parameters, then test if your statistical estimator returns these known parameters.</p>
-<p>Repeat with different sampling designs, with extreme simulations (eg. all W or all L).</p>
-</section>
-<section id="bayesian-inference" class="level2">
-<h2 class="anchored" data-anchor-id="bayesian-inference">Bayesian inference</h2>
-<ul>
-<li>No minimum sample size</li>
-<li>The shape of the posterior distribution embodies the sample size</li>
-<li>No point estimate. The distribution is the estimate, <strong>always use the entire distribution</strong>.</li>
-<li>No one true interval. Nothing happens at the boundary.</li>
-</ul>
-</section>
-<section id="posterior-predictive-simulations" class="level2">
-<h2 class="anchored" data-anchor-id="posterior-predictive-simulations">Posterior predictive simulations</h2>
-<p>Use samples from the entire posterior distribution to determine implications of the model.</p>
-<p>Uncertainty -&gt; causal model -&gt; implications</p>
-<p>Types:</p>
-<ul>
-<li>model-based forecasts</li>
-<li>causal effects</li>
-<li>counterfactuals</li>
-<li>prior predictions</li>
-</ul>
-</section>
-<section id="misclassification" class="level2">
-<h2 class="anchored" data-anchor-id="misclassification">Misclassification</h2>
-<p>Consider the true number of water samples is unobserved, eg. due to measurement error. W* (W_star) is misclassified sample, influenced by the measurement process (M).</p>
-<p>Note: this DAG is simplified to remove L since N - L = W</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="02-notes_files/figure-html/02_dag_misclassified-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Next, use a simulation to determine the potential impact of misclassification.</p>
-<p>Define a function with a new variable X, the misclassification rate, that takes a simulated sample then introduces error. The misclassification estimator returns a new formula for the posterior distribution.</p>
-<p>If there is measurement error, better to model it than to ignore it. Samples do not need to be representative of the population in order to provide good estimates of the population. The priority is to determine in which ways (why) the sample differs from the population. Then you can modeol the sample process and the causal differences for the population.</p>
+<section id="categories-and-curves" class="level2">
+<h2 class="anchored" data-anchor-id="categories-and-curves">Categories and curves</h2>
 
 
 </section>

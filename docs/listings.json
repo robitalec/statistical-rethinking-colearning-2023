@@ -9,7 +9,9 @@
     "listing": "/notes/00-notes-listing.html",
     "items": [
       "/notes/01-notes.html",
-      "/notes/02-notes.html"
+      "/notes/02-notes.html",
+      "/notes/03-notes.html",
+      "/notes/04-notes.html"
     ]
   }
 ]
