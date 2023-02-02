@@ -1,7 +1,7 @@
 ---
 title: "Lecture 03 Notes"
 author: "Alec L. Robitaille"
-date: "2023-01-12"
+date: "2023-01-11"
 ---
 
 
@@ -53,7 +53,7 @@ $W = f(H, U)$
 "Weight is some function of height and unobserved variables"
 
 
-Variables: W, U, H
+##### Variables: W, U, H
 
 Definitions: 
 
@@ -78,21 +78,27 @@ $E(W_{i} | H_{i}) = \alpha + \beta H_{i}$
 - $\beta H_{i}$: slope
 
 
-Posterior distribution
+##### Posterior distribution
 
 $Pr(\alpha, \beta, \sigma | H_{i}, W_{i}) = \frac{Pr(W_{i} | H_{i}, \alpha, \beta, \sigma) Pr (\alpha, \beta, \sigma)}{Z}$
 
 
 - $Pr(\alpha, \beta, \sigma | H_{i}, W_{i})$: posterior probability of a specific line
-- $Pr(W_{i} | H_{i}, \alpha, \beta, \sigma)$: garden of forking data
+- $Pr(W_{i} | H_{i}, \alpha, \beta, \sigma)$: garden of forking data, the number of ways 
+we could see the observations, conditional on an exact line (in this case)
 - $Pr (\alpha, \beta, \sigma)$: prior
 - $Z$: normalizing constant
 
-The posterior distribution is proportion to the product of the number of ways we
-could see the observations, conditional on an exact line (in this case) and the prior
+Alpha, beta and sigma are unobserved variables, height and weight are observed. 
+
+The posterior distribution is proportional to the product of the number of ways
+the observations could arise according to our assumptions multiplied by our
+prior. 
 
 
-Model specification
+##### Prior predictive simulation
+
+What do the observable variables look like with these priors?
 
 $W_{i} \sim Normal(\mu_{i}, \sigma)$
 
@@ -105,5 +111,36 @@ $\beta ~ Uniform(0, 1)$
 $\sigma ~ Uniform(0, 10)$
 
 
-When height is 0, weight is 0. Weight increases on average with height. Weight (kg) is 
-less than height (cm). Sigma must be positive. 
+When height is 0, weight is 0. Weight increases on average with height. Weight
+(kg) is less than height (cm). Sigma must be positive.
+
+
+Priors: 
+
+- no correct priors, only scientifically justifiable priors. 
+- justify with information outside the data, like the rest of the model
+- priors become more important as models get more complex
+- always simulate from the priors, better than trying to intuit what they mean
+from the definitions
+
+
+#### 4. Validate model
+
+Test statistical model with simulated observations from scientific model. 
+Stronger test: simulation-based calibration
+
+- simulate individuals with known parameters from scientific model
+- use model to determine if it can recover parameters 
+- use a large sample
+- test with different values and sample sizes
+
+
+#### 5. Analyze the data
+
+Once you've done steps 1-4, you can just drop in the real data. 
+
+Parameters are not independent, do not interpret them separately. 
+
+Use the posterior distribution to generate predictions then
+describe and interpret those. 
+
