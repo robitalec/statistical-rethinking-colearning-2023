@@ -5,3 +5,105 @@ date: "2023-01-12"
 ---
 
 
+## Geocentric models
+
+Prediction without explanation. The geocentric model has epicycles and Earth 
+is the center of the universe. 
+
+Linear regressions are geocentric - they describe associations, make predictions
+bubt are mechanically wrong. Therefore, they are useful when handled with care. 
+
+
+### Normal distribution
+
+Summed fluctuations tend towards the normal distribution
+
+For estimating only the mean and variance, the normal distribution is the 
+least informative distribution (maxent).
+
+Note: variables do not have to be normally distributed for normal models 
+to be useful. 
+
+
+## Linear regression
+
+### Workflow
+
+1. Question/goal/estimand
+1. Scientific model
+1. Statistical model(s)
+1. Validate model
+1. Analyze data
+
+
+### Example: Howell data
+
+#### 1. Estimand
+
+Describe the association between adult weight and height
+
+#### 2. Scientific model
+
+How does height  influence weight? 
+
+H -> W <- U
+
+$W = f(H, U)$
+
+"Weight is some function of height and unobserved variables"
+
+
+Variables: W, U, H
+
+Definitions: 
+
+- $W = \beta H + U$ (Equation for expected weight)
+
+- $U_{i} \sim Normal(0, \sigma)$ (Gaussian error with standard deviation sigma)
+
+- $H_{i} \sim Uniform(130, 170)$ (Height is uniformly distributed from 130-170 cm)
+
+$_{i}$ represents individuals. 
+
+There is a deterministic relationship for W and distributional relationships
+for U and H. 
+
+
+#### 3. Statistical model
+
+$E(W_{i} | H_{i}) = \alpha + \beta H_{i}$
+
+- $E(W_{i} | H_{i})$: average weight conditional on height
+- $\alpha$: intercept
+- $\beta H_{i}$: slope
+
+
+Posterior distribution
+
+$Pr(\alpha, \beta, \sigma | H_{i}, W_{i}) = \frac{Pr(W_{i} | H_{i}, \alpha, \beta, \sigma) Pr (\alpha, \beta, \sigma)}{Z}$
+
+
+- $Pr(\alpha, \beta, \sigma | H_{i}, W_{i})$: posterior probability of a specific line
+- $Pr(W_{i} | H_{i}, \alpha, \beta, \sigma)$: garden of forking data
+- $Pr (\alpha, \beta, \sigma)$: prior
+- $Z$: normalizing constant
+
+The posterior distribution is proportion to the product of the number of ways we
+could see the observations, conditional on an exact line (in this case) and the prior
+
+
+Model specification
+
+$W_{i} \sim Normal(\mu_{i}, \sigma)$
+
+$\mu_{i} = \alpha + \beta H_{i}$
+
+$\alpha ~ Normal(0, 10)$
+
+$\beta ~ Uniform(0, 1)$
+
+$\sigma ~ Uniform(0, 10)$
+
+
+When height is 0, weight is 0. Weight increases on average with height. Weight (kg) is 
+less than height (cm). Sigma must be positive. 
