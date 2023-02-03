@@ -43,6 +43,11 @@ $f^{-1}$ is the inverse link function.
 $p_{i} = f^{-1}(\alpha + \beta_{{X}} X_{i} + \beta_{Z} Z_{i})$
 
 
+Logistic regression: binary [0,1] outcome and logit link, with Bernoulli distribution
+
+Binomial regression: count [0, N] outcome and logit link, with Binomial distribution (Binomimal variables are sums of Bernoulli variables)
+
+
 ### Distributions
 
 The distribution is matched to constraints on observed variables and the link 
@@ -196,10 +201,117 @@ Generative model could be greatly improved:
 of qualifications
 - Admission rates are then based on ranking applicants to a set number of spaces
 
-#### 3. Statistical model(s)
+#### 3. Statistical models
 
-Total effect of G
+Total causal effect of G
 
 $A_{i} \sim Bernoulli(p_{i})$
 
 $logit(p_{i}) = \alpha[G_{i}]$
+
+$\alpha = [\alpha_{1}, \alpha_{2}]$
+
+
+Direct causal effect of G
+
+$A_{i} \sim Bernoulli(p_{i})$
+
+$logit(p_{i}) = \alpha[G_{i}, D_{i}]$
+
+$\alpha = \begin{bmatrix} \alpha_{1, 1} & \alpha_{1, 2} \\ \alpha_{2, 1} & \alpha_{2, 2}\end{bmatrix}$
+
+
+#### 4. Validate the model
+
+Use inverse logit function to transform variables back on probability scale.
+Determine if known parameters are recovered by the model. 
+
+
+#### 5. Analyze the data
+
+To use a binomial distribution, aggregate the long format data into acceptance
+sums for each gender and department. This is equivalent to using the original
+data with a Bernoulli distribution.
+
+- inspect trace plots and trank plots to ensure chains are well mixed
+- extract samples from the posterior
+- convert the entire posterior distribution back to the prediction scale with the inverse logit 
+- compute contrasts for total effect (across genders) and direct effects
+(within departments)
+
+
+##### Post stratification
+
+Back to the question: what's the average direct effect of gender across departments?
+
+This depends on the perception of gender on the admission officer
+
+```{r}
+dagify(
+	A ~ G_star + D,
+	G_star ~ G,
+	D ~ G,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+To calculate the causal effect of G*, we must average (marginalize)
+over the departments. (Note still assuming no confounds). 
+
+Simulate as if all applicants are women, then simulate as if all applicants 
+are men. Then compute the contrasts. 
+
+Post stratification is reweighing estimates for target population. 
+Eg. at a different university, the distributions would differ, and we could
+predict how the consequences of intervention differ
+
+
+### Survival analysis
+
+How long did an event take to happen? Time-to-event. 
+
+Cannot ignore censored cases, where event never happened. 
+
+- Left-censored: don't know when time started
+- Right-censored: observation ended before event
+
+#### Example: cat adoptions
+
+Adoption rates of black and non-black cats
+
+Events: adopted, or something else (death, escape, censored)
+
+
+Outcome variables: days to event. Appropriate distributions are exponential
+and gamma. Exponential arises from a single part that needs to fail before 
+the so-called machine dies, whereas the Gamma distribution requires
+multiple parts to fail. 
+
+
+For simplest situation, time to adoption, this represents it:
+
+$D_{i} \sim Exponential(\lambda_{i})$
+
+$p(D_{i} | \lambda_{i}) = \lambda_{i} exp(-\lambda_{i} D_{i})$
+
+
+But what about the censored cats?
+
+Event happened = cumulative distribution, probability of event happening
+up to time x
+
+Event didn't happen = complementary cumulative distribution, probability
+event hasn't occurred up to time x
+
+
+$D_{i} = 1 \sim Exponential(\lambda_{i})$
+
+$D_{i} = 0 \sim Exponential-CCDF(\lambda_{i})$ (not-yet-adoptions)
+
+$\lambda_{i} = 1 / \mu_{i}$
+
+$log \mu_{i} = \alpha_{CID[i]}$ 
+
+
+- $D_{i} = 1$: observed adoptions
+- $D_{i} = 0$: not yet adoptions
