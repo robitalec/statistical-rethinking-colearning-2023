@@ -4,4 +4,135 @@ author: "Alec L. Robitaille"
 date: "2023-01-26"
 ---
 
-## Categories and curves
+```{r}
+#| include: false
+source('R/packages.R')
+```
+
+
+
+## Categories
+
+Problem: discrete unordered types
+
+Solution: stratify by category and fit a separate line for each
+
+Two options for coding categorical variables: 
+
+- indicator variables (0/1)
+- index variables (1, 2, 3, 4, ...)
+
+
+Index variables offer an advantage of allowing you to flexibly add or 
+remove indexes without having to rewrite the model. Indicator variables
+are limited to 2 groups. 
+
+Then the variable, eg. an $\alpha$ intercept, becomes a vector of intercepts
+for each index. 
+
+
+$W_{i} \sim Normal(\mu_{i}, \sigma)$
+
+$\mu_{i} = \alpha_{S[i]}$
+
+$\alpha \sim Normal(60, 10)$
+
+$\sigma \sim Uniform(0, 10)$
+
+
+## Example: heights in Howell data
+
+
+### 1. Estimand
+
+- Causal effect of height on weight?
+- Causal effect of sex on weight?
+- direct causal effect of sex on weight?
+
+
+### 2. Generative model
+
+Stratify by sex
+
+```{r}
+coords <- data.frame(
+	name = c('H', 'W', 'S', ),
+	x =    c(1,    2,   1,),
+	y =    c(0,    0,   -1)
+)
+```
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4 
+dagify(
+	W ~ H + S,
+	H ~ S,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+Most interventions on height will influence weight but the reverse is not 
+necessarily true. Sex is a mediator which indirectly influences weight through
+height and directly influences weight.
+
+$H = f_{H} (S)$
+
+$W = f_{W}(H, S)$
+
+
+Note that unobserved confounds can be ignored unless they are shared by
+multiple variables. 
+
+
+### 3. Statistical model
+
+Causal effect of S on W
+
+$W_{i} \sim Normal(\mu_{i}, \sigma)$
+
+$\mu_{i} = \alpha_{S[i]}$
+
+$\alpha \sim Normal(60, 10)$
+
+$\sigma \sim Uniform(0, 10)$
+
+
+Direct causal effect of S on W
+
+$W_{i} \sim Normal(\mu_{i}, \sigma)$
+
+$\mu_{i} = \alpha_{i} + \beta(H_{i} - \bar{H})$
+
+Centering H by subtracting the mean from each value means that alpha
+represents the average weight of a person with average height. 
+This makes it easy to define justifiable priors for alpha
+
+$\alpha \sim Normal(60, 10)$
+
+$\beta \sim Normal(0, 1)$
+
+$\sigma \sim Uniform(0, 10)$
+
+
+
+### 4. Validate
+
+
+Test with simulated individuals
+
+
+### 5. Analyze the data
+
+Analyze the real data with the statistical model
+defined in 3 (and validated in 4). 
+
+Extract samples from the posterior and compute a contrast. Note, it is
+insufficient to compare the posterior mean parameter estimates or
+to plot the densities of parameter estimates. Take the entire sample of the
+posterior distribution and compute the contrast distribution. No comparing
+confidence intervals or p-values. 
+
+Always summarize last. We want the mean different and not mean of differences. 
+
+
