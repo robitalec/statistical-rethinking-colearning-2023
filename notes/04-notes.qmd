@@ -188,3 +188,19 @@ measured so we will consider it as a proxy for those variables.
 
 
 
+## Full Luxury Bayes
+
+In the heights in Howell data example above, we used two models for two
+estimands: the total causal effect and the direct causal effect of sex on
+weight.
+
+An alternative and equivalent approach is to use one model of the entire causal
+system, then use the join posterior to compute each estimand.
+Multiple models approach requires more models, full luxury bayes approach
+requires more simulation. 
+
+
+![Lecture 4 - Slide 98](../graphics/stat_rethinking_l04_slide98.png)
+
+
+![Lecture 4 - Slide 102](../graphics/stat_rethinking_l04_slide102.png)
