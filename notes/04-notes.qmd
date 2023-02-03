@@ -40,25 +40,25 @@ $\alpha \sim Normal(60, 10)$
 $\sigma \sim Uniform(0, 10)$
 
 
-## Example: heights in Howell data
+### Example: weights in Howell data
 
 
-### 1. Estimand
+#### 1. Estimand
 
 - Causal effect of height on weight?
 - Causal effect of sex on weight?
-- direct causal effect of sex on weight?
+- Direct causal effect of sex on weight?
 
 
-### 2. Generative model
+#### 2. Generative model
 
 Stratify by sex
 
 ```{r}
 coords <- data.frame(
-	name = c('H', 'W', 'S', ),
-	x =    c(1,    2,   1,),
-	y =    c(0,    0,   -1)
+	name = c('H', 'W', 'S', 'A'),
+	x =    c(1,    3,   2,    2),
+	y =    c(0,    0,  -1,    1)
 )
 ```
 
@@ -85,7 +85,7 @@ Note that unobserved confounds can be ignored unless they are shared by
 multiple variables. 
 
 
-### 3. Statistical model
+#### 3. Statistical model
 
 Causal effect of S on W
 
@@ -116,7 +116,7 @@ $\sigma \sim Uniform(0, 10)$
 
 
 
-### 4. Validate
+#### 4. Validate
 
 
 Test with simulated individuals
@@ -134,5 +134,57 @@ posterior distribution and compute the contrast distribution. No comparing
 confidence intervals or p-values. 
 
 Always summarize last. We want the mean different and not mean of differences. 
+
+
+## Curves
+
+H -> W obviously not linear
+
+
+We can use linear models to curves, but note, like all linear models, 
+this is not mechanistic.
+
+Solution: splines and generalized additive models
+
+We avoid polynomial linear models because there is forced symmetry  and 
+explosive uncertainty at the edges. There is no local smoothing, only global. 
+
+
+### Splines
+
+Splines offer a locally inferred function, where many locally trained 
+functions that are combined and smoothed into a continuous function.
+They are powerful geocentric devices. 
+
+Basis splines are linear models with synthetic variables. 
+
+
+$\mu_{i} = \alpha + w_{1} B_{i, 1} + w_{2} B_{i, 2} + w_{3} B_{i, 3} + ...$
+
+
+Weights w are like slopes and basis functions B are synthetic variables. 
+Spline is the sum of the weights at any point on the x-axis (eg. age). 
+
+
+
+### Example: heights as a function of age
+
+
+Height as a function of age
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4 
+dagify(
+	W ~ H + S + A, 
+	H ~ S + A,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+Strange to consider age as a cause because what is a definable intervention?
+Does age simply represent accumulated growth? In this case, those are not
+measured so we will consider it as a proxy for those variables. 
+
 
 
