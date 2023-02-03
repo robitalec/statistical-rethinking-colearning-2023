@@ -1,0 +1,109 @@
+---
+title: "Lecture 09 Notes"
+author: "Alec L. Robitaille"
+date: "2023-02-03"
+---
+
+## Generalized linear models
+
+### Modeling events
+
+> Like tide prediction engines (analog computers), the gears inside the machine
+bear no resemble to the observable predictions that they put out.
+
+- Events are discrete, unordered outcomes
+- Observations are counts
+- Unknowns are probabilities, odds (probability it happens / probability it does not happen)
+- modeling on the log scale of odds (log odds)
+
+
+### Example: UC Berkeley Admissions
+
+- Graduate school applications for 1973 UC Berkeley
+- Stratified by department and gender of application
+
+See more here:
+
+Traag, V.A. and Waltman, L., 2022. Causal foundations of bias, disparity and fairness. arXiv preprint arXiv:2207.13665.
+
+
+#### 1. Estimand
+
+
+```{r}
+suppressPackageStartupMessages(library(ggdag))
+coords <- data.frame(
+	name = c('G', 'D', 'A', 'G_star', 'R', 'U'),
+	x =    c(1,    2,   3,   2,         4,   4),
+	y =    c(0,    1,   0,  -1,        -1,   1)
+)
+```
+
+Was there gender discrimination in graduate admissions?
+
+```{r}
+dagify(
+	A ~ G,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+
+- G: gender
+- A: admission
+
+```{r}
+dagify(
+	D ~ G,
+  A ~ D,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+- D: department
+
+Typically, department is considered a mediating variable
+
+What can the "causal effect of gender" mean?
+
+```{r}
+dagify(
+	A ~ R + G_star + D,
+	G_star ~ G,
+	D ~ G,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+
+Which path represents "discrimination"?
+
+- direct discrimination: status-based discrimination from G -> A
+- structural discrimination: indirect through department G -> D -> A
+- total discrimination: G -> A and G -> D -> A, what individuals experience
+
+
+For now, we will ignore the unobserved confounds between the mediator and 
+the outcome. 
+```{r}
+dagify(
+	A ~ G_star + D,
+	G_star ~ G,
+	D ~ G + U,
+	A ~ U,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+
+
+#### 2. Generative model
+
+
+- Set number of applicants
+- Sample gender
+- Sampled with preference for different departments by gender (indirect effect)
+- Define acceptance rate for departments
+- Simulate acceptance
+
+
