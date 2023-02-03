@@ -4,6 +4,11 @@ author: "Alec L. Robitaille"
 date: "2023-02-03"
 ---
 
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+
 ## Generalized linear models
 
 ### Modeling events
