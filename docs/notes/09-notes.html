@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Alec L. Robitaille">
+<meta name="dcterms.date" content="2023-02-03">
+
+<title>Statistical Rethinking colearning 2023 - Lecture 09 Notes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Lecture 09 Notes</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Statistical Rethinking colearning 2023</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Home</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../homework/00-homework-listing.html" class="sidebar-item-text sidebar-link">Homework</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/01-homework.html" class="sidebar-item-text sidebar-link">Homework 01</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../notes/00-notes-listing.html" class="sidebar-item-text sidebar-link">Notes</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/01-notes.html" class="sidebar-item-text sidebar-link">Lecture 01</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/02-notes.html" class="sidebar-item-text sidebar-link">Lecture 02</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/03-notes.html" class="sidebar-item-text sidebar-link">Lecture 03</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#generalized-linear-models" id="toc-generalized-linear-models" class="nav-link active" data-scroll-target="#generalized-linear-models">Generalized linear models</a>
+  <ul class="collapse">
+  <li><a href="#modeling-events" id="toc-modeling-events" class="nav-link" data-scroll-target="#modeling-events">Modeling events</a></li>
+  <li><a href="#distributions" id="toc-distributions" class="nav-link" data-scroll-target="#distributions">Distributions</a></li>
+  <li><a href="#logit-link" id="toc-logit-link" class="nav-link" data-scroll-target="#logit-link">Logit link</a></li>
+  <li><a href="#logistic-priors" id="toc-logistic-priors" class="nav-link" data-scroll-target="#logistic-priors">Logistic priors</a></li>
+  <li><a href="#example-uc-berkeley-admissions" id="toc-example-uc-berkeley-admissions" class="nav-link" data-scroll-target="#example-uc-berkeley-admissions">Example: UC Berkeley Admissions</a></li>
+  <li><a href="#survival-analysis" id="toc-survival-analysis" class="nav-link" data-scroll-target="#survival-analysis">Survival analysis</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Lecture 09 Notes</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Alec L. Robitaille </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 3, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="generalized-linear-models" class="level2">
+<h2 class="anchored" data-anchor-id="generalized-linear-models">Generalized linear models</h2>
+<section id="modeling-events" class="level3">
+<h3 class="anchored" data-anchor-id="modeling-events">Modeling events</h3>
+<blockquote class="blockquote">
+<p>Like tide prediction engines (analog computers), the gears inside the machine bear no resemble to the observable predictions that they put out.</p>
+</blockquote>
+<ul>
+<li>Events are discrete, unordered outcomes</li>
+<li>Observations are counts of events</li>
+<li>Unknowns estimated are on the probability or log-odds/logit scale (probability it happens / probability it does not happen)</li>
+</ul>
+<p>Linear models: expected value is an additive linear combination of parameters. Can only do this with the normal distribution because it is unbounded.</p>
+<p>Other events are bounded. For example, probability of events are restricted to 0-1.</p>
+<p>Generalized linear models: expected value is some function of an additive combination of parameters.</p>
+<p><span class="math inline">\(Y_{i} \sim Bernoulli(p_{i})\)</span></p>
+<p><span class="math inline">\(f(p_{i}) = \alpha + \beta_{{X}} X_{i} + \beta_{Z} Z_{i}\)</span></p>
+<ul>
+<li><span class="math inline">\(Y_{i}\)</span>: 0/1 outcome</li>
+<li><span class="math inline">\(p_{i}\)</span>: probability of event</li>
+<li><span class="math inline">\(f(p_{i})\)</span>: f() maps probability scale to linear model scale</li>
+<li><span class="math inline">\(\alpha + \beta_{{X}} X_{i} + \beta_{Z} Z_{i})\)</span>: can be any real value</li>
+</ul>
+<p><span class="math inline">\(f\)</span> is the link function</p>
+<p><span class="math inline">\(f(p_{i} = \alpha + \beta_{{X}} X_{i} + \beta_{Z} Z_{i})\)</span></p>
+<p><span class="math inline">\(f^{-1}\)</span> is the inverse link function.</p>
+<p><span class="math inline">\(p_{i} = f^{-1}(\alpha + \beta_{{X}} X_{i} + \beta_{Z} Z_{i})\)</span></p>
+<p>Logistic regression: binary [0,1] outcome and logit link, with Bernoulli distribution</p>
+<p>Binomial regression: count [0, N] outcome and logit link, with Binomial distribution (Binomimal variables are sums of Bernoulli variables)</p>
+</section>
+<section id="distributions" class="level3">
+<h3 class="anchored" data-anchor-id="distributions">Distributions</h3>
+<p>The distribution is matched to constraints on observed variables and the link function is matched to this distribution.</p>
+<p><img src="../graphics/stat_rethinking_2ed_f10_6.png" class="img-fluid"></p>
+<ul>
+<li>Exponential distribution: time to event that has a constant rate. Greater than 0, single parameter <span class="math inline">\(\lambda\)</span> that defines the rate.</li>
+<li>Binomial distribution: count events bounded in an observation window. Some number of trials</li>
+<li>Poisson distribution: count events with constant rate. This is the count distribution of the exponentially distributed events. We don’t know the maximum or number of coin tosses.</li>
+<li>Gamma distribution: sum up exponential processes.</li>
+<li>Normal distribution: Gamma distribution with large mean converges to the Normal distribution.</li>
+</ul>
+<p>Distribution you want to use to model an observed variable is governed by the constraints on observation. Eg. you can’t have negative counts. You can’t use some test to decide if your data are “Normal”.</p>
+</section>
+<section id="logit-link" class="level3">
+<h3 class="anchored" data-anchor-id="logit-link">Logit link</h3>
+<p>Bernoulli and binomial models most often use the logit link.</p>
+<p><span class="math inline">\(logit\)</span> is the link function</p>
+<p><span class="math inline">\(logit(p_{i} = \alpha + \beta_{{X}} X_{i} + \beta_{Z} Z_{i})\)</span></p>
+<p><span class="math inline">\(logit^{-1}\)</span> (logistic) is the inverse link function.</p>
+<p><span class="math inline">\(p_{i} = logit^{-1}(\alpha + \beta_{{X}} X_{i} + \beta_{Z} Z_{i})\)</span></p>
+<p>Logit link is a harsh transformation</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.table</span>(<span class="at">logit_p=</span> <span class="fu">logit</span>(p), <span class="at">p =</span> p)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(logit_p, p))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09-notes_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="logistic-priors" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-priors">Logistic priors</h3>
+<p>The logit link compresses parameter distributions. Anything above +4 = almost always, anything below -4 = almost never.</p>
+<p><img src="../graphics/stat_rethinking_2023_l09_slide64.png" class="img-fluid"></p>
+</section>
+<section id="example-uc-berkeley-admissions" class="level3">
+<h3 class="anchored" data-anchor-id="example-uc-berkeley-admissions">Example: UC Berkeley Admissions</h3>
+<ul>
+<li>Graduate school applications for 1973 UC Berkeley</li>
+<li>Stratified by department and gender of application</li>
+</ul>
+<p>See more here:</p>
+<p>Traag, V.A. and Waltman, L., 2022. Causal foundations of bias, disparity and fairness. arXiv preprint arXiv:2207.13665.</p>
+<section id="estimand" class="level4">
+<h4 class="anchored" data-anchor-id="estimand">1. Estimand</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(ggdag))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">'G'</span>, <span class="st">'D'</span>, <span class="st">'A'</span>, <span class="st">'G_star'</span>, <span class="st">'R'</span>, <span class="st">'U'</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span>    <span class="fu">c</span>(<span class="dv">1</span>,    <span class="dv">2</span>,   <span class="dv">3</span>,   <span class="dv">2</span>,         <span class="dv">4</span>,   <span class="dv">4</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span>    <span class="fu">c</span>(<span class="dv">0</span>,    <span class="dv">1</span>,   <span class="dv">0</span>,  <span class="sc">-</span><span class="dv">1</span>,        <span class="sc">-</span><span class="dv">1</span>,   <span class="dv">1</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Was there gender discrimination in graduate admissions?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    A <span class="sc">~</span> G,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag</span>(<span class="at">seed =</span> <span class="dv">2</span>, <span class="at">layout =</span> <span class="st">'auto'</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09-notes_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>G: gender</li>
+<li>A: admission</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    D <span class="sc">~</span> G,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  A <span class="sc">~</span> D,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag</span>(<span class="at">seed =</span> <span class="dv">2</span>, <span class="at">layout =</span> <span class="st">'auto'</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09-notes_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>D: department</li>
+</ul>
+<p>Typically, department is considered a mediating variable</p>
+<p>What can the “causal effect of gender” mean?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    A <span class="sc">~</span> R <span class="sc">+</span> G_star <span class="sc">+</span> D,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    G_star <span class="sc">~</span> G,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    D <span class="sc">~</span> G,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag</span>(<span class="at">seed =</span> <span class="dv">2</span>, <span class="at">layout =</span> <span class="st">'auto'</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09-notes_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Which path represents “discrimination”?</p>
+<ul>
+<li>direct discrimination: status-based discrimination from G -&gt; A</li>
+<li>structural discrimination: indirect through department G -&gt; D -&gt; A</li>
+<li>total discrimination: G -&gt; A and G -&gt; D -&gt; A, what individuals experience</li>
+</ul>
+<p>For now, we will ignore the unobserved confounds between the mediator and the outcome.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    A <span class="sc">~</span> G_star <span class="sc">+</span> D,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    G_star <span class="sc">~</span> G,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    D <span class="sc">~</span> G <span class="sc">+</span> U,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    A <span class="sc">~</span> U,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag</span>(<span class="at">seed =</span> <span class="dv">2</span>, <span class="at">layout =</span> <span class="st">'auto'</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09-notes_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="generative-model" class="level4">
+<h4 class="anchored" data-anchor-id="generative-model">2. Generative model</h4>
+<ul>
+<li>Set number of applicants</li>
+<li>Sample gender</li>
+<li>Sampled with preference for different departments by gender (indirect effect)</li>
+<li>Define acceptance rate for departments</li>
+<li>Simulate acceptance</li>
+</ul>
+<p>Changing the acceptance rate where acceptance differs by department <strong>and</strong> gender, pattern of differences in acceptance rates is the same in this simulated data. This illustrates the fundamental problem of determining if discrimination is occuring.</p>
+<p>Generative model could be greatly improved:</p>
+<ul>
+<li>Admission rates depend upon size of applicant pool and the distribution of qualifications</li>
+<li>Admission rates are then based on ranking applicants to a set number of spaces</li>
+</ul>
+</section>
+<section id="statistical-models" class="level4">
+<h4 class="anchored" data-anchor-id="statistical-models">3. Statistical models</h4>
+<p>Total causal effect of G</p>
+<p><span class="math inline">\(A_{i} \sim Bernoulli(p_{i})\)</span></p>
+<p><span class="math inline">\(logit(p_{i}) = \alpha[G_{i}]\)</span></p>
+<p><span class="math inline">\(\alpha = [\alpha_{1}, \alpha_{2}]\)</span></p>
+<p>Direct causal effect of G</p>
+<p><span class="math inline">\(A_{i} \sim Bernoulli(p_{i})\)</span></p>
+<p><span class="math inline">\(logit(p_{i}) = \alpha[G_{i}, D_{i}]\)</span></p>
+<p><span class="math inline">\(\alpha = \begin{bmatrix} \alpha_{1, 1} &amp; \alpha_{1, 2} \\ \alpha_{2, 1} &amp; \alpha_{2, 2}\end{bmatrix}\)</span></p>
+</section>
+<section id="validate-the-model" class="level4">
+<h4 class="anchored" data-anchor-id="validate-the-model">4. Validate the model</h4>
+<p>Use inverse logit function to transform variables back on probability scale. Determine if known parameters are recovered by the model.</p>
+</section>
+<section id="analyze-the-data" class="level4">
+<h4 class="anchored" data-anchor-id="analyze-the-data">5. Analyze the data</h4>
+<p>To use a binomial distribution, aggregate the long format data into acceptance sums for each gender and department. This is equivalent to using the original data with a Bernoulli distribution.</p>
+<ul>
+<li>inspect trace plots and trank plots to ensure chains are well mixed</li>
+<li>extract samples from the posterior</li>
+<li>convert the entire posterior distribution back to the prediction scale with the inverse logit</li>
+<li>compute contrasts for total effect (across genders) and direct effects (within departments)</li>
+</ul>
+<section id="post-stratification" class="level5">
+<h5 class="anchored" data-anchor-id="post-stratification">Post stratification</h5>
+<p>Back to the question: what’s the average direct effect of gender across departments?</p>
+<p>This depends on the perception of gender on the admission officer</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    A <span class="sc">~</span> G_star <span class="sc">+</span> D,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    G_star <span class="sc">~</span> G,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    D <span class="sc">~</span> G,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag</span>(<span class="at">seed =</span> <span class="dv">2</span>, <span class="at">layout =</span> <span class="st">'auto'</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09-notes_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>To calculate the causal effect of G*, we must average (marginalize) over the departments. (Note still assuming no confounds).</p>
+<p>Simulate as if all applicants are women, then simulate as if all applicants are men. Then compute the contrasts.</p>
+<p>Post stratification is reweighing estimates for target population. Eg. at a different university, the distributions would differ, and we could predict how the consequences of intervention differ</p>
+</section>
+</section>
+</section>
+<section id="survival-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="survival-analysis">Survival analysis</h3>
+<p>How long did an event take to happen? Time-to-event.</p>
+<p>Cannot ignore censored cases, where event never happened.</p>
+<ul>
+<li>Left-censored: don’t know when time started</li>
+<li>Right-censored: observation ended before event</li>
+</ul>
+<section id="example-cat-adoptions" class="level4">
+<h4 class="anchored" data-anchor-id="example-cat-adoptions">Example: cat adoptions</h4>
+<p>Adoption rates of black and non-black cats</p>
+<p>Events: adopted, or something else (death, escape, censored)</p>
+<p>Outcome variables: days to event. Appropriate distributions are exponential and gamma. Exponential arises from a single part that needs to fail before the so-called machine dies, whereas the Gamma distribution requires multiple parts to fail.</p>
+<p>For simplest situation, time to adoption, this represents it:</p>
+<p><span class="math inline">\(D_{i} \sim Exponential(\lambda_{i})\)</span></p>
+<p><span class="math inline">\(p(D_{i} | \lambda_{i}) = \lambda_{i} exp(-\lambda_{i} D_{i})\)</span></p>
+<p>But what about the censored cats?</p>
+<p>Event happened = cumulative distribution, probability of event happening up to time x</p>
+<p>Event didn’t happen = complementary cumulative distribution, probability event hasn’t occurred up to time x</p>
+<p><span class="math inline">\(D_{i} = 1 \sim Exponential(\lambda_{i})\)</span></p>
+<p><span class="math inline">\(D_{i} = 0 \sim Exponential-CCDF(\lambda_{i})\)</span> (not-yet-adoptions)</p>
+<p><span class="math inline">\(\lambda_{i} = 1 / \mu_{i}\)</span></p>
+<p><span class="math inline">\(log \mu_{i} = \alpha_{CID[i]}\)</span></p>
+<ul>
+<li><span class="math inline">\(D_{i} = 1\)</span>: observed adoptions</li>
+<li><span class="math inline">\(D_{i} = 0\)</span>: not yet adoptions</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
