@@ -12,9 +12,87 @@ date: "2023-02-03"
 bear no resemble to the observable predictions that they put out.
 
 - Events are discrete, unordered outcomes
-- Observations are counts
-- Unknowns are probabilities, odds (probability it happens / probability it does not happen)
-- modeling on the log scale of odds (log odds)
+- Observations are counts of events
+- Unknowns estimated are on the probability or log-odds/logit scale (probability it happens / probability it does not happen)
+
+Linear models: expected value is an additive linear combination of parameters. 
+Can only do this with the normal distribution because it is unbounded. 
+
+Other events are bounded. For example, probability of events are restricted
+to 0-1. 
+
+Generalized linear models: expected value is some function of an additive combination 
+of parameters. 
+
+$Y_{i} \sim Bernoulli(p_{i})$
+
+$f(p_{i}) = \alpha + \beta_{{X}} X_{i} + \beta_{Z} Z_{i}$
+
+- $Y_{i}$: 0/1 outcome
+- $p_{i}$: probability of event
+- $f(p_{i})$: f() maps probability scale to linear model scale
+- $\alpha + \beta_{{X}} X_{i} + \beta_{Z} Z_{i})$: can be any real value
+
+
+$f$ is the link function
+
+$f(p_{i} = \alpha + \beta_{{X}} X_{i} + \beta_{Z} Z_{i})$
+
+$f^{-1}$ is the inverse link function. 
+
+$p_{i} = f^{-1}(\alpha + \beta_{{X}} X_{i} + \beta_{Z} Z_{i})$
+
+
+### Distributions
+
+The distribution is matched to constraints on observed variables and the link 
+function is matched to this distribution. 
+
+![](../graphics/stat_rethinking_2ed_f10_6.png)
+
+- Exponential distribution: time to event that has a constant rate. Greater than 0, 
+single parameter $\lambda$ that defines the rate. 
+- Binomial distribution: count events bounded in an observation window. Some number of trials 
+- Poisson distribution: count events with constant rate. This is the count distribution of the exponentially distributed events. We don't know the maximum or number of coin tosses. 
+- Gamma distribution: sum up exponential processes. 
+- Normal distribution: Gamma distribution with large mean converges to the Normal distribution. 
+
+Distribution you want to use to model an observed variable is governed by the 
+constraints on observation. Eg. you can't have negative counts. You can't use 
+some test to decide if your data are "Normal". 
+
+
+### Logit link
+
+Bernoulli and binomial models most often use the logit link. 
+
+$logit$ is the link function
+
+$logit(p_{i} = \alpha + \beta_{{X}} X_{i} + \beta_{Z} Z_{i})$
+
+$logit^{-1}$ (logistic) is the inverse link function. 
+
+$p_{i} = logit^{-1}(\alpha + \beta_{{X}} X_{i} + \beta_{Z} Z_{i})$
+
+
+Logit link is a harsh transformation
+
+
+```{r}
+p <- seq(0, 1, 0.01)
+
+ggplot(data.table(logit_p= logit(p), p = p)) + geom_line(aes(logit_p, p))
+
+```
+
+
+### Logistic priors
+
+The logit link compresses parameter distributions. Anything above +4 = almost
+always, anything below -4 = almost never. 
+
+![](../graphics/stat_rethinking_2023_l09_slide64.png)
+
 
 
 ### Example: UC Berkeley Admissions
@@ -107,3 +185,21 @@ dagify(
 - Simulate acceptance
 
 
+Changing the acceptance rate where acceptance differs by department **and** gender, 
+pattern of differences in acceptance rates is the same in this simulated data. 
+This illustrates the fundamental problem of determining if discrimination is
+occuring. 
+
+Generative model could be greatly improved:
+
+- Admission rates depend upon size of applicant pool and the distribution
+of qualifications
+- Admission rates are then based on ranking applicants to a set number of spaces
+
+#### 3. Statistical model(s)
+
+Total effect of G
+
+$A_{i} \sim Bernoulli(p_{i})$
+
+$logit(p_{i}) = \alpha[G_{i}]$
