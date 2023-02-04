@@ -88,7 +88,6 @@ window.document.addEventListener("DOMContentLoaded", function () {
     let linkStyle = window.document.querySelector("#quarto-target-style");
     if (!linkStyle) {
       linkStyle = window.document.createElement("style");
-      linkStyle.setAttribute("id", "quarto-target-style");
       window.document.head.appendChild(linkStyle);
     }
     while (linkStyle.firstChild) {
@@ -153,7 +152,7 @@ window.document.addEventListener("DOMContentLoaded", function () {
   const headerEl = window.document.querySelector("header.fixed-top");
   if (headerEl && window.ResizeObserver) {
     const observer = new window.ResizeObserver(
-      updateDocumentOffsetWithoutAnimation
+      throttle(updateDocumentOffsetWithoutAnimation, 50)
     );
     observer.observe(headerEl, {
       attributes: true,
@@ -165,8 +164,8 @@ window.document.addEventListener("DOMContentLoaded", function () {
       "resize",
       throttle(updateDocumentOffsetWithoutAnimation, 50)
     );
+    setTimeout(updateDocumentOffsetWithoutAnimation, 500);
   }
-  setTimeout(updateDocumentOffsetWithoutAnimation, 250);
 
   // fixup index.html links if we aren't on the filesystem
   if (window.location.protocol !== "file:") {
@@ -192,30 +191,37 @@ window.document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Scroll the active navigation item into view, if necessary
-    const navSidebar = window.document.querySelector("nav#quarto-sidebar");
-    if (navSidebar) {
+    const navSidebars = window.document.querySelectorAll(
+      "div#quarto-sidebar > nav"
+    );
+    if (navSidebars.length === 1) {
       // Find the active item
-      const activeItem = navSidebar.querySelector("li.sidebar-item a.active");
-      if (activeItem) {
+      const targetNode = navSidebars[0];
+      const activeItems = window.document.querySelectorAll(
+        "li.sidebar-item a.active"
+      );
+      const activeItem = activeItems[0];
+
+      if (activeItems.length === 1) {
         // Wait for the scroll height and height to resolve by observing size changes on the
         // nav element that is scrollable
         const resizeObserver = new ResizeObserver((_entries) => {
           // The bottom of the element
           const elBottom = activeItem.offsetTop;
-          const viewBottom = navSidebar.scrollTop + navSidebar.clientHeight;
+          const viewBottom = targetNode.scrollTop + targetNode.clientHeight;
 
           // The element height and scroll height are the same, then we are still loading
-          if (viewBottom !== navSidebar.scrollHeight) {
+          if (viewBottom !== targetNode.scrollHeight) {
             // Determine if the item isn't visible and scroll to it
             if (elBottom >= viewBottom) {
-              navSidebar.scrollTop = elBottom;
+              targetNode.scrollTop = elBottom;
             }
 
             // stop observing now since we've completed the scroll
-            resizeObserver.unobserve(navSidebar);
+            resizeObserver.unobserve(targetNode);
           }
         });
-        resizeObserver.observe(navSidebar);
+        resizeObserver.observe(targetNode);
       }
     }
   }
