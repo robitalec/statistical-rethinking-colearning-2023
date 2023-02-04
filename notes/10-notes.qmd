@@ -14,21 +14,29 @@ source('R/packages.R')
 Recall: Generalized linear models have expected value as *some function*
 of an additive combination of parameters. 
 
-This means that a uniform change in predictor is not a uniform 
-change in the prediction. And because of ceiling and floor effects, 
-all predictor variables interact and moderate one another. Eg. if the
-outcome space is bounded between 0-1 and one variable pushed the outcome
-towards 1, another variable cannot push the outcome further to 1 - it is
-bounded by this ceiling. 
+This means that a uniform change in predictor is not a uniform change in the
+prediction. And because of ceiling and floor effects, all predictor variables
+interact and moderate one another. Eg. if the outcome space is bounded between
+0-1 and one variable pushed the outcome towards 1, another variable cannot push
+the outcome further to 1 - it is bounded by this ceiling.
 
+
+Counts are distributions from constraints. Maximum entropy priors are counts 
+include Binomial, Poisson and extensions of these. More event types include
+multinomial and categorical. Robust regressions include Beta-binomial, 
+gamma-Poisson. 
 
 ### Example: confounded admissions
 
 #### 1. Estimand
+
+
 Confounded admission rates with unobserved quality/hidden ability of the 
 applicant
 
 #### 2. Generative model
+
+
 ```{r}
 coords <- data.frame(
 	name = c('G', 'D', 'A', 'u'),
@@ -105,7 +113,7 @@ individuals in this simulation. Higher ability compensates for discrimination,
 masking the evidence in the admission records.
 
 
-## Example: National Academy of Science
+### Example: National Academy of Science
 
 - Card et al 2022 found that women are advantaged conditional on citations and publications
 
@@ -180,7 +188,7 @@ No causes in, no causes out.
 Do not design policy through collider bias. 
 
 
-## Sensitivity analysis
+### Sensitivity analysis
 
 What are the implications of what we don't know? 
 
@@ -230,3 +238,105 @@ change, or vary other effects and estimate the confound strength. This can
 be especially helpful if you can know the upper limits of the potential confound
 and can model it's strength at that limit. 
 
+### Example: oceanic technology
+
+How is technological complexity related to population size? To social
+structure (contact)?
+
+```{r}
+coords <- data.frame(
+	name = c('P', 'T', 'C', 'L'),
+	x =    c(1,    2,   1,  2),
+	y =    c(0,    0,   1,  1)
+)
+```
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4
+dagify(
+	P ~ L,
+	C ~ P + L,
+	T ~ P + L + C,
+	exposure = 'P',
+  coords = coords
+) |> ggdag_status(seed = 2) + theme_dag()
+```
+
+Location is a confound, we will return to it later. Therefore, the results
+we produce today may be confounded by location. 
+
+We want to stratify by contact rate (high/low) to study the moderation effect. 
+
+Tool count is not binomial since there is no maximum. The maximum entropy
+distribution in this case is the Poisson distribution. 
+
+The link function for the poisson distribution is log. The poisson distribution 
+takes the shape $\lambda$. 
+
+
+$Y_{i} \sim Poisson(\lambda_{i})$
+
+$log(\lambda_{i}) = \alpha + \beta_{C_{i}} log(P_{i})$
+
+$\alpha \sim Normal(3, 0.5)$
+
+$\beta \sim Normal(0, 0.2)$
+
+The normal distribution with a mean of 3 and variance of 0.5 for alpha
+is weakly regularizing vs common defaults like normal 0, 10. 
+
+The logarithm of population is used because the background theory 
+is that there is a diminishing return of increased population size. 
+
+
+
+
+Model criticism: Why would the intercept not be 0? 0 people = 0 tools. And 
+why would the slopes of low contact and high contact cross over?
+
+Two solutions:
+
+1. Use a robust model, in this case the gamma-Poisson (negative-binomial) 
+distribution
+1. Use a principle scientific model
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4
+dagify(
+	P ~ L,
+	C ~ P + L,
+	T ~ P + L + C,
+  coords = coords
+) |> ggdag(seed = 2) + theme_dag()
+```
+
+
+$\Delta T = \alpha P^{\beta} - \gamma T$
+
+- $\Delta T$: change in tools
+- $\alpha$: innovation rate
+- $P^{\beta}$: diminishing returns (elasticity)
+- $\gamma$: loss rate
+
+$\Delta T = \alpha_{C} P^{\beta_{C}} - \gamma T$
+
+This is a difference equation. How do tools change, not the expected number. 
+
+What is the equilibrium number of tools for different population sizes?
+
+Solve for equilibrium T where $\Delta T = 0$
+
+$\hat{T} = \frac{\alpha_{C} P^{\beta_{C}}}{\gamma}$
+
+$T_{i} \sim Poisson(\lambda_{i})$
+
+$\lambda_{i} = \hat{T} = \frac{\alpha_{C} P^{\beta_{C}}}{\gamma}$
+
+The only trick is to constrain the parameters as positive. Either
+do it with `exp()` or use an appropriate prior (`dexp()`). Note probably
+use one or the other in the model but they are functionally equivalent.
+
+
+### Simpson's paradox
