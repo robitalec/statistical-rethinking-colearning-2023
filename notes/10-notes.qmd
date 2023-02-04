@@ -9,6 +9,8 @@ source('R/packages.R')
 ```
 
 
+## Counts
+
 Recall: Generalized linear models have expected value as *some function*
 of an additive combination of parameters. 
 
@@ -36,8 +38,8 @@ coords <- data.frame(
 ```
 
 ```{r}
-#| fig.height = 4,
-#| fig.width = 5
+#| fig.height: 4
+#| fig.width: 5
 dagify(
 	A ~ G + D + u,
 	D ~ G + A + u ,
@@ -124,8 +126,8 @@ coords <- data.frame(
 ```
 
 ```{r}
-#| fig.height = 4,
-#| fig.width = 4
+#| fig.height: 4
+#| fig.width: 4
 dagify(
 	C ~ G,
   coords = coords
@@ -135,8 +137,8 @@ dagify(
 Card et al 2022
 
 ```{r}
-#| fig.height = 4,
-#| fig.width = 4
+#| fig.height: 4
+#| fig.width: 4
 dagify(
 	C ~ G,
 	M ~ C + G,
@@ -162,8 +164,8 @@ to be elected because they have higher quality than indicated by citations.
 
 
 ```{r}
-#| fig.height = 4,
-#| fig.width = 4
+#| fig.height: 4
+#| fig.width: 4
 dagify(
 	C ~ G + q,
 	M ~ C + G + q,
@@ -188,13 +190,6 @@ strengths and kinds of influence.
 This helps us answer how strong must the confound be to change the conclusions?
 
 
-
-#### 1. Estimand
-
-
-
-#### 2. Statistical model
-
 ```{r}
 coords <- data.frame(
 	name = c('G', 'D', 'A', 'u'),
@@ -204,7 +199,7 @@ coords <- data.frame(
 ```
 
 ```{r}
-#| fig.height: 4,
+#| fig.height: 4
 #| fig.width: 4
 dagify(
 	A ~ G + D,
@@ -220,4 +215,18 @@ $A_{i} \sim Bernoulli(p_{i})$
 
 $logit(p_{i}) = \alpha[G_{i}, D_{i}] + \beta_{G[i]} u_{i}$
 
-$\alpha = [\alpha_{1}, \alpha_{2}]$
+$(D_{i} == 2) \sim Bernoulli(q_{i})$
+
+$logit(q_{i}) = \delta[G_{i}] + \gamma_{G[i]} u_{i}$
+
+$u_{j} \sim Normal(0, 1)$
+
+
+We don't know the u values, so we declare an unknown vector of length N with
+a normal 0, 1 distribution. 
+
+We would vary the confound strength over some range and show how results
+change, or vary other effects and estimate the confound strength. This can 
+be especially helpful if you can know the upper limits of the potential confound
+and can model it's strength at that limit. 
+
