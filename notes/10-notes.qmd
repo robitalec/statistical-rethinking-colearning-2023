@@ -340,3 +340,55 @@ use one or the other in the model but they are functionally equivalent.
 
 
 ### Simpson's paradox
+
+Simpson's paradox: reversal of an association when groups are combined
+or separated. No way to know which association (combined/separated) is 
+correct without causal assumptions. 
+
+The UC Berkeley data showed women are admitted at a lower rate unconditional on
+department but, conditional on department, women are admitted slightly more.
+There is no way to know which is correct without assumptions. There is a
+potential mediator effect in department and there is a potential collider and
+confound in ability. Pipes, forks and colliders can all be called "Simpson's
+paradox" but in order to understand them we need to think causally.
+
+In non-linear models, we can get similar types of confounds arising 
+from the ceiling and floor effects. 
+
+```{r}
+coords <- data.frame(
+	name = c('X', 'Y', 'Z'),
+	x =    c(1,    2,   2),
+	y =    c(0,    0,   -1)
+)
+```
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4
+dagify(
+	Y ~ X + Z,
+  coords = coords
+) |> ggdag(seed = 2) + theme_dag()
+```
+
+
+
+Model with X
+
+$logit(p_{i}) = \alpha + \beta X_{i}$
+
+Model with X and different slopes for Z
+
+$logit(p_{i}) = \alpha + \beta_{Z} X_{i}$
+
+Model with X and different slopes and intercepts for Z
+
+$logit(p_{i}) = \alpha_{Z} + \beta_{Z} X_{i}$
+
+
+Cannot tell if the treatment X works since when Z = 1 is already at the
+maximum outcome. 
+
+![](../graphics/stat_rethinking_l10_slide87.png)
+
