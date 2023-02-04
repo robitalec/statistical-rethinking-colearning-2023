@@ -1,0 +1,41 @@
+---
+title: "Lecture 10 Notes"
+author: "Alec L. Robitaille"
+date: "2023-02-04"
+---
+
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+
+Recall: Generalized linear models have expected value as *some function*
+of an additive combination of parameters. 
+
+This means that a uniform change in predictor is not a uniform 
+change in the prediction. And because of ceiling and floor effects, 
+all predictor variables interact and moderate one another. Eg. if the
+outcome space is bounded between 0-1 and one variable pushed the outcome
+towards 1, another variable cannot push the outcome further to 1 - it is
+bounded by this ceiling. 
+
+
+### Example: confounded admissions
+
+```{r}
+suppressPackageStartupMessages(library(ggdag))
+coords <- data.frame(
+	name = c('G', 'D', 'A', 'u'),
+	x =    c(1,    2,   3,  3.5),
+	y =    c(0,    1,   0,  1.5)
+)
+```
+
+```{r}
+dagify(
+	A ~ G + D + u,
+	D ~ A + u,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
