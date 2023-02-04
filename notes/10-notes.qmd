@@ -36,7 +36,7 @@ coords <- data.frame(
 ```
 
 ```{r}
-#| fig.height = 4
+#| fig.height = 4,
 #| fig.width = 5
 dagify(
 	A ~ G + D + u,
@@ -85,7 +85,7 @@ $logit(p_{i}) = \alpha[G_{i}, D_{i}]$
 $\alpha = \begin{bmatrix} \alpha_{1, 1} & \alpha_{1, 2} \\ \alpha_{2, 1} & \alpha_{2, 2}\end{bmatrix}$
 
 
-#### 4. Validate
+#### 4. Analyze the simulation
 
 Total effect shows disadvantage. Gender 1 has a lower probability of acceptance
 than gender 2. 
@@ -103,16 +103,121 @@ individuals in this simulation. Higher ability compensates for discrimination,
 masking the evidence in the admission records.
 
 
-#### 5. Analyze the data
+## Example: National Academy of Science
 
-National Academy of Science:
+- Card et al 2022 found that women are advantaged conditional on citations and publications
 
-- Card et al., 2022 found that women are advantaged conditional on citations and publications
-
-- Lerman et al., 2022 found that elected women are cited less than men
-
-Details
-Traag, V.A. and Waltman, L., 2022. Causal foundations of bias, disparity and fairness. arXiv preprint arXiv:2207.13665.
+- Lerman et al 2022 found that elected women are cited less than men
 
 
+More details here: Traag, V.A. and Waltman, L., 2022. Causal foundations of bias, disparity and fairness. arXiv preprint arXiv:2207.13665.
 
+
+Lerman et al 2022
+
+```{r}
+coords <- data.frame(
+	name = c('G', 'C', 'M', 'q'),
+	x =    c(1,    2,   3,  3.5),
+	y =    c(0,    1,   0,  1.5)
+)
+```
+
+```{r}
+#| fig.height = 4,
+#| fig.width = 4
+dagify(
+	C ~ G,
+  coords = coords
+) |> ggdag(seed = 2) + theme_dag()
+```
+
+Card et al 2022
+
+```{r}
+#| fig.height = 4,
+#| fig.width = 4
+dagify(
+	C ~ G,
+	M ~ C + G,
+  coords = coords
+) |> ggdag(seed = 2) + theme_dag()
+```
+
+
+Combining the above two DAGs. Without defined causal assumptions, it is hard and
+potentially harmful to draw strong conclusions. A common cause of citations and
+membership is unmeasured qualities of the researcher. When proxies are used to
+quantify researcher quality, the proxy, eg. citations, is addressed instead of
+the underlying research quality.
+
+
+- Lerman et al 2022: If men are less likely to be elected, then they must have higher q, C
+to compensate. By restricting to members, we have conditioned on a collider
+creating a ghost citation effect.
+- Card et al 2022: Gender is the treatment and citations is the post treatment
+variable. In this case, the hidden quality bias is a collider on the path of G
+and q. If women are less likely to be cited, then women are more likely 
+to be elected because they have higher quality than indicated by citations. 
+
+
+```{r}
+#| fig.height = 4,
+#| fig.width = 4
+dagify(
+	C ~ G + q,
+	M ~ C + G + q,
+  coords = coords
+) |> ggdag(seed = 2) + theme_dag()
+```
+
+
+
+No causes in, no causes out. 
+
+Do not design policy through collider bias. 
+
+
+## Sensitivity analysis
+
+What are the implications of what we don't know? 
+
+Assuming the confound exists, model its consequences for different 
+strengths and kinds of influence. 
+
+This helps us answer how strong must the confound be to change the conclusions?
+
+
+
+#### 1. Estimand
+
+
+
+#### 2. Statistical model
+
+```{r}
+coords <- data.frame(
+	name = c('G', 'D', 'A', 'u'),
+	x =    c(1,    2,   3,    3.5),
+	y =    c(0,    1,   0,    1.5)
+)
+```
+
+```{r}
+#| fig.height: 4,
+#| fig.width: 4
+dagify(
+	A ~ G + D,
+	D ~ G + u,
+	A ~ u,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+
+
+$A_{i} \sim Bernoulli(p_{i})$
+
+$logit(p_{i}) = \alpha[G_{i}, D_{i}] + \beta_{G[i]} u_{i}$
+
+$\alpha = [\alpha_{1}, \alpha_{2}]$
