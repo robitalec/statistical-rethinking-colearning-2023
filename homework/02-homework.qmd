@@ -61,28 +61,18 @@ simulate_heights <- function(n) {
 									2)
 	
 	return(data.table(
-		age = ages,
+		age = age,
 		height = height,
 		weight = weight
 	))	
 }
 
 
-DT <- simulate_heights(100)
+DT <- simulate_heights(20)
 
-m <- quap(data = DT, flist = alist(
-	weight ~ dnorm(mu, sigma),
-	mu <- alpha + beta_age * age,
-	alpha ~ dnorm(3.5, 1),
-	beta_age ~ dnorm(0, 5),
-	sigma ~ dexp(1)
-))
-
-# Simulate n individuals with ages 0-12
-DT <- simulate_heights(sample(seq.int(12), n_individuals, replace = TRUE))
-DT
+ggplot(DT) + 
+	geom_point(aes(age, weight))
 ```
-
 
 ## Question 2
 
@@ -96,24 +86,19 @@ source('R/data_Howell1.R')
 # height: Height in cm
 # weight: Weight in kg
 # age: Age in years
-
 DT <- data_Howell()[age < 12]
-
-
-
-
-
 
 m <- quap(
 	alist(
 		weight ~ dnorm(mu, sigma),
-		mu <- alpha + (beta_age * age),
-		beta_age ~ dnorm(10, 2),
+		mu <- alpha + beta_age * age,
+		alpha ~ dnorm(3.5, 1),
+		beta_age ~ dnorm(0, 5),
 		sigma ~ dexp(1)
 	),
 	data = DT
 )
-
+precis(m)
 ```
 
 
