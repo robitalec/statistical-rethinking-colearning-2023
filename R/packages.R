@@ -15,3 +15,7 @@ library(knitr)
 
 
 library(boot)
+
+
+
+library(rethinking)
