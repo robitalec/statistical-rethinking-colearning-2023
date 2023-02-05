@@ -111,16 +111,20 @@ boys and girls. How do girls and boys differ? Provide one or more posterior
 contrasts as a summary.
 
 
+
+
+
 ## Question 4 - optional challenge
 
 > The data in data(Oxboys) (rethinking package) are growth records for 26 boys
 measured over 9 periods. I want you to model their growth. Specifically, model
 the increments in growth from one period (Occasion in the data table) to the
 next. Each increment is simply the difference between height in one occasion and
-height in the pre- vious occasion. Since none of these boys shrunk during the
+height in the previous occasion. Since none of these boys shrunk during the
 study, all of the growth increments are greater than zero. Estimate the
 posterior distribution of these increments. Constrain the distribution so it is
-always positive—it should not be possible for the model to think that boys can
+always positive — it should not be possible for the model to think that boys can
 shrink from year to year. Finally compute the posterior distribution of the
 total growth over all 9 occasions.
 
+dexp with difference in height
