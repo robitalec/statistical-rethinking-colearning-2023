@@ -88,6 +88,17 @@ source('R/data_Howell1.R')
 # age: Age in years
 DT <- data_Howell()[age < 12]
 
+# Simulate to determine appropriate priors
+n <- 100
+ggplot() + 
+	geom_abline(aes(intercept = rnorm(n, 3.5, 1), 
+									slope = rnorm(n, 2, 1)),
+							alpha = 0.1, size = 2) + 
+	labs(x = 'age', 'weight') + 
+	xlim(0, 12) + 
+	ylim(0, 30)
+
+# Model
 m <- quap(
 	alist(
 		weight ~ dnorm(mu, sigma),
@@ -98,7 +109,6 @@ m <- quap(
 	),
 	data = DT
 )
-precis(m)
 ```
 
 
