@@ -7,5 +7,9 @@ data_Howell <- function() {
   DT <- data.table(Howell1)
   DT[, sex := .GRP, by = male]
 
-  return(DT[, .(height, weight, age, sex)])
+  DT[, scale_height := scale(height)]
+  DT[, scale_weight := scale(weight)]
+  DT[, scale_age := scale(age)]
+
+  return(DT)
 }
