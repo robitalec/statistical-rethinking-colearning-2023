@@ -49,10 +49,16 @@ n_individuals <- 1e3
 # Some numbers to guide the simulation
 # 0 years: 50cm, 3.5kg
 # 12 years: 150cm, 45kg
-simulate_heights <- function(ages) {
-	alpha_by_age <- seq(-2, 30, length.out = 12)
-	height <- 50 + (ages * 10) + rnorm(length(ages), 0, 5)
-	weight <- alpha_by_age[ages] + (0.1 * height) + rnorm(length(ages), 0, 0.3)
+simulate_heights <- function(n) {
+	beta_age_height <- 7
+	beta_height_weight <- 3
+	beta_age_weight <- 2.5
+	
+	age <- runif(n, 0, 12)
+	height <- rnorm(n, beta_age_height * age, 2)
+	weight <- rnorm(n, 
+									(beta_height_weight * height) + (beta_age_weight * age), 
+									2)
 	
 	return(data.table(
 		age = ages,
