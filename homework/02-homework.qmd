@@ -62,6 +62,33 @@ simulate_heights <- function(ages) {
 	))	
 }
 
+
+simulate_heights <- function(n) {
+	bA <- 0.5
+	bH <- 1
+	
+	A <- rnorm(n)
+	H <- rnorm(n, bA * A)
+	W <- rnorm(n, (bA * A)  + (bH * H))
+	
+	return(data.table(
+		age = rescale(A, c(0, 12)),
+		height = rescale(H, c(40, 200)),
+		weight = rescale(W, c(2, 60))
+	))	
+}
+
+DT <- simulate_heights(100)
+
+m <- quap(data = DT, flist = alist(
+	weight ~ dnorm(mu, sigma),
+	mu <- alpha + beta_age * age,
+	alpha ~ dnorm(3.5, 1),
+	beta_age ~ dnorm(0, 5),
+	sigma ~ dexp(1)
+))
+
+# Simulate n individuals with ages 0-12
 DT <- simulate_heights(sample(seq.int(12), n_individuals, replace = TRUE))
 
 ```
