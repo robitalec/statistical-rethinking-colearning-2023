@@ -91,24 +91,26 @@ DT <- data_Howell()[age < 12]
 # Simulate to determine appropriate priors
 n <- 100
 ggplot() + 
-	geom_abline(aes(intercept = rnorm(n, 3.5, 1), 
-									slope = rnorm(n, 2, 1)),
+	geom_abline(aes(intercept = rnorm(n, 4, 0.5), 
+									slope = rnorm(n, 4, 1)),
 							alpha = 0.1, size = 2) + 
-	labs(x = 'age', 'weight') + 
+	labs(x = 'age (cm)', y = 'weight (kg)') + 
 	xlim(0, 12) + 
-	ylim(0, 30)
+	ylim(0, 50)
 
 # Model
 m <- quap(
 	alist(
 		weight ~ dnorm(mu, sigma),
 		mu <- alpha + beta_age * age,
-		alpha ~ dnorm(3.5, 1),
-		beta_age ~ dnorm(0, 5),
+		alpha ~ dnorm(4, 0.5),
+		beta_age ~ dnorm(4, 1),
 		sigma ~ dexp(1)
 	),
 	data = DT
 )
+
+precis(m)
 ```
 
 
