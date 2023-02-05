@@ -6,7 +6,6 @@ date: "2023-02-05"
 
 ```{r}
 source('R/packages.R')
-source('R/compute_posterior_globe.R')
 ```
 
 
@@ -44,12 +43,12 @@ dagify(
 ```{r}
 # Recall: https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-04?slide=22
 
-
+# Set number of individuals
 n_individuals <- 1e3
+
 # Some numbers to guide the simulation
 # 0 years: 50cm, 3.5kg
 # 12 years: 150cm, 45kg
-
 simulate_heights <- function(ages) {
 	alpha_by_age <- seq(-2, 30, length.out = 12)
 	height <- 50 + (ages * 10) + rnorm(length(ages), 0, 5)
@@ -63,21 +62,6 @@ simulate_heights <- function(ages) {
 }
 
 
-simulate_heights <- function(n) {
-	bA <- 0.5
-	bH <- 1
-	
-	A <- rnorm(n)
-	H <- rnorm(n, bA * A)
-	W <- rnorm(n, (bA * A)  + (bH * H))
-	
-	return(data.table(
-		age = rescale(A, c(0, 12)),
-		height = rescale(H, c(40, 200)),
-		weight = rescale(W, c(2, 60))
-	))	
-}
-
 DT <- simulate_heights(100)
 
 m <- quap(data = DT, flist = alist(
@@ -90,7 +74,7 @@ m <- quap(data = DT, flist = alist(
 
 # Simulate n individuals with ages 0-12
 DT <- simulate_heights(sample(seq.int(12), n_individuals, replace = TRUE))
-
+DT
 ```
 
 
@@ -101,9 +85,28 @@ growth on weight.
 
 
 ```{r}
+source('R/data_Howell1.R')
+
+# height: Height in cm
+# weight: Weight in kg
+# age: Age in years
+
+DT <- data_Howell()[age < 12]
 
 
-m <- quap()
+
+
+
+
+m <- quap(
+	alist(
+		weight ~ dnorm(mu, sigma),
+		mu <- alpha + (beta_age * age),
+		beta_age ~ dnorm(10, 2),
+		sigma ~ dexp(1)
+	),
+	data = DT
+)
 
 ```
 
