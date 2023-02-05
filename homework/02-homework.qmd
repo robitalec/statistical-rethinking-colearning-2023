@@ -17,21 +17,76 @@ old. Estimate the causal association between age and weight. Assume that age
 influences weight through two paths. First, age influences height, and height
 influences weight. Second, age directly influences weight through age-related
 changes in muscle growth and body proportions.
+
 > Draw the DAG that represents these causal relationships. And then write a
 generative simulation that takes age as an input and simulates height and
 weight, obeying the relationships in the DAG.
+
+```{r}
+coords <- data.frame(
+	name = c('H', 'A', 'W'),
+	x =    c(1,    2,   3),
+	y =    c(0,    1,   0)
+)
+```
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4
+dagify(
+	W ~ H + A,
+	H ~ A,
+  coords = coords
+) |> ggdag(seed = 2) + theme_dag()
+```
+
+
+```{r}
+# Recall: https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-04?slide=22
+
+
+n_individuals <- 1e3
+# Some numbers to guide the simulation
+# 0 years: 50cm, 3.5kg
+# 12 years: 150cm, 45kg
+
+simulate_heights <- function(ages) {
+	alpha_by_age <- seq(-2, 30, length.out = 12)
+	height <- 50 + (ages * 10) + rnorm(length(ages), 0, 5)
+	weight <- alpha_by_age[ages] + (0.1 * height) + rnorm(length(ages), 0, 0.3)
+	
+	return(data.table(
+		age = ages,
+		height = height,
+		weight = weight
+	))	
+}
+
+DT <- simulate_heights(sample(seq.int(12), n_individuals, replace = TRUE))
+
+```
+
 
 ## Question 2
 
 > Use a linear regression to estimate the total causal effect of each year of
 growth on weight.
 
+
+```{r}
+
+
+m <- quap()
+
+```
+
+
 ## Question 3
 
-> Now suppose the causal association between age and weight might be dif- ferent
+> Now suppose the causal association between age and weight might be different
 for boys and girls. Use a single linear regression, with a categorical variable
 for sex, to estimate the total causal effect of age on weight separately for
-boys and girls. How do girls and boys differ? Provide one or more pos- terior
+boys and girls. How do girls and boys differ? Provide one or more posterior
 contrasts as a summary.
 
 
