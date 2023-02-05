@@ -1,0 +1,50 @@
+---
+title: "Homework 02"
+author: "Alec L. Robitaille"
+date: "2023-02-05"
+---
+
+```{r}
+source('R/packages.R')
+source('R/compute_posterior_globe.R')
+```
+
+
+## Question 1
+
+> From the Howell1 dataset, consider only the people younger than 13 years
+old. Estimate the causal association between age and weight. Assume that age
+influences weight through two paths. First, age influences height, and height
+influences weight. Second, age directly influences weight through age-related
+changes in muscle growth and body proportions.
+> Draw the DAG that represents these causal relationships. And then write a
+generative simulation that takes age as an input and simulates height and
+weight, obeying the relationships in the DAG.
+
+## Question 2
+
+> Use a linear regression to estimate the total causal effect of each year of
+growth on weight.
+
+## Question 3
+
+> Now suppose the causal association between age and weight might be dif- ferent
+for boys and girls. Use a single linear regression, with a categorical variable
+for sex, to estimate the total causal effect of age on weight separately for
+boys and girls. How do girls and boys differ? Provide one or more pos- terior
+contrasts as a summary.
+
+
+## Question 4 - optional challenge
+
+> The data in data(Oxboys) (rethinking package) are growth records for 26 boys
+measured over 9 periods. I want you to model their growth. Specifically, model
+the increments in growth from one period (Occasion in the data table) to the
+next. Each increment is simply the difference between height in one occasion and
+height in the pre- vious occasion. Since none of these boys shrunk during the
+study, all of the growth increments are greater than zero. Estimate the
+posterior distribution of these increments. Constrain the distribution so it is
+always positive—it should not be possible for the model to think that boys can
+shrink from year to year. Finally compute the posterior distribution of the
+total growth over all 9 occasions.
+
