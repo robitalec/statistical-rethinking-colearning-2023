@@ -15,9 +15,4 @@ theme_set(theme_bw())
 
 library(knitr)
 
-
-library(boot)
-
-
-
 library(rethinking)
