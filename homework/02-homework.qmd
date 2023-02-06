@@ -159,6 +159,24 @@ link_diff <- link_sex_1 - link_sex_2
 melt_diff <- melt(as.data.table(link_diff))
 DT_diff <- melt_diff[DT_pred, on = 'variable']
 
+
+# Plot
+ggplot(DT_diff, aes(age, value)) +
+	stat_lineribbon() +
+	scale_fill_scico_d(direction = -1,
+										 palette = 'nuuk',
+										 end = 0.9) +
+	labs(
+		y = 'predicted difference in weight',
+		title = paste('Predicted difference in weight between',
+									key[sex == 1, sex_char], 'and',
+									key[sex == 2, sex_char])
+	)
+
+ggplot(DT_diff, aes(age, value, fill = after_stat(.width))) + 
+	stat_lineribbon(.width = seq(0.5, 1, 0.02), alpha = 0.8) + 
+	scale_fill_scico(direction = -1, end = 0.8)
+
 ```
 
 
