@@ -228,7 +228,7 @@ ggplot(DT_diff_link, aes(age, value)) +
 ```
 
 Details on the difference between `sim` and `link` are in the
-textbook around pages 105-107, the Overthinking box "How does link work?", 
+textbook around pages 105-110, the Overthinking box "How does link work?", 
 code 4.58-4.62, Rethinking box "two kinds of uncertainty". 
 
 - link takes the model formula to return what the average line would
@@ -252,3 +252,49 @@ shrink from year to year. Finally compute the posterior distribution of the
 total growth over all 9 occasions.
 
 <!--dexp with difference in height-->
+
+```{r}
+# Get data and prepare it
+data(Oxboys)
+
+DT_ox <- data.table(Oxboys)
+
+setorder(DT_ox, Occasion)
+setnames(DT_ox, colnames(DT_ox), make_clean_names(colnames(DT_ox)))
+DT_ox[, diff_height := height - shift(height), by = subject]
+DT_ox[, index_occasion := occasion - 1]
+
+
+# Simulate to evaluate priors
+n <- 100
+sim_prior <- CJ(occasion = unique(DT_ox$occasion),
+								row_id = seq.int(n))
+sim_prior[, diff_height := rexp(.N, 1)]
+
+ggplot(sim_prior, aes(factor(occasion), diff_height)) +
+	stat_slab() +
+	labs(x = 'ocassion', y = 'difference in height (cm)')
+
+
+m <- quap(
+	alist(
+		diff_height ~ dnorm(mu, sigma),
+		mu <- alpha[index_occasion],
+		alpha[index_occasion] ~ dexp(1),
+		sigma ~ dexp(1)
+	),
+	data = DT_ox[!is.na(diff_height)]
+)
+
+plot(precis(m, 2))
+
+
+samples <- extract.samples(m)$alpha
+
+melt_samples <- melt(as.data.table(samples))
+melt_samples[, index_occasion := as.integer(gsub('V', '', variable))]
+
+ggplot(melt_samples, aes(index_occasion, value)) + 
+	stat_slab() + 
+	stat_dots(aes(index_occasion, height_diff), data = DT_ox, color = 'black', alpha = 0.2)
+```
