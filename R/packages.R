@@ -18,3 +18,6 @@ theme_set(theme_bw())
 library(knitr)
 
 library(rethinking)
+
+
+library(janitor)
