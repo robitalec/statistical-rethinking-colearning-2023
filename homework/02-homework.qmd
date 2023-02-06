@@ -219,6 +219,16 @@ ggplot(DT_diff, aes(age, value)) +
 	)
 ```
 
+Details on the difference between `sim` and `link` are in the
+textbook around pages 105-107, the Overthinking box "How does link work?", 
+code 4.58-4.62, Rethinking box "two kinds of uncertainty". 
+
+- link takes the model formula to return what the average line would
+predict about your new data
+- sim takes the model formula and **uncertainty** to return
+what the posterior distribution of lines would predict about your 
+new data
+
 
 ## Question 4 - optional challenge
 
