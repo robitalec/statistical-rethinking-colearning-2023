@@ -172,11 +172,6 @@ ggplot(DT_diff, aes(age, value)) +
 									key[sex == 1, sex_char], 'and',
 									key[sex == 2, sex_char])
 	)
-
-ggplot(DT_diff, aes(age, value, fill = after_stat(.width))) + 
-	stat_lineribbon(.width = seq(0.5, 1, 0.02), alpha = 0.8) + 
-	scale_fill_scico(direction = -1, end = 0.8)
-
 ```
 
 
