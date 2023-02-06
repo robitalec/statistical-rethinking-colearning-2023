@@ -124,8 +124,13 @@ contrasts as a summary.
 
 
 ```{r}
+# Group index for sex
 DT[, sex := .GRP, by = male]
 
+# Set up key of sex factor levels and labels
+key <- unique(DT[, .(sex, sex_char = fifelse(male == 1, 'male', 'female'))])
+
+# Model
 m <- quap(
 	alist(
 		weight ~ dnorm(mu, sigma),
@@ -137,7 +142,22 @@ m <- quap(
 	data = DT
 )
 
+# Set up the options for predictions
+DT_pred <- data.table(
+	age = seq(0, 12, 0.5)
+)[, variable := paste0('V', .I)]
 
+
+# Predict where sex = 1, and where sex = 2
+link_sex_1 <- link(m, DT_pred[, .(age, sex = 1)])
+link_sex_2 <- link(m, DT_pred[, .(age, sex = 2)])
+
+# Posterior of differences
+link_diff <- link_sex_1 - link_sex_2
+
+# Melt and tidy
+melt_diff <- melt(as.data.table(link_diff))
+DT_diff <- melt_diff[DT_pred, on = 'variable']
 
 ```
 
