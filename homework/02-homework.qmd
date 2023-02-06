@@ -222,7 +222,8 @@ ggplot(DT_diff_link, aes(age, value)) +
 		y = 'predicted difference in weight',
 		title = paste('Predicted difference in weight between',
 									key[sex == 1, sex_char], 'and',
-									key[sex == 2, sex_char])
+									key[sex == 2, sex_char]),
+		subtitle = 'Note: uncertainty is not incorporated into predictions with "link"'
 	)
 
 ```
@@ -299,7 +300,7 @@ melt_sim[, index_occasion := as.integer(gsub('V', '', variable))]
 
 ggplot(melt_samples, aes(factor(index_occasion + 1, levels = seq.int(8) + 1), value)) + 
 	stat_slab() + 
-	stat_dots(aes(y = height_diff), data = DT_ox, color = 'black', alpha = 0.2) + 
+	stat_dots(aes(y = diff_height), data = DT_ox, color = 'black', alpha = 0.2) + 
 	stat_slab(data = melt_sim, color = 'blue', alpha = 0.2, fill = 'lightblue') + 
 	labs(x = 'occasion', y = 'height difference')
 
