@@ -123,7 +123,23 @@ boys and girls. How do girls and boys differ? Provide one or more posterior
 contrasts as a summary.
 
 
+```{r}
+DT[, sex := .GRP, by = male]
 
+m <- quap(
+	alist(
+		weight ~ dnorm(mu, sigma),
+		mu <- alpha[sex] + beta_age[sex] * age,
+		alpha[sex] ~ dnorm(4, 0.5),
+		beta_age[sex] ~ dnorm(4, 1),
+		sigma ~ dexp(1)
+	),
+	data = DT
+)
+
+
+
+```
 
 
 ## Question 4 - optional challenge
