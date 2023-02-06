@@ -7,14 +7,12 @@
       "/notes/03-notes.html",
       "/notes/04-notes.html",
       "/notes/09-notes.html",
-      "/notes/10-notes.html",
-      "/notes/00-notes-listing.html"
+      "/notes/10-notes.html"
     ]
   },
   {
     "listing": "/homework/00-homework-listing.html",
     "items": [
-      "/homework/00-homework-listing.html",
       "/homework/01-homework.html",
       "/homework/02-homework.html"
     ]

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.260">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,19 +11,25 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
+
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-listing/list.min.js"></script>
 <script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -31,12 +37,12 @@ ul.task-list{list-style: none;}
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link class="quarto-color-scheme" id="quarto-text-highlighting-styles" href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-<link class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles" href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link class="quarto-color-scheme" href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-<link class="quarto-color-scheme quarto-color-alternate" href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -78,12 +84,19 @@ ul.task-list{list-style: none;}
       window['quarto-listing-loaded']();
     }
   });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
-<body class="floating">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -121,64 +134,64 @@ ul.task-list{list-style: none;}
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
-    <div class="sidebar-item-container"> 
-        <a href="../homework/00-homework-listing.html" class="sidebar-item-text sidebar-link">Homework</a>
-      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
-        <i class="bi bi-chevron-right ms-2"></i>
-      </a>
-    </div>
-    <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+      <div class="sidebar-item-container"> 
+            <a href="../homework/00-homework-listing.html" class="sidebar-item-text sidebar-link">Homework</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/01-homework.html" class="sidebar-item-text sidebar-link">Homework 01</a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/02-homework.html" class="sidebar-item-text sidebar-link">Homework 02</a>
   </div>
 </li>
-    </ul>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-    <div class="sidebar-item-container"> 
-        <a href="../notes/00-notes-listing.html" class="sidebar-item-text sidebar-link active">Notes</a>
-      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
-        <i class="bi bi-chevron-right ms-2"></i>
-      </a>
-    </div>
-    <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-        <li class="sidebar-item">
+      <div class="sidebar-item-container"> 
+            <a href="../notes/00-notes-listing.html" class="sidebar-item-text sidebar-link active">Notes</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/01-notes.html" class="sidebar-item-text sidebar-link">Lecture 01</a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/02-notes.html" class="sidebar-item-text sidebar-link">Lecture 02</a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/03-notes.html" class="sidebar-item-text sidebar-link">Lecture 03</a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/04-notes.html" class="sidebar-item-text sidebar-link">Lecture 04</a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/09-notes.html" class="sidebar-item-text sidebar-link">Lecture 09</a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/10-notes.html" class="sidebar-item-text sidebar-link">Lecture 10</a>
   </div>
 </li>
-    </ul>
+      </ul>
   </li>
     </ul>
     </div>
@@ -197,11 +210,10 @@ ul.task-list{list-style: none;}
 
 
 
-
-
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -238,6 +250,7 @@ ul.task-list{list-style: none;}
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
+
 <table class="quarto-listing-table table">
 <thead>
 <tr>
@@ -319,191 +332,33 @@ Feb 4, 2023
 Alec L. Robitaille
 </td>
 </tr>
-<tr data-index="6" data-listing-file-modified-sort="1675515213342" data-listing-reading-time-sort="0.005" data-listing-title-sort="Notes" data-listing-filename-sort="00-notes-listing.qmd">
-<td class="listing-title">
-<a href="../notes/00-notes-listing.html" class="title">Notes</a>
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="7" data-listing-file-modified-sort="1675700630364" data-listing-filename-sort="01-notes.html">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="8" data-listing-file-modified-sort="1675700629924" data-listing-filename-sort="01-notes_files">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="9" data-listing-file-modified-sort="1675700629754" data-listing-filename-sort="figure-html">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="10" data-listing-file-modified-sort="1675700629827" data-listing-filename-sort="01_dag-1.png">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="11" data-listing-file-modified-sort="1675700626997" data-listing-filename-sort="02-notes.html">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="12" data-listing-file-modified-sort="1675700626551" data-listing-filename-sort="02-notes_files">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="13" data-listing-file-modified-sort="1675700626071" data-listing-filename-sort="figure-html">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="14" data-listing-file-modified-sort="1675700625451" data-listing-filename-sort="02_dag-1.png">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="15" data-listing-file-modified-sort="1675700626174" data-listing-filename-sort="02_dag_misclassified-1.png">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="16" data-listing-file-modified-sort="1675700622604" data-listing-filename-sort="03-notes.html">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="17" data-listing-file-modified-sort="1675700622147" data-listing-filename-sort="10-notes.html">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="18" data-listing-file-modified-sort="1675700621187" data-listing-filename-sort="10-notes_files">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="19" data-listing-file-modified-sort="1675700621057" data-listing-filename-sort="figure-html">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="20" data-listing-file-modified-sort="1675700620297" data-listing-filename-sort="unnamed-chunk-11-1.png">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="21" data-listing-file-modified-sort="1675700620697" data-listing-filename-sort="unnamed-chunk-12-1.png">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="22" data-listing-file-modified-sort="1675700621101" data-listing-filename-sort="unnamed-chunk-14-1.png">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="23" data-listing-file-modified-sort="1675700617817" data-listing-filename-sort="unnamed-chunk-3-1.png">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="24" data-listing-file-modified-sort="1675700618237" data-listing-filename-sort="unnamed-chunk-5-1.png">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="25" data-listing-file-modified-sort="1675700618757" data-listing-filename-sort="unnamed-chunk-6-1.png">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="26" data-listing-file-modified-sort="1675700619154" data-listing-filename-sort="unnamed-chunk-7-1.png">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
-<tr data-index="27" data-listing-file-modified-sort="1675700619677" data-listing-filename-sort="unnamed-chunk-9-1.png">
-<td class="listing-title">
-</td>
-<td class="listing-date">
-</td>
-<td class="listing-author">
-</td>
-</tr>
 </tbody>
+
 </table>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
 </div></main> <!-- /main -->
-<script type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const disableStylesheet = (stylesheets) => {
     for (let i=0; i < stylesheets.length; i++) {
       const stylesheet = stylesheets[i];
@@ -533,8 +388,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     manageTransitions('#quarto-margin-sidebar .nav-link', false);
     if (alternate) {
       enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
     } else {
       disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
     }
     manageTransitions('#quarto-margin-sidebar .nav-link', true);
     // Switch the toggles
@@ -548,6 +409,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           toggle.classList.remove("alternate");
         }
       }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
     }
   }
   const isFileUrl = () => { 
@@ -600,7 +471,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -620,7 +493,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
@@ -647,31 +540,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
