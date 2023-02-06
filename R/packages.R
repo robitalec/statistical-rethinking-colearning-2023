@@ -16,6 +16,5 @@ theme_set(theme_bw())
 
 
 library(knitr)
-library(printr)
 
 library(rethinking)
