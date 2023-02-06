@@ -4,7 +4,11 @@ author: "Alec L. Robitaille"
 date: "2023-02-05"
 ---
 
-```{r}
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+```{r, eval = FALSE}
 source('R/packages.R')
 ```
 
@@ -142,6 +146,9 @@ dagify(
 ```
 
 ```{r}
+#| warning: false
+
+
 # Group index for sex
 DT[, sex := .GRP, by = male]
 
@@ -202,12 +209,12 @@ link_diff <- link_sex_1 - link_sex_2
 
 # Melt and tidy
 melt_diff <- melt(as.data.table(link_diff))
-DT_diff <- melt_diff[DT_pred, on = 'variable']
+DT_diff_link <- melt_diff[DT_pred, on = 'variable']
 
 
 # Plot
-ggplot(DT_diff, aes(age, value)) +
-	stat_lineribbon() +
+ggplot(DT_diff_link, aes(age, value)) +
+	stat_lineribbon(.width = c(0.5, 0.8, 0.95)) +
 	scale_fill_scico_d(direction = -1,
 										 palette = 'nuuk',
 										 end = 0.9) +
@@ -217,6 +224,7 @@ ggplot(DT_diff, aes(age, value)) +
 									key[sex == 1, sex_char], 'and',
 									key[sex == 2, sex_char])
 	)
+
 ```
 
 Details on the difference between `sim` and `link` are in the
@@ -243,4 +251,4 @@ always positive — it should not be possible for the model to think that boys c
 shrink from year to year. Finally compute the posterior distribution of the
 total growth over all 9 occasions.
 
-dexp with difference in height
+<!--dexp with difference in height-->
