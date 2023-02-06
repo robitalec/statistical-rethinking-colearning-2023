@@ -148,6 +148,33 @@ DT_pred <- data.table(
 )[, variable := paste0('V', .I)]
 
 
+# Simulate where sex = 1, and where sex = 2
+sim_sex_1 <- sim(m, DT_pred[, .(age, sex = 1)])
+sim_sex_2 <- sim(m, DT_pred[, .(age, sex = 2)])
+
+# Posterior of differences
+sim_diff <- sim_sex_1 - sim_sex_2
+
+# Melt and tidy
+melt_diff <- melt(as.data.table(sim_diff))
+DT_diff <- melt_diff[DT_pred, on = 'variable']
+
+
+# Plot
+ggplot(DT_diff, aes(age, value)) +
+	stat_lineribbon(.width = c(0.5, 0.8, 0.95)) +
+	scale_fill_scico_d(direction = -1,
+										 palette = 'nuuk',
+										 end = 0.9) +
+	labs(
+		y = 'predicted difference in weight',
+		title = paste('Posterior predicted difference in weight between',
+									key[sex == 1, sex_char], 'and',
+									key[sex == 2, sex_char])
+	)
+
+
+# Note: differences with link
 # Predict where sex = 1, and where sex = 2
 link_sex_1 <- link(m, DT_pred[, .(age, sex = 1)])
 link_sex_2 <- link(m, DT_pred[, .(age, sex = 2)])
