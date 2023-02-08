@@ -4,4 +4,46 @@ author: "Alec L. Robitaille"
 date: "2023-02-08"
 ---
 
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+
+## Ordered categorical
+
+Ordered categorical variables are discrete types with ordered relationships. 
+
+- not a count variable, not continuous
+- bounded between min, max (eg. Trolley 1-7)
+- eg. good, bad, excellent - not "cat, dog, chicken"
+- distances between categories  is not known or the same
+- often there are "anchor points" and not everyone shares the same anchor 
+point
+
+
+Modeling an ordered categorical requires converting the orders to cumulative
+frequency. Instead of the probability of 5 out of 10, we have the probability
+of 5 or less out of 10. 
+
+![](../graphics/stat_rethinking_l11_slide32.png)
+Recall, cumulative log-odds is the log of the probability of x occurring divided
+by the probability of x not occurring.
+
+Now we are estimating cutpoints. The number of cutpoints we estimate
+is the number of categories - 1, since the cumulative probability of the 
+last category is the total cumulative probability. 
+
+Then estimating the probability of a specific category is 
+the probability of all categories up to that category subtracting the 
+probability of all categories up to the preceding category. 
+
+To make it a function of the variables, either by stratifying the cutpoints
+or by offsetting each cutpoint by the value of a linear model $\phi$.
+
+$\phi_{i} = \beta x_{i}$
+
+$log \frac{Pr(R_{i} <= k)}{1-Pr(R_{i} <= k)} = \alpha_{k} + \phi_{i}$
+
+$R_{i} \sim OrderedLogit(\phi_{i}, \alpha)$
+
 
