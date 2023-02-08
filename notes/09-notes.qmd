@@ -101,7 +101,7 @@ ggplot(data.table(logit_p= logit(p), p = p)) + geom_line(aes(logit_p, p))
 The logit link compresses parameter distributions. Anything above +4 = almost
 always, anything below -4 = almost never. 
 
-![](../graphics/stat_rethinking_2023_l09_slide64.png)
+![](../graphics/stat_rethinking_l09_slide64.png)
 
 
 
