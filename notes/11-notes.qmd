@@ -47,3 +47,68 @@ $log \frac{Pr(R_{i} <= k)}{1-Pr(R_{i} <= k)} = \alpha_{k} + \phi_{i}$
 $R_{i} \sim OrderedLogit(\phi_{i}, \alpha)$
 
 
+### Example: Trolley problem
+
+- Runaway trolley, actor standing next to a switch
+- If you don't pull the switch, it will strike 5 people on the track
+- If you do pull the switch, it will strike 1 person on the track
+
+
+Scenarios that contain three principles
+
+- Action: taking an action is less morally permissible than not taking an action
+- Intention: eg. pulling the lever to strike the 1 person and this stopping the 
+trolley - this is necessary and intentional to save the 5 people
+- Contact: eg. pushing a large person on the track 
+
+
+- 331 individuals
+- action, intention, contact
+- 30 different trolley problems
+- voluntary participation
+
+Response: how appropriate from 1-7
+
+
+#### 1. Estimand
+
+How do action, intention and contact influence response to a trolley story?
+
+```{r}
+coords <- data.frame(
+	name = c('X', 'R', 'S', 'E', 'Y', 'G',  'P'),
+	x =    c(1,    2,   3,   1,    2,   2.5,  2),
+	y =    c(0,    0,   0,   -1,  -1,  -1.5,  -2)
+)
+```
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4 
+dagify(
+	R ~ X + S + E + Y + G,
+	E ~ Y + G,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+
+- R: response to the trolley story
+- X: action, intention, contact
+- S: story
+- E: education 
+- Y: age
+- G: gender
+
+
+
+#### First model
+
+$R_{i} \sim OrderedLogit(\phi_{i}, \alpha)$
+
+$\phi_{i} = \beta_{A}A_{i} + \beta_{C}C_{i} + \beta_{I}I_{i}$
+
+$\beta \sim Normal(0, 0.5)$
+
+$\alpha_{j} \sim Normal(0, 1)$
+
