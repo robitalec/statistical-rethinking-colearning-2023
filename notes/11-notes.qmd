@@ -112,3 +112,58 @@ $\beta \sim Normal(0, 0.5)$
 
 $\alpha_{j} \sim Normal(0, 1)$
 
+
+#### Total causal effect of gender
+
+$R_{i} \sim OrderedLogit(\phi_{i}, \alpha)$
+
+$\phi_{i} = \beta_{A}A_{i, G_{i}} + \beta_{C}C_{i, G_{i}} + \beta_{I}I_{i, G_{i}}$
+
+$\beta \sim Normal(0, 0.5)$
+
+$\alpha_{j} \sim Normal(0, 1)$
+
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4 
+dagify(
+	R ~ X + S + E + Y + G,
+	E ~ Y + G,
+	exposure = 'G',
+  coords = coords
+) |> ggdag_status(seed = 2, layout = 'auto') + theme_dag() + guides(color = 'none')
+```
+
+Note - this is a voluntary sample and participation is influenced by
+age, education and gender. There is sample selection from this participation, 
+the data is already stratified by the features of the participating population. 
+In addition, it is a collider and conditioning on participation makes 
+education, gender and age covary in the sample. Therefore, we 
+cannot estimate the total causal effect of gender. 
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4 
+dagify(
+	R ~ X + S + E + Y + G,
+	E ~ Y + G,
+	P ~ E + Y + G,
+	exposure = 'P',
+  coords = coords
+) |> ggdag_status(seed = 2, layout = 'auto') + theme_dag() + guides(color = 'none')
+```
+
+
+To get the direct effect of gender, we need to stratify by age and education. 
+
+
+## Ordered monotonic predictors
+
+Education is an ordered category, but it is unlikely that each level has the 
+same effect for an equivalent unit change. We want a parameter for each level
+but we need to enforce ordering so there is always a larger or smaller effect
+than the previous level. 
+
+
+$$\phi_{i} = \beta_{E} \sum_{j=0}^{E_{i}-1} \delta_{j}$$
