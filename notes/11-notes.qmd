@@ -227,3 +227,51 @@ that is representative of your estimand. Post-stratification simulation
 is the same as all previous examples of generative simulations using posterior
 samples. 
 
+
+
+## Bonus: non-representative samples and post-stratification
+
+The quality of data is more important than quantity of data. 
+Bigger samples amplify biases. 
+
+Example where larger surveys of COVID vaccination rate largely
+overestimated the CDC benchmark, while the smaller survey
+
+Non-representative samples can outperform representative samples
+if we know how the sample differs from our target population. 
+
+Post-stratification or transport is a transparent, principled method
+for extrapolating from sample to population. It requires causal models
+of reasons the sample differs from population. 
+
+Example of four age groups. Just because the sample differs from the population
+doesn't tell us what we need to do statistically. 
+
+![](../graphics/stat_rethinking_l11_slide96.png)
+
+
+Selection nodes indicate reasons why the sample differs from the population. 
+Eg. selection by age. 
+
+Some selection is recoverable, eg. where age stratification in the sample
+that influences X. Influence on the outcome variable, eg. where anarchists
+don't answer the phone, are not recoverable because the results you need
+are not in the data.
+
+![](../graphics/stat_rethinking_l11_slide96.png)
+
+
+Read more here: 
+
+Deffner, D., Rohrer, J.M. and McElreath, R., 2022. A causal
+framework for cross-cultural generalizability. Advances in Methods and Practices
+in Psychological Science, 5(3), p.25152459221106366.
+
+
+Simple 4-step plan for honest digital scholarship
+
+1. What are we trying to describe?
+2. What is the ideal data for doing so?
+3. What data do we actually have?
+4. What causes the differences between (2) and (3)?
+5. [optional] Is there a way to use (3) + (4) to do (1)?
