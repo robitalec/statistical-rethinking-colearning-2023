@@ -1,6 +1,6 @@
 # Statistical Rethinking colearning 2023
  
-Second round of [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) colearning, 
+Second round of [Statistical Rethinking](https://github.com/rmcelreath/stat_rethinking_2023) colearning, 
 this time with 2023 [lectures](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus) and 
 [homework](https://github.com/rmcelreath/stat_rethinking_2023/tree/main/homework).
 
