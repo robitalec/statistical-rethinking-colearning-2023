@@ -217,3 +217,6 @@ plot_dirichlet(n, alpha = rep(2, n_cat))
 plot_dirichlet(n, alpha = rep(7, n_cat))
 plot_dirichlet(n, alpha = seq(1, 7))
 ```
+
+
+![](../graphics/stat_rethinking_l11_slide72.png)
