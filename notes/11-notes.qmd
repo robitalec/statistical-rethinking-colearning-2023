@@ -165,5 +165,55 @@ same effect for an equivalent unit change. We want a parameter for each level
 but we need to enforce ordering so there is always a larger or smaller effect
 than the previous level. 
 
+Each category is the sum of the previous and the last category 
+is equal to the maximum effect of the variable. Then the deltas are all 
+summed up (0-1) and multiplied by the maximum effect. The delta parameters 
+form a **simplex**, a vector that sums to 1. 
+
+![](../graphics/stat_rethinking_l11_slide63.png)
+
 
 $$\phi_{i} = \beta_{E} \sum_{j=0}^{E_{i}-1} \delta_{j}$$
+
+We model a simplex using a Dirichlet distribution. Dirichlet distributions
+take a vector $a$ (concentration parameters) that defines the differences among 
+the categories. Larger values in $a$ indicate that there are smaller differences
+between categories. 
+
+
+```{r}
+n <- 100
+n_cat <- 7
+
+tidy_dirichlet <- function(n, alpha) {
+	rdm_diri <- rdirichlet(n, alpha)
+	rdm_diri_nrow <- cbind(rdm_diri, seq.int(nrow(random_dirichlet)))
+	
+	tidy_diri <- melt(
+		data.table(rdm_diri_nrow),
+		id.vars = paste0('V', length(alpha) + 1),
+		measure.vars = paste0('V', seq.int(length(alpha)))
+	)
+	
+	tidy_diri[, variable := as.integer(variable)]
+
+	return(tidy_diri)
+}
+
+plot_dirichlet <- function(n, alpha) {
+	ggplot(tidy_dirichlet(n = n, alpha = alpha)) +
+		geom_line(aes(x = variable,
+									y = value,
+									group = V8),
+							alpha = 0.5,
+							size = 0.5) +
+		labs(x = 'category', y = 'probability', 
+				 title = paste('alpha =', paste0(alpha, collapse = ', '))) + 
+		ylim(0, 1)
+}
+
+
+plot_dirichlet(n, alpha = rep(2, n_cat))
+plot_dirichlet(n, alpha = rep(7, n_cat))
+plot_dirichlet(n, alpha = seq(1, 7))
+```
