@@ -220,3 +220,10 @@ plot_dirichlet(n, alpha = seq(1, 7))
 
 
 ![](../graphics/stat_rethinking_l11_slide72.png)
+
+This is a great example of complex causal effects (details in lecture).
+Instead of using the current sample, post-stratify to a new target 
+that is representative of your estimand. Post-stratification simulation
+is the same as all previous examples of generative simulations using posterior
+samples. 
+
