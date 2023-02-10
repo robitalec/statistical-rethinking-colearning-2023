@@ -52,6 +52,30 @@ Grey distribution is the priors
 Red distribution is the posterior
 Blue distribution is the population
 
+### Example: reedfrogs
+
+- 48 tanks (T) of reedfrogs
+- treatments: density (D), size (G), predation (P)
+- outcome: survival (S)
+
+
+```{r}
+coords <- data.frame(
+	name = c('D', 'G', 'P', 'T', 'S'),
+	x =    c(1,    2,   3,   1,    2),
+	y =    c(0,    0,   0,   1,  1)
+)
+```
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4 
+dagify(
+	S ~ D + G + P + T,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
 ### Example: repeat observations in the trolley data
 
 Variation in the responses across stories and across individual participants. 
