@@ -2,6 +2,7 @@
 # Alec L. Robitaille
 
 library(targets)
+library(tarchetypes)
 
 # library(conflicted)
 
