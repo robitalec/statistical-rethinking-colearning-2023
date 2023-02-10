@@ -27,7 +27,7 @@ targets_h02 <- c(
 	tar_target(
 		m_h02_q02,
 		brm(
-			weight ~ 1 + age,
+			weight ~ age,
 			prior = c(
 				prior(normal(4, 0.5), Intercept),
 				prior(normal(4, 1), b),
