@@ -101,7 +101,12 @@ ggplot() +
 	labs(x = 'age (cm)', y = 'weight (kg)') + 
 	xlim(0, 12) + 
 	ylim(0, 50)
+```
 
+::: {.panel-tabset}
+
+## `rethinking`
+```{r}
 # Model
 m <- quap(
 	alist(
@@ -117,6 +122,25 @@ m <- quap(
 precis(m)
 ```
 
+## `brms`
+
+```{r}
+# Model (brms)
+m_b <- brm(
+	weight ~ 1 + age,
+	prior = c(
+		prior(normal(4, 0.5), Intercept),
+		prior(normal(4, 1), b),
+		prior(exponential(1), sigma)
+	),
+	data = DT,
+	silent = 2,
+	refresh = 0 
+)
+posterior_summary(m_b)
+```
+
+:::
 
 ## Question 3
 
@@ -144,6 +168,11 @@ dagify(
   coords = coords
 ) |> ggdag(seed = 2) + theme_dag()
 ```
+
+
+::: {.panel-tabset}
+
+## `rethinking`
 
 ```{r}
 #| warning: false
@@ -227,6 +256,11 @@ ggplot(DT_diff_link, aes(age, value)) +
 	)
 
 ```
+
+
+## `brms`
+
+:::
 
 Details on the difference between `sim` and `link` are in the
 textbook around pages 105-110, the Overthinking box "How does link work?", 
