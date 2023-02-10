@@ -1,0 +1,58 @@
+---
+title: "Lecture 12 Notes"
+author: "Alec L. Robitaille"
+date: "2023-02-10"
+---
+
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+
+## Multilevel models
+
+Repeat observations within groups can be modelled using categorical variables eg.
+a vector of alphas for each individual. Categorical variables have 
+*anterograde amnesia*, when estimating eg. the beta for a new individual, 
+this estimate does not contribute anything to the next individual. 
+
+Multilevel models instead, have two kinds of models
+
+1. Model observations (eg. responses) of groups/individuals
+1. Model population of groups/individuals (clusters)
+
+The population model creates a kind of memory. Advantages of multilevel model
+include: 
+
+- more efficient estimation 
+- resists overfitting
+
+The order that we estimate clusters does not matter, because we update the 
+population level model with every cluster estimate and that 
+population level model contributes to all clusters' estimates. The 
+information gathered from each cluster is pooled. 
+
+
+### Regularization
+
+Types of pooling
+
+- Complete pooling: all clusters are the same. This results in underfitting. 
+- No pooling: all clusters are unrelated. This results in overfitting. 
+- Partial pooling: adaptive compromise. 
+
+
+Regularization with multilevel models is partial pooling, an adaptive 
+compromise. 
+
+
+### Example: cafes
+
+Grey distribution is the priors
+Red distribution is the posterior
+Blue distribution is the population
+
+### Example: repeat observations in the trolley data
+
+Variation in the responses across stories and across individual participants. 
+
