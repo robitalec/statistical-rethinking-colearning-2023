@@ -139,7 +139,7 @@ m_h02_q02 <- brm(
 ```
 
 ```{r}
-tar_read(m_h02_q02)
+tar_load(m_h02_q02)
 posterior_summary(m_h02_q02)
 ```
 

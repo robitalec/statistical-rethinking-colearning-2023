@@ -1,6 +1,9 @@
 # Packages ----------------------------------------------------------------
 # Alec L. Robitaille
 
+library(targets)
+library(tarchetypes)
+
 # library(conflicted)
 
 library(data.table)
