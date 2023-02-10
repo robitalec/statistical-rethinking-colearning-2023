@@ -22,5 +22,6 @@ library(knitr)
 
 library(rethinking)
 library(brms)
+library(tidybayes)
 
 library(janitor)
