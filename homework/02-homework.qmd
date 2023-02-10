@@ -262,9 +262,9 @@ ggplot(DT_diff_link, aes(age, value)) +
 ## `brms`
 
 ```{r}
-#| warning: false
 # Model
 tar_load(m_h02_q03)
+```
 :::
 
 Details on the difference between `sim` and `link` are in the
