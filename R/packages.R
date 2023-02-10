@@ -1,7 +1,7 @@
 # Packages ----------------------------------------------------------------
 # Alec L. Robitaille
 
-library(conflicted)
+# library(conflicted)
 
 library(data.table)
 
@@ -18,6 +18,6 @@ theme_set(theme_bw())
 library(knitr)
 
 library(rethinking)
-
+library(brms)
 
 library(janitor)
