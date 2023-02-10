@@ -39,7 +39,8 @@ Types of pooling
 
 - Complete pooling: all clusters are the same. This results in underfitting. 
 - No pooling: all clusters are unrelated. This results in overfitting. 
-- Partial pooling: adaptive compromise. 
+- Partial pooling: adaptive compromise. There is shrinkage towards
+the global mean. 
 
 
 Regularization with multilevel models is partial pooling, an adaptive 
@@ -75,6 +76,77 @@ dagify(
   coords = coords
 ) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
 ```
+
+
+$S_{i} \sim Binomial(D_{i}, p_{i})$
+
+$logit(p_{i}) = \alpha_{T[i]}$
+
+$\alpha_{j} \sim Normal(\bar{\alpha}, \sigma)$
+
+$\bar{\alpha} \sim Normal(0, 1.5)$
+
+
+![](../graphics/stat_rethinking_l12_slide34.png)
+
+
+### Sigma 
+
+$\alpha_{j} \sim Normal(\bar{\alpha}, 0.1)$
+
+
+At sigma = 0.1, we tell the model that the tanks are all very 
+similar and the result is estimates for each tank that are 
+all close to the average. 
+
+$\alpha_{j} \sim Normal(\bar{\alpha}, 5)$
+
+
+At sigma = 5, we tell the model that the tanks vary a lot 
+and the prior does not create any constraints. This is equivalent
+to a categorical variable with amnesia with estimates very close
+to their values with in essence no pooling across tanks. 
+
+There is an optimal sigma for learning between 
+total pooling/underfitting and no pooling/overfitting. We can
+find the optimal sigma using cross validation and comparing
+the PSIS values of each model. Note this is different than 
+defining a prior using the model fit to the sample data
+because we are evaluating how the model fits to out of sample
+data (cross validation).  
+
+$\alpha_{j} \sim Normal(\bar{\alpha}, 1.79)$
+
+At the optimal sigma determined for this data, the estimate
+is not exactly at the value and we see shrinkage 
+across the tanks towards the global mean. 
+
+
+Alternatively, we can estimate as a parameter in the model. 
+
+
+$S_{i} \sim Binomial(D_{i}, p_{i})$
+
+$logit(p_{i}) = \alpha_{T[i]}$
+
+$\alpha_{j} \sim Normal(\bar{\alpha}, \sigma)$
+
+$\bar{\alpha} \sim Normal(0, 1.5)$
+
+$\sigma ~  Exponential(1)$
+
+
+### Estimates
+
+Note that estimates for smaller tanks (with less frogs/observations)
+have smaller evidence and result in more conservative estimates (closer)
+to the global mean. Alternatively, larger tanks with more observations
+are less conservative. 
+
+![](../graphics/stat_rethinking_l12_slide34.png)
+
+
+
 
 ### Example: repeat observations in the trolley data
 
