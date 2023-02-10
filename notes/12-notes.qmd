@@ -11,7 +11,7 @@ source('R/packages.R')
 
 ## Multilevel models
 
-Repeat observations within groups can be modelled using categorical variables eg.
+Repeat observations within groups can be modeled using categorical variables eg.
 a vector of alphas for each individual. Categorical variables have 
 *anterograde amnesia*, when estimating eg. the beta for a new individual, 
 this estimate does not contribute anything to the next individual. 
@@ -90,7 +90,7 @@ $\bar{\alpha} \sim Normal(0, 1.5)$
 ![](../graphics/stat_rethinking_l12_slide34.png)
 
 
-### Sigma 
+#### Sigma 
 
 $\alpha_{j} \sim Normal(\bar{\alpha}, 0.1)$
 
@@ -136,7 +136,7 @@ $\bar{\alpha} \sim Normal(0, 1.5)$
 $\sigma ~  Exponential(1)$
 
 
-### Estimates
+#### Estimates
 
 Note that estimates for smaller tanks (with less frogs/observations)
 have smaller evidence and result in more conservative estimates (closer)
@@ -145,10 +145,103 @@ are less conservative.
 
 ![](../graphics/stat_rethinking_l12_slide34.png)
 
+#### Predators
+
+Add a beta for predators, estimate a reduction in tank level survival (obviously).
+But the interesting thing is that the predictions between the model
+with and without predators is extremely similar. The difference is, however, 
+in the sigma values where the model with predators has an estimate sigma 
+around half that of the model without predators. The predator variable has
+explained approximately half of the variation on the log odds scale of the 
+tanks. 
+
+The sigma is not the variation among the units, it's the variation 
+among the parameters net all the other effects in the model. 
+
+
+## Varying effects
+
+Recommended default is to use partial pooling if there are >1 clusters
+
+Superstitions: 
+
+1. ~~Units must be sampled at random~~
+1. ~~Number of units must be large~~
+1. ~~Assumes Gaussian variation~~
+
+
+Practical difficulties
+
+1. How to use more than one cluster type at the same time
+1. How to sample efficiently
+1. Slopes and confounds
 
 
 
-### Example: repeat observations in the trolley data
 
-Variation in the responses across stories and across individual participants. 
+## Bonus: random confounds
+
+Random confounds, when unobserved group features influence individually-varying
+causes. **Group-level variables can have direct and indirect influences**. 
+Unmeasured features of the group can affect the response directly and indirectly
+through the traits of individuals.
+
+Related terminology.. 
+
+- group-level confounding
+- endogeneity
+- correlated errors
+- econometrics
+
+
+Options:
+
+1. Fixed effects model. Inefficient but soak up group-level confounding. Cannot 
+identify group-level effects. 
+1. Multilevel model. Better estimates for group-level variables but worse estimates
+for individual-level effects. 
+1. Mundlak machine. Estimate a different average rate for each group but
+not efficient and doesn't respect the uncertainty in X-bar. 
+
+Or use a latent measurement error model. 
+
+
+### Example: reedfrogs
+
+
+Estimand: $p(S|do(X))$, the distribution of survival intervening on X. 
+
+The problem: there is a backdoor path through G
+
+- Z group level trait
+- X individual level trait
+
+```{r}
+coords <- data.frame(
+	name = c('G', 'S', 'X', 'Z'),
+	x =    c(1,    2,    2,   2),
+	y =    c(0,    0,    2,  -1)
+)
+```
+
+```{r}
+#| fig.height: 3
+#| fig.width: 4 
+dagify(
+	S ~ G + X + Z,
+	X ~ G,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+
+### Example: classrooms
+
+![](../graphics/stat_rethinking_l12_slide73.png)
+
+
+
+
+
+
 
