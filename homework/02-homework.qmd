@@ -124,9 +124,9 @@ precis(m)
 
 ## `brms`
 
-```{r}
+```{r, eval = FALSE}
 # Model (brms)
-m_b <- brm(
+m_h02_q02 <- brm(
 	weight ~ 1 + age,
 	prior = c(
 		prior(normal(4, 0.5), Intercept),
@@ -137,7 +137,11 @@ m_b <- brm(
 	silent = 2,
 	refresh = 0 
 )
-posterior_summary(m_b)
+```
+
+```{r}
+tar_read(m_h02_q02)
+posterior_summary(m_h02_q02)
 ```
 
 :::
