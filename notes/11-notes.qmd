@@ -1,0 +1,277 @@
+---
+title: "Lecture 11 Notes"
+author: "Alec L. Robitaille"
+date: "2023-02-08"
+---
+
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+
+## Ordered categorical
+
+Ordered categorical variables are discrete types with ordered relationships. 
+
+- not a count variable, not continuous
+- bounded between min, max (eg. Trolley 1-7)
+- eg. good, bad, excellent - not "cat, dog, chicken"
+- distances between categories  is not known or the same
+- often there are "anchor points" and not everyone shares the same anchor 
+point
+
+
+Modeling an ordered categorical requires converting the orders to cumulative
+frequency. Instead of the probability of 5 out of 10, we have the probability
+of 5 or less out of 10. 
+
+![](../graphics/stat_rethinking_l11_slide32.png)
+Recall, cumulative log-odds is the log of the probability of x occurring divided
+by the probability of x not occurring.
+
+Now we are estimating cutpoints. The number of cutpoints we estimate
+is the number of categories - 1, since the cumulative probability of the 
+last category is the total cumulative probability. 
+
+Then estimating the probability of a specific category is 
+the probability of all categories up to that category subtracting the 
+probability of all categories up to the preceding category. 
+
+To make it a function of the variables, either by stratifying the cutpoints
+or by offsetting each cutpoint by the value of a linear model $\phi$.
+
+$\phi_{i} = \beta x_{i}$
+
+$log \frac{Pr(R_{i} <= k)}{1-Pr(R_{i} <= k)} = \alpha_{k} + \phi_{i}$
+
+$R_{i} \sim OrderedLogit(\phi_{i}, \alpha)$
+
+
+### Example: Trolley problem
+
+- Runaway trolley, actor standing next to a switch
+- If you don't pull the switch, it will strike 5 people on the track
+- If you do pull the switch, it will strike 1 person on the track
+
+
+Scenarios that contain three principles
+
+- Action: taking an action is less morally permissible than not taking an action
+- Intention: eg. pulling the lever to strike the 1 person and this stopping the 
+trolley - this is necessary and intentional to save the 5 people
+- Contact: eg. pushing a large person on the track 
+
+
+- 331 individuals
+- action, intention, contact
+- 30 different trolley problems
+- voluntary participation
+
+Response: how appropriate from 1-7
+
+
+#### 1. Estimand
+
+How do action, intention and contact influence response to a trolley story?
+
+```{r}
+coords <- data.frame(
+	name = c('X', 'R', 'S', 'E', 'Y', 'G',  'P'),
+	x =    c(1,    2,   3,   1,    2,   2.5,  2),
+	y =    c(0,    0,   0,   -1,  -1,  -1.5,  -2)
+)
+```
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4 
+dagify(
+	R ~ X + S + E + Y + G,
+	E ~ Y + G,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+
+- R: response to the trolley story
+- X: action, intention, contact
+- S: story
+- E: education 
+- Y: age
+- G: gender
+
+
+
+#### First model
+
+$R_{i} \sim OrderedLogit(\phi_{i}, \alpha)$
+
+$\phi_{i} = \beta_{A}A_{i} + \beta_{C}C_{i} + \beta_{I}I_{i}$
+
+$\beta \sim Normal(0, 0.5)$
+
+$\alpha_{j} \sim Normal(0, 1)$
+
+
+#### Total causal effect of gender
+
+$R_{i} \sim OrderedLogit(\phi_{i}, \alpha)$
+
+$\phi_{i} = \beta_{A}A_{i, G_{i}} + \beta_{C}C_{i, G_{i}} + \beta_{I}I_{i, G_{i}}$
+
+$\beta \sim Normal(0, 0.5)$
+
+$\alpha_{j} \sim Normal(0, 1)$
+
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4 
+dagify(
+	R ~ X + S + E + Y + G,
+	E ~ Y + G,
+	exposure = 'G',
+  coords = coords
+) |> ggdag_status(seed = 2, layout = 'auto') + theme_dag() + guides(color = 'none')
+```
+
+Note - this is a voluntary sample and participation is influenced by
+age, education and gender. There is sample selection from this participation, 
+the data is already stratified by the features of the participating population. 
+In addition, it is a collider and conditioning on participation makes 
+education, gender and age covary in the sample. Therefore, we 
+cannot estimate the total causal effect of gender. 
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4 
+dagify(
+	R ~ X + S + E + Y + G,
+	E ~ Y + G,
+	P ~ E + Y + G,
+	exposure = 'P',
+  coords = coords
+) |> ggdag_status(seed = 2, layout = 'auto') + theme_dag() + guides(color = 'none')
+```
+
+
+To get the direct effect of gender, we need to stratify by age and education. 
+
+
+## Ordered monotonic predictors
+
+Education is an ordered category, but it is unlikely that each level has the 
+same effect for an equivalent unit change. We want a parameter for each level
+but we need to enforce ordering so there is always a larger or smaller effect
+than the previous level. 
+
+Each category is the sum of the previous and the last category 
+is equal to the maximum effect of the variable. Then the deltas are all 
+summed up (0-1) and multiplied by the maximum effect. The delta parameters 
+form a **simplex**, a vector that sums to 1. 
+
+![](../graphics/stat_rethinking_l11_slide63.png)
+
+
+$$\phi_{i} = \beta_{E} \sum_{j=0}^{E_{i}-1} \delta_{j}$$
+
+We model a simplex using a Dirichlet distribution. Dirichlet distributions
+take a vector $a$ (concentration parameters) that defines the differences among 
+the categories. Larger values in $a$ indicate that there are smaller differences
+between categories. 
+
+
+```{r}
+n <- 100
+n_cat <- 7
+
+tidy_dirichlet <- function(n, alpha) {
+	rdm_diri <- rdirichlet(n, alpha)
+	rdm_diri_nrow <- cbind(rdm_diri, seq.int(nrow(random_dirichlet)))
+	
+	tidy_diri <- melt(
+		data.table(rdm_diri_nrow),
+		id.vars = paste0('V', length(alpha) + 1),
+		measure.vars = paste0('V', seq.int(length(alpha)))
+	)
+	
+	tidy_diri[, variable := as.integer(variable)]
+
+	return(tidy_diri)
+}
+
+plot_dirichlet <- function(n, alpha) {
+	ggplot(tidy_dirichlet(n = n, alpha = alpha)) +
+		geom_line(aes(x = variable,
+									y = value,
+									group = V8),
+							alpha = 0.5,
+							size = 0.5) +
+		labs(x = 'category', y = 'probability', 
+				 title = paste('alpha =', paste0(alpha, collapse = ', '))) + 
+		ylim(0, 1)
+}
+
+
+plot_dirichlet(n, alpha = rep(2, n_cat))
+plot_dirichlet(n, alpha = rep(7, n_cat))
+plot_dirichlet(n, alpha = seq(1, 7))
+```
+
+
+![](../graphics/stat_rethinking_l11_slide72.png)
+
+This is a great example of complex causal effects (details in lecture).
+Instead of using the current sample, post-stratify to a new target 
+that is representative of your estimand. Post-stratification simulation
+is the same as all previous examples of generative simulations using posterior
+samples. 
+
+
+
+## Bonus: non-representative samples and post-stratification
+
+The quality of data is more important than quantity of data. 
+Bigger samples amplify biases. 
+
+Example where larger surveys of COVID vaccination rate largely
+overestimated the CDC benchmark, while the smaller survey
+
+Non-representative samples can outperform representative samples
+if we know how the sample differs from our target population. 
+
+Post-stratification or transport is a transparent, principled method
+for extrapolating from sample to population. It requires causal models
+of reasons the sample differs from population. 
+
+Example of four age groups. Just because the sample differs from the population
+doesn't tell us what we need to do statistically. 
+
+![](../graphics/stat_rethinking_l11_slide96.png)
+
+
+Selection nodes indicate reasons why the sample differs from the population. 
+Eg. selection by age. 
+
+Some selection is recoverable, eg. where age stratification in the sample
+that influences X. Influence on the outcome variable, eg. where anarchists
+don't answer the phone, are not recoverable because the results you need
+are not in the data.
+
+![](../graphics/stat_rethinking_l11_slide96.png)
+
+
+Read more here: 
+
+Deffner, D., Rohrer, J.M. and McElreath, R., 2022. A causal
+framework for cross-cultural generalizability. Advances in Methods and Practices
+in Psychological Science, 5(3), p.25152459221106366.
+
+
+Simple 4-step plan for honest digital scholarship
+
+1. What are we trying to describe?
+2. What is the ideal data for doing so?
+3. What data do we actually have?
+4. What causes the differences between (2) and (3)?
+5. [optional] Is there a way to use (3) + (4) to do (1)?
