@@ -124,7 +124,8 @@ precis(m)
 
 ## `brms`
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
 # Model (brms)
 m_h02_q02 <- brm(
 	weight ~ 1 + age,
@@ -268,14 +269,13 @@ tar_load(m_h02_q03)
 
 # Set up the options for predictions
 DT_pred <- CJ(
-	age = seq(0, 12, 0.5),
-	sex = c(1, 2)
-)#[, variable := paste0('V', .I)]
+	age = seq(0, 12, 0.5)
+)
 
 
 # Simulate where sex = 1, and where sex = 2
-post_pred_sex_1 <- predicted_draws(m_b, DT_pred[, .(age, sex = 1)])
-post_pred_sex_2 <- predicted_draws(m_b, DT_pred[, .(age, sex = factor(2, levels =c(1, 2)))])
+post_pred_sex_1 <- predicted_draws(m_h02_q03, DT_pred[, .(age, sex = 1)])
+post_pred_sex_2 <- predicted_draws(m_h02_q03, DT_pred[, .(age, sex = 2)])
 
 # Predicted table
 DT_diff <- data.table(
@@ -296,41 +296,10 @@ ggplot(DT_diff, aes(age, diff)) +
 										 end = 0.9) +
 	labs(
 		y = 'predicted difference in weight',
-		title = paste('sex factor Posterior predicted difference in weight between',
+		title = paste('Posterior predicted difference in weight between',
 									key[sex == 1, sex_char], 'and',
 									key[sex == 2, sex_char])
 	)
-
-
-# Note: differences with epred
-# Simulate where sex = 1, and where sex = 2
-epred_sex_1 <- epred_draws(m_b, DT_pred[, .(age, sex = 1)])
-epred_sex_2 <- epred_draws(m_b, DT_pred[, .(age, sex = 2)])
-
-# Predicted table
-DT_diff <- data.table(
-	epred_1 = epred_sex_1$.epred,
-	epred_2 = epred_sex_2$.epred,
-	age = epred_sex_1$age
-)
-
-# Posterior of differences
-DT_diff[, diff := epred_1 - epred_2]
-
-
-# Plot
-ggplot(DT_diff, aes(age, diff)) +
-	geom_point()
-	stat_lineribbon()# +
-	# scale_fill_scico_d(direction = -1,
-	# 									 palette = 'nuuk',
-	# 									 end = 0.9) +
-	# labs(
-	# 	y = 'predicted difference in weight',
-	# 	title = paste('Posterior predicted difference in weight between',
-	# 								key[sex == 1, sex_char], 'and',
-	# 								key[sex == 2, sex_char])
-	# )
 ```
 
 :::
