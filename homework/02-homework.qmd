@@ -124,9 +124,9 @@ precis(m)
 
 ## `brms`
 
-```{r}
+```{r, eval = FALSE}
 # Model (brms)
-m_b <- brm(
+m_h02_q02 <- brm(
 	weight ~ 1 + age,
 	prior = c(
 		prior(normal(4, 0.5), Intercept),
@@ -134,10 +134,13 @@ m_b <- brm(
 		prior(exponential(1), sigma)
 	),
 	data = DT,
-	silent = 2,
 	refresh = 0 
 )
-posterior_summary(m_b)
+```
+
+```{r}
+tar_read(m_h02_q02)
+posterior_summary(m_h02_q02)
 ```
 
 :::
@@ -167,6 +170,12 @@ dagify(
 	H ~ A + S,
   coords = coords
 ) |> ggdag(seed = 2) + theme_dag()
+
+# Group index for sex
+DT[, sex := .GRP, by = male]
+
+# Set up key of sex factor levels and labels
+key <- unique(DT[, .(sex, sex_char = fifelse(male == 1, 'male', 'female'))])
 ```
 
 
@@ -176,14 +185,6 @@ dagify(
 
 ```{r}
 #| warning: false
-
-
-# Group index for sex
-DT[, sex := .GRP, by = male]
-
-# Set up key of sex factor levels and labels
-key <- unique(DT[, .(sex, sex_char = fifelse(male == 1, 'male', 'female'))])
-
 # Model
 m <- quap(
 	alist(
@@ -216,7 +217,7 @@ DT_diff <- melt_diff[DT_pred, on = 'variable']
 
 # Plot
 ggplot(DT_diff, aes(age, value)) +
-	stat_lineribbon(.width = c(0.5, 0.8, 0.95)) +
+	stat_lineribbon() +
 	scale_fill_scico_d(direction = -1,
 										 palette = 'nuuk',
 										 end = 0.9) +
@@ -243,7 +244,7 @@ DT_diff_link <- melt_diff[DT_pred, on = 'variable']
 
 # Plot
 ggplot(DT_diff_link, aes(age, value)) +
-	stat_lineribbon(.width = c(0.5, 0.8, 0.95)) +
+	stat_lineribbon() +
 	scale_fill_scico_d(direction = -1,
 										 palette = 'nuuk',
 										 end = 0.9) +
@@ -260,6 +261,78 @@ ggplot(DT_diff_link, aes(age, value)) +
 
 ## `brms`
 
+```{r}
+#| warning: false
+# Model
+tar_load(m_h02_q03)
+
+# Set up the options for predictions
+DT_pred <- CJ(
+	age = seq(0, 12, 0.5),
+	sex = c(1, 2)
+)#[, variable := paste0('V', .I)]
+
+
+# Simulate where sex = 1, and where sex = 2
+post_pred_sex_1 <- predicted_draws(m_b, DT_pred[, .(age, sex = 1)])
+post_pred_sex_2 <- predicted_draws(m_b, DT_pred[, .(age, sex = factor(2, levels =c(1, 2)))])
+
+# Predicted table
+DT_diff <- data.table(
+	predict_sex_1 = post_pred_sex_1$.prediction,
+	predict_sex_2 = post_pred_sex_2$.prediction,
+	age = post_pred_sex_1$age
+)
+
+# Posterior of differences
+DT_diff[, diff := predict_sex_1 - predict_sex_2]
+
+
+# Plot
+ggplot(DT_diff, aes(age, diff)) +
+	stat_lineribbon() +
+	scale_fill_scico_d(direction = -1,
+										 palette = 'nuuk',
+										 end = 0.9) +
+	labs(
+		y = 'predicted difference in weight',
+		title = paste('sex factor Posterior predicted difference in weight between',
+									key[sex == 1, sex_char], 'and',
+									key[sex == 2, sex_char])
+	)
+
+
+# Note: differences with epred
+# Simulate where sex = 1, and where sex = 2
+epred_sex_1 <- epred_draws(m_b, DT_pred[, .(age, sex = 1)])
+epred_sex_2 <- epred_draws(m_b, DT_pred[, .(age, sex = 2)])
+
+# Predicted table
+DT_diff <- data.table(
+	epred_1 = epred_sex_1$.epred,
+	epred_2 = epred_sex_2$.epred,
+	age = epred_sex_1$age
+)
+
+# Posterior of differences
+DT_diff[, diff := epred_1 - epred_2]
+
+
+# Plot
+ggplot(DT_diff, aes(age, diff)) +
+	geom_point()
+	stat_lineribbon()# +
+	# scale_fill_scico_d(direction = -1,
+	# 									 palette = 'nuuk',
+	# 									 end = 0.9) +
+	# labs(
+	# 	y = 'predicted difference in weight',
+	# 	title = paste('Posterior predicted difference in weight between',
+	# 								key[sex == 1, sex_char], 'and',
+	# 								key[sex == 2, sex_char])
+	# )
+```
+
 :::
 
 Details on the difference between `sim` and `link` are in the
@@ -269,7 +342,7 @@ code 4.58-4.62, Rethinking box "two kinds of uncertainty".
 - link takes the model formula to return what the average line would
 predict about your new data
 - sim takes the model formula and **uncertainty** to return
-what the posterior distribution of lines would predict about your 
+the posterior distribution of lines would predict about your 
 new data
 
 
