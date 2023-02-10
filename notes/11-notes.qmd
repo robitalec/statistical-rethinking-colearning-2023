@@ -187,7 +187,7 @@ n_cat <- 7
 
 tidy_dirichlet <- function(n, alpha) {
 	rdm_diri <- rdirichlet(n, alpha)
-	rdm_diri_nrow <- cbind(rdm_diri, seq.int(nrow(random_dirichlet)))
+	rdm_diri_nrow <- cbind(rdm_diri, seq.int(nrow(rdm_diri)))
 	
 	tidy_diri <- melt(
 		data.table(rdm_diri_nrow),
