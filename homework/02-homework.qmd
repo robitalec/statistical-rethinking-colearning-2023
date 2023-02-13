@@ -364,21 +364,7 @@ m <- quap(
 
 plot(precis(m, 2))
 
-
-samples <- extract.samples(m)$alpha
-
-melt_samples <- melt(as.data.table(samples))
-melt_samples[, index_occasion := as.integer(gsub('V', '', variable))]
-
 sims <- sim(m, data.table(index_occasion = seq.int(8)))
-melt_sim <- melt(as.data.table(sims))
-melt_sim[, index_occasion := as.integer(gsub('V', '', variable))]
-
-ggplot(melt_samples, aes(factor(index_occasion + 1, levels = seq.int(8) + 1), value)) + 
-	stat_slab() + 
-	stat_dots(aes(y = diff_height), data = DT_ox, color = 'black', alpha = 0.2) + 
-	stat_slab(data = melt_sim, color = 'blue', alpha = 0.2, fill = 'lightblue') + 
-	labs(x = 'occasion', y = 'height difference')
 
 # Posterior distribution of total growth 
 dens(apply(sims, 1, sum))
