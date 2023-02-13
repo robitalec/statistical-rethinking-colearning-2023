@@ -141,6 +141,8 @@ m_h02_q02 <- brm(
 
 ```{r}
 tar_load(m_h02_q02)
+m_h02_q02$formula
+m_h02_q02$prior
 posterior_summary(m_h02_q02)
 ```
 
@@ -266,6 +268,9 @@ ggplot(DT_diff_link, aes(age, value)) +
 #| warning: false
 # Model
 tar_load(m_h02_q03)
+
+m_h02_q03$formula
+m_h02_q03$prior
 
 # Set up the options for predictions
 DT_pred <- CJ(
