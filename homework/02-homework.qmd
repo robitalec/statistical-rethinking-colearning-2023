@@ -345,7 +345,7 @@ DT_ox[, index_occasion := occasion - 1]
 n <- 100
 sim_prior <- CJ(occasion = unique(DT_ox$occasion),
 								row_id = seq.int(n))
-sim_prior[, diff_height := rexp(.N, 1)]
+sim_prior[, diff_height := rlnorm(.N, 0.1, 0.3)]
 
 ggplot(sim_prior, aes(factor(occasion), diff_height)) +
 	stat_slab() +
@@ -354,9 +354,9 @@ ggplot(sim_prior, aes(factor(occasion), diff_height)) +
 
 m <- quap(
 	alist(
-		diff_height ~ dnorm(mu, sigma),
+		diff_height ~ dlnorm(mu, sigma),
 		mu <- alpha[index_occasion],
-		alpha[index_occasion] ~ dexp(1),
+		alpha[index_occasion] ~ dnorm(0, 0.1),
 		sigma ~ dexp(1)
 	),
 	data = DT_ox[!is.na(diff_height)]
