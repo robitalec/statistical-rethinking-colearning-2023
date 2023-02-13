@@ -1,0 +1,73 @@
+---
+title: "Lecture 05 Notes"
+author: "Alec L. Robitaille"
+date: "2023-02-13"
+---
+
+```{r}
+#| include: false
+source('R/packages.R')
+```
+
+
+
+Correlation is common in nature, causation is sparse
+
+
+Estimand: goal
+
+Estimator: recipe, instructions
+
+Estimate: result, may not always match estimand due to eg. confounds
+
+
+Confounds are features of the sample and how we use the sample that misleads
+us. Sources of confounds are diverse but there are four elemental 
+confounds. 
+
+
+
+## The four elemental confounds
+
+### The fork
+
+```{r}
+coords <- data.frame(
+	name = c('X', 'Y', 'Z'),
+	x =    c(1,    3,   2),
+	y =    c(0,    0,   0)
+)
+```
+
+```{r}
+#| fig.height: 3
+#| fig.width: 4 
+dagify(
+	X ~ Z,
+	Y ~ Z,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+
+- X and Y are associated ($Y \not\!\perp\!\!\!\perp X$)
+- X and Y share common cause Z
+- Once stratified by Z, there will be no association ($Y \perp\!\!\!\perp X | Z$)
+
+
+
+$\not\!\perp\!\!\!\perp$: not independent of
+
+$\perp\!\!\!\perp$: independent of
+
+$|$: conditional of
+
+
+
+### The pipe
+
+
+### The collider
+
+
+### The descendant
