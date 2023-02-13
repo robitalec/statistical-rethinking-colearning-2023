@@ -25,6 +25,7 @@ The first round of Statistical Rethinking colearning (2022) is available [here](
 | Meeting date | Homework    | Solutions | 
 | :----------- | :---------- | :-------- |
 | 2 February   | [Homework 1](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week01.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week01_solutions.pdf) | 
+| 16 February  | [Homework 2](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week02.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week02_solutions.pdf) | 
 
 
 ## Participant notes and homework solutions
