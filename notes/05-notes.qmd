@@ -194,6 +194,85 @@ M is a pipe between A and D.
 
 ### The pipe
 
+```{r}
+coords <- data.frame(
+	name = c('X', 'Y', 'Z'),
+	x =    c(1,    3,   2),
+	y =    c(0,    0,   0)
+)
+```
+
+```{r}
+#| fig.height: 3
+#| fig.width: 4 
+dagify(
+	Z ~ X,
+	Y ~ Z,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+Z is a "mediator"
+
+- X and Y are associated ($Y \not\!\perp\!\!\!\perp X$)
+- Influence of X on Y transmitted through Z
+- Once stratified by Z, there will be no association ($Y \perp\!\!\!\perp X | Z$)
+
+
+```{r}
+n <- 1e3
+X <- rbern(n, 0.5)
+Z <- rbern(n, (1-X) * 0.1 + X * 0.9)
+Y <- rbern(n, (1-Z) * 0.1 + Z * 0.9)
+
+table(X, Y)
+cor(X, Y)
+
+table(X[Z == 0], Y[Z == 0])
+cor(X[Z == 0], Y[Z == 0])
+
+table(X[Z == 1], Y[Z == 1])
+cor(X[Z == 1], Y[Z == 1])
+
+```
+
+
+#### Example: plant growth, anti-fungal
+
+
+Estimand: causal effect of treatment (anti-fungal) on plant growth
+
+```{r}
+coords <- data.frame(
+	name = c('F', 'H1', 'H0', 'T'),
+	x =    c(1,    2,   3, 0),
+	y =    c(0,    1,   1, 1)
+)
+```
+
+```{r}
+#| fig.height: 3
+#| fig.width: 3
+dagify(
+	H1 ~ H0 + F + T,
+	F ~ T,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+- H0: height at time 0
+- H1: height at time 1
+- F: fungus
+- T: anti-fungal treatment 
+
+
+The path T -> F -> H1 is a pipe. Should we stratify by F?
+No. Total causal effect of treatment is blocked by the pipe through F. 
+
+This is post-treatment bias. Stratifying by a consequence of the
+treatment, misleading that treatment does or doesn't work. 
+
+
 
 ### The collider
 
