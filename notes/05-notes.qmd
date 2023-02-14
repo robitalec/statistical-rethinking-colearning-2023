@@ -78,7 +78,7 @@ cor(X, Y)
 #### Example: marriage and divorce
 
 
-1. Estimand: Why do regions of the USA with higher rates of marriage also have higher
+Estimand: Why do regions of the USA with higher rates of marriage also have higher
 rates of divorce?
 
 Age at marriage is also associated with divorce and marriage rates. 
@@ -115,7 +115,7 @@ a different relationship between D and M. We have a different expected
 relationship. 
 
 
-2. Statistical model
+Statistical model
 
 If we standardize the data, priors are easier to set for linear models. 
 Standardize = subtract the mean (mean of 0) and divide by the standard
@@ -276,5 +276,142 @@ treatment, misleading that treatment does or doesn't work.
 
 ### The collider
 
+```{r}
+coords <- data.frame(
+	name = c('X', 'Y', 'Z'),
+	x =    c(1,    3,   2),
+	y =    c(0,    0,   0)
+)
+```
+
+```{r}
+#| fig.height: 3
+#| fig.width: 4 
+dagify(
+	Z ~ X + Y,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+Z is a "collider"
+
+- X and Y are not associated ($Y  \perp\!\!\!\perp X$)
+- Z is caused by both X and Z
+- Once stratified by Z, X and Y are associated ($Y \not\!\perp\!\!\!\perp X | Z$)
+
+
+
+```{r}
+n <- 1e3
+X <- rbern(n, 0.5)
+Y <- rbern(n, 0.5)
+Z <- rbern(n, ifelse(X + Y > 0, 0.9, 0.2))
+
+table(X, Y)
+cor(X, Y)
+
+table(X[Z == 0], Y[Z == 0])
+cor(X[Z == 0], Y[Z == 0])
+
+table(X[Z == 1], Y[Z == 1])
+cor(X[Z == 1], Y[Z == 1])
+```
+
+
+#### Example: grant applications
+
+
+Each grant application scored on newsworthiness and trustworthiness
+
+Grants are only awarded if sufficiently newsworthy or trustworthy. Few grants
+are high in both, therefore there is a negative association between
+newsworthiness and trustworthiness that arises from conditioning on 
+awards. This is a post-selection sample, where the sample eg. awards or jobs
+have already selected for features. 
+
+
+### Example: age and happiness
+
+There are post-treatment colliders like the example above and there are colliders
+that are a result from the statistical processing, within the analysis. 
+
+
+Estimand: influence of age on happiness
+
+Possible confound is marital status
+
+
+```{r}
+coords <- data.frame(
+	name = c('H', 'A', 'M'),
+	x =    c(1,    3,   2),
+	y =    c(0,    0,   0)
+)
+```
+
+```{r}
+#| fig.height: 3
+#| fig.width: 4 
+dagify(
+	M ~ A + H,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+
+
 
 ### The descendant
+
+
+```{r}
+coords <- data.frame(
+	name = c('X', 'Y', 'Z', 'A'),
+	x =    c(1,    3,   2, 2),
+	y =    c(0,    0,   0, -1)
+)
+```
+
+```{r}
+#| fig.height: 3
+#| fig.width: 4 
+dagify(
+	Z ~ X + Y,
+	A ~ Z,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+A is the descendant
+
+Including A is like including Z
+
+
+
+- X and Y are causally associated through Z ($Y  \not\!\perp\!\!\!\perp X$)
+- A holds information about Z
+- Once stratified by A, X and Y are less associated ($Y \perp\!\!\!\perp X | Z$)
+
+
+```{r}
+n <- 1e3
+
+X <- rbern(n, 0.5)
+Z <- rbern(n, (1-X) * 0.1 + X * 0.9)
+Y <- rbern(n, (1-Z) * 0.1 + Z * 0.9)
+A <- rbern(n, (1-Z) * 0.1 + Z * 0.9)
+
+table(X, Y)
+cor(X, Y)
+
+table(X[A == 0], Y[A == 0])
+cor(X[A == 0], Y[A == 0])
+
+table(X[A == 1], Y[A == 1])
+cor(X[A == 1], Y[A == 1])
+```
+
+
+In this case, the correlation is reduced by about half. 
+
+Descendants are everywhere, because many measurements we have are 
