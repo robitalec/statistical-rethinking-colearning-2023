@@ -64,6 +64,18 @@ $|$: conditional of
 
 
 
+```{r}
+n <- 1e3
+Z <- rbern(n, 0.5)
+X <- rbern(n, (1-Z) * 0.1 + Z * 0.9)
+Y <- rbern(n, (1-Z) * 0.1 + Z * 0.9)
+
+table(X, Y)
+cor(X, Y)
+```
+
+
+
 ### The pipe
 
 
