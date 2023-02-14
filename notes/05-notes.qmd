@@ -10,24 +10,22 @@ source('R/packages.R')
 ```
 
 
+## The four elemental confounds
 
 Correlation is common in nature, causation is sparse
 
 
-Estimand: goal
+Recall: 
 
-Estimator: recipe, instructions
-
-Estimate: result, may not always match estimand due to eg. confounds
-
+- Estimand: goal
+- Estimator: recipe, instructions
+- Estimate: result, may not always match estimand due to eg. confounds
 
 Confounds are features of the sample and how we use the sample that misleads
 us. Sources of confounds are diverse but there are four elemental 
 confounds. 
 
 
-
-## The four elemental confounds
 
 ### The fork
 
