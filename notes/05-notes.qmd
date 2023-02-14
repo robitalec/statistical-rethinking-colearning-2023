@@ -75,6 +75,122 @@ cor(X, Y)
 ```
 
 
+#### Example: marriage and divorce
+
+
+1. Estimand: Why do regions of the USA with higher rates of marriage also have higher
+rates of divorce?
+
+Age at marriage is also associated with divorce and marriage rates. 
+Is the relationship between marriage rate and divorce rate solely
+a result of the fork, their shared relationship with age at marriage. 
+
+```{r}
+coords <- data.frame(
+	name = c('M', 'D', 'A'),
+	x =    c(1,    3,   2),
+	y =    c(0,    0,   -1)
+)
+```
+
+```{r}
+#| fig.height: 3
+#| fig.width: 4 
+dagify(
+	M ~ A,
+	D ~ A + M,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+
+
+To estimate the causal effect of marriage rate, we need to stratify
+by age at marriage. Within each level of age at marriage, the 
+part of the association between marriage rate and divorce rate that
+is caused by age at marriage is removed. 
+
+Stratifying by a continuous variable: every value of A produces 
+a different relationship between D and M. We have a different expected
+relationship. 
+
+
+2. Statistical model
+
+If we standardize the data, priors are easier to set for linear models. 
+Standardize = subtract the mean (mean of 0) and divide by the standard
+deviation (sd of 1). 
+
+Prior predictive simulation  
+
+```{r}
+n <- 100
+ggplot() + 
+	geom_abline(aes(intercept = rnorm(n, 0, 10), 
+									slope = rnorm(n, 0, 10)),
+							alpha = 0.1, size = 2) + 
+	labs(x = 'median age at marriage (standardized)', 
+			 y = 'divorce rate (standardized)') + 
+	xlim(-2, 2) + 
+	ylim(-2, 2)
+
+ggplot() + 
+	geom_abline(aes(intercept = rnorm(n, 0, 0.2), 
+									slope = rnorm(n, 0, 0.5)),
+							alpha = 0.1, size = 2) + 
+	labs(x = 'median age at marriage (standardized)', 
+			 y = 'divorce rate (standardized)') + 
+	xlim(-2, 2) + 
+	ylim(-2, 2)
+```
+
+3. Analyze the data
+
+The causal effect is not a function of one parameter, so
+reporting simply the mean estimated parameter is often 
+insufficient especially when considering non-linear models 
+or more complicated models. 
+
+Instead, simulate interventions. 
+
+$p(D|do(M))$
+
+The distribution of D when we intervene (do) on M. This is 
+different than 
+
+When we do(M), we remove all arrows into M. Using a common
+set of values for A, we set different values for M and see
+what difference it makes. 
+
+1. Generate common set of values for A 
+1. Set first value for M
+1. Simulate for first value of M and common set of values for A
+1. Set second value for M
+1. Simulate for second value of M and common set of values for A
+1. Compute the contrast
+
+```{r}
+#| fig.height: 3
+#| fig.width: 5
+dagify(
+	M ~ A,
+	D ~ A + M,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag() +
+	labs(title = 'no intervention') +
+	dagify(
+		D ~ A + M,
+	  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag() +
+	labs(title = 'do(M)')
+```
+
+
+What about $p(D|do(A))$?
+
+Total causal effect of A on D requires a new model, since
+M is a pipe between A and D. 
+
 
 ### The pipe
 
