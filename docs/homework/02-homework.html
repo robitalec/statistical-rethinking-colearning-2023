@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.313">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Alec L. Robitaille">
 <meta name="dcterms.date" content="2023-02-05">
-
 <title>Statistical Rethinking colearning 2023 - Homework 02</title>
 <style>
 code{white-space: pre-wrap;}
@@ -87,7 +84,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -105,8 +101,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -125,28 +120,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title">Homework 02</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Statistical Rethinking colearning 2023</a> 
         <div class="sidebar-tools-main">
@@ -161,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">Home</a>
   </div>
@@ -173,8 +159,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/01-homework.html" class="sidebar-item-text sidebar-link">Homework 01</a>
   </div>
@@ -184,8 +170,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../homework/02-homework.html" class="sidebar-item-text sidebar-link active">Homework 02</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../targets.html" class="sidebar-item-text sidebar-link">_targets.R</a>
+  </div>
+</li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../notes/00-notes-listing.html" class="sidebar-item-text sidebar-link">Notes</a>
@@ -193,8 +184,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/01-notes.html" class="sidebar-item-text sidebar-link">Lecture 01</a>
   </div>
@@ -212,6 +203,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/04-notes.html" class="sidebar-item-text sidebar-link">Lecture 04</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/05-notes.html" class="sidebar-item-text sidebar-link">Lecture 05</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -235,28 +231,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a></li>
+<li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
   <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
   <li><a href="#question-4---optional-challenge" id="toc-question-4---optional-challenge" class="nav-link" data-scroll-target="#question-4---optional-challenge">Question 4 - optional challenge</a></li>
-  </ul>
-</nav>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title d-none d-lg-block">Homework 02</h1>
 </div>
 
@@ -282,13 +271,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header>
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/packages.R'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</header><div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">'R/packages.R'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="question-1" class="level2">
-<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
 <blockquote class="blockquote">
 <p>From the Howell1 dataset, consider only the people younger than 13 years old. Estimate the causal association between age and weight. Assume that age influences weight through two paths. First, age influences height, and height influences weight. Second, age directly influences weight through age-related changes in muscle growth and body proportions.</p>
 </blockquote>
@@ -296,81 +282,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Draw the DAG that represents these causal relationships. And then write a generative simulation that takes age as an input and simulates height and weight, obeying the relationships in the DAG.</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">'H'</span>, <span class="st">'A'</span>, <span class="st">'W'</span>),</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span>    <span class="fu">c</span>(<span class="dv">1</span>,    <span class="dv">1</span>,   <span class="dv">2</span>),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span>    <span class="fu">c</span>(<span class="dv">0</span>,    <span class="dv">1</span>,   <span class="dv">0</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'H'</span>, <span class="st">'A'</span>, <span class="st">'W'</span><span class="op">)</span>,</span>
+<span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">1</span>,   <span class="fl">2</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">1</span>,   <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    W <span class="sc">~</span> H <span class="sc">+</span> A,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    H <span class="sc">~</span> A,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag</span>(<span class="at">seed =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
+<span>    <span class="va">W</span> <span class="op">~</span> <span class="va">H</span> <span class="op">+</span> <span class="va">A</span>,</span>
+<span>    <span class="va">H</span> <span class="op">~</span> <span class="va">A</span>,</span>
+<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="02-homework_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="384"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recall: https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-04?slide=22</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set number of individuals</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>n_individuals <span class="ot">&lt;-</span> <span class="fl">1e3</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Some numbers to guide the simulation</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 0 years: 50cm, 3.5kg</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 12 years: 150cm, 45kg</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>simulate_heights <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    beta_age_height <span class="ot">&lt;-</span> <span class="dv">7</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    beta_height_weight <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    beta_age_weight <span class="ot">&lt;-</span> <span class="fl">2.5</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    age <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">12</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    height <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, beta_age_height <span class="sc">*</span> age, <span class="dv">2</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    weight <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, </span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                                    (beta_height_weight <span class="sc">*</span> height) <span class="sc">+</span> (beta_age_weight <span class="sc">*</span> age), </span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                                    <span class="dv">2</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">data.table</span>(</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">age =</span> age,</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">height =</span> height,</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">weight =</span> weight</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    ))  </span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>DT <span class="ot">&lt;-</span> <span class="fu">simulate_heights</span>(<span class="dv">20</span>)</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(DT) <span class="sc">+</span> </span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(age, weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Recall: https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-04?slide=22</span></span>
+<span></span>
+<span><span class="co"># Set number of individuals</span></span>
+<span><span class="va">n_individuals</span> <span class="op">&lt;-</span> <span class="fl">1e3</span></span>
+<span></span>
+<span><span class="co"># Some numbers to guide the simulation</span></span>
+<span><span class="co"># 0 years: 50cm, 3.5kg</span></span>
+<span><span class="co"># 12 years: 150cm, 45kg</span></span>
+<span><span class="va">simulate_heights</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">beta_age_height</span> <span class="op">&lt;-</span> <span class="fl">7</span></span>
+<span>    <span class="va">beta_height_weight</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
+<span>    <span class="va">beta_age_weight</span> <span class="op">&lt;-</span> <span class="fl">2.5</span></span>
+<span>    </span>
+<span>    <span class="va">age</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">0</span>, <span class="fl">12</span><span class="op">)</span></span>
+<span>    <span class="va">height</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">beta_age_height</span> <span class="op">*</span> <span class="va">age</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span>    <span class="va">weight</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span></span>
+<span>        <span class="va">n</span>, </span>
+<span>        <span class="op">(</span><span class="va">beta_height_weight</span> <span class="op">*</span> <span class="va">height</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="va">beta_age_weight</span> <span class="op">*</span> <span class="va">age</span><span class="op">)</span>, </span>
+<span>        <span class="fl">2</span></span>
+<span>    <span class="op">)</span></span>
+<span>    </span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu">data.table</span><span class="op">(</span></span>
+<span>        age <span class="op">=</span> <span class="va">age</span>,</span>
+<span>        height <span class="op">=</span> <span class="va">height</span>,</span>
+<span>        weight <span class="op">=</span> <span class="va">weight</span></span>
+<span>    <span class="op">)</span><span class="op">)</span>  </span>
+<span><span class="op">}</span></span>
+<span></span>
+<span></span>
+<span><span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu">simulate_heights</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">DT</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">age</span>, <span class="va">weight</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="02-homework_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="question-2" class="level2">
-<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+</section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
 <blockquote class="blockquote">
 <p>Use a linear regression to estimate the total causal effect of each year of growth on weight.</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'R/data_Howell1.R'</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># height: Height in cm</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># weight: Weight in kg</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># age: Age in years</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>DT <span class="ot">&lt;-</span> <span class="fu">data_Howell</span>()[age <span class="sc">&lt;</span> <span class="dv">12</span>]</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate to determine appropriate priors</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">intercept =</span> <span class="fu">rnorm</span>(n, <span class="dv">4</span>, <span class="fl">0.5</span>), </span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">slope =</span> <span class="fu">rnorm</span>(n, <span class="dv">4</span>, <span class="dv">1</span>)),</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                            <span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'age (cm)'</span>, <span class="at">y =</span> <span class="st">'weight (kg)'</span>) <span class="sc">+</span> </span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">12</span>) <span class="sc">+</span> </span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">'R/data_Howell1.R'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># height: Height in cm</span></span>
+<span><span class="co"># weight: Weight in kg</span></span>
+<span><span class="co"># age: Age in years</span></span>
+<span><span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu">data_Howell</span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="va">age</span> <span class="op">&lt;</span> <span class="fl">12</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Simulate to determine appropriate priors</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_abline</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">4</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>                                    slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                            alpha <span class="op">=</span> <span class="fl">0.1</span>,</span>
+<span>                            size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'age (cm)'</span>, y <span class="op">=</span> <span class="st">'weight (kg)'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">xlim</span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">ylim</span><span class="op">(</span><span class="fl">0</span>, <span class="fl">50</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ℹ Please use `linewidth` instead.</code></pre>
@@ -380,23 +367,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><code>rethinking</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>brms</code></a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><code>rethinking</code></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>brms</code></a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">quap</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">alist</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        weight <span class="sc">~</span> <span class="fu">dnorm</span>(mu, sigma),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        mu <span class="ot">&lt;-</span> alpha <span class="sc">+</span> beta_age <span class="sc">*</span> age,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        alpha <span class="sc">~</span> <span class="fu">dnorm</span>(<span class="dv">4</span>, <span class="fl">0.5</span>),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        beta_age <span class="sc">~</span> <span class="fu">dnorm</span>(<span class="dv">4</span>, <span class="dv">1</span>),</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        sigma <span class="sc">~</span> <span class="fu">dexp</span>(<span class="dv">1</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> DT</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">precis</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Model</span></span>
+<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">quap</span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html">alist</a></span><span class="op">(</span></span>
+<span>        <span class="va">weight</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">mu</span>, <span class="va">sigma</span><span class="op">)</span>,</span>
+<span>        <span class="va">mu</span> <span class="op">&lt;-</span> <span class="va">alpha</span> <span class="op">+</span> <span class="va">beta_age</span> <span class="op">*</span> <span class="va">age</span>,</span>
+<span>        <span class="va">alpha</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>        <span class="va">beta_age</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>        <span class="va">sigma</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">dexp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    data <span class="op">=</span> <span class="va">DT</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">precis</span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             mean         sd     5.5%    94.5%
 alpha    6.360494 0.30634520 5.870895 6.850093
@@ -407,25 +397,12 @@ sigma    2.315527 0.15037864 2.075193 2.555861</code></pre>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model (brms)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>m_h02_q02 <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    weight <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> age,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">prior =</span> <span class="fu">c</span>(</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">4</span>, <span class="fl">0.5</span>), Intercept),</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">4</span>, <span class="dv">1</span>), b),</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">prior</span>(<span class="fu">exponential</span>(<span class="dv">1</span>), sigma)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> DT,</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">refresh =</span> <span class="dv">0</span> </span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_load</span>(m_h02_q02)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>m_h02_q02<span class="sc">$</span>formula</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h02_q02</span><span class="op">)</span></span>
+<span><span class="va">m_h02_q02</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>weight ~ age </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>m_h02_q02<span class="sc">$</span>prior</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h02_q02</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          prior     class coef group resp dpar nlpar lb ub       source
    normal(4, 1)         b                                          user
@@ -433,7 +410,7 @@ sigma    2.315527 0.15037864 2.075193 2.555861</code></pre>
  normal(4, 0.5) Intercept                                          user
  exponential(1)     sigma                             0            user</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">posterior_summary</span>(m_h02_q02)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">posterior_summary</span><span class="op">(</span><span class="va">m_h02_q02</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Estimate   Est.Error        Q2.5       Q97.5
 b_Intercept    5.094576  0.70458518    3.522899    6.272208
@@ -446,125 +423,128 @@ lp__        -453.892842  1.29496243 -457.129260 -452.422809</code></pre>
 </div>
 </div>
 </div>
-</section>
-<section id="question-3" class="level2">
-<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+</section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
 <blockquote class="blockquote">
 <p>Now suppose the causal association between age and weight might be different for boys and girls. Use a single linear regression, with a categorical variable for sex, to estimate the total causal effect of age on weight separately for boys and girls. How do girls and boys differ? Provide one or more posterior contrasts as a summary.</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">'H'</span>, <span class="st">'A'</span>, <span class="st">'W'</span>, <span class="st">'S'</span>),</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span>    <span class="fu">c</span>(<span class="dv">1</span>,    <span class="dv">1</span>,   <span class="dv">2</span>,    <span class="dv">2</span>),</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span>    <span class="fu">c</span>(<span class="dv">0</span>,    <span class="dv">1</span>,   <span class="dv">0</span>,    <span class="dv">1</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'H'</span>, <span class="st">'A'</span>, <span class="st">'W'</span>, <span class="st">'S'</span><span class="op">)</span>,</span>
+<span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">1</span>,   <span class="fl">2</span>,    <span class="fl">2</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">1</span>,   <span class="fl">0</span>,    <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    W <span class="sc">~</span> H <span class="sc">+</span> A <span class="sc">+</span> S,</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    H <span class="sc">~</span> A <span class="sc">+</span> S,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag</span>(<span class="at">seed =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
+<span>    <span class="va">W</span> <span class="op">~</span> <span class="va">H</span> <span class="op">+</span> <span class="va">A</span> <span class="op">+</span> <span class="va">S</span>,</span>
+<span>    <span class="va">H</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">S</span>,</span>
+<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="02-homework_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="384"></p>
+<p><img src="02-homework_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="384"></p>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Group index for sex</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>DT[, sex <span class="sc">:</span><span class="er">=</span> .GRP, by <span class="ot">=</span> male]</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up key of sex factor levels and labels</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>key <span class="ot">&lt;-</span> <span class="fu">unique</span>(DT[, .(sex, <span class="at">sex_char =</span> <span class="fu">fifelse</span>(male <span class="sc">==</span> <span class="dv">1</span>, <span class="st">'male'</span>, <span class="st">'female'</span>))])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Group index for sex</span></span>
+<span><span class="va">DT</span><span class="op">[</span>, <span class="va">sex</span> <span class="op">:=</span> <span class="va">.GRP</span>, by <span class="op">=</span> <span class="va">male</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Set up key of sex factor levels and labels</span></span>
+<span><span class="va">key</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">DT</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">sex</span>, sex_char <span class="op">=</span> <span class="fu">fifelse</span><span class="op">(</span><span class="va">male</span> <span class="op">==</span> <span class="fl">1</span>, <span class="st">'male'</span>, <span class="st">'female'</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><code>rethinking</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>brms</code></a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><code>rethinking</code></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>brms</code></a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">quap</span>(</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">alist</span>(</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        weight <span class="sc">~</span> <span class="fu">dnorm</span>(mu, sigma),</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        mu <span class="ot">&lt;-</span> alpha[sex] <span class="sc">+</span> beta_age[sex] <span class="sc">*</span> age,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        alpha[sex] <span class="sc">~</span> <span class="fu">dnorm</span>(<span class="dv">4</span>, <span class="fl">0.5</span>),</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        beta_age[sex] <span class="sc">~</span> <span class="fu">dnorm</span>(<span class="dv">4</span>, <span class="dv">1</span>),</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        sigma <span class="sc">~</span> <span class="fu">dexp</span>(<span class="dv">1</span>)</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> DT</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the options for predictions</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>DT_pred <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="fl">0.5</span>)</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>)[, variable <span class="sc">:</span><span class="er">=</span> <span class="fu">paste0</span>(<span class="st">'V'</span>, .I)]</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate where sex = 1, and where sex = 2</span></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>sim_sex_1 <span class="ot">&lt;-</span> <span class="fu">sim</span>(m, DT_pred[, .(age, <span class="at">sex =</span> <span class="dv">1</span>)])</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>sim_sex_2 <span class="ot">&lt;-</span> <span class="fu">sim</span>(m, DT_pred[, .(age, <span class="at">sex =</span> <span class="dv">2</span>)])</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Posterior of differences</span></span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>sim_diff <span class="ot">&lt;-</span> sim_sex_1 <span class="sc">-</span> sim_sex_2</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt and tidy</span></span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>melt_diff <span class="ot">&lt;-</span> <span class="fu">melt</span>(<span class="fu">as.data.table</span>(sim_diff))</span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>DT_diff <span class="ot">&lt;-</span> melt_diff[DT_pred, on <span class="ot">=</span> <span class="st">'variable'</span>]</span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(DT_diff, <span class="fu">aes</span>(age, value)) <span class="sc">+</span></span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_lineribbon</span>() <span class="sc">+</span></span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_scico_d</span>(<span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">palette =</span> <span class="st">'nuuk'</span>,</span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">end =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">'predicted difference in weight'</span>,</span>
-<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">'Posterior predicted difference in weight between'</span>,</span>
-<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>                                    key[sex <span class="sc">==</span> <span class="dv">1</span>, sex_char], <span class="st">'and'</span>,</span>
-<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>                                    key[sex <span class="sc">==</span> <span class="dv">2</span>, sex_char])</span>
-<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Model</span></span>
+<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">quap</span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html">alist</a></span><span class="op">(</span></span>
+<span>        <span class="va">weight</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">mu</span>, <span class="va">sigma</span><span class="op">)</span>,</span>
+<span>        <span class="va">mu</span> <span class="op">&lt;-</span> <span class="va">alpha</span><span class="op">[</span><span class="va">sex</span><span class="op">]</span> <span class="op">+</span> <span class="va">beta_age</span><span class="op">[</span><span class="va">sex</span><span class="op">]</span> <span class="op">*</span> <span class="va">age</span>,</span>
+<span>        <span class="va">alpha</span><span class="op">[</span><span class="va">sex</span><span class="op">]</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>        <span class="va">beta_age</span><span class="op">[</span><span class="va">sex</span><span class="op">]</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>        <span class="va">sigma</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">dexp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    data <span class="op">=</span> <span class="va">DT</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Set up the options for predictions</span></span>
+<span><span class="va">DT_pred</span> <span class="op">&lt;-</span> <span class="fu">data.table</span><span class="op">(</span></span>
+<span>    age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span>, <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="op">)</span><span class="op">[</span>, <span class="va">variable</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">'V'</span>, <span class="va">.I</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Simulate where sex = 1, and where sex = 2</span></span>
+<span><span class="va">sim_sex_1</span> <span class="op">&lt;-</span> <span class="fu">sim</span><span class="op">(</span><span class="va">m</span>, <span class="va">DT_pred</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">age</span>, sex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">sim_sex_2</span> <span class="op">&lt;-</span> <span class="fu">sim</span><span class="op">(</span><span class="va">m</span>, <span class="va">DT_pred</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">age</span>, sex <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Posterior of differences</span></span>
+<span><span class="va">sim_diff</span> <span class="op">&lt;-</span> <span class="va">sim_sex_1</span> <span class="op">-</span> <span class="va">sim_sex_2</span></span>
+<span></span>
+<span><span class="co"># Melt and tidy</span></span>
+<span><span class="va">melt_diff</span> <span class="op">&lt;-</span> <span class="fu">melt</span><span class="op">(</span><span class="fu">as.data.table</span><span class="op">(</span><span class="va">sim_diff</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">DT_diff</span> <span class="op">&lt;-</span> <span class="va">melt_diff</span><span class="op">[</span><span class="va">DT_pred</span>, on <span class="op">=</span> <span class="st">'variable'</span><span class="op">]</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Plot</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">DT_diff</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">age</span>, <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">stat_lineribbon</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">scale_fill_scico_d</span><span class="op">(</span></span>
+<span>        direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span>
+<span>        palette <span class="op">=</span> <span class="st">'nuuk'</span>,</span>
+<span>        end <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span></span>
+<span>        y <span class="op">=</span> <span class="st">'predicted difference in weight'</span>,</span>
+<span>        title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">'Posterior predicted difference in weight between'</span>,</span>
+<span>                                    <span class="va">key</span><span class="op">[</span><span class="va">sex</span> <span class="op">==</span> <span class="fl">1</span>, <span class="va">sex_char</span><span class="op">]</span>, <span class="st">'and'</span>,</span>
+<span>                                    <span class="va">key</span><span class="op">[</span><span class="va">sex</span> <span class="op">==</span> <span class="fl">2</span>, <span class="va">sex_char</span><span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="02-homework_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="02-homework_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: differences with link</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict where sex = 1, and where sex = 2</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>link_sex_1 <span class="ot">&lt;-</span> <span class="fu">link</span>(m, DT_pred[, .(age, <span class="at">sex =</span> <span class="dv">1</span>)])</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>link_sex_2 <span class="ot">&lt;-</span> <span class="fu">link</span>(m, DT_pred[, .(age, <span class="at">sex =</span> <span class="dv">2</span>)])</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Posterior of differences</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>link_diff <span class="ot">&lt;-</span> link_sex_1 <span class="sc">-</span> link_sex_2</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt and tidy</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>melt_diff <span class="ot">&lt;-</span> <span class="fu">melt</span>(<span class="fu">as.data.table</span>(link_diff))</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>DT_diff_link <span class="ot">&lt;-</span> melt_diff[DT_pred, on <span class="ot">=</span> <span class="st">'variable'</span>]</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(DT_diff_link, <span class="fu">aes</span>(age, value)) <span class="sc">+</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_lineribbon</span>() <span class="sc">+</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_scico_d</span>(<span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">palette =</span> <span class="st">'nuuk'</span>,</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">end =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">'predicted difference in weight'</span>,</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">'Predicted difference in weight between'</span>,</span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>                                    key[sex <span class="sc">==</span> <span class="dv">1</span>, sex_char], <span class="st">'and'</span>,</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>                                    key[sex <span class="sc">==</span> <span class="dv">2</span>, sex_char]),</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">'Note: uncertainty is not incorporated into predictions with "link"'</span></span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Note: differences with link</span></span>
+<span><span class="co"># Predict where sex = 1, and where sex = 2</span></span>
+<span><span class="va">link_sex_1</span> <span class="op">&lt;-</span> <span class="fu">link</span><span class="op">(</span><span class="va">m</span>, <span class="va">DT_pred</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">age</span>, sex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">link_sex_2</span> <span class="op">&lt;-</span> <span class="fu">link</span><span class="op">(</span><span class="va">m</span>, <span class="va">DT_pred</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">age</span>, sex <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Posterior of differences</span></span>
+<span><span class="va">link_diff</span> <span class="op">&lt;-</span> <span class="va">link_sex_1</span> <span class="op">-</span> <span class="va">link_sex_2</span></span>
+<span></span>
+<span><span class="co"># Melt and tidy</span></span>
+<span><span class="va">melt_diff</span> <span class="op">&lt;-</span> <span class="fu">melt</span><span class="op">(</span><span class="fu">as.data.table</span><span class="op">(</span><span class="va">link_diff</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">DT_diff_link</span> <span class="op">&lt;-</span> <span class="va">melt_diff</span><span class="op">[</span><span class="va">DT_pred</span>, on <span class="op">=</span> <span class="st">'variable'</span><span class="op">]</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Plot</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">DT_diff_link</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">age</span>, <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">stat_lineribbon</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">scale_fill_scico_d</span><span class="op">(</span></span>
+<span>        direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span>
+<span>        palette <span class="op">=</span> <span class="st">'nuuk'</span>,</span>
+<span>        end <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span></span>
+<span>        y <span class="op">=</span> <span class="st">'predicted difference in weight'</span>,</span>
+<span>        title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">'Predicted difference in weight between'</span>,</span>
+<span>                                    <span class="va">key</span><span class="op">[</span><span class="va">sex</span> <span class="op">==</span> <span class="fl">1</span>, <span class="va">sex_char</span><span class="op">]</span>, <span class="st">'and'</span>,</span>
+<span>                                    <span class="va">key</span><span class="op">[</span><span class="va">sex</span> <span class="op">==</span> <span class="fl">2</span>, <span class="va">sex_char</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>        subtitle <span class="op">=</span> <span class="st">'Note: uncertainty is not incorporated into predictions with "link"'</span></span>
+<span>    <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="02-homework_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
+<p><img src="02-homework_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_load</span>(m_h02_q03)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>m_h02_q03<span class="sc">$</span>formula</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Model</span></span>
+<span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h02_q03</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">m_h02_q03</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>weight ~ age + sex </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>m_h02_q03<span class="sc">$</span>prior</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h02_q03</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          prior     class coef group resp dpar nlpar lb ub       source
    normal(4, 1)         b                                          user
@@ -573,41 +553,41 @@ lp__        -453.892842  1.29496243 -457.129260 -452.422809</code></pre>
  normal(4, 0.5) Intercept                                          user
  exponential(1)     sigma                             0            user</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the options for predictions</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>DT_pred <span class="ot">&lt;-</span> <span class="fu">CJ</span>(</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="fl">0.5</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate where sex = 1, and where sex = 2</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>post_pred_sex_1 <span class="ot">&lt;-</span> <span class="fu">predicted_draws</span>(m_h02_q03, DT_pred[, .(age, <span class="at">sex =</span> <span class="dv">1</span>)])</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>post_pred_sex_2 <span class="ot">&lt;-</span> <span class="fu">predicted_draws</span>(m_h02_q03, DT_pred[, .(age, <span class="at">sex =</span> <span class="dv">2</span>)])</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicted table</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>DT_diff <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">predict_sex_1 =</span> post_pred_sex_1<span class="sc">$</span>.prediction,</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">predict_sex_2 =</span> post_pred_sex_2<span class="sc">$</span>.prediction,</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> post_pred_sex_1<span class="sc">$</span>age</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Posterior of differences</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>DT_diff[, diff <span class="sc">:</span><span class="er">=</span> predict_sex_1 <span class="sc">-</span> predict_sex_2]</span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(DT_diff, <span class="fu">aes</span>(age, diff)) <span class="sc">+</span></span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_lineribbon</span>() <span class="sc">+</span></span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_scico_d</span>(<span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">palette =</span> <span class="st">'nuuk'</span>,</span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">end =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">'predicted difference in weight'</span>,</span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">'Posterior predicted difference in weight between'</span>,</span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>                                    key[sex <span class="sc">==</span> <span class="dv">1</span>, sex_char], <span class="st">'and'</span>,</span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>                                    key[sex <span class="sc">==</span> <span class="dv">2</span>, sex_char])</span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Set up the options for predictions</span></span>
+<span><span class="va">DT_pred</span> <span class="op">&lt;-</span> <span class="fu">CJ</span><span class="op">(</span></span>
+<span>    age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span>, <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Simulate where sex = 1, and where sex = 2</span></span>
+<span><span class="va">post_pred_sex_1</span> <span class="op">&lt;-</span> <span class="fu">predicted_draws</span><span class="op">(</span><span class="va">m_h02_q03</span>, <span class="va">DT_pred</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">age</span>, sex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">post_pred_sex_2</span> <span class="op">&lt;-</span> <span class="fu">predicted_draws</span><span class="op">(</span><span class="va">m_h02_q03</span>, <span class="va">DT_pred</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">age</span>, sex <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Predicted table</span></span>
+<span><span class="va">DT_diff</span> <span class="op">&lt;-</span> <span class="fu">data.table</span><span class="op">(</span></span>
+<span>    predict_sex_1 <span class="op">=</span> <span class="va">post_pred_sex_1</span><span class="op">$</span><span class="va">.prediction</span>,</span>
+<span>    predict_sex_2 <span class="op">=</span> <span class="va">post_pred_sex_2</span><span class="op">$</span><span class="va">.prediction</span>,</span>
+<span>    age <span class="op">=</span> <span class="va">post_pred_sex_1</span><span class="op">$</span><span class="va">age</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Posterior of differences</span></span>
+<span><span class="va">DT_diff</span><span class="op">[</span>, <span class="va">diff</span> <span class="op">:=</span> <span class="va">predict_sex_1</span> <span class="op">-</span> <span class="va">predict_sex_2</span><span class="op">]</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Plot</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">DT_diff</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">age</span>, <span class="va">diff</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">stat_lineribbon</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">scale_fill_scico_d</span><span class="op">(</span>direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span>
+<span>                                         palette <span class="op">=</span> <span class="st">'nuuk'</span>,</span>
+<span>                                         end <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span></span>
+<span>        y <span class="op">=</span> <span class="st">'predicted difference in weight'</span>,</span>
+<span>        title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">'Posterior predicted difference in weight between'</span>,</span>
+<span>                                    <span class="va">key</span><span class="op">[</span><span class="va">sex</span> <span class="op">==</span> <span class="fl">1</span>, <span class="va">sex_char</span><span class="op">]</span>, <span class="st">'and'</span>,</span>
+<span>                                    <span class="va">key</span><span class="op">[</span><span class="va">sex</span> <span class="op">==</span> <span class="fl">2</span>, <span class="va">sex_char</span><span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="02-homework_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="02-homework_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
@@ -617,65 +597,59 @@ lp__        -453.892842  1.29496243 -457.129260 -452.422809</code></pre>
 <ul>
 <li>link takes the model formula to return what the average line would predict about your new data</li>
 <li>sim takes the model formula and <strong>uncertainty</strong> to return the posterior distribution of lines would predict about your new data</li>
-</ul>
-</section>
-<section id="question-4---optional-challenge" class="level2">
-<h2 class="anchored" data-anchor-id="question-4---optional-challenge">Question 4 - optional challenge</h2>
+</ul></section><section id="question-4---optional-challenge" class="level2"><h2 class="anchored" data-anchor-id="question-4---optional-challenge">Question 4 - optional challenge</h2>
 <blockquote class="blockquote">
 <p>The data in data(Oxboys) (rethinking package) are growth records for 26 boys measured over 9 periods. I want you to model their growth. Specifically, model the increments in growth from one period (Occasion in the data table) to the next. Each increment is simply the difference between height in one occasion and height in the previous occasion. Since none of these boys shrunk during the study, all of the growth increments are greater than zero. Estimate the posterior distribution of these increments. Constrain the distribution so it is always positive — it should not be possible for the model to think that boys can shrink from year to year. Finally compute the posterior distribution of the total growth over all 9 occasions.</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get data and prepare it</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Oxboys)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>DT_ox <span class="ot">&lt;-</span> <span class="fu">data.table</span>(Oxboys)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">setorder</span>(DT_ox, Occasion)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">setnames</span>(DT_ox, <span class="fu">colnames</span>(DT_ox), <span class="fu">make_clean_names</span>(<span class="fu">colnames</span>(DT_ox)))</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>DT_ox[, diff_height <span class="sc">:</span><span class="er">=</span> height <span class="sc">-</span> <span class="fu">shift</span>(height), by <span class="ot">=</span> subject]</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>DT_ox[, index_occasion <span class="sc">:</span><span class="er">=</span> occasion <span class="sc">-</span> <span class="dv">1</span>]</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate to evaluate priors</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>sim_prior <span class="ot">&lt;-</span> <span class="fu">CJ</span>(<span class="at">occasion =</span> <span class="fu">unique</span>(DT_ox<span class="sc">$</span>occasion),</span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>                                <span class="at">row_id =</span> <span class="fu">seq.int</span>(n))</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>sim_prior[, diff_height <span class="sc">:</span><span class="er">=</span> <span class="fu">rlnorm</span>(.N, <span class="fl">0.1</span>, <span class="fl">0.3</span>)]</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sim_prior, <span class="fu">aes</span>(<span class="fu">factor</span>(occasion), diff_height)) <span class="sc">+</span></span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_slab</span>() <span class="sc">+</span></span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'ocassion'</span>, <span class="at">y =</span> <span class="st">'difference in height (cm)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get data and prepare it</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">Oxboys</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">DT_ox</span> <span class="op">&lt;-</span> <span class="fu">data.table</span><span class="op">(</span><span class="va">Oxboys</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">setorder</span><span class="op">(</span><span class="va">DT_ox</span>, <span class="va">Occasion</span><span class="op">)</span></span>
+<span><span class="fu">setnames</span><span class="op">(</span><span class="va">DT_ox</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">DT_ox</span><span class="op">)</span>, <span class="fu">make_clean_names</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">DT_ox</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">DT_ox</span><span class="op">[</span>, <span class="va">diff_height</span> <span class="op">:=</span> <span class="va">height</span> <span class="op">-</span> <span class="fu">shift</span><span class="op">(</span><span class="va">height</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">subject</span><span class="op">]</span></span>
+<span><span class="va">DT_ox</span><span class="op">[</span>, <span class="va">index_occasion</span> <span class="op">:=</span> <span class="va">occasion</span> <span class="op">-</span> <span class="fl">1</span><span class="op">]</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Simulate to evaluate priors</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
+<span><span class="va">sim_prior</span> <span class="op">&lt;-</span> <span class="fu">CJ</span><span class="op">(</span>occasion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">DT_ox</span><span class="op">$</span><span class="va">occasion</span><span class="op">)</span>,</span>
+<span>                                row_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq.int</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">sim_prior</span><span class="op">[</span>, <span class="va">diff_height</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html">rlnorm</a></span><span class="op">(</span><span class="va">.N</span>, <span class="fl">0.1</span>, <span class="fl">0.3</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">sim_prior</span>, <span class="fu">aes</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">occasion</span><span class="op">)</span>, <span class="va">diff_height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">stat_slab</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'ocassion'</span>, y <span class="op">=</span> <span class="st">'difference in height (cm)'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="02-homework_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="02-homework_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">quap</span>(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">alist</span>(</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        diff_height <span class="sc">~</span> <span class="fu">dlnorm</span>(mu, sigma),</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        mu <span class="ot">&lt;-</span> alpha[index_occasion],</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        alpha[index_occasion] <span class="sc">~</span> <span class="fu">dnorm</span>(<span class="dv">0</span>, <span class="fl">0.1</span>),</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        sigma <span class="sc">~</span> <span class="fu">dexp</span>(<span class="dv">1</span>)</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> DT_ox[<span class="sc">!</span><span class="fu">is.na</span>(diff_height)]</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">precis</span>(m, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">quap</span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html">alist</a></span><span class="op">(</span></span>
+<span>        <span class="va">diff_height</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html">dlnorm</a></span><span class="op">(</span><span class="va">mu</span>, <span class="va">sigma</span><span class="op">)</span>,</span>
+<span>        <span class="va">mu</span> <span class="op">&lt;-</span> <span class="va">alpha</span><span class="op">[</span><span class="va">index_occasion</span><span class="op">]</span>,</span>
+<span>        <span class="va">alpha</span><span class="op">[</span><span class="va">index_occasion</span><span class="op">]</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.1</span><span class="op">)</span>,</span>
+<span>        <span class="va">sigma</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">dexp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    data <span class="op">=</span> <span class="va">DT_ox</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">diff_height</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">precis</span><span class="op">(</span><span class="va">m</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="02-homework_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid" width="672"></p>
+<p><img src="02-homework_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> <span class="fu">sim</span>(m, <span class="fu">data.table</span>(<span class="at">index_occasion =</span> <span class="fu">seq.int</span>(<span class="dv">8</span>)))</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Posterior distribution of total growth </span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dens</span>(<span class="fu">apply</span>(sims, <span class="dv">1</span>, sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu">sim</span><span class="op">(</span><span class="va">m</span>, <span class="fu">data.table</span><span class="op">(</span>index_occasion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq.int</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Posterior distribution of total growth </span></span>
+<span><span class="fu">dens</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">sims</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="02-homework_files/figure-html/unnamed-chunk-14-3.png" class="img-fluid" width="672"></p>
+<p><img src="02-homework_files/figure-html/unnamed-chunk-13-3.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

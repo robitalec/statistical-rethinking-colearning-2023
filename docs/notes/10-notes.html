@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.313">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Alec L. Robitaille">
 <meta name="dcterms.date" content="2023-02-04">
-
 <title>Statistical Rethinking colearning 2023 - Lecture 10 Notes</title>
 <style>
 code{white-space: pre-wrap;}
@@ -87,7 +84,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -105,8 +101,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -124,30 +119,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title">Lecture 10 Notes</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Statistical Rethinking colearning 2023</a> 
         <div class="sidebar-tools-main">
@@ -162,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">Home</a>
   </div>
@@ -174,8 +159,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/01-homework.html" class="sidebar-item-text sidebar-link">Homework 01</a>
   </div>
@@ -185,8 +170,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../homework/02-homework.html" class="sidebar-item-text sidebar-link">Homework 02</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../targets.html" class="sidebar-item-text sidebar-link">_targets.R</a>
+  </div>
+</li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../notes/00-notes-listing.html" class="sidebar-item-text sidebar-link">Notes</a>
@@ -194,8 +184,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/01-notes.html" class="sidebar-item-text sidebar-link">Lecture 01</a>
   </div>
@@ -213,6 +203,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/04-notes.html" class="sidebar-item-text sidebar-link">Lecture 04</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/05-notes.html" class="sidebar-item-text sidebar-link">Lecture 05</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -236,32 +231,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#counts" id="toc-counts" class="nav-link active" data-scroll-target="#counts">Counts</a>
+<li>
+<a href="#counts" id="toc-counts" class="nav-link active" data-scroll-target="#counts">Counts</a>
   <ul class="collapse">
-  <li><a href="#example-confounded-admissions" id="toc-example-confounded-admissions" class="nav-link" data-scroll-target="#example-confounded-admissions">Example: confounded admissions</a></li>
+<li><a href="#example-confounded-admissions" id="toc-example-confounded-admissions" class="nav-link" data-scroll-target="#example-confounded-admissions">Example: confounded admissions</a></li>
   <li><a href="#example-national-academy-of-science" id="toc-example-national-academy-of-science" class="nav-link" data-scroll-target="#example-national-academy-of-science">Example: National Academy of Science</a></li>
   <li><a href="#sensitivity-analysis" id="toc-sensitivity-analysis" class="nav-link" data-scroll-target="#sensitivity-analysis">Sensitivity analysis</a></li>
   <li><a href="#example-oceanic-technology" id="toc-example-oceanic-technology" class="nav-link" data-scroll-target="#example-oceanic-technology">Example: oceanic technology</a></li>
   <li><a href="#simpsons-paradox" id="toc-simpsons-paradox" class="nav-link" data-scroll-target="#simpsons-paradox">Simpson’s paradox</a></li>
-  </ul></li>
   </ul>
-</nav>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title d-none d-lg-block">Lecture 10 Notes</h1>
 </div>
 
@@ -287,35 +277,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header>
-
-<section id="counts" class="level2">
-<h2 class="anchored" data-anchor-id="counts">Counts</h2>
+</header><section id="counts" class="level2"><h2 class="anchored" data-anchor-id="counts">Counts</h2>
 <p>Recall: Generalized linear models have expected value as <em>some function</em> of an additive combination of parameters.</p>
 <p>This means that a uniform change in predictor is not a uniform change in the prediction. And because of ceiling and floor effects, all predictor variables interact and moderate one another. Eg. if the outcome space is bounded between 0-1 and one variable pushed the outcome towards 1, another variable cannot push the outcome further to 1 - it is bounded by this ceiling.</p>
 <p>Counts are distributions from constraints. Maximum entropy priors are counts include Binomial, Poisson and extensions of these. More event types include multinomial and categorical. Robust regressions include Beta-binomial, gamma-Poisson.</p>
-<section id="example-confounded-admissions" class="level3">
-<h3 class="anchored" data-anchor-id="example-confounded-admissions">Example: confounded admissions</h3>
-<section id="estimand" class="level4">
-<h4 class="anchored" data-anchor-id="estimand">1. Estimand</h4>
+<section id="example-confounded-admissions" class="level3"><h3 class="anchored" data-anchor-id="example-confounded-admissions">Example: confounded admissions</h3>
+<section id="estimand" class="level4"><h4 class="anchored" data-anchor-id="estimand">1. Estimand</h4>
 <p>Confounded admission rates with unobserved quality/hidden ability of the applicant</p>
-</section>
-<section id="generative-model" class="level4">
-<h4 class="anchored" data-anchor-id="generative-model">2. Generative model</h4>
+</section><section id="generative-model" class="level4"><h4 class="anchored" data-anchor-id="generative-model">2. Generative model</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">'G'</span>, <span class="st">'D'</span>, <span class="st">'A'</span>, <span class="st">'u'</span>),</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span>    <span class="fu">c</span>(<span class="dv">1</span>,    <span class="dv">2</span>,   <span class="dv">3</span>,  <span class="fl">3.5</span>),</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span>    <span class="fu">c</span>(<span class="dv">0</span>,    <span class="dv">1</span>,   <span class="dv">0</span>,  <span class="fl">1.5</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'G'</span>, <span class="st">'D'</span>, <span class="st">'A'</span>, <span class="st">'u'</span><span class="op">)</span>,</span>
+<span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">2</span>,   <span class="fl">3</span>,  <span class="fl">3.5</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">1</span>,   <span class="fl">0</span>,  <span class="fl">1.5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    A <span class="sc">~</span> G <span class="sc">+</span> D <span class="sc">+</span> u,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    D <span class="sc">~</span> G <span class="sc">+</span> A <span class="sc">+</span> u ,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">latent =</span> <span class="st">'u'</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag_status</span>(<span class="at">seed =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
+<span>    <span class="va">A</span> <span class="op">~</span> <span class="va">G</span> <span class="op">+</span> <span class="va">D</span> <span class="op">+</span> <span class="va">u</span>,</span>
+<span>    <span class="va">D</span> <span class="op">~</span> <span class="va">G</span> <span class="op">+</span> <span class="va">A</span> <span class="op">+</span> <span class="va">u</span> ,</span>
+<span>  coords <span class="op">=</span> <span class="va">coords</span>,</span>
+<span>    latent <span class="op">=</span> <span class="st">'u'</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag_status</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="10-notes_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="480"></p>
 </div>
@@ -323,9 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It is very unlikely that there are no common causes of department and<br>
 admission, the most common one is “ability”. Qualities of the candidate that are not easily observed or measured that influence which department they apply to and their admission rate (Unobserved u).</p>
 <p>Simulate individuals of average ability and greater ability. For individuals of average ability, department 1 has no discrimination but department 2 discriminates against gender 1. For individuals of greater ability, department 1 has no discrimination and also department 2 has no discrimination (greater ability overcomes discrimination).</p>
-</section>
-<section id="statistical-model" class="level4">
-<h4 class="anchored" data-anchor-id="statistical-model">3. Statistical model</h4>
+</section><section id="statistical-model" class="level4"><h4 class="anchored" data-anchor-id="statistical-model">3. Statistical model</h4>
 <p>Total causal effect of gender. Do not stratify by department since this would block a pipe.</p>
 <p><span class="math inline">\(A_{i} \sim Bernoulli(p_{i})\)</span></p>
 <p><span class="math inline">\(logit(p_{i}) = \alpha[G_{i}]\)</span></p>
@@ -334,16 +315,11 @@ admission, the most common one is “ability”. Qualities of the candidate that
 <p><span class="math inline">\(A_{i} \sim Bernoulli(p_{i})\)</span></p>
 <p><span class="math inline">\(logit(p_{i}) = \alpha[G_{i}, D_{i}]\)</span></p>
 <p><span class="math inline">\(\alpha = \begin{bmatrix} \alpha_{1, 1} &amp; \alpha_{1, 2} \\ \alpha_{2, 1} &amp; \alpha_{2, 2}\end{bmatrix}\)</span></p>
-</section>
-<section id="analyze-the-simulation" class="level4">
-<h4 class="anchored" data-anchor-id="analyze-the-simulation">4. Analyze the simulation</h4>
+</section><section id="analyze-the-simulation" class="level4"><h4 class="anchored" data-anchor-id="analyze-the-simulation">4. Analyze the simulation</h4>
 <p>Total effect shows disadvantage. Gender 1 has a lower probability of acceptance than gender 2.</p>
 <p>Direct effect is confounded. Plot the posterior probability distribution of probabilities using inverse logit on departments by genders. The differences between simulated values and model outcomes are due to collider bias. Stratifying by department opens the non-causal path through u. We can estimate the total causal effect of gender, but we cannot estimate the direct effect of department or gender.</p>
 <p>In this case, high ability gender 1 individuals apply to the discriminatory department anyway and since they have higher ability than gender 2 individuals in this simulation. Higher ability compensates for discrimination, masking the evidence in the admission records.</p>
-</section>
-</section>
-<section id="example-national-academy-of-science" class="level3">
-<h3 class="anchored" data-anchor-id="example-national-academy-of-science">Example: National Academy of Science</h3>
+</section></section><section id="example-national-academy-of-science" class="level3"><h3 class="anchored" data-anchor-id="example-national-academy-of-science">Example: National Academy of Science</h3>
 <ul>
 <li><p>Card et al 2022 found that women are advantaged conditional on citations and publications</p></li>
 <li><p>Lerman et al 2022 found that elected women are cited less than men</p></li>
@@ -351,28 +327,28 @@ admission, the most common one is “ability”. Qualities of the candidate that
 <p>More details here: Traag, V.A. and Waltman, L., 2022. Causal foundations of bias, disparity and fairness. arXiv preprint arXiv:2207.13665.</p>
 <p>Lerman et al 2022</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">'G'</span>, <span class="st">'C'</span>, <span class="st">'M'</span>, <span class="st">'q'</span>),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span>    <span class="fu">c</span>(<span class="dv">1</span>,    <span class="dv">2</span>,   <span class="dv">3</span>,  <span class="fl">3.5</span>),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span>    <span class="fu">c</span>(<span class="dv">0</span>,    <span class="dv">1</span>,   <span class="dv">0</span>,  <span class="fl">1.5</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'G'</span>, <span class="st">'C'</span>, <span class="st">'M'</span>, <span class="st">'q'</span><span class="op">)</span>,</span>
+<span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">2</span>,   <span class="fl">3</span>,  <span class="fl">3.5</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">1</span>,   <span class="fl">0</span>,  <span class="fl">1.5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    C <span class="sc">~</span> G,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag</span>(<span class="at">seed =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
+<span>    <span class="va">C</span> <span class="op">~</span> <span class="va">G</span>,</span>
+<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="10-notes_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="384"></p>
 </div>
 </div>
 <p>Card et al 2022</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    C <span class="sc">~</span> G,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    M <span class="sc">~</span> C <span class="sc">+</span> G,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag</span>(<span class="at">seed =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
+<span>    <span class="va">C</span> <span class="op">~</span> <span class="va">G</span>,</span>
+<span>    <span class="va">M</span> <span class="op">~</span> <span class="va">C</span> <span class="op">+</span> <span class="va">G</span>,</span>
+<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="10-notes_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="384"></p>
 </div>
@@ -383,37 +359,35 @@ admission, the most common one is “ability”. Qualities of the candidate that
 <li>Card et al 2022: Gender is the treatment and citations is the post treatment variable. In this case, the hidden quality bias is a collider on the path of G and q. If women are less likely to be cited, then women are more likely to be elected because they have higher quality than indicated by citations.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    C <span class="sc">~</span> G <span class="sc">+</span> q,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    M <span class="sc">~</span> C <span class="sc">+</span> G <span class="sc">+</span> q,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag</span>(<span class="at">seed =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
+<span>    <span class="va">C</span> <span class="op">~</span> <span class="va">G</span> <span class="op">+</span> <span class="va">q</span>,</span>
+<span>    <span class="va">M</span> <span class="op">~</span> <span class="va">C</span> <span class="op">+</span> <span class="va">G</span> <span class="op">+</span> <span class="va">q</span>,</span>
+<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="10-notes_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="384"></p>
 </div>
 </div>
 <p>No causes in, no causes out.</p>
 <p>Do not design policy through collider bias.</p>
-</section>
-<section id="sensitivity-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="sensitivity-analysis">Sensitivity analysis</h3>
+</section><section id="sensitivity-analysis" class="level3"><h3 class="anchored" data-anchor-id="sensitivity-analysis">Sensitivity analysis</h3>
 <p>What are the implications of what we don’t know?</p>
 <p>Assuming the confound exists, model its consequences for different strengths and kinds of influence.</p>
 <p>This helps us answer how strong must the confound be to change the conclusions?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">'G'</span>, <span class="st">'D'</span>, <span class="st">'A'</span>, <span class="st">'u'</span>),</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span>    <span class="fu">c</span>(<span class="dv">1</span>,    <span class="dv">2</span>,   <span class="dv">3</span>,    <span class="fl">3.5</span>),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span>    <span class="fu">c</span>(<span class="dv">0</span>,    <span class="dv">1</span>,   <span class="dv">0</span>,    <span class="fl">1.5</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'G'</span>, <span class="st">'D'</span>, <span class="st">'A'</span>, <span class="st">'u'</span><span class="op">)</span>,</span>
+<span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">2</span>,   <span class="fl">3</span>,    <span class="fl">3.5</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">1</span>,   <span class="fl">0</span>,    <span class="fl">1.5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    A <span class="sc">~</span> G <span class="sc">+</span> D,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    D <span class="sc">~</span> G <span class="sc">+</span> u,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    A <span class="sc">~</span> u,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag</span>(<span class="at">seed =</span> <span class="dv">2</span>, <span class="at">layout =</span> <span class="st">'auto'</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
+<span>    <span class="va">A</span> <span class="op">~</span> <span class="va">G</span> <span class="op">+</span> <span class="va">D</span>,</span>
+<span>    <span class="va">D</span> <span class="op">~</span> <span class="va">G</span> <span class="op">+</span> <span class="va">u</span>,</span>
+<span>    <span class="va">A</span> <span class="op">~</span> <span class="va">u</span>,</span>
+<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span>, layout <span class="op">=</span> <span class="st">'auto'</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="10-notes_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="384"></p>
 </div>
@@ -425,25 +399,23 @@ admission, the most common one is “ability”. Qualities of the candidate that
 <p><span class="math inline">\(u_{j} \sim Normal(0, 1)\)</span></p>
 <p>We don’t know the u values, so we declare an unknown vector of length N with a normal 0, 1 distribution.</p>
 <p>We would vary the confound strength over some range and show how results change, or vary other effects and estimate the confound strength. This can be especially helpful if you can know the upper limits of the potential confound and can model it’s strength at that limit.</p>
-</section>
-<section id="example-oceanic-technology" class="level3">
-<h3 class="anchored" data-anchor-id="example-oceanic-technology">Example: oceanic technology</h3>
+</section><section id="example-oceanic-technology" class="level3"><h3 class="anchored" data-anchor-id="example-oceanic-technology">Example: oceanic technology</h3>
 <p>How is technological complexity related to population size? To social structure (contact)?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">'P'</span>, <span class="st">'T'</span>, <span class="st">'C'</span>, <span class="st">'L'</span>),</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span>    <span class="fu">c</span>(<span class="dv">1</span>,    <span class="dv">2</span>,   <span class="dv">1</span>,  <span class="dv">2</span>),</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span>    <span class="fu">c</span>(<span class="dv">0</span>,    <span class="dv">0</span>,   <span class="dv">1</span>,  <span class="dv">1</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'P'</span>, <span class="st">'T'</span>, <span class="st">'C'</span>, <span class="st">'L'</span><span class="op">)</span>,</span>
+<span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">2</span>,   <span class="fl">1</span>,  <span class="fl">2</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">0</span>,   <span class="fl">1</span>,  <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    P <span class="sc">~</span> L,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    C <span class="sc">~</span> P <span class="sc">+</span> L,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    T <span class="sc">~</span> P <span class="sc">+</span> L <span class="sc">+</span> C,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">exposure =</span> <span class="st">'P'</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag_status</span>(<span class="at">seed =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
+<span>    <span class="va">P</span> <span class="op">~</span> <span class="va">L</span>,</span>
+<span>    <span class="va">C</span> <span class="op">~</span> <span class="va">P</span> <span class="op">+</span> <span class="va">L</span>,</span>
+<span>    <span class="cn">T</span> <span class="op">~</span> <span class="va">P</span> <span class="op">+</span> <span class="va">L</span> <span class="op">+</span> <span class="va">C</span>,</span>
+<span>    exposure <span class="op">=</span> <span class="st">'P'</span>,</span>
+<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag_status</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="10-notes_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="384"></p>
 </div>
@@ -465,22 +437,26 @@ admission, the most common one is “ability”. Qualities of the candidate that
 <li>Use a principle scientific model</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    P <span class="sc">~</span> L,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    C <span class="sc">~</span> P <span class="sc">+</span> L,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    T <span class="sc">~</span> P <span class="sc">+</span> L <span class="sc">+</span> C,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag</span>(<span class="at">seed =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
+<span>    <span class="va">P</span> <span class="op">~</span> <span class="va">L</span>,</span>
+<span>    <span class="va">C</span> <span class="op">~</span> <span class="va">P</span> <span class="op">+</span> <span class="va">L</span>,</span>
+<span>    <span class="cn">T</span> <span class="op">~</span> <span class="va">P</span> <span class="op">+</span> <span class="va">L</span> <span class="op">+</span> <span class="va">C</span>,</span>
+<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="10-notes_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="384"></p>
 </div>
 </div>
 <p><span class="math inline">\(\Delta T = \alpha P^{\beta} - \gamma T\)</span></p>
 <ul>
-<li><span class="math inline">\(\Delta T\)</span>: change in tools</li>
-<li><span class="math inline">\(\alpha\)</span>: innovation rate</li>
-<li><span class="math inline">\(P^{\beta}\)</span>: diminishing returns (elasticity)</li>
-<li><span class="math inline">\(\gamma\)</span>: loss rate</li>
+<li>
+<span class="math inline">\(\Delta T\)</span>: change in tools</li>
+<li>
+<span class="math inline">\(\alpha\)</span>: innovation rate</li>
+<li>
+<span class="math inline">\(P^{\beta}\)</span>: diminishing returns (elasticity)</li>
+<li>
+<span class="math inline">\(\gamma\)</span>: loss rate</li>
 </ul>
 <p><span class="math inline">\(\Delta T = \alpha_{C} P^{\beta_{C}} - \gamma T\)</span></p>
 <p>This is a difference equation. How do tools change, not the expected number.</p>
@@ -489,25 +465,23 @@ admission, the most common one is “ability”. Qualities of the candidate that
 <p><span class="math inline">\(\hat{T} = \frac{\alpha_{C} P^{\beta_{C}}}{\gamma}\)</span></p>
 <p><span class="math inline">\(T_{i} \sim Poisson(\lambda_{i})\)</span></p>
 <p><span class="math inline">\(\lambda_{i} = \hat{T} = \frac{\alpha_{C} P^{\beta_{C}}}{\gamma}\)</span></p>
-<p>The only trick is to constrain the parameters as positive. Either do it with <code>exp()</code> or use an appropriate prior (<code>dexp()</code>). Note probably use one or the other in the model but they are functionally equivalent.</p>
-</section>
-<section id="simpsons-paradox" class="level3">
-<h3 class="anchored" data-anchor-id="simpsons-paradox">Simpson’s paradox</h3>
+<p>The only trick is to constrain the parameters as positive. Either do it with <code><a href="https://rdrr.io/r/base/Log.html">exp()</a></code> or use an appropriate prior (<code><a href="https://rdrr.io/r/stats/Exponential.html">dexp()</a></code>). Note probably use one or the other in the model but they are functionally equivalent.</p>
+</section><section id="simpsons-paradox" class="level3"><h3 class="anchored" data-anchor-id="simpsons-paradox">Simpson’s paradox</h3>
 <p>Simpson’s paradox: reversal of an association when groups are combined or separated. No way to know which association (combined/separated) is correct without causal assumptions.</p>
 <p>The UC Berkeley data showed women are admitted at a lower rate unconditional on department but, conditional on department, women are admitted slightly more. There is no way to know which is correct without assumptions. There is a potential mediator effect in department and there is a potential collider and confound in ability. Pipes, forks and colliders can all be called “Simpson’s paradox” but in order to understand them we need to think causally.</p>
 <p>In non-linear models, we can get similar types of confounds arising from the ceiling and floor effects.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">'X'</span>, <span class="st">'Y'</span>, <span class="st">'Z'</span>),</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span>    <span class="fu">c</span>(<span class="dv">1</span>,    <span class="dv">2</span>,   <span class="dv">2</span>),</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span>    <span class="fu">c</span>(<span class="dv">0</span>,    <span class="dv">0</span>,   <span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'X'</span>, <span class="st">'Y'</span>, <span class="st">'Z'</span><span class="op">)</span>,</span>
+<span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">2</span>,   <span class="fl">2</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">0</span>,   <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dagify</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    Y <span class="sc">~</span> X <span class="sc">+</span> Z,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> coords</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">ggdag</span>(<span class="at">seed =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_dag</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
+<span>    <span class="va">Y</span> <span class="op">~</span> <span class="va">X</span> <span class="op">+</span> <span class="va">Z</span>,</span>
+<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="10-notes_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="384"></p>
 </div>
@@ -522,11 +496,7 @@ admission, the most common one is “ability”. Qualities of the candidate that
 <p><img src="../graphics/stat_rethinking_l10_slide87.png" class="img-fluid"></p>
 
 
-</section>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

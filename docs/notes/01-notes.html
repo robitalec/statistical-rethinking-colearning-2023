@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.313">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Alec L. Robitaille">
 <meta name="dcterms.date" content="2023-01-09">
-
 <title>Statistical Rethinking colearning 2023 - Lecture 01 Notes</title>
 <style>
 code{white-space: pre-wrap;}
@@ -23,7 +20,6 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -42,8 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -62,28 +57,19 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title">Lecture 01 Notes</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Statistical Rethinking colearning 2023</a> 
         <div class="sidebar-tools-main">
@@ -98,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">Home</a>
   </div>
@@ -110,8 +96,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/01-homework.html" class="sidebar-item-text sidebar-link">Homework 01</a>
   </div>
@@ -121,8 +107,13 @@ ul.task-list li input[type="checkbox"] {
   <a href="../homework/02-homework.html" class="sidebar-item-text sidebar-link">Homework 02</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../targets.html" class="sidebar-item-text sidebar-link">_targets.R</a>
+  </div>
+</li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../notes/00-notes-listing.html" class="sidebar-item-text sidebar-link">Notes</a>
@@ -130,8 +121,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/01-notes.html" class="sidebar-item-text sidebar-link active">Lecture 01</a>
   </div>
@@ -149,6 +140,11 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/04-notes.html" class="sidebar-item-text sidebar-link">Lecture 04</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/05-notes.html" class="sidebar-item-text sidebar-link">Lecture 05</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -172,27 +168,20 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#directed-acyclic-graphs" id="toc-directed-acyclic-graphs" class="nav-link active" data-scroll-target="#directed-acyclic-graphs">Directed acyclic graphs</a></li>
+<li><a href="#directed-acyclic-graphs" id="toc-directed-acyclic-graphs" class="nav-link active" data-scroll-target="#directed-acyclic-graphs">Directed acyclic graphs</a></li>
   <li><a href="#golems" id="toc-golems" class="nav-link" data-scroll-target="#golems">Golems</a></li>
   <li><a href="#owls" id="toc-owls" class="nav-link" data-scroll-target="#owls">Owls</a></li>
-  </ul>
-</nav>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title d-none d-lg-block">Lecture 01 Notes</h1>
 </div>
 
@@ -218,10 +207,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-</header>
-
-<section id="directed-acyclic-graphs" class="level2">
-<h2 class="anchored" data-anchor-id="directed-acyclic-graphs">Directed acyclic graphs</h2>
+</header><section id="directed-acyclic-graphs" class="level2"><h2 class="anchored" data-anchor-id="directed-acyclic-graphs">Directed acyclic graphs</h2>
 <p>Statistical models process data but to provide insight, we require scientific models. Causes of data cannot be extracted alone using a statistical model, we need causal models.</p>
 <p>Causal inference is the prediction of intervention and imputation of missing observations.</p>
 <p>Causal prediction: knowing a cause means being able to predict the consequences of an intervention. Causal imputation: knowing a cause means being able to construct unobserved counterfactual outcomes.</p>
@@ -269,9 +255,7 @@ Note
 </ol>
 </div>
 </div>
-</section>
-<section id="golems" class="level2">
-<h2 class="anchored" data-anchor-id="golems">Golems</h2>
+</section><section id="golems" class="level2"><h2 class="anchored" data-anchor-id="golems">Golems</h2>
 <p>Statistical models are powerful but dangerous and have no wisdom or foresight. Flowcharts of tests that are isolated for specific uses are not intuitive or appropriate for research science. Null hypothesis rejection is not appropriate, feasible or ethical in many contexts.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -286,9 +270,7 @@ Reflect
 <p>What are other process models that are consistent with this same fact?</p>
 </div>
 </div>
-</section>
-<section id="owls" class="level2">
-<h2 class="anchored" data-anchor-id="owls">Owls</h2>
+</section><section id="owls" class="level2"><h2 class="anchored" data-anchor-id="owls">Owls</h2>
 <p>Emphasis on documenting and testing code, using a <em>respectable</em> workflow</p>
 <ol type="1">
 <li>Theoretical estimand</li>
@@ -299,10 +281,7 @@ Reflect
 </ol>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
