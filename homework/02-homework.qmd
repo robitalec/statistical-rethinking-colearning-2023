@@ -87,23 +87,44 @@ growth on weight.
 
 
 ```{r}
+# Simulate to determine appropriate priors
+# Here just expecting a model defined for W ~ A, with alpha + beta_age * age
+simulate_weights <- function(n, mean_alpha, sd_alpha, mean_age, sd_age, sigma_rate) {
+	age <- runif(n, 0, 12)
+
+	alpha <- rnorm(n, mean_alpha, sd_alpha)
+	beta_age <- rnorm(n, mean_age, sd_age)
+	sigma <- rexp(n, sigma_rate)
+	
+	weight <- rnorm(n, beta_age * age, sigma)
+	
+	return(data.table(
+		age = age,
+		weight = weight
+	))	
+}
+
+
+ggplot(simulate_weights(
+	n = 1e3, 
+	mean_alpha = 4, 
+	sd_alpha = 0.5,
+	mean_age = 4, 
+	sd_age = 1, 
+	sigma_rate = 1)
+) + 
+	geom_point(aes(age, weight))
+```
+
+
+```{r}
+# Data
 source('R/data_Howell1.R')
 
 # height: Height in cm
 # weight: Weight in kg
 # age: Age in years
 DT <- data_Howell()[age < 12]
-
-# Simulate to determine appropriate priors
-n <- 100
-ggplot() +
-	geom_abline(aes(intercept = rnorm(n, 4, 0.5),
-									slope = rnorm(n, 4, 1)),
-							alpha = 0.1,
-							size = 2) +
-	labs(x = 'age', y = 'weight (kg)') +
-	xlim(0, 12) +
-	ylim(0, 50)
 ```
 
 ::: {.panel-tabset}
