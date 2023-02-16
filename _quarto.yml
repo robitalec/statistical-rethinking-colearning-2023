@@ -51,3 +51,7 @@ format:
       dark: darkly
       light: flatly
     toc: true
+    code-line-numbers: false
+    code-copy: true
+    code-link: true
+    code-block-border-left: false
