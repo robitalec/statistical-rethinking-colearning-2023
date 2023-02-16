@@ -2,6 +2,8 @@ project:
   type: website
   output-dir: docs
   execute-dir: project
+  resources:
+    - "_targets.R"
 
 website:
   title: "Statistical Rethinking colearning 2023"
@@ -17,6 +19,9 @@ website:
             text: Homework 01
           - href: homework/02-homework.qmd
             text: Homework 02
+          - href: targets.qmd
+            text: _targets.R
+
       - section: "Notes"
         href: notes/00-notes-listing.qmd
         contents:
