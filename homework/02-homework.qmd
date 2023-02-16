@@ -60,9 +60,11 @@ simulate_heights <- function(n) {
 	
 	age <- runif(n, 0, 12)
 	height <- rnorm(n, beta_age_height * age, 2)
-	weight <- rnorm(n, 
-									(beta_height_weight * height) + (beta_age_weight * age), 
-									2)
+	weight <- rnorm(
+		n, 
+		(beta_height_weight * height) + (beta_age_weight * age), 
+		2
+	)
 	
 	return(data.table(
 		age = age,
@@ -94,12 +96,13 @@ DT <- data_Howell()[age < 12]
 
 # Simulate to determine appropriate priors
 n <- 100
-ggplot() + 
-	geom_abline(aes(intercept = rnorm(n, 4, 0.5), 
+ggplot() +
+	geom_abline(aes(intercept = rnorm(n, 4, 0.5),
 									slope = rnorm(n, 4, 1)),
-							alpha = 0.1, size = 2) + 
-	labs(x = 'age (cm)', y = 'weight (kg)') + 
-	xlim(0, 12) + 
+							alpha = 0.1,
+							size = 2) +
+	labs(x = 'age (cm)', y = 'weight (kg)') +
+	xlim(0, 12) +
 	ylim(0, 50)
 ```
 
@@ -123,21 +126,6 @@ precis(m)
 ```
 
 ## `brms`
-
-```{r}
-#| eval: false
-# Model (brms)
-m_h02_q02 <- brm(
-	weight ~ 1 + age,
-	prior = c(
-		prior(normal(4, 0.5), Intercept),
-		prior(normal(4, 1), b),
-		prior(exponential(1), sigma)
-	),
-	data = DT,
-	refresh = 0 
-)
-```
 
 ```{r}
 tar_load(m_h02_q02)
@@ -221,9 +209,10 @@ DT_diff <- melt_diff[DT_pred, on = 'variable']
 # Plot
 ggplot(DT_diff, aes(age, value)) +
 	stat_lineribbon() +
-	scale_fill_scico_d(direction = -1,
-										 palette = 'nuuk',
-										 end = 0.9) +
+	scale_fill_scico_d(
+		direction = -1,
+		palette = 'nuuk',
+		end = 0.9) +
 	labs(
 		y = 'predicted difference in weight',
 		title = paste('Posterior predicted difference in weight between',
@@ -248,9 +237,10 @@ DT_diff_link <- melt_diff[DT_pred, on = 'variable']
 # Plot
 ggplot(DT_diff_link, aes(age, value)) +
 	stat_lineribbon() +
-	scale_fill_scico_d(direction = -1,
-										 palette = 'nuuk',
-										 end = 0.9) +
+	scale_fill_scico_d(
+		direction = -1,
+		palette = 'nuuk',
+		end = 0.9) +
 	labs(
 		y = 'predicted difference in weight',
 		title = paste('Predicted difference in weight between',
