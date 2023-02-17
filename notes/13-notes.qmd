@@ -8,3 +8,46 @@ date: "2023-02-17"
 source('R/packages.R')
 ```
 
+
+<!--
+Options at this stage of the material:
+
+- return to the start
+- skim and index
+- pick and choose topics
+- Bayesian flow
+
+or 
+- stop and engage in your own research and come back here when you hit a wall
+-->
+
+## Clusters and features
+
+Clusters: kinds of groups in the data
+
+Features: aspects of the model (parameters) that vary by cluster
+
+Examples (clusters -> features): 
+
+- tanks -> survival
+- stories -> treatment effect
+- individuals -> average responses
+- departments -> admission rate, bias
+
+
+Adding more clusters involves adding more index variables and more population
+priors.
+
+Adding more features involves adding more parameters, increasing the dimensions
+in each population prior.
+
+
+Varying effects are a way to measure unmeasured confounds. Unmeasured features
+of clusters leave an imprint on the data that can be estimated given
+repeat observations of each cluster and partial pooling among clusters. 
+
+This helps us, from the predictive perspective, to regularize cluster-level 
+variance, and, from the causal perspective, to manage unobserved confounds
+and competing causes using cluster-level causes. 
+
+
