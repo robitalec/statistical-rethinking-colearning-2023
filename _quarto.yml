@@ -43,6 +43,9 @@ website:
             text: Lecture 11
           - href: notes/12-notes.qmd
             text: Lecture 12
+          - href: notes/13-notes.qmd
+            text: Lecture 13
+
 
 
 format:
