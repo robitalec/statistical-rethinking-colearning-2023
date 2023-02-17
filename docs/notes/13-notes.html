@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.313">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Alec L. Robitaille">
-<meta name="dcterms.date" content="2023-01-11">
-
-<title>Statistical Rethinking colearning 2023 - Lecture 03 Notes</title>
+<meta name="dcterms.date" content="2023-02-17">
+<title>Statistical Rethinking colearning 2023 - Lecture 13 Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,8 +19,70 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
-
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -42,8 +101,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -61,30 +119,20 @@ ul.task-list li input[type="checkbox"] {
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Lecture 03 Notes</h1>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Lecture 13 Notes</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Statistical Rethinking colearning 2023</a> 
         <div class="sidebar-tools-main">
@@ -99,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">Home</a>
   </div>
@@ -111,8 +159,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/01-homework.html" class="sidebar-item-text sidebar-link">Homework 01</a>
   </div>
@@ -128,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../notes/00-notes-listing.html" class="sidebar-item-text sidebar-link">Notes</a>
@@ -136,8 +184,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/01-notes.html" class="sidebar-item-text sidebar-link">Lecture 01</a>
   </div>
@@ -149,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/03-notes.html" class="sidebar-item-text sidebar-link active">Lecture 03</a>
+  <a href="../notes/03-notes.html" class="sidebar-item-text sidebar-link">Lecture 03</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -184,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/13-notes.html" class="sidebar-item-text sidebar-link">Lecture 13</a>
+  <a href="../notes/13-notes.html" class="sidebar-item-text sidebar-link active">Lecture 13</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -193,34 +241,25 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#geocentric-models" id="toc-geocentric-models" class="nav-link active" data-scroll-target="#geocentric-models">Geocentric models</a>
+<li><a href="#clusters-and-features" id="toc-clusters-and-features" class="nav-link active" data-scroll-target="#clusters-and-features">Clusters and features</a></li>
+  <li>
+<a href="#strategy-for-modeling-varying-effects" id="toc-strategy-for-modeling-varying-effects" class="nav-link" data-scroll-target="#strategy-for-modeling-varying-effects">Strategy for modeling varying effects</a>
   <ul class="collapse">
-  <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution">Normal distribution</a></li>
-  </ul></li>
-  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">Linear regression</a>
-  <ul class="collapse">
-  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
-  <li><a href="#example-howell-data" id="toc-example-howell-data" class="nav-link" data-scroll-target="#example-howell-data">Example: Howell data</a></li>
-  </ul></li>
+<li><a href="#example-bangladesh-fertility-survey" id="toc-example-bangladesh-fertility-survey" class="nav-link" data-scroll-target="#example-bangladesh-fertility-survey">Example: Bangladesh fertility survey</a></li>
   </ul>
-</nav>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title d-none d-lg-block">Lecture 03 Notes</h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block">Lecture 13 Notes</h1>
 </div>
 
 
@@ -237,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 11, 2023</p>
+      <p class="date">February 17, 2023</p>
     </div>
   </div>
   
@@ -245,116 +284,97 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-</header>
+</header><!--
+Options at this stage of the material:
 
-<section id="geocentric-models" class="level2">
-<h2 class="anchored" data-anchor-id="geocentric-models">Geocentric models</h2>
-<p>Prediction without explanation. The geocentric model has epicycles and Earth is the center of the universe.</p>
-<p>Linear regressions are geocentric - they describe associations, make predictions bubt are mechanically wrong. Therefore, they are useful when handled with care.</p>
-<section id="normal-distribution" class="level3">
-<h3 class="anchored" data-anchor-id="normal-distribution">Normal distribution</h3>
-<p>Summed fluctuations tend towards the normal distribution</p>
-<p>For estimating only the mean and variance, the normal distribution is the least informative distribution (maxent).</p>
-<p>Note: variables do not have to be normally distributed for normal models to be useful.</p>
-</section>
-</section>
-<section id="linear-regression" class="level2">
-<h2 class="anchored" data-anchor-id="linear-regression">Linear regression</h2>
-<section id="workflow" class="level3">
-<h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
+- return to the start
+- skim and index
+- pick and choose topics
+- Bayesian flow
+
+or 
+- stop and engage in your own research and come back here when you hit a wall
+--><section id="clusters-and-features" class="level2"><h2 class="anchored" data-anchor-id="clusters-and-features">Clusters and features</h2>
+<p>Clusters: kinds of groups in the data</p>
+<p>Features: aspects of the model (parameters) that vary by cluster</p>
+<p>Examples (clusters -&gt; features):</p>
+<ul>
+<li>tanks -&gt; survival</li>
+<li>stories -&gt; treatment effect</li>
+<li>individuals -&gt; average responses</li>
+<li>departments -&gt; admission rate, bias</li>
+</ul>
+<p>Adding more clusters involves adding more index variables and more population priors.</p>
+<p>Adding more features involves adding more parameters, increasing the dimensions in each population prior.</p>
+<p>Varying effects are a way to measure unmeasured confounds. Unmeasured features of clusters leave an imprint on the data that can be estimated given repeat observations of each cluster and partial pooling among clusters.</p>
+<p>This helps us, from the predictive perspective, to regularize cluster-level variance, and, from the causal perspective, to manage unobserved confounds and competing causes using cluster-level causes.</p>
+</section><section id="strategy-for-modeling-varying-effects" class="level2"><h2 class="anchored" data-anchor-id="strategy-for-modeling-varying-effects">Strategy for modeling varying effects</h2>
 <ol type="1">
-<li>Question/goal/estimand</li>
-<li>Scientific model</li>
-<li>Statistical model(s)</li>
-<li>Validate model</li>
-<li>Analyze data</li>
+<li>Varying intercept on one cluster</li>
+<li>Varying intercept for one cluster, slope for another cluster. This is two 1-dimensional distributions where information is not shared across.</li>
+<li>Correlated varying effects</li>
 </ol>
-</section>
-<section id="example-howell-data" class="level3">
-<h3 class="anchored" data-anchor-id="example-howell-data">Example: Howell data</h3>
-<section id="estimand" class="level4">
-<h4 class="anchored" data-anchor-id="estimand">1. Estimand</h4>
-<p>Describe the association between adult weight and height</p>
-</section>
-<section id="scientific-model" class="level4">
-<h4 class="anchored" data-anchor-id="scientific-model">2. Scientific model</h4>
-<p>How does height influence weight?</p>
-<p>H -&gt; W &lt;- U</p>
-<p><span class="math inline">\(W = f(H, U)\)</span></p>
-<p>“Weight is some function of height and unobserved variables”</p>
-<section id="variables-w-u-h" class="level5">
-<h5 class="anchored" data-anchor-id="variables-w-u-h">Variables: W, U, H</h5>
-<p>Definitions:</p>
+<section id="example-bangladesh-fertility-survey" class="level3"><h3 class="anchored" data-anchor-id="example-bangladesh-fertility-survey">Example: Bangladesh fertility survey</h3>
+<p>Outcome: contraceptive use</p>
+<p>Variables: age, living children, urban/rural, districts</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'C'</span>, <span class="st">'D'</span>, <span class="st">'K'</span>, <span class="st">'U'</span><span class="op">)</span>,</span>
+<span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">2</span>,    <span class="fl">3</span>,   <span class="fl">1.5</span>, <span class="fl">2.5</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">0.5</span>,    <span class="fl">0</span>,  <span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">dagify</span><span class="op">(</span></span>
+<span>    <span class="va">C</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">K</span> <span class="op">+</span> <span class="va">D</span> <span class="op">+</span> <span class="va">U</span>,</span>
+<span>    <span class="va">K</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">U</span>,</span>
+<span>    <span class="va">U</span> <span class="op">~</span> <span class="va">D</span>,</span>
+<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span>, layout <span class="op">=</span> <span class="st">'auto'</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-notes_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="384"></p>
+</div>
+</div>
+<p>In addition,</p>
 <ul>
-<li><p><span class="math inline">\(W = \beta H + U\)</span> (Equation for expected weight)</p></li>
-<li><p><span class="math inline">\(U_{i} \sim Normal(0, \sigma)\)</span> (Gaussian error with standard deviation sigma)</p></li>
-<li><p><span class="math inline">\(H_{i} \sim Uniform(130, 170)\)</span> (Height is uniformly distributed from 130-170 cm)</p></li>
+<li><p>group level confounds: unmeasured things about districts may influence features of individuals in those districts (eg. history of districts)</p></li>
+<li><p>unmeasured variables: family</p></li>
 </ul>
-<p><span class="math inline">\(_{i}\)</span> represents individuals.</p>
-<p>There is a deterministic relationship for W and distributional relationships for U and H.</p>
-</section>
-</section>
-<section id="statistical-model" class="level4">
-<h4 class="anchored" data-anchor-id="statistical-model">3. Statistical model</h4>
-<p><span class="math inline">\(E(W_{i} | H_{i}) = \alpha + \beta H_{i}\)</span></p>
-<ul>
-<li><span class="math inline">\(E(W_{i} | H_{i})\)</span>: average weight conditional on height</li>
-<li><span class="math inline">\(\alpha\)</span>: intercept</li>
-<li><span class="math inline">\(\beta H_{i}\)</span>: slope</li>
-</ul>
-<section id="posterior-distribution" class="level5">
-<h5 class="anchored" data-anchor-id="posterior-distribution">Posterior distribution</h5>
-<p><span class="math inline">\(Pr(\alpha, \beta, \sigma | H_{i}, W_{i}) = \frac{Pr(W_{i} | H_{i}, \alpha, \beta, \sigma) Pr (\alpha, \beta, \sigma)}{Z}\)</span></p>
-<ul>
-<li><span class="math inline">\(Pr(\alpha, \beta, \sigma | H_{i}, W_{i})\)</span>: posterior probability of a specific line</li>
-<li><span class="math inline">\(Pr(W_{i} | H_{i}, \alpha, \beta, \sigma)\)</span>: garden of forking data, the number of ways we could see the observations, conditional on an exact line (in this case)</li>
-<li><span class="math inline">\(Pr (\alpha, \beta, \sigma)\)</span>: prior</li>
-<li><span class="math inline">\(Z\)</span>: normalizing constant</li>
-</ul>
-<p>Alpha, beta and sigma are unobserved variables, height and weight are observed.</p>
-<p>The posterior distribution is proportional to the product of the number of ways the observations could arise according to our assumptions multiplied by our prior.</p>
-</section>
-<section id="prior-predictive-simulation" class="level5">
-<h5 class="anchored" data-anchor-id="prior-predictive-simulation">Prior predictive simulation</h5>
-<p>What do the observable variables look like with these priors?</p>
-<p><span class="math inline">\(W_{i} \sim Normal(\mu_{i}, \sigma)\)</span></p>
-<p><span class="math inline">\(\mu_{i} = \alpha + \beta H_{i}\)</span></p>
-<p><span class="math inline">\(\alpha ~ Normal(0, 10)\)</span></p>
-<p><span class="math inline">\(\beta ~ Uniform(0, 1)\)</span></p>
-<p><span class="math inline">\(\sigma ~ Uniform(0, 10)\)</span></p>
-<p>When height is 0, weight is 0. Weight increases on average with height. Weight (kg) is less than height (cm). Sigma must be positive.</p>
-<p>Priors:</p>
-<ul>
-<li>no correct priors, only scientifically justifiable priors.</li>
-<li>justify with information outside the data, like the rest of the model</li>
-<li>priors become more important as models get more complex</li>
-<li>always simulate from the priors, better than trying to intuit what they mean from the definitions</li>
-</ul>
-</section>
-</section>
-<section id="validate-model" class="level4">
-<h4 class="anchored" data-anchor-id="validate-model">4. Validate model</h4>
-<p>Test statistical model with simulated observations from scientific model. Stronger test: simulation-based calibration</p>
-<ul>
-<li>simulate individuals with known parameters from scientific model</li>
-<li>use model to determine if it can recover parameters</li>
-<li>use a large sample</li>
-<li>test with different values and sample sizes</li>
-</ul>
-</section>
-<section id="analyze-the-data" class="level4">
-<h4 class="anchored" data-anchor-id="analyze-the-data">5. Analyze the data</h4>
-<p>Once you’ve done steps 1-4, you can just drop in the real data.</p>
-<p>Parameters are not independent, do not interpret them separately.</p>
-<p>Use the posterior distribution to generate predictions then describe and interpret those.</p>
+<section id="varying-intercepts-on-each-district" class="level4"><h4 class="anchored" data-anchor-id="varying-intercepts-on-each-district">Varying intercepts on each district</h4>
+<p><span class="math inline">\(C_{i} \sim Bernoulli(D_{i}, p_{i})\)</span></p>
+<p><span class="math inline">\(logit(p_{i}) = \alpha_{D[i]}\)</span></p>
+<p><span class="math inline">\(\alpha_{j} \sim Normal(\bar{\alpha}, \sigma)\)</span></p>
+<p><span class="math inline">\(\bar{\alpha} \sim Normal(0, 1)\)</span></p>
+<p><span class="math inline">\(\sigma \sim Exponential(1)\)</span></p>
+<p>(Bernoulli distribution since contraception is 0/1 outcome)</p>
+<p>Note the uneven sampling across districts, where because of partial pooling there is shrinkage in the clusters. More shrinkage in clusters with less observations eg. the districts with 2 and 13 observations, and less in clusters with more observations eg. the districts with 35 and 45 observations.</p>
+<p><img src="../graphics/stat_rethinking_l13_slide42.png" class="img-fluid"></p>
+<p>In addition, for one district there is no data. The minimum sample size is 0, because you have a prior. This is an informed prior because it is estimated from all the other districts, including the variation across all districts. This is in essence a prediction.</p>
+<p><img src="../graphics/stat_rethinking_l13_slide43.png" class="img-fluid"></p>
+</section><section id="varying-intercepts-on-districts-and-slopes-on-urban" class="level4"><h4 class="anchored" data-anchor-id="varying-intercepts-on-districts-and-slopes-on-urban">Varying intercepts on districts and slopes on urban</h4>
+<p>District features are potential group-level confounds. To estimate the total effect of urban (U), we need to stratify by district but not by kids (K) because the total effect of U passes through K.</p>
+<p><span class="math inline">\(C_{i} \sim Bernoulli(D_{i}, p_{i})\)</span></p>
+<p><span class="math inline">\(logit(p_{i}) = \alpha_{D[i]} + \beta_{D[i]}U_{i}\)</span></p>
+<p><span class="math inline">\(\alpha_{j} \sim Normal(\bar{\alpha}, \sigma)\)</span></p>
+<p><span class="math inline">\(\beta_{j} \sim Normal(\bar{\beta}, \tau)\)</span></p>
+<p><span class="math inline">\(\bar{\alpha}, \bar{\beta} \sim Normal(0, 1)\)</span></p>
+<p><span class="math inline">\(\sigma, \tau \sim Exponential(1)\)</span></p>
+<p>Result: ~4/2000 transitions with a divergence. For 2000 samples, tau’s number of effective samples (n_eff) are quite low.</p>
+<p>The problem is that there are priors that define the shape of other priors. They <em>locate</em> the priors, and are called “centered”. We can re-express the same thing using non-centered priors are that transformed to replace the nested priors with a Normal(0, 1) prior. These are mathematically equivalent but the non-centered model is much more efficient.</p>
+<p>Z score is a standardized Gaussian deviation. Subtract by the mean and divide by the standard deviation. Easily reversible by adding the mean and multiplying by the standard deviation.</p>
+<p><span class="math inline">\(C_{i} \sim Bernoulli(D_{i}, p_{i})\)</span></p>
+<p><span class="math inline">\(logit(p_{i}) = \alpha_{D[i]} + \beta_{D[i]}U_{i}\)</span></p>
+<p><span class="math inline">\(\alpha_{j} = \bar{\alpha} + Z_{\alpha, j} * \sigma\)</span></p>
+<p><span class="math inline">\(\beta_{j} = \bar{\beta} + Z_{\beta, j} * \sigma\)</span></p>
+<p><span class="math inline">\(Z_{\alpha, j} \sim Normal(0, 1)\)</span></p>
+<p><span class="math inline">\(Z_{\beta, j} \sim Normal(0, 1)\)</span></p>
+<p><span class="math inline">\(\bar{\alpha}, \bar{\beta} \sim Normal(0, 1)\)</span></p>
+<p><span class="math inline">\(\sigma, \tau \sim Exponential(1)\)</span></p>
+<p>Result: much more efficient sampling.</p>
+<p>Sample size drops as you add more clusters and cut up the data.</p>
+<p><img src="../graphics/stat_rethinking_l13_slide63.png" class="img-fluid"> The urban estimates look more uncertain, possibly due to lower sample sizes in urban areas (there are less urban areas).</p>
+<p><img src="../graphics/stat_rethinking_l13_slide64.png" class="img-fluid"></p>
 
 
-</section>
-</section>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

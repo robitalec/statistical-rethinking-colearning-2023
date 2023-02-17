@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.313">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>Statistical Rethinking colearning 2023 - Homework</title>
+<meta name="author" content="Alec L. Robitaille">
+<meta name="dcterms.date" content="2023-02-17">
+<title>Statistical Rethinking colearning 2023 - Lecture 13 Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,8 +19,70 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
-
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -30,8 +91,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -42,8 +101,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -61,59 +119,20 @@ ul.task-list li input[type="checkbox"] {
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-date','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Homework</h1>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Lecture 13 Notes</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Statistical Rethinking colearning 2023</a> 
         <div class="sidebar-tools-main">
@@ -128,20 +147,20 @@ ul.task-list li input[type="checkbox"] {
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">Home</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../homework/00-homework-listing.html" class="sidebar-item-text sidebar-link active">Homework</a>
+            <a href="../homework/00-homework-listing.html" class="sidebar-item-text sidebar-link">Homework</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/01-homework.html" class="sidebar-item-text sidebar-link">Homework 01</a>
   </div>
@@ -157,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../notes/00-notes-listing.html" class="sidebar-item-text sidebar-link">Notes</a>
@@ -165,8 +184,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/01-notes.html" class="sidebar-item-text sidebar-link">Lecture 01</a>
   </div>
@@ -218,114 +237,119 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/14-notes.html" class="sidebar-item-text sidebar-link">Lecture 14</a>
+  <a href="../notes/14-notes.html" class="sidebar-item-text sidebar-link active">Lecture 14</a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#correlated-features" id="toc-correlated-features" class="nav-link active" data-scroll-target="#correlated-features">Correlated features</a>
+  <ul class="collapse">
+<li><a href="#example-bangladesh-fertility-survey" id="toc-example-bangladesh-fertility-survey" class="nav-link" data-scroll-target="#example-bangladesh-fertility-survey">Example: Bangladesh fertility survey</a></li>
+  </ul>
+</li>
+  <li><a href="#divergent-transitions" id="toc-divergent-transitions" class="nav-link" data-scroll-target="#divergent-transitions">Divergent transitions</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title d-none d-lg-block">Homework</h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block">Lecture 13 Notes</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    
-  
-    
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Alec L. Robitaille </p>
+          </div>
   </div>
-  
-
-</header>
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-title-sort" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-author" data-direction="asc">
-          Author
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 17, 2023</p>
     </div>
-</div>
+  </div>
+  
+    
+  </div>
+  
 
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
-<th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
-</th>
-<th>
-<a class="sort" data-sort="listing-author" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Author</a>
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1675224000000" data-listing-file-modified-sort="1675289745684" data-listing-reading-time-sort="1.845" data-listing-title-sort="Homework 01" data-listing-filename-sort="01-homework.qmd">
-<td class="listing-title">
-<a href="../homework/01-homework.html" class="title">Homework 01</a>
-</td>
-<td class="listing-date">
-Feb 1, 2023
-</td>
-<td class="listing-author">
-Alec L. Robitaille
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1675569600000" data-listing-file-modified-sort="1676582554356" data-listing-reading-time-sort="5.135" data-listing-title-sort="Homework 02" data-listing-filename-sort="02-homework.qmd">
-<td class="listing-title">
-<a href="../homework/02-homework.html" class="title">Homework 02</a>
-</td>
-<td class="listing-date">
-Feb 5, 2023
-</td>
-<td class="listing-author">
-Alec L. Robitaille
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+</header><section id="correlated-features" class="level2"><h2 class="anchored" data-anchor-id="correlated-features">Correlated features</h2>
+<p>One prior distribution for each cluster</p>
+<ol type="1">
+<li>One feature: one-dimensional distribution</li>
+<li>Two features: two-dimensional distribution</li>
+<li>N features: N-dimensional distribution</li>
+</ol>
+<p><span class="math inline">\([\alpha_{j}, \beta_{j}] \sim MVNormal([\bar{\alpha}, \bar{\beta}], R, [\sigma, \tau])\)</span></p>
+<ul>
+<li>
+<span class="math inline">\([\alpha_{j}, \beta_{j}]\)</span>: features for district j</li>
+<li>
+<span class="math inline">\(MVNormal\)</span>
+<ul>
+<li>
+<span class="math inline">\([\bar{\alpha}, \bar{\beta}]\)</span>: feature means</li>
+<li>
+<span class="math inline">\(R\)</span>: correlation matrix</li>
+<li>
+<span class="math inline">\([\sigma, \tau])\)</span>: standard deviations</li>
+</ul>
+</li>
+</ul>
+<p><span class="math inline">\(R \sim LKJCorr(4)\)</span></p>
+<p>The LKJ prior is a prior distribution for correlations.</p>
+<p>See <a href="https://github.com/rmcelreath/stat_rethinking_2023/blob/main/scripts/14_varying_slopes_bangladesh.R#L1-L48">here</a> for plotting LKJCorr distributions.</p>
+<section id="example-bangladesh-fertility-survey" class="level3"><h3 class="anchored" data-anchor-id="example-bangladesh-fertility-survey">Example: Bangladesh fertility survey</h3>
+<p>Outcome: contraceptive use</p>
+<p>Variables: age, living children, urban/rural, districts</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'C'</span>, <span class="st">'D'</span>, <span class="st">'K'</span>, <span class="st">'U'</span><span class="op">)</span>,</span>
+<span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">2</span>,    <span class="fl">3</span>,   <span class="fl">1.5</span>, <span class="fl">2.5</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">0.5</span>,    <span class="fl">0</span>,  <span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">dagify</span><span class="op">(</span></span>
+<span>    <span class="va">C</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">K</span> <span class="op">+</span> <span class="va">D</span> <span class="op">+</span> <span class="va">U</span>,</span>
+<span>    <span class="va">K</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">U</span>,</span>
+<span>    <span class="va">U</span> <span class="op">~</span> <span class="va">D</span>,</span>
+<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span>, layout <span class="op">=</span> <span class="st">'auto'</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14-notes_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="384"></p>
 </div>
-</div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</div>
+<p>From the previous lecture, the varying intercepts for district and slopes for urban.</p>
+<p><span class="math inline">\(C_{i} \sim Bernoulli(D_{i}, p_{i})\)</span></p>
+<p><span class="math inline">\(logit(p_{i}) = \alpha_{D[i]} + \beta_{D[i]}U_{i}\)</span></p>
+<p><span class="math inline">\(\alpha_{j} = \bar{\alpha} + Z_{\alpha, j} * \sigma\)</span></p>
+<p><span class="math inline">\(\beta_{j} = \bar{\beta} + Z_{\beta, j} * \sigma\)</span></p>
+<p><span class="math inline">\(Z_{\alpha, j} \sim Normal(0, 1)\)</span></p>
+<p><span class="math inline">\(Z_{\beta, j} \sim Normal(0, 1)\)</span></p>
+<p><span class="math inline">\(\bar{\alpha}, \bar{\beta} \sim Normal(0, 1)\)</span></p>
+<p><span class="math inline">\(\sigma, \tau \sim Exponential(1)\)</span></p>
+<p><img src="../graphics/stat_rethinking_l14_slide05.png" class="img-fluid"> There is useful information to transfer across features, here we note there is a correlation between rural and urban probability of use within districts. A model that uses two 1-dimensional distributions (intercepts and slopes) does not consider the covariance structure between rural and urban within district.</p>
+<p>Comparing the centered and non-centered model specification for the model using the multivariate normal specification with correlated features.</p>
+<p><img src="../graphics/stat_rethinking_l14_slide36.png" class="img-fluid"></p>
+<p>Simulating a synthetic dataset for this kind of complex system is challenging and is likely best done with more detailed tools than eg. expecting a linear responses, instead with eg. an agent based model.</p>
+</section></section><section id="divergent-transitions" class="level2"><h2 class="anchored" data-anchor-id="divergent-transitions">Divergent transitions</h2>
+<p>Because of high curvature, the physics simulation runs off the surface. One option is to choose a smaller step size, but this results in much longer sampling time. Alternatively, re-express the “centered” model as a “non-centered” model.</p>
+<p><img src="../graphics/stat_rethinking_l14_slide66.png" class="img-fluid"></p>
+<p><img src="../graphics/stat_rethinking_l14_slide36.png" class="img-fluid"></p>
+<p><img src="../graphics/stat_rethinking_l14_slide78.png" class="img-fluid"></p>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
