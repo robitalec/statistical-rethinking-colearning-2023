@@ -133,7 +133,7 @@ $\alpha_{j} \sim Normal(\bar{\alpha}, \sigma)$
 
 $\bar{\alpha} \sim Normal(0, 1.5)$
 
-$\sigma ~  Exponential(1)$
+$\sigma \sim  Exponential(1)$
 
 
 #### Estimates
