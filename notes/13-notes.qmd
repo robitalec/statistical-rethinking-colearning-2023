@@ -53,7 +53,15 @@ and competing causes using cluster-level causes.
 
 ## Strategy for modeling varying effects 
 
-1. Varying intercept on one kind of cluster
+1. Varying intercept on one cluster
+1. Varying intercept for one cluster, slope for another cluster. This
+is two 1-dimensional distributions where information is not shared across. 
+1. Correlated varying effects
+
+
+
+
+
 
 ### Example: Bangladesh fertility survey
 

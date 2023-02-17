@@ -45,6 +45,8 @@ website:
             text: Lecture 12
           - href: notes/13-notes.qmd
             text: Lecture 13
+          - href: notes/14-notes.qmd
+            text: Lecture 14
 
 
 
