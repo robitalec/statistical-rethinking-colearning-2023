@@ -96,3 +96,15 @@ and is likely best done with more detailed tools than eg. expecting a linear
 responses, instead with eg. an agent based model.
 
 
+## Divergent transitions
+
+Because of high curvature, the physics simulation runs off the surface. 
+One option is to choose a smaller step size, but this results in much 
+longer sampling time. Alternatively, re-express the "centered" model
+as a "non-centered" model. 
+
+![](../graphics/stat_rethinking_l14_slide66.png)
+
+![](../graphics/stat_rethinking_l14_slide36.png)
+
+![](../graphics/stat_rethinking_l14_slide78.png)
