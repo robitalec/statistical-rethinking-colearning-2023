@@ -1,0 +1,43 @@
+---
+title: "Lecture 13 Notes"
+author: "Alec L. Robitaille"
+date: "2023-02-17"
+---
+
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+
+## Correlated features
+
+
+
+### Example: Bangladesh fertility survey
+
+Outcome: contraceptive use
+
+Variables: age, living children, urban/rural, districts
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4 
+
+coords <- data.frame(
+	name = c('A', 'C', 'D', 'K', 'U'),
+	x =    c(1,    2,    3,   1.5, 2.5),
+	y =    c(0,    0.5,    0,  -1, -1)
+)
+dagify(
+	C ~ A + K + D + U,
+	K ~ A + U,
+	U ~ D,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+
+![](../graphics/stat_rethinking_l14_slide05.png)
+There is useful information to transfer across features, here we note there
+is a correlation between rural and urban probability of use within districts. 
+
