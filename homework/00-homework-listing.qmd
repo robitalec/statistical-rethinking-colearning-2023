@@ -1,9 +1,0 @@
----
-title: "Homework"
-listing:
-  type: table
-  sort:
-    - "title asc"
-  fields: [title, date, author]
----
-
