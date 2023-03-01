@@ -1,0 +1,14 @@
+---
+title: "Homework 03"
+author: "Alec L. Robitaille"
+date: "2023-03-01"
+---
+
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+```{r, eval = FALSE}
+source('R/packages.R')
+```
+
