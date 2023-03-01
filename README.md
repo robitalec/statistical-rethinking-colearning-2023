@@ -18,6 +18,7 @@ The first round of Statistical Rethinking colearning (2022) is available [here](
 | 26 January   | Chapters 1, 2 and 3 | [1] <[Science Before Statistics](https://www.youtube.com/watch?v=FdnMWdICdRs&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=1)> <[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-01)> <br> [2] <[Garden of Forking Data](https://www.youtube.com/watch?v=R1vcdhPBlXA&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=2)> <[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-02)>
 | 09 February  | Chapter 4 | [3] <[Geocentric Models](https://www.youtube.com/watch?v=tNOu-SEacNU&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=3)> <[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-03)> <br> [4] <[Categories and Curves](https://www.youtube.com/watch?v=F0N4b7K_iYQ&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=4)> <[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-04)> |
 | 23 February | Chapters 5 and 6 |  [5] <[Elemental Confounds](https://www.youtube.com/watch?v=mBEA7PKDmiY&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=5)> <[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-05)> <br> [6] <[Good and Bad Controls](https://www.youtube.com/watch?v=uanZZLlzKHw&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=6)> <[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-06)>
+|  09 March    | Chapters 7 and 8      | \[7\] \<[Overfitting](https://www.youtube.com/watch?v=1VgYIsANQck&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=7)\> \<[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-07)\> <br> \[8\] \<[MCMC](https://www.youtube.com/watch?v=rZk2FqX2XnY&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=8)\> \<[Slides](https://speakerdeck.com/rmcelreath/statistical-rethinking-2023-lecture-08)\>         |
 
 
 ### Homework
@@ -26,6 +27,7 @@ The first round of Statistical Rethinking colearning (2022) is available [here](
 | :----------- | :---------- | :-------- |
 | 2 February   | [Homework 1](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week01.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week01_solutions.pdf) | 
 | 16 February  | [Homework 2](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week02.pdf) | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week02_solutions.pdf) | 
+| 2 March      | [Homework 3](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week03.pdf)  | [Solutions](https://github.com/rmcelreath/stat_rethinking_2023/blob/main/homework/week03_solutions.pdf) |
 
 
 ## Participant notes and homework solutions
