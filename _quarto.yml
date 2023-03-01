@@ -10,7 +10,8 @@ website:
 
   sidebar:
     contents:
-      - index.qmd
+      - text: "Home"
+        file: index.qmd
       - section: Notes
         contents:
           - auto: "notes/*"
