@@ -9,46 +9,7 @@ website:
   title: "Statistical Rethinking colearning 2023"
 
   sidebar:
-    contents:
-      - href: index.qmd
-        text: Home
-      - section: "Homework"
-        href: homework/00-homework-listing.qmd
-        contents:
-          - href: homework/01-homework.qmd
-            text: Homework 01
-          - href: homework/02-homework.qmd
-            text: Homework 02
-          - href: targets.qmd
-            text: _targets.R
-
-      - section: "Notes"
-        href: notes/00-notes-listing.qmd
-        contents:
-          - href: notes/01-notes.qmd
-            text: Lecture 01
-          - href: notes/02-notes.qmd
-            text: Lecture 02
-          - href: notes/03-notes.qmd
-            text: Lecture 03
-          - href: notes/04-notes.qmd
-            text: Lecture 04
-          - href: notes/05-notes.qmd
-            text: Lecture 05
-          - href: notes/09-notes.qmd
-            text: Lecture 09
-          - href: notes/10-notes.qmd
-            text: Lecture 10
-          - href: notes/11-notes.qmd
-            text: Lecture 11
-          - href: notes/12-notes.qmd
-            text: Lecture 12
-          - href: notes/13-notes.qmd
-            text: Lecture 13
-          - href: notes/14-notes.qmd
-            text: Lecture 14
-
-
+    contents: auto
 
 format:
   html:
