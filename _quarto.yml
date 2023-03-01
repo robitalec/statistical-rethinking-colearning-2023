@@ -9,8 +9,14 @@ website:
   title: "Statistical Rethinking colearning 2023"
 
   sidebar:
-    contents: auto
-
+    contents:
+      - index.qmd
+      - section: Notes
+        contents:
+          - auto: "notes/*"
+      - section: Homework
+        contents:
+          - auto: "homework/*"
 format:
   html:
     theme:
