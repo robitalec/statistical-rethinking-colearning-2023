@@ -1,4 +1,0 @@
-```{r}
-#| echo: false
-writeLines(readLines('_targets.R'))
-```
