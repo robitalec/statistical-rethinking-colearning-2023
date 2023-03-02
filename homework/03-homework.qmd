@@ -39,6 +39,7 @@ causal influence of A on F. What effect would increasing the area of a territory
 have on the amount of food inside it?
 
 
+### DAG
 ```{r}
 coords <- data.frame(
 	name = c('A', 'F', 'G', 'W'),
@@ -66,6 +67,8 @@ dag |> ggdag(seed = 2) + theme_dag()
 
 
 
+### Estimand
+
 Total causal influence of area on average food. Consider how an intervention
 on area would influence average food. 
 
@@ -74,3 +77,43 @@ on area would influence average food.
 adjustmentSets(dag, exposure = 'A', outcome = 'F', effect = 'total')
 ```
 
+
+### Simulation
+
+We don't know much about this data, so to just get an idea of the units
+of the data, check the range of each column. 
+
+```{r}
+lapply(DT, range)
+```
+
+
+```{r}
+# Simulate to determine appropriate priors
+# Here just expecting a model defined for F ~ A, with alpha + beta_age * age
+simulate_q01 <- function(n, mean_alpha, sd_alpha, mean_area, sd_area, sigma_rate) {
+	area <- runif(n, 0, 6)
+
+	alpha <- rnorm(n, mean_alpha, sd_alpha)
+	beta_area <- rnorm(n, mean_area, sd_area)
+	sigma <- rexp(n, sigma_rate)
+	
+	food <- rnorm(n, beta_area * area, sigma)
+	
+	return(data.table(
+		area = area,
+		food = food
+	))	
+}
+
+
+ggplot(simulate_q01(
+	n = 1e3, 
+	mean_alpha = 3, 
+	sd_alpha = 0.5,
+	mean_area = 0, 
+	sd_area = 0.5, 
+	sigma_rate = 1)
+) + 
+	geom_point(aes(area, food))
+```
