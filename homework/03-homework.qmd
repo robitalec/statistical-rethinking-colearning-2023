@@ -1,0 +1,272 @@
+---
+title: "Homework 03"
+author: "Alec L. Robitaille"
+date: "2023-03-01"
+---
+
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+```{r, eval = FALSE}
+source('R/packages.R')
+```
+
+
+## Data 
+```{r}
+# Data
+source('R/data_foxes.R')
+
+# group : ID of group
+# avgfood : Average available food in group's territory
+# groupsize : Size of each group
+# area : Area of group territory
+# weight : Body weight of individual fox
+DT <- data_foxes(scale = TRUE)
+```
+
+
+## Question 1
+> The first two problems are based on the same data. The data in data(foxes) are
+116 foxes from 30 different urban groups in England. These fox groups are like
+street gangs. Group size (groupsize) varies from 2 to 8 individuals. Each group
+maintains its own (almost exclusive) urban territory. Some ter- ritories are
+larger than others. The area variable encodes this information. Some territories
+also have more avgfood than others. And food influences the weight of each fox.
+Assume this following DAG. Use the backdoor criterion and estimate the total
+causal influence of A on F. What effect would increasing the area of a territory
+have on the amount of food inside it?
+
+
+### DAG
+```{r}
+coords <- data.frame(
+	name = c('A', 'F', 'G', 'W'),
+	x =    c(2,    1,   3,    2),
+	y =    c(3,    2,   2,    1)
+)
+```
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4
+dag <- dagify(
+	W ~ F + G,
+	F ~ A,
+	G ~ F,
+  coords = coords
+)
+dag |> ggdag(seed = 2) + theme_dag()
+```
+
+- A: area
+- F: avgfood
+- G: groupsize
+- W: weight
+
+
+
+### Estimand
+
+Total causal influence of area on average food. Consider how an intervention
+on area would influence average food. 
+
+
+```{r}
+adjustmentSets(dag, exposure = 'A', outcome = 'F', effect = 'total')
+```
+
+
+### Simulation
+
+We don't know much about this data, so to just get an idea of the units
+of the data, check the range of each column.
+
+```{r}
+lapply(DT, range)
+```
+
+
+But instead of peaking, let's use the standardized versions and consider the 
+potential effects on the scale of standard deviations. 
+
+```{r}
+#| warning: false
+tar_load(m_h01_q01_prior)
+
+m_h01_q01_prior$formula
+m_h01_q01_prior$prior
+
+# Show draws from prior distributions
+conditional_effects(m_h01_q01_prior, 'scale_area', prob = 0.89)
+```
+
+### Model
+
+```{r}
+#| warning: false
+tar_load(m_h01_q01)
+
+m_h01_q01$formula
+m_h01_q01$prior
+
+# Total causal influence of area on average food 
+conditional_effects(m_h01_q01, 'scale_area', prob = 0.89)
+```
+
+
+## Question 2
+
+> Infer the total causal effect of adding food F to a territory on the weight W of
+foxes. Can you calculate the causal effect by simulating an intervention on
+food?
+
+
+### Estimand
+
+Total causal influence of average food on weight. Consider how an intervention
+on average food would influence weight. 
+
+
+```{r}
+adjustmentSets(dag, exposure = 'F', outcome = 'W', effect = 'total')
+```
+
+
+
+### Simulation
+
+```{r}
+#| warning: false
+tar_load(m_h01_q02_prior)
+
+m_h01_q02_prior$formula
+m_h01_q02_prior$prior
+
+# Show draws from prior distributions
+conditional_effects(m_h01_q02_prior, 'scale_avgfood', prob = 0.89)
+```
+
+### Model
+
+```{r}
+#| warning: false
+tar_load(m_h01_q02)
+
+m_h01_q02$formula
+m_h01_q02$prior
+
+# Total causal influence of average food on weight
+conditional_effects(m_h01_q02, 'scale_avgfood', prob = 0.89)
+```
+
+
+
+## Question 3
+
+> Infer the direct causal effect of adding food F to a territory on the weight W
+of foxes. In light of your estimates from this problem and the previous one,
+what do you think is going on with these foxes?
+
+
+### Estimand
+
+Direct causal influence of average food on weight. Consider how an intervention
+on average food would influence weight. 
+
+
+```{r}
+adjustmentSets(dag, exposure = 'F', outcome = 'W', effect = 'direct')
+```
+
+
+
+### Simulation
+
+```{r}
+#| warning: false
+tar_load(m_h01_q03_prior)
+
+m_h01_q03_prior$formula
+m_h01_q03_prior$prior
+
+# Show draws from prior distributions
+conditional_effects(m_h01_q03_prior, 'scale_avgfood', prob = 0.89)
+```
+
+### Model
+
+```{r}
+#| warning: false
+tar_load(m_h01_q03)
+
+m_h01_q03$formula
+m_h01_q03$prior
+
+# Direct causal influence of average food on weight
+conditional_effects(m_h01_q03, 'scale_avgfood', prob = 0.89)
+```
+
+Closing the backdoor path and estimating the direct effect of average food
+on weight now shows a positive relationship between average food and fox weight. 
+
+
+```{r}
+conditional_effects(m_h01_q03, 'scale_groupsize', prob = 0.89)
+
+#| warning: false
+tar_load(m_h01_q03_groupsize_food)
+
+m_h01_q03_groupsize_food$formula
+m_h01_q03_groupsize_food$prior
+
+# Direct causal influence of average food on group size
+conditional_effects(m_h01_q03_groupsize_food, 'scale_avgfood', prob = 0.89)
+```
+
+As average food in a territory increases, the group size increases. 
+
+
+
+## Question 4 (bonus)
+
+> Suppose there is an unobserved confound that influences F and G.
+Assuming the DAG above is correct, again estimate both the total and
+direct causal effects of F on W. What impact does the unobserved confound have?
+
+
+```{r}
+coords <- data.frame(
+	name = c('A', 'F', 'G', 'W', 'U'),
+	x =    c(1,    1,   2,    1.5,   2),
+	y =    c(3,    2,   2,    1,   3)
+)
+```
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4
+dag <- dagify(
+	W ~ F + G,
+	F ~ A + U,
+	G ~ F + U,
+  coords = coords
+)
+dag |> ggdag(seed = 2) + theme_dag()
+```
+
+### Estimand
+
+Total and direct causal effects of F on W. 
+
+
+```{r}
+adjustmentSets(dag, exposure = 'F', outcome = 'W', effect = 'total')
+adjustmentSets(dag, exposure = 'F', outcome = 'W', effect = 'direct')
+```
+
+In estimating the total causal effect of average food on weight, the 
+unobserved confound U opens a backdoor on average food through 
+group size. If group size is included, the direct effect will be estimated
+and not the total effect. 
