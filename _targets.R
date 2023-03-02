@@ -51,6 +51,29 @@ targets_h02 <- c(
 )
 
 
+# Targets: homework 3 -----------------------------------------------------
+targets_h02 <- c(
+	tar_target(
+		foxes,
+		data_foxes(scale = TRUE)
+	),
+	tar_target(
+		m_h01_q01_prior,
+		brm(
+			F ~ A,
+			prior = c(
+				prior(normal(0, 0.5), Intercept),
+				prior(normal(0, 1), b),
+				prior(exponential(1), sigma)
+			),
+			data = foxes,
+			sample_prior = 'only',
+			chains = 1
+		)
+	)
+)
+
+
 
 
 # Quarto ------------------------------------------------------------------
