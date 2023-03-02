@@ -81,39 +81,23 @@ adjustmentSets(dag, exposure = 'A', outcome = 'F', effect = 'total')
 ### Simulation
 
 We don't know much about this data, so to just get an idea of the units
-of the data, check the range of each column. 
+of the data, check the range of each column.
 
 ```{r}
 lapply(DT, range)
 ```
 
 
+But instead of peaking, let's use the standardized versions and consider the 
+potential effects on the scale of standard deviations. 
+
 ```{r}
-# Simulate to determine appropriate priors
-# Here just expecting a model defined for F ~ A, with alpha + beta_age * age
-simulate_q01 <- function(n, mean_alpha, sd_alpha, mean_area, sd_area, sigma_rate) {
-	area <- runif(n, 0, 6)
+#| warning: false
+# Model
+tar_load(m_h01_q01_prior)
 
-	alpha <- rnorm(n, mean_alpha, sd_alpha)
-	beta_area <- rnorm(n, mean_area, sd_area)
-	sigma <- rexp(n, sigma_rate)
-	
-	food <- rnorm(n, beta_area * area, sigma)
-	
-	return(data.table(
-		area = area,
-		food = food
-	))	
-}
+m_h01_q01_prior$formula
+m_h01_q01_prior$prior
 
-
-ggplot(simulate_q01(
-	n = 1e3, 
-	mean_alpha = 3, 
-	sd_alpha = 0.5,
-	mean_area = 0, 
-	sd_area = 0.5, 
-	sigma_rate = 1)
-) + 
-	geom_point(aes(area, food))
+conditional_effects(m_h01_q01_prior)
 ```
