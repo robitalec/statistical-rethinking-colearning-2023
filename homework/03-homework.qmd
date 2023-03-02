@@ -65,3 +65,12 @@ dag |> ggdag(seed = 2) + theme_dag()
 - W: weight
 
 
+
+Total causal influence of area on average food. Consider how an intervention
+on area would influence average food. 
+
+
+```{r}
+adjustmentSets(dag, exposure = 'A', outcome = 'F', effect = 'total')
+```
+
