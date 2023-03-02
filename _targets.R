@@ -60,7 +60,7 @@ targets_h02 <- c(
 	tar_target(
 		m_h01_q01_prior,
 		brm(
-			F ~ A,
+			avgfood ~ area,
 			prior = c(
 				prior(normal(0, 0.5), Intercept),
 				prior(normal(0, 1), b),
