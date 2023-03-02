@@ -39,7 +39,7 @@
     "href": "homework/01-homework.html#question-3",
     "title": "Homework 01",
     "section": "Question 3",
-    "text": "Question 3\n\nUse the posterior predictive distribution from 2 to calculate the probability of 3 or more water samples in the next 5 tosses.\n\n\n# Predicted probability of 3 or more water samples in the next 5 tosses\n#  given posterior predictive distribution\ntable(posterior_predict >= 3) / size\n\n\n FALSE   TRUE \n0.8128 0.1872 \n\n# and beta distribution prediction\ntable(beta_predict >= 3) / size\n\n\n FALSE   TRUE \n0.8179 0.1821"
+    "text": "Question 3\n\nUse the posterior predictive distribution from 2 to calculate the probability of 3 or more water samples in the next 5 tosses.\n\n\n# Predicted probability of 3 or more water samples in the next 5 tosses\n#  given posterior predictive distribution\ntable(posterior_predict >= 3) / size\n\n\n FALSE   TRUE \n0.8162 0.1838 \n\n# and beta distribution prediction\ntable(beta_predict >= 3) / size\n\n\n FALSE   TRUE \n0.8111 0.1889"
   },
   {
     "objectID": "homework/01-homework.html#question-4-optional",
