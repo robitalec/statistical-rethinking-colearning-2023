@@ -12,3 +12,16 @@ source('R/packages.R')
 source('R/packages.R')
 ```
 
+
+## Data 
+```{r}
+# Data
+source('R/data_foxes.R')
+
+# group : ID of group
+# avgfood : Average available food in group's territory
+# groupsize : Size of each group
+# area : Area of group territory
+# weight : Body weight of individual fox
+DT <- data_foxes()
+```
