@@ -108,7 +108,33 @@ targets_h02 <- c(
 			),
 			data = foxes
 		)
-	)
+),
+	tar_target(
+		m_h01_q03_prior,
+		brm(
+			scale_weight ~ scale_avgfood + scale_groupsize,
+			prior = c(
+				prior(normal(0, 0.25), Intercept),
+				prior(normal(0, 0.5), b),
+				prior(exponential(1), sigma)
+			),
+			data = foxes,
+			sample_prior = 'only',
+			chains = 1
+		)
+	),
+	tar_target(
+		m_h01_q03,
+		brm(
+			scale_weight ~ scale_avgfood + scale_groupsize,
+			prior = c(
+				prior(normal(0, 0.25), Intercept),
+				prior(normal(0, 0.5), b),
+				prior(exponential(1), sigma)
+			),
+			data = foxes
+		)
+	),	)
 )
 
 
