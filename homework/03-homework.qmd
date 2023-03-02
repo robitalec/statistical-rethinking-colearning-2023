@@ -226,3 +226,47 @@ conditional_effects(m_h01_q03_groupsize_food, 'scale_avgfood', prob = 0.89)
 ```
 
 As average food in a territory increases, the group size increases. 
+
+
+
+## Question 4 (bonus)
+
+> Suppose there is an unobserved confound that influences F and G.
+Assuming the DAG above is correct, again estimate both the total and
+direct causal effects of F on W. What impact does the unobserved confound have?
+
+
+```{r}
+coords <- data.frame(
+	name = c('A', 'F', 'G', 'W', 'U'),
+	x =    c(1,    1,   2,    1.5,   2),
+	y =    c(3,    2,   2,    1,   3)
+)
+```
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4
+dag <- dagify(
+	W ~ F + G,
+	F ~ A + U,
+	G ~ F + U,
+  coords = coords
+)
+dag |> ggdag(seed = 2) + theme_dag()
+```
+
+### Estimand
+
+Total and direct causal effects of F on W. 
+
+
+```{r}
+adjustmentSets(dag, exposure = 'F', outcome = 'W', effect = 'total')
+adjustmentSets(dag, exposure = 'F', outcome = 'W', effect = 'direct')
+```
+
+In estimating the total causal effect of average food on weight, the 
+unobserved confound U opens a backdoor on average food through 
+group size. If group size is included, the direct effect will be estimated
+and not the total effect. 
