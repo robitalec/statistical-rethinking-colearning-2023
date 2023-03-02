@@ -25,3 +25,43 @@ source('R/data_foxes.R')
 # weight : Body weight of individual fox
 DT <- data_foxes()
 ```
+
+
+## Question 1
+> The first two problems are based on the same data. The data in data(foxes) are
+116 foxes from 30 different urban groups in England. These fox groups are like
+street gangs. Group size (groupsize) varies from 2 to 8 individuals. Each group
+maintains its own (almost exclusive) urban territory. Some ter- ritories are
+larger than others. The area variable encodes this information. Some territories
+also have more avgfood than others. And food influences the weight of each fox.
+Assume this following DAG. Use the backdoor criterion and estimate the total
+causal influence of A on F. What effect would increasing the area of a territory
+have on the amount of food inside it?
+
+
+```{r}
+coords <- data.frame(
+	name = c('A', 'F', 'G', 'W'),
+	x =    c(2,    1,   3,    2),
+	y =    c(3,    2,   2,    1)
+)
+```
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4
+dag <- dagify(
+	W ~ F + G,
+	F ~ A,
+	G ~ F,
+  coords = coords
+)
+dag |> ggdag(seed = 2) + theme_dag()
+```
+
+- A: area
+- F: avgfood
+- G: groupsize
+- W: weight
+
+
