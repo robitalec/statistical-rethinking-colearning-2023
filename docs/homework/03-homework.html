@@ -404,13 +404,13 @@ $scale_weight
 </div>
 <p>But instead of peaking, let’s use the standardized versions and consider the potential effects on the scale of standard deviations.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h01_q01_prior</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h03_q01_prior</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">m_h01_q01_prior</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">m_h03_q01_prior</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>scale_avgfood ~ scale_area </code></pre>
 </div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h01_q01_prior</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h03_q01_prior</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           prior     class       coef group resp dpar nlpar lb ub       source
   normal(0, 0.5)         b                                                user
@@ -419,20 +419,20 @@ $scale_weight
   exponential(1)     sigma                                   0            user</code></pre>
 </div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Show draws from prior distributions</span></span>
-<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h01_q01_prior</span>, <span class="st">'scale_area'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h03_q01_prior</span>, <span class="st">'scale_area'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="03-homework_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section><section id="model" class="level3"><h3 class="anchored" data-anchor-id="model">Model</h3>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h01_q01</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h03_q01</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">m_h01_q01</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">m_h03_q01</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>scale_avgfood ~ scale_area </code></pre>
 </div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h01_q01</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h03_q01</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           prior     class       coef group resp dpar nlpar lb ub       source
   normal(0, 0.5)         b                                                user
@@ -440,10 +440,14 @@ $scale_weight
  normal(0, 0.25) Intercept                                                user
   exponential(1)     sigma                                   0            user</code></pre>
 </div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Total causal influence of area on average food </span></span>
-<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h01_q01</span>, <span class="st">'scale_area'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mcmc_areas</span><span class="op">(</span><span class="va">m_h03_q01</span>, pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'b_Intercept'</span>, <span class="st">'b_scale_area'</span>, <span class="st">'sigma'</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="03-homework_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Total causal influence of area on average food </span></span>
+<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h03_q01</span>, <span class="st">'scale_area'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="03-homework_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section></section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
@@ -453,20 +457,20 @@ $scale_weight
 <section id="estimand-1" class="level3"><h3 class="anchored" data-anchor-id="estimand-1">Estimand</h3>
 <p>Total causal influence of average food on weight. Consider how an intervention on average food would influence weight.</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">adjustmentSets</span><span class="op">(</span><span class="va">dag</span>, exposure <span class="op">=</span> <span class="st">'F'</span>, outcome <span class="op">=</span> <span class="st">'W'</span>, effect <span class="op">=</span> <span class="st">'total'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">adjustmentSets</span><span class="op">(</span><span class="va">dag</span>, exposure <span class="op">=</span> <span class="st">'F'</span>, outcome <span class="op">=</span> <span class="st">'W'</span>, effect <span class="op">=</span> <span class="st">'total'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code><a href="https://rdrr.io/r/base/Paren.html"> {}</a></code></pre>
 </div>
 </div>
 </section><section id="simulation-1" class="level3"><h3 class="anchored" data-anchor-id="simulation-1">Simulation</h3>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h01_q02_prior</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h03_q02_prior</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">m_h01_q02_prior</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">m_h03_q02_prior</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>scale_weight ~ scale_avgfood </code></pre>
 </div>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h01_q02_prior</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h03_q02_prior</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           prior     class          coef group resp dpar nlpar lb ub
   normal(0, 0.5)         b                                          
@@ -479,21 +483,21 @@ $scale_weight
          user
          user</code></pre>
 </div>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Show draws from prior distributions</span></span>
-<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h01_q02_prior</span>, <span class="st">'scale_avgfood'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Show draws from prior distributions</span></span>
+<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h03_q02_prior</span>, <span class="st">'scale_avgfood'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="03-homework_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section><section id="model-1" class="level3"><h3 class="anchored" data-anchor-id="model-1">Model</h3>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h01_q02</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h03_q02</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">m_h01_q02</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">m_h03_q02</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>scale_weight ~ scale_avgfood </code></pre>
 </div>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h01_q02</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h03_q02</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           prior     class          coef group resp dpar nlpar lb ub
   normal(0, 0.5)         b                                          
@@ -506,10 +510,14 @@ $scale_weight
          user
          user</code></pre>
 </div>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Total causal influence of average food on weight</span></span>
-<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h01_q02</span>, <span class="st">'scale_avgfood'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mcmc_areas</span><span class="op">(</span><span class="va">m_h03_q02</span>, pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'b_Intercept'</span>, <span class="st">'b_scale_avgfood'</span>, <span class="st">'sigma'</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="03-homework_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Total causal influence of average food on weight</span></span>
+<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h03_q02</span>, <span class="st">'scale_avgfood'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="03-homework_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section></section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
@@ -519,20 +527,20 @@ $scale_weight
 <section id="estimand-2" class="level3"><h3 class="anchored" data-anchor-id="estimand-2">Estimand</h3>
 <p>Direct causal influence of average food on weight. Consider how an intervention on average food would influence weight.</p>
 <div class="cell">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">adjustmentSets</span><span class="op">(</span><span class="va">dag</span>, exposure <span class="op">=</span> <span class="st">'F'</span>, outcome <span class="op">=</span> <span class="st">'W'</span>, effect <span class="op">=</span> <span class="st">'direct'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">adjustmentSets</span><span class="op">(</span><span class="va">dag</span>, exposure <span class="op">=</span> <span class="st">'F'</span>, outcome <span class="op">=</span> <span class="st">'W'</span>, effect <span class="op">=</span> <span class="st">'direct'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{ G }</code></pre>
 </div>
 </div>
 </section><section id="simulation-2" class="level3"><h3 class="anchored" data-anchor-id="simulation-2">Simulation</h3>
 <div class="cell">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h01_q03_prior</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h03_q03_prior</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">m_h01_q03_prior</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">m_h03_q03_prior</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>scale_weight ~ scale_avgfood + scale_groupsize </code></pre>
 </div>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h01_q03_prior</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h03_q03_prior</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           prior     class            coef group resp dpar nlpar lb ub
   normal(0, 0.5)         b                                            
@@ -547,21 +555,21 @@ $scale_weight
          user
          user</code></pre>
 </div>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Show draws from prior distributions</span></span>
-<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h01_q03_prior</span>, <span class="st">'scale_avgfood'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Show draws from prior distributions</span></span>
+<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h03_q03_prior</span>, <span class="st">'scale_avgfood'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="03-homework_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section><section id="model-2" class="level3"><h3 class="anchored" data-anchor-id="model-2">Model</h3>
 <div class="cell">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h01_q03</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h03_q03</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">m_h01_q03</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">m_h03_q03</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>scale_weight ~ scale_avgfood + scale_groupsize </code></pre>
 </div>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h01_q03</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h03_q03</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           prior     class            coef group resp dpar nlpar lb ub
   normal(0, 0.5)         b                                            
@@ -576,26 +584,30 @@ $scale_weight
          user
          user</code></pre>
 </div>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Direct causal influence of average food on weight</span></span>
-<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h01_q03</span>, <span class="st">'scale_avgfood'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mcmc_areas</span><span class="op">(</span><span class="va">m_h03_q03</span>, pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'b_Intercept'</span>, <span class="st">'b_scale_avgfood'</span>, <span class="st">'sigma'</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="03-homework_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Direct causal influence of average food on weight</span></span>
+<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h03_q03</span>, <span class="st">'scale_avgfood'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="03-homework_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Closing the backdoor path and estimating the direct effect of average food on weight now shows a positive relationship between average food and fox weight.</p>
 <div class="cell">
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h01_q03</span>, <span class="st">'scale_groupsize'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h03_q03</span>, <span class="st">'scale_groupsize'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="03-homework_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| warning: false</span></span>
-<span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h01_q03_groupsize_food</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| warning: false</span></span>
+<span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h03_q03_groupsize_food</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">m_h01_q03_groupsize_food</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">m_h03_q03_groupsize_food</span><span class="op">$</span><span class="va">formula</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>scale_groupsize ~ scale_avgfood </code></pre>
 </div>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h01_q03_groupsize_food</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_h03_q03_groupsize_food</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           prior     class          coef group resp dpar nlpar lb ub
   normal(0, 0.5)         b                                          
@@ -608,8 +620,8 @@ $scale_weight
          user
          user</code></pre>
 </div>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Direct causal influence of average food on group size</span></span>
-<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h01_q03_groupsize_food</span>, <span class="st">'scale_avgfood'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Direct causal influence of average food on group size</span></span>
+<span><span class="fu">conditional_effects</span><span class="op">(</span><span class="va">m_h03_q03_groupsize_food</span>, <span class="st">'scale_avgfood'</span>, prob <span class="op">=</span> <span class="fl">0.89</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="03-homework_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid" width="672"></p>
 </div>
@@ -620,14 +632,14 @@ $scale_weight
 <p>Suppose there is an unobserved confound that influences F and G. Assuming the DAG above is correct, again estimate both the total and direct causal effects of F on W. What impact does the unobserved confound have?</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'F'</span>, <span class="st">'G'</span>, <span class="st">'W'</span>, <span class="st">'U'</span><span class="op">)</span>,</span>
 <span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">1</span>,   <span class="fl">2</span>,    <span class="fl">1.5</span>,   <span class="fl">2</span><span class="op">)</span>,</span>
 <span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,    <span class="fl">2</span>,   <span class="fl">2</span>,    <span class="fl">1</span>,   <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dag</span> <span class="op">&lt;-</span> <span class="fu">dagify</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dag</span> <span class="op">&lt;-</span> <span class="fu">dagify</span><span class="op">(</span></span>
 <span>    <span class="va">W</span> <span class="op">~</span> <span class="cn">F</span> <span class="op">+</span> <span class="va">G</span>,</span>
 <span>    <span class="cn">F</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">U</span>,</span>
 <span>    <span class="va">G</span> <span class="op">~</span> <span class="cn">F</span> <span class="op">+</span> <span class="va">U</span>,</span>
@@ -641,11 +653,11 @@ $scale_weight
 <section id="estimand-3" class="level3"><h3 class="anchored" data-anchor-id="estimand-3">Estimand</h3>
 <p>Total and direct causal effects of F on W.</p>
 <div class="cell">
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">adjustmentSets</span><span class="op">(</span><span class="va">dag</span>, exposure <span class="op">=</span> <span class="st">'F'</span>, outcome <span class="op">=</span> <span class="st">'W'</span>, effect <span class="op">=</span> <span class="st">'total'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">adjustmentSets</span><span class="op">(</span><span class="va">dag</span>, exposure <span class="op">=</span> <span class="st">'F'</span>, outcome <span class="op">=</span> <span class="st">'W'</span>, effect <span class="op">=</span> <span class="st">'total'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{ U }</code></pre>
 </div>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">adjustmentSets</span><span class="op">(</span><span class="va">dag</span>, exposure <span class="op">=</span> <span class="st">'F'</span>, outcome <span class="op">=</span> <span class="st">'W'</span>, effect <span class="op">=</span> <span class="st">'direct'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">adjustmentSets</span><span class="op">(</span><span class="va">dag</span>, exposure <span class="op">=</span> <span class="st">'F'</span>, outcome <span class="op">=</span> <span class="st">'W'</span>, effect <span class="op">=</span> <span class="st">'direct'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{ G }</code></pre>
 </div>

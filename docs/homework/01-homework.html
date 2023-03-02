@@ -398,6 +398,21 @@ Attaching package: 'tidybayes'</code></pre>
     dstudent_t, pstudent_t, qstudent_t, rstudent_t</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
+<pre><code>This is bayesplot version 1.9.0</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>- Online documentation and vignettes at mc-stan.org/bayesplot</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>- bayesplot theme set to bayesplot::theme_default()</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>   * Does _not_ affect other ggplot2 plots</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>   * See ?bayesplot_theme_set for details on theme setting</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'janitor'</code></pre>
 </div>
@@ -406,10 +421,10 @@ Attaching package: 'janitor'</code></pre>
 
     chisq.test, fisher.test</code></pre>
 </div>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">'R/compute_posterior_globe.R'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">'R/compute_posterior_globe.R'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_water</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_water</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
 <span><span class="va">n_land</span> <span class="op">&lt;-</span> <span class="fl">11</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">'W'</span>, <span class="va">n_water</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">'L'</span>, <span class="va">n_land</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">n_possibilities</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
@@ -464,7 +479,7 @@ Attaching package: 'janitor'</code></pre>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Using a finer grid with more potential possibilities</span></span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Using a finer grid with more potential possibilities</span></span>
 <span><span class="va">n_possibilities</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
 <span><span class="va">posterior</span> <span class="op">&lt;-</span> <span class="fu">compute_posterior_globe</span><span class="op">(</span><span class="va">x</span>, n_possibilities <span class="op">=</span> <span class="va">n_possibilities</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -473,7 +488,7 @@ Attaching package: 'janitor'</code></pre>
 <p>Using the posterior distribution from 1, compute the posterior predictive distribution for the next 5 tosses of the same globe. I recommend you use the sampling method.</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">possibilities</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, length.out <span class="op">=</span> <span class="va">n_possibilities</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">possibilities</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, length.out <span class="op">=</span> <span class="va">n_possibilities</span><span class="op">)</span></span>
 <span><span class="va">size</span> <span class="op">&lt;-</span> <span class="fl">1e4</span></span>
 <span><span class="va">n_tosses</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
 <span></span>
@@ -497,7 +512,7 @@ Attaching package: 'janitor'</code></pre>
 <div class="cell-output-display">
 <p><img src="01-homework_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># === Sampling approach from representative Beta distribution</span></span>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># === Sampling approach from representative Beta distribution</span></span>
 <span><span class="va">beta_samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Beta.html">rbeta</a></span><span class="op">(</span></span>
 <span>    <span class="va">size</span>,</span>
 <span>    <span class="va">n_water</span> <span class="op">+</span> <span class="fl">1</span>,</span>
@@ -519,20 +534,20 @@ Attaching package: 'janitor'</code></pre>
 <p>Use the posterior predictive distribution from 2 to calculate the probability of 3 or more water samples in the next 5 tosses.</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Predicted probability of 3 or more water samples in the next 5 tosses</span></span>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Predicted probability of 3 or more water samples in the next 5 tosses</span></span>
 <span><span class="co">#  given posterior predictive distribution</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">posterior_predict</span> <span class="op">&gt;=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">/</span> <span class="va">size</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  FALSE   TRUE 
-0.8197 0.1803 </code></pre>
+0.8128 0.1872 </code></pre>
 </div>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># and beta distribution prediction</span></span>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># and beta distribution prediction</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">beta_predict</span> <span class="op">&gt;=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">/</span> <span class="va">size</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  FALSE   TRUE 
-0.8201 0.1799 </code></pre>
+0.8179 0.1821 </code></pre>
 </div>
 </div>
 </section><section id="question-4-optional" class="level2"><h2 class="anchored" data-anchor-id="question-4-optional">Question 4 (optional)</h2>
@@ -540,7 +555,7 @@ Attaching package: 'janitor'</code></pre>
 <p>This problem is an optional challenge for people who are taking the course for a second or third time. Suppose you observe W = 5 water points, but you forgot to write down how many times the globe was tossed, so you don’t know the number of land points L. Assume that p = 0.7 and compute the posterior distribution of the number of tosses N. Hint: Use the binomial distribution.</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">0.7</span></span>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">0.7</span></span>
 <span><span class="va">n_water</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
 <span></span>
 <span><span class="va">n_samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">15</span><span class="op">)</span></span>
