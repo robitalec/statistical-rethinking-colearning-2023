@@ -62,8 +62,8 @@ targets_h02 <- c(
 		brm(
 			scale_avgfood ~ scale_area,
 			prior = c(
-				prior(normal(0, 0.5), Intercept),
-				prior(normal(0, 1), b),
+				prior(normal(0, 0.25), Intercept),
+				prior(normal(0, 0.5), b),
 				prior(exponential(1), sigma)
 			),
 			data = foxes,
