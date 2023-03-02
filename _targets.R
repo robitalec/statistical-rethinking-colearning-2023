@@ -52,13 +52,13 @@ targets_h02 <- c(
 
 
 # Targets: homework 3 -----------------------------------------------------
-targets_h02 <- c(
+targets_h03 <- c(
 	tar_target(
 		foxes,
 		data_foxes(scale = TRUE)
 	),
 	tar_target(
-		m_h01_q01_prior,
+		m_h03_q01_prior,
 		brm(
 			scale_avgfood ~ scale_area,
 			prior = c(
@@ -72,7 +72,7 @@ targets_h02 <- c(
 		)
 	),
 	tar_target(
-		m_h01_q01,
+		m_h03_q01,
 		brm(
 			scale_avgfood ~ scale_area,
 			prior = c(
@@ -84,7 +84,7 @@ targets_h02 <- c(
 		)
 	),
 	tar_target(
-		m_h01_q02_prior,
+		m_h03_q02_prior,
 		brm(
 			scale_weight ~ scale_avgfood,
 			prior = c(
@@ -98,7 +98,7 @@ targets_h02 <- c(
 		)
 	),
 	tar_target(
-		m_h01_q02,
+		m_h03_q02,
 		brm(
 			scale_weight ~ scale_avgfood,
 			prior = c(
@@ -110,7 +110,7 @@ targets_h02 <- c(
 		)
 	),
 	tar_target(
-		m_h01_q03_prior,
+		m_h03_q03_prior,
 		brm(
 			scale_weight ~ scale_avgfood + scale_groupsize,
 			prior = c(
@@ -124,7 +124,7 @@ targets_h02 <- c(
 		)
 	),
 	tar_target(
-		m_h01_q03,
+		m_h03_q03,
 		brm(
 			scale_weight ~ scale_avgfood + scale_groupsize,
 			prior = c(
@@ -136,7 +136,7 @@ targets_h02 <- c(
 		)
 	),
 	tar_target(
-		m_h01_q03_groupsize_food,
+		m_h03_q03_groupsize_food,
 		brm(
 			scale_groupsize ~ scale_avgfood,
 			prior = c(
