@@ -1,5 +1,5 @@
 # _targets.R
 ```{r}
 #| echo: false
-writeLines(readLines('../_targets.R'))
+writeLines(readLines('_targets.R'))
 ```
