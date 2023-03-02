@@ -70,6 +70,18 @@ targets_h02 <- c(
 			sample_prior = 'only',
 			chains = 1
 		)
+	),
+	tar_target(
+		m_h01_q01,
+		brm(
+			scale_avgfood ~ scale_area,
+			prior = c(
+				prior(normal(0, 0.25), Intercept),
+				prior(normal(0, 0.5), b),
+				prior(exponential(1), sigma)
+			),
+			data = foxes
+		)
 	)
 )
 
