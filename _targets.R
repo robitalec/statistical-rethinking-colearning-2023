@@ -153,9 +153,9 @@ targets_h02 <- c(
 
 
 # Quarto ------------------------------------------------------------------
-# targets_quarto <- c(
-# 	tar_quarto(site, path = '.')
-# )
+targets_quarto <- c(
+	tar_quarto(site, path = '.')
+)
 
 
 
