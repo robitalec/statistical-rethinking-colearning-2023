@@ -1,5 +1,9 @@
 data_foxes <- function(scale = FALSE) {
-  data(foxes)
+	if (!'rethinking' %in% .packages()) {
+		stop('please load the rethinking package')
+	}
+
+	data(foxes)
   DT <- data.table(foxes)
 
   if (scale) {
@@ -9,6 +13,6 @@ data_foxes <- function(scale = FALSE) {
     DT[, scale_area := scale(area)]
     DT[, scale_weight := scale(weight)]
   }
-    
+
   return(DT)
 }
