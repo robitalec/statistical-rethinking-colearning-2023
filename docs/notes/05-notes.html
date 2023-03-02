@@ -240,6 +240,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../homework/02-homework.html" class="sidebar-item-text sidebar-link">Homework 02</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/03-homework.html" class="sidebar-item-text sidebar-link">Homework 03</a>
+  </div>
+</li>
       </ul>
 </li>
     </ul>
@@ -363,7 +368,7 @@ X     0   1
 <p>To estimate the causal effect of marriage rate, we need to stratify by age at marriage. Within each level of age at marriage, the part of the association between marriage rate and divorce rate that is caused by age at marriage is removed.</p>
 <p>Stratifying by a continuous variable: every value of A produces a different relationship between D and M. We have a different expected relationship.</p>
 <p>Statistical model</p>
-<p>If we standardize the data, priors are easier to set for linear models. Standardize = subtract the mean (mean of 0) and divide by the standard deviation (sd of 1).</p>
+<p>If we standardize (or rescale) the data, priors are easier to set for linear models. Standardize = subtract the mean (mean of 0) and divide by the standard deviation (sd of 1). “Since the outcome and the predictor are both standardized, the intercept should be very close to zero. The slope beta indicates that a change in one standard deviation in the predictor corresponds to a change in one standard deviation in the outcome” (Page 126).</p>
 <p>Prior predictive simulation</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>

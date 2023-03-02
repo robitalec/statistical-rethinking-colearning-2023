@@ -175,6 +175,11 @@ ul.task-list li input[type="checkbox"] {
   <a href="../homework/02-homework.html" class="sidebar-item-text sidebar-link">Homework 02</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/03-homework.html" class="sidebar-item-text sidebar-link">Homework 03</a>
+  </div>
+</li>
       </ul>
 </li>
     </ul>
@@ -190,52 +195,170 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content"><section id="targets.r" class="level1"><h1>_targets.R</h1>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code><a href="https://docs.ropensci.org/targets/"># Targets -----------------------------------------------------------------
+<pre><code># === Targets -------------------------------------------------------------
 # Alec L. Robitaille
-library(targets)
-library(tinytest)
-library(roxygen2)
 
-tar_config_set(
-    reporter_make = 'summary'
+
+
+# Source ------------------------------------------------------------------
+lapply(dir('R', '*.R', full.names = TRUE), source)
+
+
+
+# Options -----------------------------------------------------------------
+# Targets
+tar_option_set(format = 'qs')
+
+# Stan
+options(mc.cores = 2,
+                scipen = 999,
+                digits = 2)
+
+
+# Targets: homework 2 -----------------------------------------------------
+targets_h02 &lt;- c(
+    tar_target(
+        Howell_lt_12,
+        data_Howell()[age &lt; 12]
+    ),
+    tar_target(
+        m_h02_q02,
+        brm(
+            weight ~ age,
+            prior = c(
+                prior(normal(4, 0.5), Intercept),
+                prior(normal(4, 1), b),
+                prior(exponential(1), sigma)
+            ),
+            data = Howell_lt_12
+        )
+    ),
+    tar_target(
+        m_h02_q03,
+        brm(
+            weight ~ age + sex,
+            prior = c(
+                prior(normal(4, 0.5), Intercept),
+                prior(normal(4, 1), b),
+                prior(exponential(1), sigma)
+            ),
+            data = Howell_lt_12
+        )
+    )
 )
 
 
-c(
+# Targets: homework 3 -----------------------------------------------------
+targets_h02 &lt;- c(
     tar_target(
-        find_tests,
-        dir(file.path('inst', 'tinytest'), '.R')
+        foxes,
+        data_foxes(scale = TRUE)
     ),
     tar_target(
-        find_source_files,
-        dir(file.path('R'), '.R')
+        m_h01_q01_prior,
+        brm(
+            scale_avgfood ~ scale_area,
+            prior = c(
+                prior(normal(0, 0.25), Intercept),
+                prior(normal(0, 0.5), b),
+                prior(exponential(1), sigma)
+            ),
+            data = foxes,
+            sample_prior = 'only',
+            chains = 1
+        )
     ),
     tar_target(
-        man,
-        {find_source_files; roxygenize()}
+        m_h01_q01,
+        brm(
+            scale_avgfood ~ scale_area,
+            prior = c(
+                prior(normal(0, 0.25), Intercept),
+                prior(normal(0, 0.5), b),
+                prior(exponential(1), sigma)
+            ),
+            data = foxes
+        )
     ),
     tar_target(
-        test_files,
-        file.path('inst', 'tinytest', find_tests),
-        pattern = map(find_tests)
+        m_h01_q02_prior,
+        brm(
+            scale_weight ~ scale_avgfood,
+            prior = c(
+                prior(normal(0, 0.25), Intercept),
+                prior(normal(0, 0.5), b),
+                prior(exponential(1), sigma)
+            ),
+            data = foxes,
+            sample_prior = 'only',
+            chains = 1
+        )
     ),
     tar_target(
-        test,
-        run_test_file(test_files),
-        pattern = map(test_files)#,
-        # error = 'continue'
+        m_h01_q02,
+        brm(
+            scale_weight ~ scale_avgfood,
+            prior = c(
+                prior(normal(0, 0.25), Intercept),
+                prior(normal(0, 0.5), b),
+                prior(exponential(1), sigma)
+            ),
+            data = foxes
+        )
     ),
     tar_target(
-        summary_test,
-        summary(test),
-        pattern = map(test)#,
-        # error = 'continue'
+        m_h01_q03_prior,
+        brm(
+            scale_weight ~ scale_avgfood + scale_groupsize,
+            prior = c(
+                prior(normal(0, 0.25), Intercept),
+                prior(normal(0, 0.5), b),
+                prior(exponential(1), sigma)
+            ),
+            data = foxes,
+            sample_prior = 'only',
+            chains = 1
+        )
     ),
     tar_target(
-        all,
-        test_all('.')
+        m_h01_q03,
+        brm(
+            scale_weight ~ scale_avgfood + scale_groupsize,
+            prior = c(
+                prior(normal(0, 0.25), Intercept),
+                prior(normal(0, 0.5), b),
+                prior(exponential(1), sigma)
+            ),
+            data = foxes
+        )
+    ),
+    tar_target(
+        m_h01_q03_groupsize_food,
+        brm(
+            scale_groupsize ~ scale_avgfood,
+            prior = c(
+                prior(normal(0, 0.25), Intercept),
+                prior(normal(0, 0.5), b),
+                prior(exponential(1), sigma)
+            ),
+            data = foxes
+        )
     )
-)</a></code></pre>
+)
+
+
+
+
+# Quarto ------------------------------------------------------------------
+targets_quarto &lt;- c(
+    tar_quarto(site, path = '.')
+)
+
+
+
+# Targets: all ------------------------------------------------------------
+# Automatically grab all the "targets_*" lists above
+lapply(grep('targets', ls(), value = TRUE), get)</code></pre>
 </div>
 </div>
 
