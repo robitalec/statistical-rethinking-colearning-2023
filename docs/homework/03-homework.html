@@ -802,8 +802,10 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <section id="estimand-3" class="level3"><h3 class="anchored" data-anchor-id="estimand-3">Estimand</h3>
 <p>Total and direct causal effects of F on W.</p>
 <div class="cell">
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">adjustmentSets</span><span class="op">(</span><span class="va">dag</span>, exposure <span class="op">=</span> <span class="st">'F'</span>, outcome <span class="op">=</span> <span class="st">'W'</span>, effect <span class="op">=</span> <span class="st">'total'</span><span class="op">)</span></span>
-<span><span class="fu">adjustmentSets</span><span class="op">(</span><span class="va">dag</span>, exposure <span class="op">=</span> <span class="st">'F'</span>, outcome <span class="op">=</span> <span class="st">'W'</span>, effect <span class="op">=</span> <span class="st">'direct'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">adjustmentSets</span><span class="op">(</span><span class="va">dag</span>, exposure <span class="op">=</span> <span class="st">'F'</span>, outcome <span class="op">=</span> <span class="st">'W'</span>, effect <span class="op">=</span> <span class="st">'total'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">adjustmentSets</span><span class="op">(</span><span class="va">dag</span>, exposure <span class="op">=</span> <span class="st">'F'</span>, outcome <span class="op">=</span> <span class="st">'W'</span>, effect <span class="op">=</span> <span class="st">'direct'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{ G }</code></pre>
 </div>

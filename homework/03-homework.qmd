@@ -304,6 +304,9 @@ Total and direct causal effects of F on W.
 
 ```{r}
 adjustmentSets(dag, exposure = 'F', outcome = 'W', effect = 'total')
+```
+
+```{r}
 adjustmentSets(dag, exposure = 'F', outcome = 'W', effect = 'direct')
 ```
 
