@@ -111,6 +111,8 @@ tar_load(m_h01_q01)
 m_h01_q01$formula
 m_h01_q01$prior
 
+mcmc_areas(m_h01_q01, pars = c('b_Intercept', 'b_scale_area', 'sigma'))
+
 # Total causal influence of area on average food 
 conditional_effects(m_h01_q01, 'scale_area', prob = 0.89)
 ```
@@ -156,6 +158,8 @@ tar_load(m_h01_q02)
 
 m_h01_q02$formula
 m_h01_q02$prior
+
+mcmc_areas(m_h01_q01, pars = c('b_Intercept', 'b_scale_avgfood', 'sigma'))
 
 # Total causal influence of average food on weight
 conditional_effects(m_h01_q02, 'scale_avgfood', prob = 0.89)
@@ -203,6 +207,8 @@ tar_load(m_h01_q03)
 
 m_h01_q03$formula
 m_h01_q03$prior
+
+mcmc_areas(m_h01_q01, pars = c('b_Intercept', 'b_scale_avgfood', 'sigma'))
 
 # Direct causal influence of average food on weight
 conditional_effects(m_h01_q03, 'scale_avgfood', prob = 0.89)
