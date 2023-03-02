@@ -115,9 +115,12 @@ relationship.
 
 Statistical model
 
-If we standardize the data, priors are easier to set for linear models. 
-Standardize = subtract the mean (mean of 0) and divide by the standard
-deviation (sd of 1). 
+If we standardize (or rescale) the data, priors are easier to set for linear
+models. Standardize = subtract the mean (mean of 0) and divide by the standard
+deviation (sd of 1). "Since the outcome and the predictor are both standardized,
+the intercept should be very close to zero. The slope beta indicates that a
+change in one standard deviation in the predictor corresponds to a change in one
+standard deviation in the outcome" (Page 126).
 
 Prior predictive simulation  
 
