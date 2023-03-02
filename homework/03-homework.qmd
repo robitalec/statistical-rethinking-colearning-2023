@@ -93,11 +93,24 @@ potential effects on the scale of standard deviations.
 
 ```{r}
 #| warning: false
-# Model
 tar_load(m_h01_q01_prior)
 
 m_h01_q01_prior$formula
 m_h01_q01_prior$prior
 
-conditional_effects(m_h01_q01_prior)
+# Show draws from prior distributions
+conditional_effects(m_h01_q01_prior, 'scale_area', prob = 0.89)
+```
+
+### Model
+
+```{r}
+#| warning: false
+tar_load(m_h01_q01)
+
+m_h01_q01$formula
+m_h01_q01$prior
+
+# Total causal influence of area on average food 
+conditional_effects(m_h01_q01, 'scale_area', prob = 0.89)
 ```
