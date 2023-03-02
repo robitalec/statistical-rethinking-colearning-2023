@@ -211,3 +211,18 @@ conditional_effects(m_h01_q03, 'scale_avgfood', prob = 0.89)
 Closing the backdoor path and estimating the direct effect of average food
 on weight now shows a positive relationship between average food and fox weight. 
 
+
+```{r}
+conditional_effects(m_h01_q03, 'scale_groupsize', prob = 0.89)
+
+#| warning: false
+tar_load(m_h01_q03_groupsize_food)
+
+m_h01_q03_groupsize_food$formula
+m_h01_q03_groupsize_food$prior
+
+# Direct causal influence of average food on group size
+conditional_effects(m_h01_q03_groupsize_food, 'scale_avgfood', prob = 0.89)
+```
+
+As average food in a territory increases, the group size increases. 
