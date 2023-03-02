@@ -23,7 +23,7 @@ source('R/data_foxes.R')
 # groupsize : Size of each group
 # area : Area of group territory
 # weight : Body weight of individual fox
-DT <- data_foxes()
+DT <- data_foxes(scale = TRUE)
 ```
 
 
