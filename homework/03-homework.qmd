@@ -94,8 +94,12 @@ potential effects on the scale of standard deviations.
 ```{r}
 #| warning: false
 tar_load(m_h03_q01_prior)
+m_h03_q01_prior
 
+# Formula
 m_h03_q01_prior$formula
+
+# Priors
 m_h03_q01_prior$prior
 
 # Show draws from prior distributions
@@ -107,10 +111,15 @@ conditional_effects(m_h03_q01_prior, 'scale_area', prob = 0.89)
 ```{r}
 #| warning: false
 tar_load(m_h03_q01)
+m_h03_q01
 
+# Formula
 m_h03_q01$formula
+
+# Priors
 m_h03_q01$prior
 
+# Parameter estimates
 mcmc_areas(m_h03_q01, pars = c('b_Intercept', 'b_scale_area', 'sigma'))
 
 # Total causal influence of area on average food 
@@ -143,7 +152,12 @@ adjustmentSets(dag, exposure = 'F', outcome = 'W', effect = 'total')
 #| warning: false
 tar_load(m_h03_q02_prior)
 
+m_h03_q02_prior
+
+# Formula
 m_h03_q02_prior$formula
+
+# Priors
 m_h03_q02_prior$prior
 
 # Show draws from prior distributions
@@ -156,9 +170,15 @@ conditional_effects(m_h03_q02_prior, 'scale_avgfood', prob = 0.89)
 #| warning: false
 tar_load(m_h03_q02)
 
+m_h03_q02
+
+# Formula
 m_h03_q02$formula
+
+# Priors
 m_h03_q02$prior
 
+# Parameter estimates
 mcmc_areas(m_h03_q02, pars = c('b_Intercept', 'b_scale_avgfood', 'sigma'))
 
 # Total causal influence of average food on weight
@@ -192,7 +212,10 @@ adjustmentSets(dag, exposure = 'F', outcome = 'W', effect = 'direct')
 #| warning: false
 tar_load(m_h03_q03_prior)
 
+# Formula
 m_h03_q03_prior$formula
+
+# Priors
 m_h03_q03_prior$prior
 
 # Show draws from prior distributions
@@ -205,9 +228,15 @@ conditional_effects(m_h03_q03_prior, 'scale_avgfood', prob = 0.89)
 #| warning: false
 tar_load(m_h03_q03)
 
+m_h03_q03
+
+# Formula
 m_h03_q03$formula
+
+# Priors
 m_h03_q03$prior
 
+# Parameter estimates
 mcmc_areas(m_h03_q03, pars = c('b_Intercept', 'b_scale_avgfood', 'sigma'))
 
 # Direct causal influence of average food on weight
@@ -224,7 +253,12 @@ conditional_effects(m_h03_q03, 'scale_groupsize', prob = 0.89)
 #| warning: false
 tar_load(m_h03_q03_groupsize_food)
 
+m_h03_q03_groupsize_food
+
+# Formula
 m_h03_q03_groupsize_food$formula
+
+# Priors
 m_h03_q03_groupsize_food$prior
 
 # Direct causal influence of average food on group size
@@ -257,7 +291,8 @@ dag <- dagify(
 	W ~ F + G,
 	F ~ A + U,
 	G ~ F + U,
-  coords = coords
+  coords = coords,
+	latent = 'U'
 )
 dag |> ggdag(seed = 2) + theme_dag()
 ```
