@@ -89,7 +89,7 @@ mcmc_areas(
 	m_h06_q01_prior_exp_1,
 	regex_pars = 'r_tank', 
 	transformations = inv_logit
-) + lims(x = c(0, 1))
+)
 ```
 
 ## Exponential(0.1)
@@ -107,7 +107,7 @@ mcmc_areas(
 	m_h06_q01_prior_exp_0pt1,
 	regex_pars = 'r_tank',
 	transformations = inv_logit
-) + lims(x = c(0, 1))
+)
 ```
 
 ## Exponential(10)
@@ -125,6 +125,6 @@ mcmc_areas(
 	m_h06_q01_prior_exp_10, 
 	regex_pars = 'r_tank', 
 	transformations = inv_logit
-) + lims(x = c(0, 1))
+)
 ```
 :::
