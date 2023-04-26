@@ -1,0 +1,46 @@
+---
+title: "Homework 06"
+author: "Alec L. Robitaille"
+date: "2023-04-26"
+---
+
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+```{r, eval = FALSE}
+source('R/packages.R')
+```
+
+
+## Data 
+```{r}
+# Data
+source('R/data_reedfrogs.R')
+
+# from ?reedfrogs
+# density: initial tadpole density (number of tadpoles in a 1.2 x 0.8 x 0.4 m tank) [experiment 1]
+# pred: factor -  predators present or absent [experiment 1]
+# size: factor - big or small tadpoles [experiment 1]
+# surv: number surviving
+# propsurv: proportion surviving (=surv/density) [experiment 1]
+
+DT <- data_reedfrogs()
+```
+
+
+## Question 1
+> Conduct a prior predictive simulation for the Reedfrog model. By this I mean
+to simulate the prior distribution of tank survival probabilities αj. Start by
+using this prior: 
+
+> $\alpha_{j} \sim Normal(\bar{\alpha}, \sigma)$
+
+> $\alpha \sim Normal(0, 1)$
+
+> $\sigma \sim Exponential(1)$ 
+
+> Be sure to transform the $\alpha_{j}$ values to the probability scale for
+plotting and summary. How does increasing the width of the prior on $\sigma$ change the
+prior distribution of $\alpha_{j}$? You might try Exponential(10) and
+Exponential(0.1) for example.
