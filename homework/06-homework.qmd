@@ -73,6 +73,9 @@ and sd_patient_age are the parameter names in the example [(1 + age|patient)].
 
 
 
+::: {.panel-tabset}
+
+## Exponential(1)
 ```{r}
 tar_load(m_h06_q01_prior_exp_1)
 m_h06_q01_prior_exp_1$prior
@@ -80,11 +83,16 @@ m_h06_q01_prior_exp_1$prior
 
 
 ```{r prior_exp_1_areas}
-mcmc_areas(m_h06_q01_prior_exp_1, 
-					 regex_pars = 'r_tank', 
-					 transformations = inv_logit)
+#| fig-width: 7
+#| fig-height: 12
+mcmc_areas(
+	m_h06_q01_prior_exp_1,
+	regex_pars = 'r_tank', 
+	transformations = inv_logit
+) + lims(x = c(0, 1))
 ```
 
+## Exponential(0.1)
 
 ```{r}
 tar_load(m_h06_q01_prior_exp_0pt1)
@@ -93,11 +101,16 @@ m_h06_q01_prior_exp_0pt1$prior
 
 
 ```{r prior_exp_0pt1_areas}
-mcmc_areas(m_h06_q01_prior_exp_0pt1, 
-					 regex_pars = 'r_tank', 
-					 transformations = inv_logit)
+#| fig-width: 7
+#| fig-height: 12
+mcmc_areas(
+	m_h06_q01_prior_exp_0pt1,
+	regex_pars = 'r_tank',
+	transformations = inv_logit
+) + lims(x = c(0, 1))
 ```
 
+## Exponential(10)
 
 ```{r}
 tar_load(m_h06_q01_prior_exp_10)
@@ -106,7 +119,12 @@ m_h06_q01_prior_exp_10$prior
 
 
 ```{r prior_exp_10_areas}
-mcmc_areas(m_h06_q01_prior_exp_10, 
-					 regex_pars = 'r_tank', 
-					 transformations = inv_logit)
+#| fig-width: 7
+#| fig-height: 12
+mcmc_areas(
+	m_h06_q01_prior_exp_10, 
+	regex_pars = 'r_tank', 
+	transformations = inv_logit
+) + lims(x = c(0, 1))
 ```
+:::
