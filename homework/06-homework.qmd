@@ -41,8 +41,8 @@ using this prior:
 > $\sigma \sim Exponential(1)$ 
 
 > Be sure to transform the $\alpha_{j}$ values to the probability scale for
-plotting and summary. How does increasing the width of the prior on $\sigma$ change the
-prior distribution of $\alpha_{j}$? You might try Exponential(10) and
+plotting and summary. How does increasing the width of the prior on $\sigma$
+change the prior distribution of $\alpha_{j}$? You might try Exponential(10) and
 Exponential(0.1) for example.
 
 
@@ -59,7 +59,9 @@ get_prior(
 - $\sigma$ corresponds to class sd
 
 
-From: Bürkner, P.-C. (2017). brms: An R Package for Bayesian Multilevel Models Using Stan. Journal of Statistical Software, 80(1), 1–28. https://doi.org/10.18637/jss.v080.i01
+From: Bürkner, P.-C. (2017). brms: An R Package for Bayesian Multilevel Models
+Using Stan. Journal of Statistical Software, 80(1), 1–28.
+https://doi.org/10.18637/jss.v080.i01
 
 > `fit1 <- brm(formula = time | cens(censored) ~ age * sex + disease + (1 +
 age|patient), data = kidney, family = lognormal(), prior =
@@ -128,3 +130,16 @@ mcmc_areas(
 )
 ```
 :::
+
+
+
+
+## Question 2
+
+> Revisit the Reedfrog survival data, data(reedfrogs). Start with the varying
+effects model from the book and lecture. Then modify it to estimate the causal
+effects of the treatment variables pred and size, including how size might
+modify the effect of predation. An easy approach is to estimate an effect for
+each combination of pred and size. Justify your model with a DAG of this
+experiment.
+
