@@ -36,7 +36,7 @@ using this prior:
 
 > $\alpha_{j} \sim Normal(\bar{\alpha}, \sigma)$
 
-> $\alpha \sim Normal(0, 1)$
+> $\bar{\alpha} \sim Normal(0, 1)$
 
 > $\sigma \sim Exponential(1)$ 
 
@@ -54,3 +54,20 @@ get_prior(
 	family = 'binomial'
 )
 ```
+
+- $\bar{\alpha}$ corresponds to class Intercept
+- $\sigma$ corresponds to class sd
+
+
+From: Bürkner, P.-C. (2017). brms: An R Package for Bayesian Multilevel Models Using Stan. Journal of Statistical Software, 80(1), 1–28. https://doi.org/10.18637/jss.v080.i01
+
+> `fit1 <- brm(formula = time | cens(censored) ~ age * sex + disease + (1 +
+age|patient), data = kidney, family = lognormal(), prior =
+c(set_prior("normal(0,5)", class = "b"), set_prior("cauchy(0,2)", class = "sd"),
+set_prior("lkj(2)", class = "cor")))`
+  
+> Each group-level effect of each grouping factor has a standard deviation
+parameter, which is restricted to be non-negative ... In brms, standard
+deviation parameters are named as sd_<group>_<coef> so that sd_patient_Intercept
+and sd_patient_age are the parameter names in the example [(1 + age|patient)].
+
