@@ -71,3 +71,11 @@ parameter, which is restricted to be non-negative ... In brms, standard
 deviation parameters are named as sd_<group>_<coef> so that sd_patient_Intercept
 and sd_patient_age are the parameter names in the example [(1 + age|patient)].
 
+
+
+```{r}
+m_h06_exp_1 <- tar_read(m_h06_q01_prior_exp_1)
+m_h06_exp_1$prior
+```
+
+
