@@ -84,3 +84,29 @@ mcmc_areas(m_h06_q01_prior_exp_1,
 					 regex_pars = 'r_tank', 
 					 transformations = inv_logit)
 ```
+
+
+```{r}
+tar_load(m_h06_q01_prior_exp_0pt1)
+m_h06_q01_prior_exp_0pt1$prior
+```
+
+
+```{r prior_exp_0pt1_areas}
+mcmc_areas(m_h06_q01_prior_exp_0pt1, 
+					 regex_pars = 'r_tank', 
+					 transformations = inv_logit)
+```
+
+
+```{r}
+tar_load(m_h06_q01_prior_exp_10)
+m_h06_q01_prior_exp_10$prior
+```
+
+
+```{r prior_exp_10_areas}
+mcmc_areas(m_h06_q01_prior_exp_10, 
+					 regex_pars = 'r_tank', 
+					 transformations = inv_logit)
+```
