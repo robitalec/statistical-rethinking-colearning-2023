@@ -169,6 +169,34 @@ targets_h06 <- c(
 			sample_prior = 'only',
 			chains = 1
 		)
+	),
+	tar_target(
+		m_h06_q01_prior_exp_0pt1,
+		brm(
+			surv | trials(density) ~ (1 | tank),
+			family = 'binomial',
+			prior = c(
+				prior(normal(0, 1), class = Intercept),
+				prior(exponential(0.1), class = sd)
+			),
+			data = DT_frogs,
+			sample_prior = 'only',
+			chains = 1
+		)
+	),
+	tar_target(
+		m_h06_q01_prior_exp_10,
+		brm(
+			surv | trials(density) ~ (1 | tank),
+			family = 'binomial',
+			prior = c(
+				prior(normal(0, 1), class = Intercept),
+				prior(exponential(10), class = sd)
+			),
+			data = DT_frogs,
+			sample_prior = 'only',
+			chains = 1
+		)
 	)
 )
 
