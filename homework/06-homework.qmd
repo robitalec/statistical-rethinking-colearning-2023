@@ -161,3 +161,29 @@ dagify(
 ) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
 ```
 
+Survival in a tank depends on density, tank size, and predation. 
+
+$S_{i} \sim Binomial(D_{i}, p_{i} )$
+
+$logit(p_{i}) = \alpha_{T[i]} + \beta_{P, S}P_{i}$
+
+$\alpha_{j} \sim Normal(\bar{\alpha}, \sigma)$
+
+$\bar{\alpha} \sim Normal(0, 1)$
+
+$\beta_{P, S} \sim Normal(0, 0.5)$
+
+$\sigma \sim Exponential(1)$ 
+
+
+```{r}
+get_prior(
+	surv | trials(density) ~ pred * size + (1 | tank),
+	data = DT_frogs,
+	family = 'binomial'
+)
+```
+
+- $\bar{\alpha}$ corresponds to class Intercept
+- $\sigma$ corresponds to class sd
+
