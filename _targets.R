@@ -162,15 +162,14 @@ targets_h06 <- c(
 			surv | trials(density) ~ (1 | tank),
 			family = 'binomial',
 			prior = c(
-				prior(normal(0, 0.25), Intercept),
-				prior(normal(0, 0.5), b),
-				prior(exponential(1), sigma)
+				prior(normal(0, 1), class = Intercept),
+				prior(exponential(1), class = sd)
 			),
 			data = DT_frogs,
 			sample_prior = 'only',
 			chains = 1
 		)
-	),
+	)
 )
 
 
