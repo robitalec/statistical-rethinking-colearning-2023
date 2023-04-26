@@ -153,9 +153,24 @@ targets_h03 <- c(
 # Targets: homework 6 -----------------------------------------------------
 targets_h06 <- c(
 	tar_target(
-		reedfrogs,
+		DT_frogs,
 		data_reedfrogs()
-	)
+	),
+	tar_target(
+		m_h06_q01_prior_exp_1,
+		brm(
+			surv | trials(density) ~ (1 | tank),
+			family = 'binomial',
+			prior = c(
+				prior(normal(0, 0.25), Intercept),
+				prior(normal(0, 0.5), b),
+				prior(exponential(1), sigma)
+			),
+			data = DT_frogs,
+			sample_prior = 'only',
+			chains = 1
+		)
+	),
 )
 
 
