@@ -192,9 +192,6 @@ get_prior(
 tar_load(m_h06_q02)
 m_h06_q02
 m_h06_q02$prior
-
-
-newdata <- unique(DT_frogs[, .(pred, size, tank, density)])
 ```
 
 Reminder: 
@@ -212,11 +209,12 @@ emmean_pred <- emmeans(
 	~ pred * size, 
 	epred = TRUE,
 	at = list(density = c(25))
-)
+) |> gather_emmeans_draws()
 
-ggplot(gather_emmeans_draws(emmean_pred)) + 
-	stat_halfeye(aes(.value, interaction(size, pred, sep = ' - '))) + 
-	labs(x = 'Survival', y = 'Size (small / big) - predation (pred / no)')
+ggplot(emmean_pred) + 
+	stat_halfeye(aes(.value, size, fill = pred), alpha = 0.7) + 
+	labs(x = 'Survival', y = 'Size')  +
+	scale_fill_scico_d(begin = 0.3)
 ```
 
 Tanks with predation had lower survival, and smaller tanks had higher survival than bigger tanks. There is more uncertainty in tanks with predation.
