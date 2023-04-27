@@ -25,5 +25,6 @@ library(rethinking)
 library(brms)
 library(tidybayes)
 library(bayesplot)
+library(emmeans)
 
 library(janitor)
