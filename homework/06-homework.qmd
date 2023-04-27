@@ -217,12 +217,16 @@ emmean_pred <- emmeans(
 ggplot(gather_emmeans_draws(emmean_pred)) + 
 	stat_halfeye(aes(.value, interaction(size, pred, sep = ' - '))) + 
 	labs(x = 'Survival', y = 'Size (small / big) - predation (pred / no)')
-
-
-# Contrasts
-cont <- contrast(emmean) |> 
-	gather_emmeans_draws()
-
-ggplot(cont) + 
-	stat_halfeye(aes(.value, contrast))
 ```
+
+Tanks with predation had lower survival, and smaller tanks had higher survival than bigger tanks. There is more uncertainty in tanks with predation.
+
+
+## Question 3
+
+> Now estimate the causal effect of density on survival. Consider whether pred
+modifies the effect of density. There are several good ways to include density
+in your Binomial GLM. You could treat it as a continuous regression variable
+(possibly standardized). Or you could convert it to an ordered category (with
+three levels). Compare the σ (tank standard deviation) posterior distribution
+to σ from your model in Problem 2. How are they different? Why?
