@@ -257,9 +257,10 @@ Compare the \sigma from Question 2
 ```{r}
 (mcmc_areas(m_h06_q02, 'sd_tank__Intercept') + xlim(0, 2) + labs(title = 'Question 2')) / 
 	(mcmc_areas(m_h06_q03, 'sd_tank__Intercept') + xlim(0, 2) + labs(title = 'Question 3'))
-
 ```
 
 The distribution for tank standard deviation for Question 3 has less density at
 the upper ranges (>1.25) compared to the tank standard deviation for Question 2.
-
+The tank standard deviation is reduced because some of the variability between
+tanks was due to density and now that it is included in the model, this
+variability is incorporated into that parameter.
