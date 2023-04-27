@@ -161,7 +161,7 @@ dagify(
 ) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
 ```
 
-Survival in a tank depends on density, tank size, and predation. 
+Survival in a tank depends on density, tadpole size, and predation. 
 
 $S_{i} \sim Binomial(D_{i}, p_{i} )$
 
@@ -217,7 +217,7 @@ ggplot(emmean_pred) +
 	scale_fill_scico_d(begin = 0.3)
 ```
 
-Tanks with predation had lower survival, and smaller tanks had higher survival than bigger tanks. There is more uncertainty in tanks with predation.
+Tanks with predation had lower survival, and smaller tadpoles had higher survival than bigger tadpoles. There is more uncertainty in tanks with predation.
 
 
 ## Question 3

@@ -454,7 +454,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="06-homework_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="384"></p>
 </div>
 </div>
-<p>Survival in a tank depends on density, tank size, and predation.</p>
+<p>Survival in a tank depends on density, tadpole size, and predation.</p>
 <p><span class="math inline">\(S_{i} \sim Binomial(D_{i}, p_{i} )\)</span></p>
 <p><span class="math inline">\(logit(p_{i}) = \alpha_{T[i]} + \beta_{P, S}P_{i}\)</span></p>
 <p><span class="math inline">\(\alpha_{j} \sim Normal(\bar{\alpha}, \sigma)\)</span></p>
@@ -566,7 +566,7 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <p><img src="06-homework_files/figure-html/h06_q02_emmean-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Tanks with predation had lower survival, and smaller tanks had higher survival than bigger tanks. There is more uncertainty in tanks with predation.</p>
+<p>Tanks with predation had lower survival, and smaller tadpoles had higher survival than bigger tadpoles. There is more uncertainty in tanks with predation.</p>
 </section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
 <blockquote class="blockquote">
 <p>Now estimate the causal effect of density on survival. Consider whether pred modifies the effect of density. There are several good ways to include density in your Binomial GLM. You could treat it as a continuous regression variable (possibly standardized). Or you could convert it to an ordered category (with three levels). Compare the σ (tank standard deviation) posterior distribution to σ from your model in Problem 2. How are they different? Why?</p>
