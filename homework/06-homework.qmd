@@ -197,36 +197,32 @@ m_h06_q02$prior
 newdata <- unique(DT_frogs[, .(pred, size, tank, density)])
 ```
 
-```{r, h06_q02_pred}
-# Prediction includes uncertainty of coefficients, variance parameters of the groups and each individual observation
-predicted <- predicted_draws(m_h06_q02, newdata)
+Reminder: 
 
-ggplot(predicted) + 
-	stat_halfeye(aes(interaction(size, pred, sep = ' - '), .prediction))
-```
+- Prediction includes uncertainty of coefficients, variance parameters of the groups and each individual observation
+- Epred (expected values) includes the uncertainty of the coefficients and variance parameters of the groups
+- Emmeans returns the average marginal effects
 
-```{r, h06_q02_epred}
-# Epred (expected values) includes the uncertainty of the coefficients and variance parameters of the groups
-eprediction <- epred_draws(m_h06_q02, newdata)
 
-ggplot(eprediction) + 
-	stat_halfeye(aes(interaction(size, pred, sep = ' - '), .epred))
-```
 
 ```{r, h06_q02_emmean}
 # Average marginal effects
-emmean <- emmeans(
+emmean_pred <- emmeans(
 	m_h06_q02, 
 	~ pred * size, 
 	epred = TRUE,
-	at = list(density = c(10, 25, 35))
+	at = list(density = c(25))
 )
 
+ggplot(gather_emmeans_draws(emmean_pred)) + 
+	stat_halfeye(aes(.value, interaction(size, pred, sep = ' - '))) + 
+	labs(x = 'Survival', y = 'Size (small / big) - predation (pred / no)')
+
+
 # Contrasts
-cont <- contrast(emmean, 'pairwise') |> 
+cont <- contrast(emmean) |> 
 	gather_emmeans_draws()
 
-ggplot(gather_emmeans_draws(emmean)) + 
-	stat_halfeye(aes(interaction(size, pred, sep = ' - '), .value))
-
+ggplot(cont) + 
+	stat_halfeye(aes(.value, contrast))
 ```
