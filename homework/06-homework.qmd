@@ -207,7 +207,7 @@ Reminder:
 emmean_pred <- emmeans(
 	m_h06_q02, 
 	~ pred * size, 
-	epred = TRUE,
+	regrid = 'response',
 	at = list(density = c(25))
 ) |> gather_emmeans_draws()
 
@@ -240,7 +240,7 @@ m_h06_q03$prior
 emmean_pred_dens <- emmeans(
 	m_h06_q03, 
 	~ pred * density, 
-	epred = TRUE,
+	regrid = 'response',
 	at = list(density = c(10, 25, 35))
 ) |> gather_emmeans_draws()
 
