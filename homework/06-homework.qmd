@@ -187,3 +187,46 @@ get_prior(
 - $\bar{\alpha}$ corresponds to class Intercept
 - $\sigma$ corresponds to class sd
 
+
+```{r}
+tar_load(m_h06_q02)
+m_h06_q02
+m_h06_q02$prior
+
+
+newdata <- unique(DT_frogs[, .(pred, size, tank, density)])
+```
+
+```{r, h06_q02_pred}
+# Prediction includes uncertainty of coefficients, variance parameters of the groups and each individual observation
+predicted <- predicted_draws(m_h06_q02, newdata)
+
+ggplot(predicted) + 
+	stat_halfeye(aes(interaction(size, pred, sep = ' - '), .prediction))
+```
+
+```{r, h06_q02_epred}
+# Epred (expected values) includes the uncertainty of the coefficients and variance parameters of the groups
+eprediction <- epred_draws(m_h06_q02, newdata)
+
+ggplot(eprediction) + 
+	stat_halfeye(aes(interaction(size, pred, sep = ' - '), .epred))
+```
+
+```{r, h06_q02_emmean}
+# Average marginal effects
+emmean <- emmeans(
+	m_h06_q02, 
+	~ pred * size, 
+	epred = TRUE,
+	at = list(density = c(10, 25, 35))
+)
+
+# Contrasts
+cont <- contrast(emmean, 'pairwise') |> 
+	gather_emmeans_draws()
+
+ggplot(gather_emmeans_draws(emmean)) + 
+	stat_halfeye(aes(interaction(size, pred, sep = ' - '), .value))
+
+```
