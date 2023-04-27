@@ -150,10 +150,86 @@ targets_h03 <- c(
 )
 
 
+# Targets: homework 6 -----------------------------------------------------
+targets_h06 <- c(
+	tar_target(
+		DT_frogs,
+		data_reedfrogs()
+	),
+	tar_target(
+		m_h06_q01_prior_exp_1,
+		brm(
+			surv | trials(density) ~ (1 | tank),
+			family = 'binomial',
+			prior = c(
+				prior(normal(0, 1), class = Intercept),
+				prior(exponential(1), class = sd)
+			),
+			data = DT_frogs,
+			sample_prior = 'only',
+			chains = 1
+		)
+	),
+	tar_target(
+		m_h06_q01_prior_exp_0pt1,
+		brm(
+			surv | trials(density) ~ (1 | tank),
+			family = 'binomial',
+			prior = c(
+				prior(normal(0, 1), class = Intercept),
+				prior(exponential(0.1), class = sd)
+			),
+			data = DT_frogs,
+			sample_prior = 'only',
+			chains = 1
+		)
+	),
+	tar_target(
+		m_h06_q01_prior_exp_10,
+		brm(
+			surv | trials(density) ~ (1 | tank),
+			family = 'binomial',
+			prior = c(
+				prior(normal(0, 1), class = Intercept),
+				prior(exponential(10), class = sd)
+			),
+			data = DT_frogs,
+			sample_prior = 'only',
+			chains = 1
+		)
+	),
+	tar_target(
+		m_h06_q02,
+		brm(
+			surv | trials(density) ~ pred * size + (1 | tank),
+			family = 'binomial',
+			prior = c(
+				prior(normal(0, 0.5), class = b),
+				prior(normal(0, 1), class = Intercept),
+				prior(exponential(1), class = sd)
+			),
+			data = DT_frogs
+		)
+	),
+	tar_target(
+		m_h06_q03,
+		brm(
+			surv | trials(density) ~ pred * density + (1 | tank),
+			family = 'binomial',
+			prior = c(
+				prior(normal(0, 0.5), class = b),
+				prior(normal(0, 1), class = Intercept),
+				prior(exponential(1), class = sd)
+			),
+			data = DT_frogs
+		)
+	)
+)
+
 
 
 # Quarto ------------------------------------------------------------------
-targets_quarto <- c(
+zzz_quarto <- c(
 	tar_quarto(site, path = '.')
 )
 

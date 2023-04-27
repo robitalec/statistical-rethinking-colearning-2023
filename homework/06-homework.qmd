@@ -1,0 +1,266 @@
+---
+title: "Homework 06"
+author: "Alec L. Robitaille"
+date: "2023-04-26"
+---
+
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+```{r, eval = FALSE}
+source('R/packages.R')
+```
+
+
+## Data 
+```{r}
+# Data
+source('R/data_reedfrogs.R')
+
+# from ?reedfrogs
+# density: initial tadpole density (number of tadpoles in a 1.2 x 0.8 x 0.4 m tank) [experiment 1]
+# pred: factor -  predators present or absent [experiment 1]
+# size: factor - big or small tadpoles [experiment 1]
+# surv: number surviving
+# propsurv: proportion surviving (=surv/density) [experiment 1]
+
+DT_frogs <- data_reedfrogs()
+```
+
+
+## Question 1
+> Conduct a prior predictive simulation for the Reedfrog model. By this I mean
+to simulate the prior distribution of tank survival probabilities αj. Start by
+using this prior: 
+
+> $\alpha_{j} \sim Normal(\bar{\alpha}, \sigma)$
+
+> $\bar{\alpha} \sim Normal(0, 1)$
+
+> $\sigma \sim Exponential(1)$ 
+
+> Be sure to transform the $\alpha_{j}$ values to the probability scale for
+plotting and summary. How does increasing the width of the prior on $\sigma$
+change the prior distribution of $\alpha_{j}$? You might try Exponential(10) and
+Exponential(0.1) for example.
+
+
+
+```{r}
+get_prior(
+	surv | trials(density) ~ (1 | tank),
+	data = DT_frogs,
+	family = 'binomial'
+)
+```
+
+- $\bar{\alpha}$ corresponds to class Intercept
+- $\sigma$ corresponds to class sd
+
+
+From: Bürkner, P.-C. (2017). brms: An R Package for Bayesian Multilevel Models
+Using Stan. Journal of Statistical Software, 80(1), 1–28.
+https://doi.org/10.18637/jss.v080.i01
+
+> `fit1 <- brm(formula = time | cens(censored) ~ age * sex + disease + (1 +
+age|patient), data = kidney, family = lognormal(), prior =
+c(set_prior("normal(0,5)", class = "b"), set_prior("cauchy(0,2)", class = "sd"),
+set_prior("lkj(2)", class = "cor")))`
+  
+> Each group-level effect of each grouping factor has a standard deviation
+parameter, which is restricted to be non-negative ... In brms, standard
+deviation parameters are named as sd_<group>_<coef> so that sd_patient_Intercept
+and sd_patient_age are the parameter names in the example [(1 + age|patient)].
+
+
+
+::: {.panel-tabset}
+
+## Exponential(1)
+```{r}
+tar_load(m_h06_q01_prior_exp_1)
+m_h06_q01_prior_exp_1$prior
+```
+
+
+```{r prior_exp_1_areas}
+#| fig-width: 7
+#| fig-height: 12
+mcmc_areas(
+	m_h06_q01_prior_exp_1,
+	regex_pars = 'r_tank', 
+	transformations = inv_logit
+)
+```
+
+## Exponential(0.1)
+
+```{r}
+tar_load(m_h06_q01_prior_exp_0pt1)
+m_h06_q01_prior_exp_0pt1$prior
+```
+
+
+```{r prior_exp_0pt1_areas}
+#| fig-width: 7
+#| fig-height: 12
+mcmc_areas(
+	m_h06_q01_prior_exp_0pt1,
+	regex_pars = 'r_tank',
+	transformations = inv_logit
+)
+```
+
+## Exponential(10)
+
+```{r}
+tar_load(m_h06_q01_prior_exp_10)
+m_h06_q01_prior_exp_10$prior
+```
+
+
+```{r prior_exp_10_areas}
+#| fig-width: 7
+#| fig-height: 12
+mcmc_areas(
+	m_h06_q01_prior_exp_10, 
+	regex_pars = 'r_tank', 
+	transformations = inv_logit
+)
+```
+:::
+
+
+
+
+## Question 2
+
+> Revisit the Reedfrog survival data, data(reedfrogs). Start with the varying
+effects model from the book and lecture. Then modify it to estimate the causal
+effects of the treatment variables pred and size, including how size might
+modify the effect of predation. An easy approach is to estimate an effect for
+each combination of pred and size. Justify your model with a DAG of this
+experiment.
+
+
+```{r}
+coords <- data.frame(
+    name = c('D', 'G', 'P', 'T', 'S'),
+    x =    c(1,    2,   3,   1,    2),
+    y =    c(0,    0,   0,   1,  1)
+)
+```
+
+```{r}
+#| fig.height: 4
+#| fig.width: 4
+dagify(
+    S ~ D + G + P + T,
+  coords = coords
+) |> ggdag(seed = 2, layout = 'auto') + theme_dag()
+```
+
+Survival in a tank depends on density, tank size, and predation. 
+
+$S_{i} \sim Binomial(D_{i}, p_{i} )$
+
+$logit(p_{i}) = \alpha_{T[i]} + \beta_{P, S}P_{i}$
+
+$\alpha_{j} \sim Normal(\bar{\alpha}, \sigma)$
+
+$\bar{\alpha} \sim Normal(0, 1)$
+
+$\beta_{P, S} \sim Normal(0, 0.5)$
+
+$\sigma \sim Exponential(1)$ 
+
+
+```{r}
+get_prior(
+	surv | trials(density) ~ pred * size + (1 | tank),
+	data = DT_frogs,
+	family = 'binomial'
+)
+```
+
+- $\bar{\alpha}$ corresponds to class Intercept
+- $\sigma$ corresponds to class sd
+
+
+```{r}
+tar_load(m_h06_q02)
+m_h06_q02
+m_h06_q02$prior
+```
+
+Reminder: 
+
+- Prediction includes uncertainty of coefficients, variance parameters of the groups and each individual observation
+- Epred (expected values) includes the uncertainty of the coefficients and variance parameters of the groups
+- Emmeans returns the average marginal effects
+
+
+
+```{r, h06_q02_emmean}
+# Average marginal effects
+emmean_pred <- emmeans(
+	m_h06_q02, 
+	~ pred * size, 
+	epred = TRUE,
+	at = list(density = c(25))
+) |> gather_emmeans_draws()
+
+ggplot(emmean_pred) + 
+	stat_halfeye(aes(.value, size, fill = pred), alpha = 0.7) + 
+	labs(x = 'Survival', y = 'Size')  +
+	scale_fill_scico_d(begin = 0.3)
+```
+
+Tanks with predation had lower survival, and smaller tanks had higher survival than bigger tanks. There is more uncertainty in tanks with predation.
+
+
+## Question 3
+
+> Now estimate the causal effect of density on survival. Consider whether pred
+modifies the effect of density. There are several good ways to include density
+in your Binomial GLM. You could treat it as a continuous regression variable
+(possibly standardized). Or you could convert it to an ordered category (with
+three levels). Compare the σ (tank standard deviation) posterior distribution
+to σ from your model in Problem 2. How are they different? Why?
+
+```{r}
+tar_load(m_h06_q03)
+m_h06_q03
+m_h06_q03$prior
+```
+
+```{r, h06_q03_emmean}
+# Average marginal effects
+emmean_pred_dens <- emmeans(
+	m_h06_q03, 
+	~ pred * density, 
+	epred = TRUE,
+	at = list(density = c(10, 25, 35))
+) |> gather_emmeans_draws()
+
+ggplot(emmean_pred_dens) +
+	stat_halfeye(aes(.value, factor(density), fill = pred), alpha = 0.7) +
+	labs(x = 'Survival', y = 'Initial tank density') +
+	scale_fill_scico_d(begin = 0.3)
+```
+
+
+
+Compare the \sigma from Question 2
+
+```{r}
+(mcmc_areas(m_h06_q02, 'sd_tank__Intercept') + xlim(0, 2) + labs(title = 'Question 2')) / 
+	(mcmc_areas(m_h06_q03, 'sd_tank__Intercept') + xlim(0, 2) + labs(title = 'Question 3'))
+```
+
+The distribution for tank standard deviation for Question 3 has less density at
+the upper ranges (>1.25) compared to the tank standard deviation for Question 2.
+The tank standard deviation is reduced because some of the variability between
+tanks was due to density and now that it is included in the model, this
+variability is incorporated into that parameter.
