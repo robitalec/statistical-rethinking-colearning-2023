@@ -228,3 +228,38 @@ in your Binomial GLM. You could treat it as a continuous regression variable
 (possibly standardized). Or you could convert it to an ordered category (with
 three levels). Compare the σ (tank standard deviation) posterior distribution
 to σ from your model in Problem 2. How are they different? Why?
+
+```{r}
+tar_load(m_h06_q03)
+m_h06_q03
+m_h06_q03$prior
+```
+
+```{r, h06_q03_emmean}
+# Average marginal effects
+emmean_pred_dens <- emmeans(
+	m_h06_q03, 
+	~ pred * density, 
+	epred = TRUE,
+	at = list(density = c(10, 25, 35))
+) |> gather_emmeans_draws()
+
+ggplot(emmean_pred_dens) +
+	stat_halfeye(aes(.value, factor(density), fill = pred), alpha = 0.7) +
+	labs(x = 'Survival', y = 'Initial tank density') +
+	scale_fill_scico_d(begin = 0.3)
+```
+
+
+
+Compare the \sigma from Question 2
+
+```{r}
+(mcmc_areas(m_h06_q02, 'sd_tank__Intercept') + xlim(0, 2) + labs(title = 'Question 2')) / 
+	(mcmc_areas(m_h06_q03, 'sd_tank__Intercept') + xlim(0, 2) + labs(title = 'Question 3'))
+
+```
+
+The distribution for tank standard deviation for Question 3 has less density at
+the upper ranges (>1.25) compared to the tank standard deviation for Question 2.
+
