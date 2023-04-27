@@ -210,6 +210,19 @@ targets_h06 <- c(
 			),
 			data = DT_frogs
 		)
+	),
+	tar_target(
+		m_h06_q03,
+		brm(
+			surv | trials(density) ~ pred * density + (1 | tank),
+			family = 'binomial',
+			prior = c(
+				prior(normal(0, 0.5), class = b),
+				prior(normal(0, 1), class = Intercept),
+				prior(exponential(1), class = sd)
+			),
+			data = DT_frogs
+		)
 	)
 )
 
