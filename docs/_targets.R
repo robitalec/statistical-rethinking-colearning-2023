@@ -229,7 +229,7 @@ targets_h06 <- c(
 
 
 # Quarto ------------------------------------------------------------------
-zzz_quarto <- c(
+targets_quarto <- c(
 	tar_quarto(site, path = '.')
 )
 
