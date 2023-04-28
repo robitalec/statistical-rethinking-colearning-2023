@@ -149,6 +149,29 @@ targets_h03 <- c(
 	)
 )
 
+# Targets: homework 5 -----------------------------------------------------
+targets_h05 <- c(
+	tar_target(
+		DT_grants,
+		data_grants()
+	),
+	tar_target(
+		m_h05_q01_prior,
+		brm(
+			awards | trials(applications) ~ gender,
+			family = 'binomial',
+			prior = c(
+				prior(normal(0, 0.5), class = b),
+				prior(normal(0, 1), class = Intercept),
+				prior(exponential(1), class = sd)
+			),
+			data = DT_grants,
+			sample_prior = 'only',
+			chains = 1
+		)
+	)
+)
+
 
 # Targets: homework 6 -----------------------------------------------------
 targets_h06 <- c(
