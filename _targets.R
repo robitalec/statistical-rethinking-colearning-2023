@@ -168,6 +168,18 @@ targets_h05 <- c(
 			sample_prior = 'only',
 			chains = 1
 		)
+	),
+	tar_target(
+		m_h05_q01,
+		brm(
+			awards | trials(applications) ~ gender,
+			family = 'binomial',
+			prior = c(
+				prior(normal(0, 0.5), class = b),
+				prior(normal(0, 1), class = Intercept)
+			),
+			data = DT_grants
+		)
 	)
 )
 
