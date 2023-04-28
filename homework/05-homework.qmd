@@ -90,3 +90,10 @@ ggplot(data.frame(
     difference_m_f = pred_m$.epred - pred_f$.epred
 )) + stat_halfeye(aes(difference_m_f))
 ```
+
+```{r}
+emmean_total_gender <- emmeans(m_h05_q01, ~ gender, type = 'response')
+
+plot(emmean_total_gender) + xlim(0, 1) + xlab('award')
+```
+
