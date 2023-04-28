@@ -26,3 +26,31 @@ source('R/data_grants.R')
 DT_grants <- data_grants()
 ```
 
+
+## Question 1 
+
+> The data in data(NWOGrants) are outcomes for scientific funding applications
+for the Netherlands Organization for Scientific Research (NWO) from 2010–2012
+(see van der Lee and Ellemers doi:10.1073/pnas.1510159112). These data have a
+structure similar to the UCBAdmit data discussed in Chapter 11 and in lecture.
+There are applications and each has an associated gender (of the lead researcher).
+But instead of departments, there are disciplines. Draw a DAG for this sample. Then
+use the backdoor criterion and a binomial GLM to estimate the TOTAL causal effect
+of gender on grant awards
+
+
+```{r}
+coords <- data.frame(
+    name = c('G', 'D', 'A'),
+    x =    c(1,    2,   3),
+    y =    c(0,    1,   0)
+)
+
+dagify(
+	A ~ G + D,
+	D ~ G + A,
+	coords = coords,
+) |> ggdag_status(seed = 2) + theme_dag()
+```
+
+
