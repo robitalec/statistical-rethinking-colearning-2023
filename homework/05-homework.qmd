@@ -49,8 +49,16 @@ coords <- data.frame(
 dagify(
 	A ~ G + D,
 	D ~ G + A,
-	coords = coords,
-) |> ggdag_status(seed = 2) + theme_dag()
+	coords = coords
+) |> ggdag(seed = 2) + theme_dag()
 ```
 
+Total effect of gender on award has two paths: through discipline and directly to award. 
 
+Prior predictive simulation 
+
+```{r}
+tar_load(m_h05_q01_prior)
+
+conditional_effects(m_h05_q01_prior)
+```
