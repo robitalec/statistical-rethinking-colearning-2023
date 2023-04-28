@@ -81,3 +81,12 @@ m_h05_q01
 mcmc_areas(m_h05_q01, regex_pars = 'b')
 ```
 
+
+```{r}
+pred_m <- epred_draws(m_h05_q01, DT_grants[, .(awards, applications, gender = 'm')])
+pred_f <- epred_draws(m_h05_q01, DT_grants[, .(awards, applications, gender = 'f')])
+
+ggplot(data.frame(
+    difference_m_f = pred_m$.epred - pred_f$.epred
+)) + stat_halfeye(aes(difference_m_f))
+```
