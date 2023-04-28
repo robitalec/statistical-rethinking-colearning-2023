@@ -162,8 +162,7 @@ targets_h05 <- c(
 			family = 'binomial',
 			prior = c(
 				prior(normal(0, 0.5), class = b),
-				prior(normal(0, 1), class = Intercept),
-				prior(exponential(1), class = sd)
+				prior(normal(0, 1), class = Intercept)
 			),
 			data = DT_grants,
 			sample_prior = 'only',
