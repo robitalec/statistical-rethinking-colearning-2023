@@ -72,3 +72,12 @@ m_h05_q01_prior$priors
 mcmc_areas(m_h05_q01_prior, regex_pars = 'b')
 ```
 
+
+
+```{r}
+tar_load(m_h05_q01)
+m_h05_q01
+
+mcmc_areas(m_h05_q01, regex_pars = 'b')
+```
+
