@@ -1,0 +1,28 @@
+---
+title: "Homework 05"
+author: "Alec L. Robitaille"
+date: "2023-04-28"
+---
+
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+```{r, eval = FALSE}
+source('R/packages.R')
+```
+
+
+## Data 
+```{r}
+# Data
+source('R/data_grants.R')
+
+# discipline
+# gender
+# applications
+# awards
+
+DT_grants <- data_grants()
+```
+
