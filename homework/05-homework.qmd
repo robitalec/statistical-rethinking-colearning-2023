@@ -55,10 +55,19 @@ dagify(
 
 Total effect of gender on award has two paths: through discipline and directly to award. 
 
-Prior predictive simulation 
+Prior predictive simulation
+
+```{r}
+get_prior(
+    awards | trials(applications) ~ gender,
+    family = 'binomial',
+    data = DT_grants
+)
+```
 
 ```{r}
 tar_load(m_h05_q01_prior)
 
 conditional_effects(m_h05_q01_prior)
 ```
+
