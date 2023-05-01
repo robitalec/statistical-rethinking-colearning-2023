@@ -184,7 +184,7 @@ targets_h05 <- c(
 	tar_target(
 		m_h05_q02,
 		brm(
-			awards | trials(applications) ~ gender + discipline,
+			awards | trials(applications) ~ gender * discipline,
 			family = 'binomial',
 			prior = c(
 				prior(normal(0, 0.5), class = b),
