@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Alec L. Robitaille">
+<meta name="dcterms.date" content="2023-04-28">
+<title>Statistical Rethinking colearning 2023 - Homework 05</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Homework 05</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Statistical Rethinking colearning 2023</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Home</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Notes</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/01-notes.html" class="sidebar-item-text sidebar-link">Lecture 01 Notes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/02-notes.html" class="sidebar-item-text sidebar-link">Lecture 02 Notes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/03-notes.html" class="sidebar-item-text sidebar-link">Lecture 03 Notes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/04-notes.html" class="sidebar-item-text sidebar-link">Lecture 04 Notes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/05-notes.html" class="sidebar-item-text sidebar-link">Lecture 05 Notes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/09-notes.html" class="sidebar-item-text sidebar-link">Lecture 09 Notes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/10-notes.html" class="sidebar-item-text sidebar-link">Lecture 10 Notes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/11-notes.html" class="sidebar-item-text sidebar-link">Lecture 11 Notes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/12-notes.html" class="sidebar-item-text sidebar-link">Lecture 12 Notes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/13-notes.html" class="sidebar-item-text sidebar-link">Lecture 13 Notes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/14-notes.html" class="sidebar-item-text sidebar-link">Lecture 14 Notes</a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Homework</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/targets.html" class="sidebar-item-text sidebar-link">_targets.R</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/01-homework.html" class="sidebar-item-text sidebar-link">Homework 01</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/02-homework.html" class="sidebar-item-text sidebar-link">Homework 02</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/03-homework.html" class="sidebar-item-text sidebar-link">Homework 03</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/05-homework.html" class="sidebar-item-text sidebar-link active">Homework 05</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/06-homework.html" class="sidebar-item-text sidebar-link">Homework 06</a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data">Data</a></li>
+  <li>
+<a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a>
+  <ul class="collapse">
+<li><a href="#prior-predictive-simulation" id="toc-prior-predictive-simulation" class="nav-link" data-scroll-target="#prior-predictive-simulation">Prior predictive simulation</a></li>
+  <li><a href="#posterior" id="toc-posterior" class="nav-link" data-scroll-target="#posterior">Posterior</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a>
+  <ul class="collapse">
+<li><a href="#posterior-1" id="toc-posterior-1" class="nav-link" data-scroll-target="#posterior-1">Posterior</a></li>
+  </ul>
+</li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block">Homework 05</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Alec L. Robitaille </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 28, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header><div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">'R/packages.R'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="data" class="level2"><h2 class="anchored" data-anchor-id="data">Data</h2>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Data</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">'R/data_grants.R'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># discipline</span></span>
+<span><span class="co"># gender</span></span>
+<span><span class="co"># applications</span></span>
+<span><span class="co"># awards</span></span>
+<span></span>
+<span><span class="va">DT_grants</span> <span class="op">&lt;-</span> <span class="fu">data_grants</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<blockquote class="blockquote">
+<p>The data in data(NWOGrants) are outcomes for scientific funding applications for the Netherlands Organization for Scientific Research (NWO) from 2010–2012 (see van der Lee and Ellemers doi:10.1073/pnas.1510159112). These data have a structure similar to the UCBAdmit data discussed in Chapter 11 and in lecture. There are applications and each has an associated gender (of the lead researcher). But instead of departments, there are disciplines. Draw a DAG for this sample. Then use the backdoor criterion and a binomial GLM to estimate the TOTAL causal effect of gender on grant awards</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'G'</span>, <span class="st">'D'</span>, <span class="st">'A'</span><span class="op">)</span>,</span>
+<span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">2</span>,   <span class="fl">3</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">1</span>,   <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dagify</span><span class="op">(</span></span>
+<span>    <span class="va">A</span> <span class="op">~</span> <span class="va">G</span> <span class="op">+</span> <span class="va">D</span>,</span>
+<span>    <span class="va">D</span> <span class="op">~</span> <span class="va">G</span> <span class="op">+</span> <span class="va">A</span>,</span>
+<span>    coords <span class="op">=</span> <span class="va">coords</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="05-homework_files/figure-html/h05_q01_dag-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Total effect of gender on award has two paths: through discipline and directly to award.</p>
+<section id="prior-predictive-simulation" class="level3"><h3 class="anchored" data-anchor-id="prior-predictive-simulation">Prior predictive simulation</h3>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">get_prior</span><span class="op">(</span></span>
+<span>    <span class="va">awards</span> <span class="op">|</span> <span class="fu">trials</span><span class="op">(</span><span class="va">applications</span><span class="op">)</span> <span class="op">~</span> <span class="va">gender</span>,</span>
+<span>    family <span class="op">=</span> <span class="st">'binomial'</span>,</span>
+<span>    data <span class="op">=</span> <span class="va">DT_grants</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                prior     class    coef group resp dpar nlpar lb ub
+               (flat)         b                                    
+               (flat)         b genderm                            
+ student_t(3, 0, 2.5) Intercept                                    
+       source
+      default
+ (vectorized)
+      default</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h05_q01_prior</span><span class="op">)</span></span>
+<span><span class="va">m_h05_q01_prior</span><span class="op">$</span><span class="va">priors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NULL</code></pre>
+</div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mcmc_areas</span><span class="op">(</span><span class="va">m_h05_q01_prior</span>, regex_pars <span class="op">=</span> <span class="st">'b'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="05-homework_files/figure-html/h05_q01_prior-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="posterior" class="level3"><h3 class="anchored" data-anchor-id="posterior">Posterior</h3>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h05_q01</span><span class="op">)</span></span>
+<span><span class="va">m_h05_q01</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Family: binomial 
+  Links: mu = logit 
+Formula: awards | trials(applications) ~ gender 
+   Data: DT_grants (Number of observations: 18) 
+  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
+         total post-warmup draws = 4000
+
+Population-Level Effects: 
+          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+Intercept    -1.73      0.08    -1.90    -1.58 1.00     2037     2043
+genderm       0.20      0.10     0.00     0.41 1.00     2615     2378
+
+Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+</div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mcmc_areas</span><span class="op">(</span><span class="va">m_h05_q01</span>, regex_pars <span class="op">=</span> <span class="st">'b'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="05-homework_files/figure-html/h05_q01_posterior-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="estimated-marginal-means" class="level4"><h4 class="anchored" data-anchor-id="estimated-marginal-means">Estimated marginal means</h4>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">emmean_total_gender</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="op">(</span><span class="va">m_h05_q01</span>, <span class="op">~</span> <span class="va">gender</span>, regrid <span class="op">=</span> <span class="st">'response'</span><span class="op">)</span></span>
+<span><span class="va">emmean_total_gender</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> gender  prob lower.HPD upper.HPD
+ f      0.150     0.130     0.170
+ m      0.177     0.161     0.197
+
+Point estimate displayed: median 
+HPD interval probability: 0.95 </code></pre>
+</div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">emmean_total_gender</span>, level <span class="op">=</span> <span class="fl">.87</span><span class="op">)</span> <span class="op">+</span> <span class="fu">xlim</span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="fu">xlab</span><span class="op">(</span><span class="st">'award'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="05-homework_files/figure-html/h05_q01_emmean-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="contrast" class="level4"><h4 class="anchored" data-anchor-id="contrast">Contrast</h4>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">contrast</span><span class="op">(</span><span class="va">emmean_total_gender</span>, method <span class="op">=</span> <span class="st">'pairwise'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast estimate lower.HPD upper.HPD
+ f - m     -0.0272   -0.0548 -0.000696
+
+Point estimate displayed: median 
+HPD interval probability: 0.95 </code></pre>
+</div>
+</div>
+</section></section></section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<blockquote class="blockquote">
+<p>Now estimate the DIRECT causal effect of gender on grant awards. Use the same DAG as above to justify one or more binomial models. Compute the average direct causal effect of gender, weighting each discipline in proportion to the number of applications in the sample. Refer to the marginal effect example in Lecture 9 for help.</p>
+</blockquote>
+<p>Direct effect of gender on award requires conditioning on discipline.</p>
+<section id="posterior-1" class="level3"><h3 class="anchored" data-anchor-id="posterior-1">Posterior</h3>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_h05_q02</span><span class="op">)</span></span>
+<span><span class="va">m_h05_q02</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Family: binomial 
+  Links: mu = logit 
+Formula: awards | trials(applications) ~ gender * discipline 
+   Data: DT_grants (Number of observations: 18) 
+  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
+         total post-warmup draws = 4000
+
+Population-Level Effects: 
+                                     Estimate Est.Error l-95% CI u-95% CI Rhat
+Intercept                               -1.40      0.17    -1.73    -1.07 1.00
+genderm                                  0.15      0.18    -0.19     0.50 1.00
+disciplineEarthDlifesciences            -0.26      0.24    -0.74     0.21 1.00
+disciplineHumanities                    -0.09      0.22    -0.54     0.35 1.00
+disciplineInterdisciplinary             -0.05      0.26    -0.56     0.45 1.00
+disciplineMedicalsciences               -0.56      0.21    -0.99    -0.14 1.00
+disciplinePhysicalsciences               0.05      0.29    -0.55     0.61 1.00
+disciplinePhysics                        0.12      0.34    -0.59     0.78 1.00
+disciplineSocialsciences                -0.58      0.21    -0.99    -0.18 1.00
+disciplineTechnicalsciences             -0.05      0.27    -0.59     0.47 1.00
+genderm:disciplineEarthDlifesciences     0.32      0.27    -0.20     0.86 1.00
+genderm:disciplineHumanities            -0.40      0.26    -0.91     0.13 1.00
+genderm:disciplineInterdisciplinary     -0.57      0.31    -1.19     0.05 1.00
+genderm:disciplineMedicalsciences        0.30      0.26    -0.20     0.80 1.00
+genderm:disciplinePhysicalsciences      -0.20      0.33    -0.85     0.46 1.00
+genderm:disciplinePhysics                0.09      0.36    -0.61     0.78 1.00
+genderm:disciplineSocialsciences         0.11      0.24    -0.35     0.57 1.00
+genderm:disciplineTechnicalsciences     -0.33      0.30    -0.90     0.27 1.00
+                                     Bulk_ESS Tail_ESS
+Intercept                                3507     3131
+genderm                                  2944     3209
+disciplineEarthDlifesciences             4845     2967
+disciplineHumanities                     4152     3304
+disciplineInterdisciplinary              4853     2845
+disciplineMedicalsciences                4275     3111
+disciplinePhysicalsciences               4934     2755
+disciplinePhysics                        5296     3264
+disciplineSocialsciences                 3964     3046
+disciplineTechnicalsciences              5469     3097
+genderm:disciplineEarthDlifesciences     4819     3115
+genderm:disciplineHumanities             4552     3353
+genderm:disciplineInterdisciplinary      5902     3019
+genderm:disciplineMedicalsciences        4323     2971
+genderm:disciplinePhysicalsciences       4627     2555
+genderm:disciplinePhysics                4951     3545
+genderm:disciplineSocialsciences         3848     3329
+genderm:disciplineTechnicalsciences      5328     3040
+
+Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+</div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mcmc_areas</span><span class="op">(</span><span class="va">m_h05_q02</span>, regex_pars <span class="op">=</span> <span class="st">'b'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="05-homework_files/figure-html/h05_q02_posterior-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="estimated-marginal-means-1" class="level4"><h4 class="anchored" data-anchor-id="estimated-marginal-means-1">Estimated marginal means</h4>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">emmean_direct_gender</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="op">(</span><span class="va">m_h05_q02</span>, <span class="op">~</span> <span class="va">gender</span> <span class="op">*</span> <span class="va">discipline</span>, regrid <span class="op">=</span> <span class="st">'response'</span><span class="op">)</span></span>
+<span><span class="va">emmean_direct_gender</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> gender discipline           prob lower.HPD upper.HPD
+ f      Chemical sciences   0.197    0.1482     0.252
+ m      Chemical sciences   0.224    0.1671     0.287
+ f      Earth/life sciences 0.161    0.1082     0.215
+ m      Earth/life sciences 0.236    0.1796     0.302
+ f      Humanities          0.184    0.1343     0.239
+ m      Humanities          0.151    0.1107     0.197
+ f      Interdisciplinary   0.191    0.1221     0.264
+ m      Interdisciplinary   0.136    0.0838     0.197
+ f      Medical sciences    0.124    0.0888     0.160
+ m      Medical sciences    0.182    0.1357     0.226
+ f      Physical sciences   0.206    0.1277     0.300
+ m      Physical sciences   0.198    0.1375     0.260
+ f      Physics             0.219    0.1202     0.348
+ m      Physics             0.263    0.1691     0.363
+ f      Social sciences     0.121    0.0936     0.151
+ m      Social sciences     0.152    0.1199     0.186
+ f      Technical sciences  0.190    0.1236     0.271
+ m      Technical sciences  0.165    0.1188     0.219
+
+Point estimate displayed: median 
+HPD interval probability: 0.95 </code></pre>
+</div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">emmean_direct_gender</span>, level <span class="op">=</span> <span class="fl">.87</span><span class="op">)</span> <span class="op">+</span> <span class="fu">xlim</span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'award'</span>, y <span class="op">=</span> <span class="st">'discipline'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="05-homework_files/figure-html/h05_q02_emmean-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="contrast-1" class="level4"><h4 class="anchored" data-anchor-id="contrast-1">Contrast</h4>
+<p>Emmeans contrast</p>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cont</span> <span class="op">&lt;-</span> <span class="fu">contrast</span><span class="op">(</span><span class="va">emmean_direct_gender</span>, by <span class="op">=</span> <span class="st">'discipline'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">emmean_direct_gender</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast                                           estimate lower.HPD
+ f Chemical sciences - m Chemical sciences         -0.025392  -0.08120
+ f Chemical sciences - (f Earth/life sciences)      0.036991  -0.03223
+ f Chemical sciences - (m Earth/life sciences)     -0.037524  -0.11653
+ f Chemical sciences - f Humanities                 0.014056  -0.05178
+ f Chemical sciences - m Humanities                 0.047854  -0.02412
+ f Chemical sciences - f Interdisciplinary          0.006561  -0.07330
+ f Chemical sciences - m Interdisciplinary          0.062766  -0.01952
+ f Chemical sciences - f Medical sciences           0.073049   0.01627
+ f Chemical sciences - m Medical sciences           0.016937  -0.05099
+ f Chemical sciences - f Physical sciences         -0.008153  -0.10450
+ f Chemical sciences - m Physical sciences          0.000179  -0.08085
+ f Chemical sciences - f Physics                   -0.018611  -0.14318
+ f Chemical sciences - m Physics                   -0.063212  -0.17870
+ f Chemical sciences - f Social sciences            0.076479   0.02105
+ f Chemical sciences - m Social sciences            0.046291  -0.01689
+ f Chemical sciences - f Technical sciences         0.006301  -0.08053
+ f Chemical sciences - m Technical sciences         0.031717  -0.04116
+ m Chemical sciences - (f Earth/life sciences)      0.062677  -0.01889
+ m Chemical sciences - (m Earth/life sciences)     -0.012262  -0.09412
+ m Chemical sciences - f Humanities                 0.040310  -0.04162
+ m Chemical sciences - m Humanities                 0.072638   0.00157
+ m Chemical sciences - f Interdisciplinary          0.032448  -0.06138
+ m Chemical sciences - m Interdisciplinary          0.088165   0.01058
+ m Chemical sciences - f Medical sciences           0.099307   0.03156
+ m Chemical sciences - m Medical sciences           0.042648  -0.03657
+ m Chemical sciences - f Physical sciences          0.018172  -0.09128
+ m Chemical sciences - m Physical sciences          0.025976  -0.06008
+ m Chemical sciences - f Physics                    0.005090  -0.12812
+ m Chemical sciences - m Physics                   -0.038519  -0.14738
+ m Chemical sciences - f Social sciences            0.102951   0.02907
+ m Chemical sciences - m Social sciences            0.071503   0.00363
+ m Chemical sciences - f Technical sciences         0.034102  -0.06551
+ m Chemical sciences - m Technical sciences         0.059426  -0.01767
+ (f Earth/life sciences) - (m Earth/life sciences) -0.074205  -0.14984
+ (f Earth/life sciences) - f Humanities            -0.022880  -0.09487
+ (f Earth/life sciences) - m Humanities             0.009558  -0.06118
+ (f Earth/life sciences) - f Interdisciplinary     -0.029448  -0.11312
+ (f Earth/life sciences) - m Interdisciplinary      0.025762  -0.05593
+ (f Earth/life sciences) - f Medical sciences       0.037020  -0.02519
+ (f Earth/life sciences) - m Medical sciences      -0.020540  -0.08444
+ (f Earth/life sciences) - f Physical sciences     -0.045288  -0.14935
+ (f Earth/life sciences) - m Physical sciences     -0.037489  -0.11756
+ (f Earth/life sciences) - f Physics               -0.057190  -0.19043
+ (f Earth/life sciences) - m Physics               -0.100312  -0.22547
+ (f Earth/life sciences) - f Social sciences        0.039807  -0.02003
+ (f Earth/life sciences) - m Social sciences        0.009641  -0.05284
+ (f Earth/life sciences) - f Technical sciences    -0.029742  -0.11754
+ (f Earth/life sciences) - m Technical sciences    -0.003318  -0.07547
+ (m Earth/life sciences) - f Humanities             0.051524  -0.03239
+ (m Earth/life sciences) - m Humanities             0.084484   0.00870
+ (m Earth/life sciences) - f Interdisciplinary      0.045395  -0.05691
+ (m Earth/life sciences) - m Interdisciplinary      0.100275   0.01771
+ (m Earth/life sciences) - f Medical sciences       0.112108   0.03884
+ (m Earth/life sciences) - m Medical sciences       0.053796  -0.02090
+ (m Earth/life sciences) - f Physical sciences      0.029408  -0.08019
+ (m Earth/life sciences) - m Physical sciences      0.037327  -0.05015
+ (m Earth/life sciences) - f Physics                0.017973  -0.12170
+ (m Earth/life sciences) - m Physics               -0.026777  -0.13764
+ (m Earth/life sciences) - f Social sciences        0.114238   0.04982
+ (m Earth/life sciences) - m Social sciences        0.084283   0.01334
+ (m Earth/life sciences) - f Technical sciences     0.045426  -0.05679
+ (m Earth/life sciences) - m Technical sciences     0.071527  -0.00908
+ f Humanities - m Humanities                        0.034025  -0.03306
+ f Humanities - f Interdisciplinary                -0.007226  -0.09314
+ f Humanities - m Interdisciplinary                 0.049152  -0.03313
+ f Humanities - f Medical sciences                  0.060066  -0.00174
+ f Humanities - m Medical sciences                  0.002373  -0.06580
+ f Humanities - f Physical sciences                -0.021832  -0.12310
+ f Humanities - m Physical sciences                -0.013615  -0.09898
+ f Humanities - f Physics                          -0.034353  -0.17608
+ f Humanities - m Physics                          -0.077825  -0.19476
+ f Humanities - f Social sciences                   0.063808   0.00590
+ f Humanities - m Social sciences                   0.032278  -0.02552
+ f Humanities - f Technical sciences               -0.006394  -0.09510
+ f Humanities - m Technical sciences                0.019936  -0.04762
+ m Humanities - f Interdisciplinary                -0.040422  -0.12233
+ m Humanities - m Interdisciplinary                 0.014598  -0.05627
+ m Humanities - f Medical sciences                  0.026393  -0.03006
+ m Humanities - m Medical sciences                 -0.031309  -0.09331
+ m Humanities - f Physical sciences                -0.054974  -0.16425
+ m Humanities - m Physical sciences                -0.047512  -0.12350
+ m Humanities - f Physics                          -0.068032  -0.20172
+ m Humanities - m Physics                          -0.111045  -0.21778
+ m Humanities - f Social sciences                   0.029658  -0.02407
+ m Humanities - m Social sciences                  -0.001053  -0.05878
+ m Humanities - f Technical sciences               -0.040533  -0.12924
+ m Humanities - m Technical sciences               -0.014266  -0.07803
+ f Interdisciplinary - m Interdisciplinary          0.054934  -0.02566
+ f Interdisciplinary - f Medical sciences           0.066361  -0.00830
+ f Interdisciplinary - m Medical sciences           0.008448  -0.06735
+ f Interdisciplinary - f Physical sciences         -0.014324  -0.12320
+ f Interdisciplinary - m Physical sciences         -0.006529  -0.09510
+ f Interdisciplinary - f Physics                   -0.026204  -0.17147
+ f Interdisciplinary - m Physics                   -0.072552  -0.19163
+ f Interdisciplinary - f Social sciences            0.070382  -0.00334
+ f Interdisciplinary - m Social sciences            0.039258  -0.03436
+ f Interdisciplinary - f Technical sciences         0.000564  -0.09471
+ f Interdisciplinary - m Technical sciences         0.025996  -0.05949
+ m Interdisciplinary - f Medical sciences           0.011059  -0.05754
+ m Interdisciplinary - m Medical sciences          -0.046258  -0.11689
+ m Interdisciplinary - f Physical sciences         -0.070509  -0.18619
+ m Interdisciplinary - m Physical sciences         -0.062796  -0.15281
+ m Interdisciplinary - f Physics                   -0.081063  -0.22254
+ m Interdisciplinary - m Physics                   -0.125832  -0.24784
+ m Interdisciplinary - f Social sciences            0.014628  -0.04735
+ m Interdisciplinary - m Social sciences           -0.016729  -0.08250
+ m Interdisciplinary - f Technical sciences        -0.054462  -0.15168
+ m Interdisciplinary - m Technical sciences        -0.029300  -0.10438
+ f Medical sciences - m Medical sciences           -0.057295  -0.11588
+ f Medical sciences - f Physical sciences          -0.081813  -0.17341
+ f Medical sciences - m Physical sciences          -0.073766  -0.14293
+ f Medical sciences - f Physics                    -0.093453  -0.21825
+ f Medical sciences - m Physics                    -0.138216  -0.24103
+ f Medical sciences - f Social sciences             0.002769  -0.04074
+ f Medical sciences - m Social sciences            -0.026935  -0.07337
+ f Medical sciences - f Technical sciences         -0.066141  -0.14842
+ f Medical sciences - m Technical sciences         -0.040016  -0.10433
+ m Medical sciences - f Physical sciences          -0.024097  -0.12265
+ m Medical sciences - m Physical sciences          -0.016273  -0.09291
+ m Medical sciences - f Physics                    -0.036304  -0.17148
+ m Medical sciences - m Physics                    -0.079402  -0.18687
+ m Medical sciences - f Social sciences             0.060776   0.00791
+ m Medical sciences - m Social sciences             0.030251  -0.02422
+ m Medical sciences - f Technical sciences         -0.009023  -0.10024
+ m Medical sciences - m Technical sciences          0.017263  -0.05103
+ f Physical sciences - m Physical sciences          0.008414  -0.08434
+ f Physical sciences - f Physics                   -0.010758  -0.16917
+ f Physical sciences - m Physics                   -0.056033  -0.18891
+ f Physical sciences - f Social sciences            0.084649  -0.00469
+ f Physical sciences - m Social sciences            0.054389  -0.03931
+ f Physical sciences - f Technical sciences         0.015782  -0.09247
+ f Physical sciences - m Technical sciences         0.041591  -0.05883
+ m Physical sciences - f Physics                   -0.020319  -0.16150
+ m Physical sciences - m Physics                   -0.064586  -0.17484
+ m Physical sciences - f Social sciences            0.076516   0.01269
+ m Physical sciences - m Social sciences            0.046035  -0.02309
+ m Physical sciences - f Technical sciences         0.007643  -0.09237
+ m Physical sciences - m Technical sciences         0.033910  -0.04140
+ f Physics - m Physics                             -0.042734  -0.17413
+ f Physics - f Social sciences                      0.096351  -0.00783
+ f Physics - m Social sciences                      0.065936  -0.04421
+ f Physics - f Technical sciences                   0.026049  -0.10369
+ f Physics - m Technical sciences                   0.054085  -0.06455
+ m Physics - f Social sciences                      0.140626   0.04316
+ m Physics - m Social sciences                      0.110857   0.00743
+ m Physics - f Technical sciences                   0.071685  -0.04974
+ m Physics - m Technical sciences                   0.097543  -0.01443
+ f Social sciences - m Social sciences             -0.030833  -0.07306
+ f Social sciences - f Technical sciences          -0.069918  -0.15092
+ f Social sciences - m Technical sciences          -0.042783  -0.10678
+ m Social sciences - f Technical sciences          -0.038499  -0.12499
+ m Social sciences - m Technical sciences          -0.012741  -0.07168
+ f Technical sciences - m Technical sciences        0.025683  -0.05890
+ upper.HPD
+   0.03271
+   0.10445
+   0.05102
+   0.08413
+   0.11663
+   0.08204
+   0.13710
+   0.13071
+   0.09071
+   0.07843
+   0.07991
+   0.08356
+   0.03973
+   0.13527
+   0.11152
+   0.08442
+   0.10245
+   0.14764
+   0.07723
+   0.11866
+   0.14750
+   0.12848
+   0.17176
+   0.17230
+   0.11227
+   0.11770
+   0.10516
+   0.13590
+   0.07222
+   0.16707
+   0.14008
+   0.12644
+   0.13450
+   0.00533
+   0.05110
+   0.07911
+   0.06219
+   0.10364
+   0.10236
+   0.05659
+   0.05511
+   0.04477
+   0.05684
+   0.00239
+   0.10021
+   0.07362
+   0.06614
+   0.07526
+   0.13180
+   0.15980
+   0.13838
+   0.18768
+   0.18268
+   0.12904
+   0.14156
+   0.12327
+   0.14607
+   0.09593
+   0.18718
+   0.15646
+   0.14166
+   0.15515
+   0.09585
+   0.07544
+   0.12305
+   0.12299
+   0.07455
+   0.07993
+   0.06121
+   0.07681
+   0.02866
+   0.12530
+   0.09959
+   0.08370
+   0.09493
+   0.04998
+   0.08893
+   0.08451
+   0.03020
+   0.03320
+   0.02274
+   0.04698
+  -0.00738
+   0.08149
+   0.05210
+   0.04564
+   0.05523
+   0.14008
+   0.14689
+   0.10325
+   0.10377
+   0.09458
+   0.09393
+   0.05009
+   0.14817
+   0.12271
+   0.11099
+   0.11524
+   0.07637
+   0.02880
+   0.03005
+   0.01842
+   0.04226
+  -0.01839
+   0.07970
+   0.04901
+   0.03906
+   0.04605
+  -0.00208
+   0.00864
+  -0.00189
+   0.02008
+  -0.03641
+   0.04959
+   0.02319
+   0.01255
+   0.02026
+   0.07060
+   0.05659
+   0.07615
+   0.02270
+   0.11583
+   0.09019
+   0.07913
+   0.08574
+   0.11398
+   0.11277
+   0.07557
+   0.17937
+   0.15159
+   0.13078
+   0.14708
+   0.10067
+   0.05720
+   0.14754
+   0.11777
+   0.10208
+   0.11285
+   0.08250
+   0.23012
+   0.19571
+   0.16381
+   0.18621
+   0.24636
+   0.21174
+   0.20202
+   0.20848
+   0.01188
+   0.00545
+   0.01132
+   0.03987
+   0.04931
+   0.10694
+
+Point estimate displayed: median 
+HPD interval probability: 0.95 </code></pre>
+</div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">contrast</span><span class="op">(</span><span class="va">emmean_direct_gender</span>, by <span class="op">=</span> <span class="st">'discipline'</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="05-homework_files/figure-html/h05_q02_emmean_contrast-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Prediction contrast preserving entire posterior</p>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">predicted_f</span> <span class="op">&lt;-</span> <span class="fu">copy</span><span class="op">(</span><span class="va">DT_grants</span><span class="op">)</span><span class="op">[</span>, <span class="va">gender</span> <span class="op">:=</span> <span class="st">'f'</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu">add_linpred_draws</span><span class="op">(</span>transform <span class="op">=</span><span class="cn">TRUE</span>, <span class="va">m_h05_q02</span>, value <span class="op">=</span> <span class="st">'pred_f'</span><span class="op">)</span></span>
+<span><span class="va">predicted_m</span> <span class="op">&lt;-</span> <span class="fu">copy</span><span class="op">(</span><span class="va">DT_grants</span><span class="op">)</span><span class="op">[</span>, <span class="va">gender</span> <span class="op">:=</span> <span class="st">'m'</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu">add_linpred_draws</span><span class="op">(</span>transform <span class="op">=</span><span class="cn">TRUE</span>, <span class="va">m_h05_q02</span>, value <span class="op">=</span> <span class="st">'pred_m'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">setDT</span><span class="op">(</span><span class="va">predicted_f</span><span class="op">)</span></span>
+<span><span class="va">predicted_f</span><span class="op">[</span>, <span class="va">gender</span> <span class="op">:=</span> <span class="cn">NULL</span><span class="op">]</span></span>
+<span><span class="fu">setDT</span><span class="op">(</span><span class="va">predicted_m</span><span class="op">)</span></span>
+<span><span class="va">predicted_m</span><span class="op">[</span>, <span class="va">gender</span> <span class="op">:=</span> <span class="cn">NULL</span><span class="op">]</span></span>
+<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="va">predicted_f</span><span class="op">[</span><span class="va">predicted_m</span>, on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">predicted_f</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">predicted_m</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">m</span><span class="op">[</span>, <span class="va">diff_fm</span> <span class="op">:=</span> <span class="va">pred_f</span> <span class="op">-</span> <span class="va">pred_m</span><span class="op">]</span></span>
+<span></span>
+<span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">m</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">stat_halfeye</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">diff_fm</span>, <span class="va">discipline</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Difference (female - male) in predicted award rate by discipline'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="05-homework_files/figure-html/m_h05_q02_contrast_prediction-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">m</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">stat_halfeye</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">diff_fm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Average difference (female - male) in predicted award rate across discplines'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="05-homework_files/figure-html/m_h05_q02_contrast_prediction_average-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section></section></section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<blockquote class="blockquote">
+<p>Considering the total effect (problem 1) and direct effect (problem 2) of gender, what causes contribute to the average difference between women and men in award rate in this sample? It is not necessary to say whether or not there is evidence of discrimination or the presence or absence of unobserved confounds (which are likely!). Simply explain how the direct effects you have estimated make sense (or not) of the total effect.</p>
+</blockquote>
+<p>Gender level differences in number of applications to each discipline. Some disciplines, eg. social sciences and medical sciences, have lower overall award rates and female applicants tend to apply to these more than male applicants.</p>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">DT_grants</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">discipline</span>, prop_app <span class="op">=</span> <span class="va">applications</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">applications</span><span class="op">)</span>, <span class="va">awards</span><span class="op">)</span>, <span class="va">gender</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    gender          discipline    prop_app awards
+    &lt;fctr&gt;              &lt;fctr&gt;       &lt;num&gt;  &lt;int&gt;
+ 1:      m   Chemical sciences 0.050764526     22
+ 2:      m   Physical sciences 0.082568807     26
+ 3:      m             Physics 0.040978593     18
+ 4:      m          Humanities 0.140672783     33
+ 5:      m  Technical sciences 0.115596330     30
+ 6:      m   Interdisciplinary 0.064220183     12
+ 7:      m Earth/life sciences 0.095412844     38
+ 8:      m     Social sciences 0.259938838     65
+ 9:      m    Medical sciences 0.149847095     46
+10:      f   Chemical sciences 0.032828283     10
+11:      f   Physical sciences 0.032828283      9
+12:      f             Physics 0.007575758      2
+13:      f          Humanities 0.139730640     32
+14:      f  Technical sciences 0.052188552     13
+15:      f   Interdisciplinary 0.065656566     17
+16:      f Earth/life sciences 0.106060606     18
+17:      f     Social sciences 0.344276094     47
+18:      f    Medical sciences 0.218855219     29</code></pre>
+</div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">DT_grants</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">awards</span>, <span class="va">applications</span><span class="op">)</span>, <span class="fu">.</span><span class="op">(</span><span class="va">gender</span>, <span class="va">discipline</span><span class="op">)</span><span class="op">]</span>,</span>
+<span>    <span class="fu">aes</span><span class="op">(</span><span class="va">awards</span> <span class="op">/</span> <span class="va">applications</span>, <span class="va">discipline</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">gender</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>  <span class="op">+</span></span>
+<span>    <span class="fu">scale_color_scico_d</span><span class="op">(</span>end <span class="op">=</span> <span class="fl">.7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="05-homework_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">DT_grants</span><span class="op">[</span>, <span class="va">award_by_disc</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">awards</span><span class="op">)</span>, <span class="va">discipline</span><span class="op">]</span></span>
+<span><span class="va">DT_grants</span><span class="op">[</span>, <span class="va">prop_award_by_disc</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">awards</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">applications</span><span class="op">)</span>, <span class="va">discipline</span><span class="op">]</span></span>
+<span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">DT_grants</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">prop_award_by_disc</span>, <span class="va">discipline</span>, prop_app <span class="op">=</span> <span class="va">applications</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">applications</span><span class="op">)</span>, <span class="va">awards</span><span class="op">)</span>, <span class="va">gender</span><span class="op">]</span>,</span>
+<span>    <span class="fu">aes</span><span class="op">(</span><span class="va">prop_app</span>, <span class="va">prop_award_by_disc</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>group <span class="op">=</span> <span class="va">discipline</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>shape <span class="op">=</span> <span class="va">gender</span>, color <span class="op">=</span> <span class="va">discipline</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Proportion of applications to discipline'</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">'Proportion of applications awarded by discipline'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="05-homework_files/figure-html/prop_award-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

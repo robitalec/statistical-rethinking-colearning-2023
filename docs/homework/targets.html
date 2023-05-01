@@ -182,6 +182,11 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../homework/05-homework.html" class="sidebar-item-text sidebar-link">Homework 05</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../homework/06-homework.html" class="sidebar-item-text sidebar-link">Homework 06</a>
   </div>
 </li>
@@ -347,6 +352,52 @@ targets_h03 &lt;- c(
                 prior(exponential(1), sigma)
             ),
             data = foxes
+        )
+    )
+)
+
+# Targets: homework 5 -----------------------------------------------------
+targets_h05 &lt;- c(
+    tar_target(
+        DT_grants,
+        data_grants()
+    ),
+    tar_target(
+        m_h05_q01_prior,
+        brm(
+            awards | trials(applications) ~ gender,
+            family = 'binomial',
+            prior = c(
+                prior(normal(0, 0.5), class = b),
+                prior(normal(0, 1), class = Intercept)
+            ),
+            data = DT_grants,
+            sample_prior = 'only',
+            chains = 1
+        )
+    ),
+    tar_target(
+        m_h05_q01,
+        brm(
+            awards | trials(applications) ~ gender,
+            family = 'binomial',
+            prior = c(
+                prior(normal(0, 0.5), class = b),
+                prior(normal(0, 1), class = Intercept)
+            ),
+            data = DT_grants
+        )
+    ),
+    tar_target(
+        m_h05_q02,
+        brm(
+            awards | trials(applications) ~ gender * discipline,
+            family = 'binomial',
+            prior = c(
+                prior(normal(0, 0.5), class = b),
+                prior(normal(0, 1), class = Intercept)
+            ),
+            data = DT_grants
         )
     )
 )
