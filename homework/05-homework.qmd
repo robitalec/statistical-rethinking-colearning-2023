@@ -87,7 +87,7 @@ Estimated marginal means
 ```{r h05_q01_emmean}
 emmean_total_gender <- emmeans(m_h05_q01, ~ gender, regrid = 'response')
 emmean_total_gender
-plot(emmean_total_gender) + xlim(0, 1) + xlab('award')
+plot(emmean_total_gender, level = .87) + xlim(0, 1) + xlab('award')
 ```
 
 Contrast
@@ -120,14 +120,14 @@ mcmc_areas(m_h05_q02, regex_pars = 'b')
 Estimated marginal means
 
 ```{r h05_q02_emmean}
-emmean_total_gender <- emmeans(m_h05_q02, ~ gender, regrid = 'response')
-emmean_total_gender
-plot(emmean_total_gender) + xlim(0, 1) + xlab('award')
+emmean_direct_gender <- emmeans(m_h05_q02, ~ gender, regrid = 'response')
+emmean_direct_gender
+plot(emmean_direct_gender, level = .87) + xlim(0, 1) + xlab('award')
 ```
 
 Contrast
 
-```{r} 
-contrast(emmean_total_gender, method = 'pairwise')
+```{r}
+contrast(emmean_direct_gender, method = 'pairwise')
 ```
 
