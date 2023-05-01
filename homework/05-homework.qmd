@@ -1,0 +1,201 @@
+---
+title: "Homework 05"
+author: "Alec L. Robitaille"
+date: "2023-04-28"
+---
+
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+```{r, eval = FALSE}
+source('R/packages.R')
+```
+
+
+## Data 
+```{r}
+# Data
+source('R/data_grants.R')
+
+# discipline
+# gender
+# applications
+# awards
+
+DT_grants <- data_grants()
+```
+
+
+## Question 1 
+
+> The data in data(NWOGrants) are outcomes for scientific funding applications
+for the Netherlands Organization for Scientific Research (NWO) from 2010–2012
+(see van der Lee and Ellemers doi:10.1073/pnas.1510159112). These data have a
+structure similar to the UCBAdmit data discussed in Chapter 11 and in lecture.
+There are applications and each has an associated gender (of the lead researcher).
+But instead of departments, there are disciplines. Draw a DAG for this sample. Then
+use the backdoor criterion and a binomial GLM to estimate the TOTAL causal effect
+of gender on grant awards
+
+
+```{r h05_q01_dag}
+coords <- data.frame(
+    name = c('G', 'D', 'A'),
+    x =    c(1,    2,   3),
+    y =    c(0,    1,   0)
+)
+
+dagify(
+	A ~ G + D,
+	D ~ G + A,
+	coords = coords
+) |> ggdag(seed = 2) + theme_dag()
+```
+
+Total effect of gender on award has two paths: through discipline and directly to award. 
+
+### Prior predictive simulation
+
+```{r}
+get_prior(
+    awards | trials(applications) ~ gender,
+    family = 'binomial',
+    data = DT_grants
+)
+```
+
+```{r h05_q01_prior}
+tar_load(m_h05_q01_prior)
+m_h05_q01_prior$priors
+
+mcmc_areas(m_h05_q01_prior, regex_pars = 'b')
+```
+
+
+### Posterior
+
+```{r h05_q01_posterior}
+tar_load(m_h05_q01)
+m_h05_q01
+
+mcmc_areas(m_h05_q01, regex_pars = 'b')
+```
+
+#### Estimated marginal means
+
+```{r h05_q01_emmean}
+emmean_total_gender <- emmeans(m_h05_q01, ~ gender, regrid = 'response')
+emmean_total_gender
+plot(emmean_total_gender, level = .87) + xlim(0, 1) + xlab('award')
+```
+
+#### Contrast
+
+```{r} 
+contrast(emmean_total_gender, method = 'pairwise')
+```
+
+
+## Question 2
+
+> Now estimate the DIRECT causal effect of gender on grant awards. Use the same
+DAG as above to justify one or more binomial models. Compute the average direct
+causal effect of gender, weighting each discipline in proportion to the number of
+applications in the sample. Refer to the marginal effect example in Lecture 9 for
+help.
+
+Direct effect of gender on award requires conditioning on discipline. 
+
+
+### Posterior
+
+```{r h05_q02_posterior}
+tar_load(m_h05_q02)
+m_h05_q02
+
+mcmc_areas(m_h05_q02, regex_pars = 'b')
+```
+
+#### Estimated marginal means
+
+```{r h05_q02_emmean}
+emmean_direct_gender <- emmeans(m_h05_q02, ~ gender * discipline, regrid = 'response')
+emmean_direct_gender
+plot(emmean_direct_gender, level = .87) + xlim(0, 1) + labs(x = 'award', y = 'discipline')
+```
+
+#### Contrast
+
+Emmeans contrast
+
+```{r h05_q02_emmean_contrast}
+cont <- contrast(emmean_direct_gender, by = 'discipline')
+pairs(emmean_direct_gender)
+contrast(emmean_direct_gender, by = 'discipline') |> plot()
+```
+
+Prediction contrast preserving entire posterior
+
+```{r m_h05_q02_contrast_prediction}
+#| fig-height: 9
+predicted_f <- copy(DT_grants)[, gender := 'f'] |> add_linpred_draws(transform =TRUE, m_h05_q02, value = 'pred_f')
+predicted_m <- copy(DT_grants)[, gender := 'm'] |> add_linpred_draws(transform =TRUE, m_h05_q02, value = 'pred_m')
+
+setDT(predicted_f)
+predicted_f[, gender := NULL]
+setDT(predicted_m)
+predicted_m[, gender := NULL]
+m <- predicted_f[predicted_m, on = intersect(colnames(predicted_f), colnames(predicted_m))]
+
+m[, diff_fm := pred_f - pred_m]
+
+
+ggplot(m) + 
+    geom_vline(xintercept = 0) + 
+    stat_halfeye(aes(diff_fm, discipline)) + 
+    labs(x = 'Difference (female - male) in predicted award rate by discipline')
+```
+
+```{r m_h05_q02_contrast_prediction_average}
+ggplot(m) + 
+    geom_vline(xintercept = 0) + 
+    stat_halfeye(aes(diff_fm)) + 
+    labs(x = 'Average difference (female - male) in predicted award rate across discplines')
+```
+
+
+
+## Question 3
+
+> Considering the total effect (problem 1) and direct effect (problem 2) of gender,
+what causes contribute to the average difference between women and men in award
+rate in this sample? It is not necessary to say whether or not there is evidence of discrimination or the presence or absence of unobserved confounds (which are likely!).
+Simply explain how the direct effects you have estimated make sense (or not) of the
+total effect.
+
+Gender level differences in number of applications to each discipline. Some disciplines, eg. social sciences and medical sciences, have lower overall award rates and female applicants tend to apply to these more than male applicants. 
+
+
+```{r }
+DT_grants[, .(discipline, prop_app = applications / sum(applications), awards), gender]
+
+ggplot(DT_grants[, .(awards, applications), .(gender, discipline)],
+    aes(awards / applications, discipline)) + 
+    geom_line() + 
+    geom_point(aes(color = gender), size = 3)  +
+    scale_color_scico_d(end = .7)
+```
+
+
+```{r prop_award}
+DT_grants[, award_by_disc := sum(awards), discipline]
+DT_grants[, prop_award_by_disc := sum(awards) / sum(applications), discipline]
+
+ggplot(DT_grants[, .(prop_award_by_disc, discipline, prop_app = applications / sum(applications), awards), gender],
+    aes(prop_app, prop_award_by_disc)) + 
+    geom_line(aes(group = discipline)) +
+    geom_point(aes(shape = gender, color = discipline), size = 3) + 
+    labs(x = 'Proportion of applications to discipline',
+         y = 'Proportion of applications awarded by discipline')
+```
