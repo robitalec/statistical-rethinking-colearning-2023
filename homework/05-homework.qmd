@@ -136,6 +136,28 @@ contrast(emmean_direct_gender, by = 'discipline') |> plot()
 ```
 
 Prediction contrast preserving entire posterior
+
+```{r m_h05_q02_contrast_prediction}
+#| fig-height: 9
+predicted_f <- copy(DT_grants)[, gender := 'f'] |> add_predicted_draws(m_h05_q02, value = 'pred_f')
+predicted_m <- copy(DT_grants)[, gender := 'm'] |> add_predicted_draws(m_h05_q02, value = 'pred_m')
+
+setDT(predicted_f)
+predicted_f[, gender := NULL]
+setDT(predicted_m)
+predicted_m[, gender := NULL]
+m <- predicted_f[predicted_m, on = intersect(colnames(predicted_f), colnames(predicted_m))]
+
+m[, diff_fm := pred_f - pred_m]
+
+ggplot(m) + 
+    geom_vline(xintercept = 0) + 
+    stat_halfeye(aes(diff_fm, discipline)) + 
+    labs(x = 'Difference (female - male) in predicted number of awards')
+```
+
+
+
 ## Question 3
 
 > Considering the total effect (problem 1) and direct effect (problem 2) of gender,
