@@ -107,3 +107,27 @@ help.
 
 Direct effect of gender on award requires conditioning on discipline. 
 
+
+Posterior
+
+```{r h05_q02_posterior}
+tar_load(m_h05_q02)
+m_h05_q02
+
+mcmc_areas(m_h05_q02, regex_pars = 'b')
+```
+
+Estimated marginal means
+
+```{r h05_q02_emmean}
+emmean_total_gender <- emmeans(m_h05_q02, ~ gender, regrid = 'response')
+emmean_total_gender
+plot(emmean_total_gender) + xlim(0, 1) + xlab('award')
+```
+
+Contrast
+
+```{r} 
+contrast(emmean_total_gender, method = 'pairwise')
+```
+
