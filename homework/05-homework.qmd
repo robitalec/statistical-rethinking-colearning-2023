@@ -122,7 +122,7 @@ mcmc_areas(m_h05_q02, regex_pars = 'b')
 ```{r h05_q02_emmean}
 emmean_direct_gender <- emmeans(m_h05_q02, ~ gender * discipline, regrid = 'response')
 emmean_direct_gender
-plot(emmean_direct_gender, level = .87) + xlim(0, 1) + xlab('award')
+plot(emmean_direct_gender, level = .87) + xlim(0, 1) + labs(x = 'award', y = 'discipline')
 ```
 
 #### Contrast
@@ -139,8 +139,8 @@ Prediction contrast preserving entire posterior
 
 ```{r m_h05_q02_contrast_prediction}
 #| fig-height: 9
-predicted_f <- copy(DT_grants)[, gender := 'f'] |> add_predicted_draws(m_h05_q02, value = 'pred_f')
-predicted_m <- copy(DT_grants)[, gender := 'm'] |> add_predicted_draws(m_h05_q02, value = 'pred_m')
+predicted_f <- copy(DT_grants)[, gender := 'f'] |> add_linpred_draws(transform =TRUE, m_h05_q02, value = 'pred_f')
+predicted_m <- copy(DT_grants)[, gender := 'm'] |> add_linpred_draws(transform =TRUE, m_h05_q02, value = 'pred_m')
 
 setDT(predicted_f)
 predicted_f[, gender := NULL]
@@ -150,10 +150,18 @@ m <- predicted_f[predicted_m, on = intersect(colnames(predicted_f), colnames(pre
 
 m[, diff_fm := pred_f - pred_m]
 
+
 ggplot(m) + 
     geom_vline(xintercept = 0) + 
     stat_halfeye(aes(diff_fm, discipline)) + 
-    labs(x = 'Difference (female - male) in predicted number of awards')
+    labs(x = 'Difference (female - male) in predicted award rate by discipline')
+```
+
+```{r m_h05_q02_contrast_prediction_average}
+ggplot(m) + 
+    geom_vline(xintercept = 0) + 
+    stat_halfeye(aes(diff_fm)) + 
+    labs(x = 'Average difference (female - male) in predicted award rate across discplines')
 ```
 
 
