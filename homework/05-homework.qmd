@@ -55,7 +55,7 @@ dagify(
 
 Total effect of gender on award has two paths: through discipline and directly to award. 
 
-Prior predictive simulation
+### Prior predictive simulation
 
 ```{r}
 get_prior(
@@ -73,7 +73,7 @@ mcmc_areas(m_h05_q01_prior, regex_pars = 'b')
 ```
 
 
-Posterior
+### Posterior
 
 ```{r h05_q01_posterior}
 tar_load(m_h05_q01)
@@ -82,7 +82,7 @@ m_h05_q01
 mcmc_areas(m_h05_q01, regex_pars = 'b')
 ```
 
-Estimated marginal means
+#### Estimated marginal means
 
 ```{r h05_q01_emmean}
 emmean_total_gender <- emmeans(m_h05_q01, ~ gender, regrid = 'response')
@@ -90,7 +90,7 @@ emmean_total_gender
 plot(emmean_total_gender, level = .87) + xlim(0, 1) + xlab('award')
 ```
 
-Contrast
+#### Contrast
 
 ```{r} 
 contrast(emmean_total_gender, method = 'pairwise')
@@ -108,7 +108,7 @@ help.
 Direct effect of gender on award requires conditioning on discipline. 
 
 
-Posterior
+### Posterior
 
 ```{r h05_q02_posterior}
 tar_load(m_h05_q02)
@@ -117,7 +117,7 @@ m_h05_q02
 mcmc_areas(m_h05_q02, regex_pars = 'b')
 ```
 
-Estimated marginal means
+#### Estimated marginal means
 
 ```{r h05_q02_emmean}
 emmean_direct_gender <- emmeans(m_h05_q02, ~ gender, regrid = 'response')
@@ -125,7 +125,7 @@ emmean_direct_gender
 plot(emmean_direct_gender, level = .87) + xlim(0, 1) + xlab('award')
 ```
 
-Contrast
+#### Contrast
 
 ```{r}
 contrast(emmean_direct_gender, method = 'pairwise')
