@@ -131,3 +131,11 @@ Contrast
 contrast(emmean_direct_gender, method = 'pairwise')
 ```
 
+## Question 3
+
+> Considering the total effect (problem 1) and direct effect (problem 2) of gender,
+what causes contribute to the average difference between women and men in award
+rate in this sample? It is not necessary to say whether or not there is evidence of discrimination or the presence or absence of unobserved confounds (which are likely!).
+Simply explain how the direct effects you have estimated make sense (or not) of the
+total effect.
+
