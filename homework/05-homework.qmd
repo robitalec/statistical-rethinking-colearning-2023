@@ -127,10 +127,15 @@ plot(emmean_direct_gender, level = .87) + xlim(0, 1) + xlab('award')
 
 #### Contrast
 
-```{r}
-contrast(emmean_direct_gender, method = 'pairwise')
+Emmeans contrast
+
+```{r h05_q02_emmean_contrast}
+cont <- contrast(emmean_direct_gender, by = 'discipline')
+pairs(emmean_direct_gender)
+contrast(emmean_direct_gender, by = 'discipline') |> plot()
 ```
 
+Prediction contrast preserving entire posterior
 ## Question 3
 
 > Considering the total effect (problem 1) and direct effect (problem 2) of gender,
