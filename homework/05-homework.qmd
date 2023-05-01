@@ -131,7 +131,6 @@ Emmeans contrast
 
 ```{r h05_q02_emmean_contrast}
 cont <- contrast(emmean_direct_gender, by = 'discipline')
-pairs(emmean_direct_gender)
 contrast(emmean_direct_gender, by = 'discipline') |> plot()
 ```
 

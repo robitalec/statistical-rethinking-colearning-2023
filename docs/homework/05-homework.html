@@ -529,328 +529,14 @@ HPD interval probability: 0.95 </code></pre>
 <p>Emmeans contrast</p>
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cont</span> <span class="op">&lt;-</span> <span class="fu">contrast</span><span class="op">(</span><span class="va">emmean_direct_gender</span>, by <span class="op">=</span> <span class="st">'discipline'</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">emmean_direct_gender</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> contrast                                           estimate lower.HPD
- f Chemical sciences - m Chemical sciences         -0.025392  -0.08120
- f Chemical sciences - (f Earth/life sciences)      0.036991  -0.03223
- f Chemical sciences - (m Earth/life sciences)     -0.037524  -0.11653
- f Chemical sciences - f Humanities                 0.014056  -0.05178
- f Chemical sciences - m Humanities                 0.047854  -0.02412
- f Chemical sciences - f Interdisciplinary          0.006561  -0.07330
- f Chemical sciences - m Interdisciplinary          0.062766  -0.01952
- f Chemical sciences - f Medical sciences           0.073049   0.01627
- f Chemical sciences - m Medical sciences           0.016937  -0.05099
- f Chemical sciences - f Physical sciences         -0.008153  -0.10450
- f Chemical sciences - m Physical sciences          0.000179  -0.08085
- f Chemical sciences - f Physics                   -0.018611  -0.14318
- f Chemical sciences - m Physics                   -0.063212  -0.17870
- f Chemical sciences - f Social sciences            0.076479   0.02105
- f Chemical sciences - m Social sciences            0.046291  -0.01689
- f Chemical sciences - f Technical sciences         0.006301  -0.08053
- f Chemical sciences - m Technical sciences         0.031717  -0.04116
- m Chemical sciences - (f Earth/life sciences)      0.062677  -0.01889
- m Chemical sciences - (m Earth/life sciences)     -0.012262  -0.09412
- m Chemical sciences - f Humanities                 0.040310  -0.04162
- m Chemical sciences - m Humanities                 0.072638   0.00157
- m Chemical sciences - f Interdisciplinary          0.032448  -0.06138
- m Chemical sciences - m Interdisciplinary          0.088165   0.01058
- m Chemical sciences - f Medical sciences           0.099307   0.03156
- m Chemical sciences - m Medical sciences           0.042648  -0.03657
- m Chemical sciences - f Physical sciences          0.018172  -0.09128
- m Chemical sciences - m Physical sciences          0.025976  -0.06008
- m Chemical sciences - f Physics                    0.005090  -0.12812
- m Chemical sciences - m Physics                   -0.038519  -0.14738
- m Chemical sciences - f Social sciences            0.102951   0.02907
- m Chemical sciences - m Social sciences            0.071503   0.00363
- m Chemical sciences - f Technical sciences         0.034102  -0.06551
- m Chemical sciences - m Technical sciences         0.059426  -0.01767
- (f Earth/life sciences) - (m Earth/life sciences) -0.074205  -0.14984
- (f Earth/life sciences) - f Humanities            -0.022880  -0.09487
- (f Earth/life sciences) - m Humanities             0.009558  -0.06118
- (f Earth/life sciences) - f Interdisciplinary     -0.029448  -0.11312
- (f Earth/life sciences) - m Interdisciplinary      0.025762  -0.05593
- (f Earth/life sciences) - f Medical sciences       0.037020  -0.02519
- (f Earth/life sciences) - m Medical sciences      -0.020540  -0.08444
- (f Earth/life sciences) - f Physical sciences     -0.045288  -0.14935
- (f Earth/life sciences) - m Physical sciences     -0.037489  -0.11756
- (f Earth/life sciences) - f Physics               -0.057190  -0.19043
- (f Earth/life sciences) - m Physics               -0.100312  -0.22547
- (f Earth/life sciences) - f Social sciences        0.039807  -0.02003
- (f Earth/life sciences) - m Social sciences        0.009641  -0.05284
- (f Earth/life sciences) - f Technical sciences    -0.029742  -0.11754
- (f Earth/life sciences) - m Technical sciences    -0.003318  -0.07547
- (m Earth/life sciences) - f Humanities             0.051524  -0.03239
- (m Earth/life sciences) - m Humanities             0.084484   0.00870
- (m Earth/life sciences) - f Interdisciplinary      0.045395  -0.05691
- (m Earth/life sciences) - m Interdisciplinary      0.100275   0.01771
- (m Earth/life sciences) - f Medical sciences       0.112108   0.03884
- (m Earth/life sciences) - m Medical sciences       0.053796  -0.02090
- (m Earth/life sciences) - f Physical sciences      0.029408  -0.08019
- (m Earth/life sciences) - m Physical sciences      0.037327  -0.05015
- (m Earth/life sciences) - f Physics                0.017973  -0.12170
- (m Earth/life sciences) - m Physics               -0.026777  -0.13764
- (m Earth/life sciences) - f Social sciences        0.114238   0.04982
- (m Earth/life sciences) - m Social sciences        0.084283   0.01334
- (m Earth/life sciences) - f Technical sciences     0.045426  -0.05679
- (m Earth/life sciences) - m Technical sciences     0.071527  -0.00908
- f Humanities - m Humanities                        0.034025  -0.03306
- f Humanities - f Interdisciplinary                -0.007226  -0.09314
- f Humanities - m Interdisciplinary                 0.049152  -0.03313
- f Humanities - f Medical sciences                  0.060066  -0.00174
- f Humanities - m Medical sciences                  0.002373  -0.06580
- f Humanities - f Physical sciences                -0.021832  -0.12310
- f Humanities - m Physical sciences                -0.013615  -0.09898
- f Humanities - f Physics                          -0.034353  -0.17608
- f Humanities - m Physics                          -0.077825  -0.19476
- f Humanities - f Social sciences                   0.063808   0.00590
- f Humanities - m Social sciences                   0.032278  -0.02552
- f Humanities - f Technical sciences               -0.006394  -0.09510
- f Humanities - m Technical sciences                0.019936  -0.04762
- m Humanities - f Interdisciplinary                -0.040422  -0.12233
- m Humanities - m Interdisciplinary                 0.014598  -0.05627
- m Humanities - f Medical sciences                  0.026393  -0.03006
- m Humanities - m Medical sciences                 -0.031309  -0.09331
- m Humanities - f Physical sciences                -0.054974  -0.16425
- m Humanities - m Physical sciences                -0.047512  -0.12350
- m Humanities - f Physics                          -0.068032  -0.20172
- m Humanities - m Physics                          -0.111045  -0.21778
- m Humanities - f Social sciences                   0.029658  -0.02407
- m Humanities - m Social sciences                  -0.001053  -0.05878
- m Humanities - f Technical sciences               -0.040533  -0.12924
- m Humanities - m Technical sciences               -0.014266  -0.07803
- f Interdisciplinary - m Interdisciplinary          0.054934  -0.02566
- f Interdisciplinary - f Medical sciences           0.066361  -0.00830
- f Interdisciplinary - m Medical sciences           0.008448  -0.06735
- f Interdisciplinary - f Physical sciences         -0.014324  -0.12320
- f Interdisciplinary - m Physical sciences         -0.006529  -0.09510
- f Interdisciplinary - f Physics                   -0.026204  -0.17147
- f Interdisciplinary - m Physics                   -0.072552  -0.19163
- f Interdisciplinary - f Social sciences            0.070382  -0.00334
- f Interdisciplinary - m Social sciences            0.039258  -0.03436
- f Interdisciplinary - f Technical sciences         0.000564  -0.09471
- f Interdisciplinary - m Technical sciences         0.025996  -0.05949
- m Interdisciplinary - f Medical sciences           0.011059  -0.05754
- m Interdisciplinary - m Medical sciences          -0.046258  -0.11689
- m Interdisciplinary - f Physical sciences         -0.070509  -0.18619
- m Interdisciplinary - m Physical sciences         -0.062796  -0.15281
- m Interdisciplinary - f Physics                   -0.081063  -0.22254
- m Interdisciplinary - m Physics                   -0.125832  -0.24784
- m Interdisciplinary - f Social sciences            0.014628  -0.04735
- m Interdisciplinary - m Social sciences           -0.016729  -0.08250
- m Interdisciplinary - f Technical sciences        -0.054462  -0.15168
- m Interdisciplinary - m Technical sciences        -0.029300  -0.10438
- f Medical sciences - m Medical sciences           -0.057295  -0.11588
- f Medical sciences - f Physical sciences          -0.081813  -0.17341
- f Medical sciences - m Physical sciences          -0.073766  -0.14293
- f Medical sciences - f Physics                    -0.093453  -0.21825
- f Medical sciences - m Physics                    -0.138216  -0.24103
- f Medical sciences - f Social sciences             0.002769  -0.04074
- f Medical sciences - m Social sciences            -0.026935  -0.07337
- f Medical sciences - f Technical sciences         -0.066141  -0.14842
- f Medical sciences - m Technical sciences         -0.040016  -0.10433
- m Medical sciences - f Physical sciences          -0.024097  -0.12265
- m Medical sciences - m Physical sciences          -0.016273  -0.09291
- m Medical sciences - f Physics                    -0.036304  -0.17148
- m Medical sciences - m Physics                    -0.079402  -0.18687
- m Medical sciences - f Social sciences             0.060776   0.00791
- m Medical sciences - m Social sciences             0.030251  -0.02422
- m Medical sciences - f Technical sciences         -0.009023  -0.10024
- m Medical sciences - m Technical sciences          0.017263  -0.05103
- f Physical sciences - m Physical sciences          0.008414  -0.08434
- f Physical sciences - f Physics                   -0.010758  -0.16917
- f Physical sciences - m Physics                   -0.056033  -0.18891
- f Physical sciences - f Social sciences            0.084649  -0.00469
- f Physical sciences - m Social sciences            0.054389  -0.03931
- f Physical sciences - f Technical sciences         0.015782  -0.09247
- f Physical sciences - m Technical sciences         0.041591  -0.05883
- m Physical sciences - f Physics                   -0.020319  -0.16150
- m Physical sciences - m Physics                   -0.064586  -0.17484
- m Physical sciences - f Social sciences            0.076516   0.01269
- m Physical sciences - m Social sciences            0.046035  -0.02309
- m Physical sciences - f Technical sciences         0.007643  -0.09237
- m Physical sciences - m Technical sciences         0.033910  -0.04140
- f Physics - m Physics                             -0.042734  -0.17413
- f Physics - f Social sciences                      0.096351  -0.00783
- f Physics - m Social sciences                      0.065936  -0.04421
- f Physics - f Technical sciences                   0.026049  -0.10369
- f Physics - m Technical sciences                   0.054085  -0.06455
- m Physics - f Social sciences                      0.140626   0.04316
- m Physics - m Social sciences                      0.110857   0.00743
- m Physics - f Technical sciences                   0.071685  -0.04974
- m Physics - m Technical sciences                   0.097543  -0.01443
- f Social sciences - m Social sciences             -0.030833  -0.07306
- f Social sciences - f Technical sciences          -0.069918  -0.15092
- f Social sciences - m Technical sciences          -0.042783  -0.10678
- m Social sciences - f Technical sciences          -0.038499  -0.12499
- m Social sciences - m Technical sciences          -0.012741  -0.07168
- f Technical sciences - m Technical sciences        0.025683  -0.05890
- upper.HPD
-   0.03271
-   0.10445
-   0.05102
-   0.08413
-   0.11663
-   0.08204
-   0.13710
-   0.13071
-   0.09071
-   0.07843
-   0.07991
-   0.08356
-   0.03973
-   0.13527
-   0.11152
-   0.08442
-   0.10245
-   0.14764
-   0.07723
-   0.11866
-   0.14750
-   0.12848
-   0.17176
-   0.17230
-   0.11227
-   0.11770
-   0.10516
-   0.13590
-   0.07222
-   0.16707
-   0.14008
-   0.12644
-   0.13450
-   0.00533
-   0.05110
-   0.07911
-   0.06219
-   0.10364
-   0.10236
-   0.05659
-   0.05511
-   0.04477
-   0.05684
-   0.00239
-   0.10021
-   0.07362
-   0.06614
-   0.07526
-   0.13180
-   0.15980
-   0.13838
-   0.18768
-   0.18268
-   0.12904
-   0.14156
-   0.12327
-   0.14607
-   0.09593
-   0.18718
-   0.15646
-   0.14166
-   0.15515
-   0.09585
-   0.07544
-   0.12305
-   0.12299
-   0.07455
-   0.07993
-   0.06121
-   0.07681
-   0.02866
-   0.12530
-   0.09959
-   0.08370
-   0.09493
-   0.04998
-   0.08893
-   0.08451
-   0.03020
-   0.03320
-   0.02274
-   0.04698
-  -0.00738
-   0.08149
-   0.05210
-   0.04564
-   0.05523
-   0.14008
-   0.14689
-   0.10325
-   0.10377
-   0.09458
-   0.09393
-   0.05009
-   0.14817
-   0.12271
-   0.11099
-   0.11524
-   0.07637
-   0.02880
-   0.03005
-   0.01842
-   0.04226
-  -0.01839
-   0.07970
-   0.04901
-   0.03906
-   0.04605
-  -0.00208
-   0.00864
-  -0.00189
-   0.02008
-  -0.03641
-   0.04959
-   0.02319
-   0.01255
-   0.02026
-   0.07060
-   0.05659
-   0.07615
-   0.02270
-   0.11583
-   0.09019
-   0.07913
-   0.08574
-   0.11398
-   0.11277
-   0.07557
-   0.17937
-   0.15159
-   0.13078
-   0.14708
-   0.10067
-   0.05720
-   0.14754
-   0.11777
-   0.10208
-   0.11285
-   0.08250
-   0.23012
-   0.19571
-   0.16381
-   0.18621
-   0.24636
-   0.21174
-   0.20202
-   0.20848
-   0.01188
-   0.00545
-   0.01132
-   0.03987
-   0.04931
-   0.10694
-
-Point estimate displayed: median 
-HPD interval probability: 0.95 </code></pre>
-</div>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">contrast</span><span class="op">(</span><span class="va">emmean_direct_gender</span>, by <span class="op">=</span> <span class="st">'discipline'</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">contrast</span><span class="op">(</span><span class="va">emmean_direct_gender</span>, by <span class="op">=</span> <span class="st">'discipline'</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="05-homework_files/figure-html/h05_q02_emmean_contrast-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Prediction contrast preserving entire posterior</p>
 <div class="cell">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">predicted_f</span> <span class="op">&lt;-</span> <span class="fu">copy</span><span class="op">(</span><span class="va">DT_grants</span><span class="op">)</span><span class="op">[</span>, <span class="va">gender</span> <span class="op">:=</span> <span class="st">'f'</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu">add_linpred_draws</span><span class="op">(</span>transform <span class="op">=</span><span class="cn">TRUE</span>, <span class="va">m_h05_q02</span>, value <span class="op">=</span> <span class="st">'pred_f'</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">predicted_f</span> <span class="op">&lt;-</span> <span class="fu">copy</span><span class="op">(</span><span class="va">DT_grants</span><span class="op">)</span><span class="op">[</span>, <span class="va">gender</span> <span class="op">:=</span> <span class="st">'f'</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu">add_linpred_draws</span><span class="op">(</span>transform <span class="op">=</span><span class="cn">TRUE</span>, <span class="va">m_h05_q02</span>, value <span class="op">=</span> <span class="st">'pred_f'</span><span class="op">)</span></span>
 <span><span class="va">predicted_m</span> <span class="op">&lt;-</span> <span class="fu">copy</span><span class="op">(</span><span class="va">DT_grants</span><span class="op">)</span><span class="op">[</span>, <span class="va">gender</span> <span class="op">:=</span> <span class="st">'m'</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu">add_linpred_draws</span><span class="op">(</span>transform <span class="op">=</span><span class="cn">TRUE</span>, <span class="va">m_h05_q02</span>, value <span class="op">=</span> <span class="st">'pred_m'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">setDT</span><span class="op">(</span><span class="va">predicted_f</span><span class="op">)</span></span>
@@ -871,7 +557,7 @@ HPD interval probability: 0.95 </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">m</span><span class="op">)</span> <span class="op">+</span> </span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">m</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu">stat_halfeye</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">diff_fm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Average difference (female - male) in predicted award rate across discplines'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -885,7 +571,7 @@ HPD interval probability: 0.95 </code></pre>
 </blockquote>
 <p>Gender level differences in number of applications to each discipline. Some disciplines, eg. social sciences and medical sciences, have lower overall award rates and female applicants tend to apply to these more than male applicants.</p>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">DT_grants</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">discipline</span>, prop_app <span class="op">=</span> <span class="va">applications</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">applications</span><span class="op">)</span>, <span class="va">awards</span><span class="op">)</span>, <span class="va">gender</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">DT_grants</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">discipline</span>, prop_app <span class="op">=</span> <span class="va">applications</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">applications</span><span class="op">)</span>, <span class="va">awards</span><span class="op">)</span>, <span class="va">gender</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    gender          discipline    prop_app awards
     &lt;fctr&gt;              &lt;fctr&gt;       &lt;num&gt;  &lt;int&gt;
@@ -908,7 +594,7 @@ HPD interval probability: 0.95 </code></pre>
 17:      f     Social sciences 0.344276094     47
 18:      f    Medical sciences 0.218855219     29</code></pre>
 </div>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">DT_grants</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">awards</span>, <span class="va">applications</span><span class="op">)</span>, <span class="fu">.</span><span class="op">(</span><span class="va">gender</span>, <span class="va">discipline</span><span class="op">)</span><span class="op">]</span>,</span>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">DT_grants</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">awards</span>, <span class="va">applications</span><span class="op">)</span>, <span class="fu">.</span><span class="op">(</span><span class="va">gender</span>, <span class="va">discipline</span><span class="op">)</span><span class="op">]</span>,</span>
 <span>    <span class="fu">aes</span><span class="op">(</span><span class="va">awards</span> <span class="op">/</span> <span class="va">applications</span>, <span class="va">discipline</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">gender</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>  <span class="op">+</span></span>
@@ -918,7 +604,7 @@ HPD interval probability: 0.95 </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">DT_grants</span><span class="op">[</span>, <span class="va">award_by_disc</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">awards</span><span class="op">)</span>, <span class="va">discipline</span><span class="op">]</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">DT_grants</span><span class="op">[</span>, <span class="va">award_by_disc</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">awards</span><span class="op">)</span>, <span class="va">discipline</span><span class="op">]</span></span>
 <span><span class="va">DT_grants</span><span class="op">[</span>, <span class="va">prop_award_by_disc</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">awards</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">applications</span><span class="op">)</span>, <span class="va">discipline</span><span class="op">]</span></span>
 <span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">DT_grants</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">prop_award_by_disc</span>, <span class="va">discipline</span>, prop_app <span class="op">=</span> <span class="va">applications</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">applications</span><span class="op">)</span>, <span class="va">awards</span><span class="op">)</span>, <span class="va">gender</span><span class="op">]</span>,</span>
