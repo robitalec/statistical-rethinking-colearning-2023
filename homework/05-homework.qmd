@@ -98,3 +98,12 @@ contrast(emmean_total_gender, method = 'pairwise')
 
 
 ## Question 2
+
+> Now estimate the DIRECT causal effect of gender on grant awards. Use the same
+DAG as above to justify one or more binomial models. Compute the average direct
+causal effect of gender, weighting each discipline in proportion to the number of
+applications in the sample. Refer to the marginal effect example in Lecture 9 for
+help.
+
+Direct effect of gender on award requires conditioning on discipline. 
+
