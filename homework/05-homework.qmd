@@ -174,3 +174,28 @@ rate in this sample? It is not necessary to say whether or not there is evidence
 Simply explain how the direct effects you have estimated make sense (or not) of the
 total effect.
 
+Gender level differences in number of applications to each discipline. Some disciplines, eg. social sciences and medical sciences, have lower overall award rates and female applicants tend to apply to these more than male applicants. 
+
+
+```{r }
+DT_grants[, .(discipline, prop_app = applications / sum(applications), awards), gender]
+
+ggplot(DT_grants[, .(awards, applications), .(gender, discipline)],
+    aes(awards / applications, discipline)) + 
+    geom_line() + 
+    geom_point(aes(color = gender), size = 3)  +
+    scale_color_scico_d(end = .7)
+```
+
+
+```{r prop_award}
+DT_grants[, award_by_disc := sum(awards), discipline]
+DT_grants[, prop_award_by_disc := sum(awards) / sum(applications), discipline]
+
+ggplot(DT_grants[, .(prop_award_by_disc, discipline, prop_app = applications / sum(applications), awards), gender],
+    aes(prop_app, prop_award_by_disc)) + 
+    geom_line(aes(group = discipline)) +
+    geom_point(aes(shape = gender, color = discipline), size = 3) + 
+    labs(x = 'Proportion of applications to discipline',
+         y = 'Proportion of applications awarded by discipline')
+```
