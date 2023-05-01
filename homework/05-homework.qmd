@@ -39,7 +39,7 @@ use the backdoor criterion and a binomial GLM to estimate the TOTAL causal effec
 of gender on grant awards
 
 
-```{r}
+```{r h05_q01_dag}
 coords <- data.frame(
     name = c('G', 'D', 'A'),
     x =    c(1,    2,   3),
@@ -65,7 +65,7 @@ get_prior(
 )
 ```
 
-```{r}
+```{r h05_q01_prior}
 tar_load(m_h05_q01_prior)
 m_h05_q01_prior$priors
 
@@ -73,20 +73,28 @@ mcmc_areas(m_h05_q01_prior, regex_pars = 'b')
 ```
 
 
+Posterior
 
-```{r}
+```{r h05_q01_posterior}
 tar_load(m_h05_q01)
 m_h05_q01
 
 mcmc_areas(m_h05_q01, regex_pars = 'b')
 ```
 
+Estimated marginal means
 
-```{r}
+```{r h05_q01_emmean}
 emmean_total_gender <- emmeans(m_h05_q01, ~ gender, regrid = 'response')
 emmean_total_gender
 plot(emmean_total_gender) + xlim(0, 1) + xlab('award')
+```
 
+Contrast
+
+```{r} 
 contrast(emmean_total_gender, method = 'pairwise')
 ```
 
+
+## Question 2
