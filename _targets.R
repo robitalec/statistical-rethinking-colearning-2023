@@ -274,7 +274,24 @@ targets_h06 <- c(
 
 # Targets: homework 9 -----------------------------------------------------
 targets_h09 <- c(
-
+	tar_target(
+		DT_hunting,
+		data_achehunting()
+	),
+	tar_target(
+		m_h09_q01_prior,
+		brm(
+			success ~ age,
+			family = 'bernoulli',
+			prior = c(
+				prior(normal(0, 0.1), class = b),
+				prior(normal(0, 0.5), class = Intercept)
+			),
+			data = DT_hunting,
+			sample_prior = 'only',
+			chains = 1
+		)
+	)
 
 )
 
