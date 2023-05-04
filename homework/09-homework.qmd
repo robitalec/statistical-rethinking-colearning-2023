@@ -69,3 +69,27 @@ m_h09_q01$prior
 conditional_effects(m_h09_q01)
 mcmc_areas(m_h09_q01, regex_pars = 'b')
 ```
+
+
+
+## Question 2
+
+> 2. Now incorporate individual hunter varying effects into your analysis from the
+previous problem. Allow the influence of age on success to vary by each individual.
+How much variation in success is explained by individuals and how much by age?
+
+### Priors
+
+```{r}
+get_prior(success ~ age + (1 | id), family = 'binomial', data = DT_hunting)
+```
+
+### Posterior
+
+```{r}
+tar_load(m_h09_q02)
+m_h09_q02
+
+mcmc_areas(m_h09_q02, regex_pars = 'b|sd')
+```
+
