@@ -102,3 +102,11 @@ efficiency (competing cause) or to study how variation in trip durations mediate
 compare (1) a complete case analysis, which drops all the trips with missing durations, to (2) an analysis which uses all 14,364 trips and imputes missing duration
 values where necessary. Use any functional relationship between duration and success that you think is sensible, but be sure to justify it and check it against posterior
 predictions.
+
+```{r}
+tar_load(m_h09_q03_complete_cases)
+m_h09_q03_complete_cases
+
+mcmc_areas(m_h09_q03_complete_cases, regex_pars = 'sd|b')
+conditional_effects(m_h09_q03_complete_cases)
+```
