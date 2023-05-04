@@ -93,3 +93,12 @@ m_h09_q02
 mcmc_areas(m_h09_q02, regex_pars = 'b|sd')
 ```
 
+## Question 3
+
+> 3. Now include trip duration in the model from the previous problem. The focus
+is still the causal relationship between age and success, but duration is a potential
+competing cause or a mediator, so it can be useful to include it for either increased
+efficiency (competing cause) or to study how variation in trip durations mediate differences in hunting returns. Since there are many missing values for trip duration,
+compare (1) a complete case analysis, which drops all the trips with missing durations, to (2) an analysis which uses all 14,364 trips and imputes missing duration
+values where necessary. Use any functional relationship between duration and success that you think is sensible, but be sure to justify it and check it against posterior
+predictions.
