@@ -303,6 +303,19 @@ targets_h09 <- c(
 			),
 			data = DT_hunting
 		)
+	),
+	tar_target(
+		m_h09_q02,
+		brm(
+			success ~ age + (1 | id),
+			family = 'bernoulli',
+			prior = c(
+				prior(normal(0, 0.1), class = b),
+				prior(normal(0, 0.5), class = Intercept),
+				prior(exponential(1), class = sd)
+			),
+			data = DT_hunting
+		)
 	)
 
 )
