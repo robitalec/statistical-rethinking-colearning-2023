@@ -110,3 +110,13 @@ m_h09_q03_complete_cases
 mcmc_areas(m_h09_q03_complete_cases, regex_pars = 'sd|b')
 conditional_effects(m_h09_q03_complete_cases)
 ```
+
+
+```{r}
+tar_load(m_h09_q03_mice)
+m_h09_q03_mice
+
+mcmc_areas(m_h09_q03_mice, regex_pars = 'sd|b')
+
+conditional_effects(m_h09_q03_mice)
+```
