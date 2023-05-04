@@ -330,6 +330,18 @@ targets_h09 <- c(
 			data = na.omit(DT_hunting)
 		)
 	),
+	tar_target(
+		m_h09_q03_mice,
+		brm_multiple(
+			success ~ age + hours + (1 | id),
+			family = 'bernoulli',
+			prior = c(
+				prior(normal(0, 0.1), class = b),
+				prior(normal(0, 0.5), class = Intercept),
+				prior(exponential(1), class = sd)
+			),
+			data = mice(DT_hunting)
+		)
 	)
 
 )
