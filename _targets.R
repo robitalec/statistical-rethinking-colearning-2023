@@ -291,13 +291,25 @@ targets_h09 <- c(
 			sample_prior = 'only',
 			chains = 1
 		)
+	),
+	tar_target(
+		m_h09_q01,
+		brm(
+			success ~ age,
+			family = 'bernoulli',
+			prior = c(
+				prior(normal(0, 0.1), class = b),
+				prior(normal(0, 0.5), class = Intercept)
+			),
+			data = DT_hunting
+		)
 	)
 
 )
 
 # Quarto ------------------------------------------------------------------
 targets_quarto <- c(
-	tar_quarto(site, path = '.')
+	tar_quarto(site, path = '.', cue = tar_cue('never'))
 )
 
 
