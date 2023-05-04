@@ -14,6 +14,13 @@ source('R/packages.R')
 
 
 ## Data 
+
+The data in data(Achehunting) are 14,364 individual hunting trips by 147 men
+among the indigenous Aché of Paraguay. Each trip has recorded the hunter’s identity
+(anonymized id), hunter’s age at the time of the trip, the duration in hours of the
+trip, and the kilograms of meat returned. Many of the trips have missing values for
+duration.
+
 ```{r}
 # Data
 source('R/data_achehunting.R')
