@@ -1,0 +1,32 @@
+---
+title: "Homework 09"
+author: "Alec L. Robitaille"
+date: "2023-05-04"
+---
+
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+```{r, eval = FALSE}
+source('R/packages.R')
+```
+
+
+## Data 
+```{r}
+# Data
+source('R/data_achehunting.R')
+
+# month : Month of record
+# day : Day of record
+# year : Year of record
+# id : Identifier of individual man
+# age : Man's age at time of record
+# kg.meat : Kilograms of meat returned from hunt
+# hours : Duration in hours of hunting trip
+# datatype : 1 if duration of trip known, 3 otherwise
+
+DT_ache <- data_achehunting()
+```
+
