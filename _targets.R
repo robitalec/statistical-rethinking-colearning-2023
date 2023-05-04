@@ -348,7 +348,7 @@ targets_h09 <- c(
 
 # Quarto ------------------------------------------------------------------
 targets_quarto <- c(
-	tar_quarto(site, path = '.', cue = tar_cue('never'))
+	tar_quarto(site, path = '.')#, cue = tar_cue('never'))
 )
 
 

@@ -46,7 +46,18 @@ individual hunter identities for now. You can use any functional relationship fo
 and success that you think is sensible, but be sure to justify it and check it against
 posterior predictions.
 
+```{r h09_dag_q01}
+coords <- data.frame(
+    name = c('S', 'A'),
+    x =    c(1,    2),
+    y =    c(0,    1)
+)
 
+dagify(
+	S ~ A,
+	coords = coords
+) |> ggdag(seed = 2) + theme_dag()
+```
 ```{r}
 get_prior(success ~ age, family = 'binomial', data = DT_hunting)
 ```
