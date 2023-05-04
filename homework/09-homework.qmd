@@ -34,7 +34,7 @@ source('R/data_achehunting.R')
 # hours : Duration in hours of hunting trip
 # datatype : 1 if duration of trip known, 3 otherwise
 
-DT_ache <- data_achehunting()
+DT_hunting <- data_achehunting()
 ```
 
 
@@ -47,3 +47,15 @@ and success that you think is sensible, but be sure to justify it and check it a
 posterior predictions.
 
 
+```{r}
+get_prior(success ~ age, family = 'binomial', data = DT_hunting)
+```
+
+### Priors
+
+```{r}
+tar_load(m_h09_q01_prior)
+m_h09_q01_prior$prior
+conditional_effects(m_h09_q01_prior)
+mcmc_areas(m_h09_q01_prior, regex_pars = 'b')
+```
