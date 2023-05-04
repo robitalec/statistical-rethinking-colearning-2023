@@ -37,3 +37,13 @@ source('R/data_achehunting.R')
 DT_ache <- data_achehunting()
 ```
 
+
+
+## Question 1
+
+> 1. In this first problem, estimate the influence of age on the probability of trip success. Define “success” as a trip that returns any non-zero amount of meat. Ignore
+individual hunter identities for now. You can use any functional relationship for age
+and success that you think is sensible, but be sure to justify it and check it against
+posterior predictions.
+
+
