@@ -135,7 +135,8 @@ How much variation in success is explained by individuals and how much by age?
 ### Priors
 
 ```{r}
-get_prior(success ~ age + (1 | id), family = 'binomial', data = DT_hunting)
+priors_q02 <- get_prior(success ~ t2(age, by = id), family = 'binomial', data = DT_hunting)
+unique(priors_q02$class)
 ```
 
 ### Posterior
