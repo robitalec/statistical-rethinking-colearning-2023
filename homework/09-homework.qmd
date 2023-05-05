@@ -108,28 +108,20 @@ ggplot(epred_q01_prior) +
 
 ### Posterior
 
-```{r}
+```{r h09_q01}
 tar_load(m_h09_q01)
 m_h09_q01
 
 epred_q01 <- add_epred_draws(range_age, m_h09_q01)
 range(epred_q01$.epred)
 
-DT_hunting[, .(prob_success = sum(success) / .N), age]
-
 ggplot(epred_q01) + 
-    stat_lineribbon(aes(log10_age, .epred)) + 
+    stat_lineribbon(aes(age, .epred)) + 
     ylim(0, 1) +
     scale_fill_grey(start = 0.8, end = 0.4) + 
-    scale_x_continuous(
-        trans  = exp_trans(base = 10),
-        labels = label_number(),
-        breaks = log10(c(seq(10, 70, by = 20)))
-    ) +
     labs(x = 'Age', y = 'Posterior probability of success') + 
-    geom_point(aes(log10_age, prob_success), 
-               data = DT_hunting[, .(prob_success = sum(success) / .N), log10_age])
-
+    geom_point(aes(age, prob_success), 
+               data = DT_hunting[, .(prob_success = sum(success) / .N), age])
 ```
 
 
