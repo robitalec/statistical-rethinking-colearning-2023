@@ -82,11 +82,12 @@ a GAM with `brms` (through `mgcv`).
 
 ### Priors
 ```{r}
-get_prior(success ~ log10_age, family = 'binomial', data = DT_hunting)
+get_prior(success ~ s(age), family = 'binomial', data = DT_hunting)
 ```
 
-Predicted draws returns posterior predictions on the scale of the response (0, 1), 
-epred draws returns posterior predictions with the inverse transformation. 
+
+Recall: predicted draws returns posterior predictions on the scale of the response 
+(0, 1), epred draws returns posterior predictions with the inverse transformation. 
 
 ```{r h09_q01_prior}
 tar_load(m_h09_q01_prior)
@@ -99,14 +100,9 @@ epred_q01_prior <- add_epred_draws(range_age, m_h09_q01_prior)
 range(epred_q01_prior$.epred)
 
 ggplot(epred_q01_prior) + 
-    stat_lineribbon(aes(log10_age, .epred)) + 
+    stat_lineribbon(aes(age, .epred)) + 
     ylim(0, 1) +
     scale_fill_grey(start = 0.8, end = 0.4) + 
-    scale_x_continuous(
-        trans  = exp_trans(base = 10),
-        labels = label_number(),
-        breaks = log10(c(seq(10, 70, by = 20)))
-    ) +
     labs(x = 'Age', y = 'Prior probability of success')
 ```
 
