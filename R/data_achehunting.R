@@ -4,6 +4,8 @@ data_achehunting <- function() {
   DT <- data.table(Achehunting)
   
   DT[, success := kg.meat > 0]
+
+  DT[, log10_age := log10(age)]
   
   DT[, id := factor(id)]
   DT[, datatype := factor(datatype)]
