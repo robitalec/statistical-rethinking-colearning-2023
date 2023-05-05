@@ -281,11 +281,11 @@ targets_h09 <- c(
 	tar_target(
 		m_h09_q01_prior,
 		brm(
-			success ~ age,
+			success ~ log10_age,
 			family = 'bernoulli',
 			prior = c(
-				prior(normal(0, 0.1), class = b),
-				prior(normal(0, 0.5), class = Intercept)
+				prior(normal(0, 0.5), class = b),
+				prior(normal(0, 1.5), class = Intercept)
 			),
 			data = DT_hunting,
 			sample_prior = 'only',
@@ -295,11 +295,11 @@ targets_h09 <- c(
 	tar_target(
 		m_h09_q01,
 		brm(
-			success ~ age,
+			success ~ log10_age,
 			family = 'bernoulli',
 			prior = c(
-				prior(normal(0, 0.1), class = b),
-				prior(normal(0, 0.5), class = Intercept)
+				prior(normal(0, 0.5), class = b),
+				prior(normal(0, 1.5), class = Intercept)
 			),
 			data = DT_hunting
 		)
