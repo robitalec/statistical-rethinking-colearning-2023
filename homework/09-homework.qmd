@@ -159,7 +159,7 @@ get_prior(success ~ age + (1 | id), family = 'binomial', data = DT_hunting)
 tar_load(m_h09_q02)
 m_h09_q02
 
-mcmc_areas(m_h09_q02, regex_pars = 'b|sd')
+mcmc_areas(m_h09_q02, regex_pars = 'sd|b')
 ```
 
 ## Question 3
@@ -181,7 +181,15 @@ conditional_effects(m_h09_q03_complete_cases)
 ```
 
 
+
+
+
 ```{r}
+
+imp <- tar_read(DT_hunting_mice)
+
+
+
 tar_load(m_h09_q03_mice)
 m_h09_q03_mice
 
