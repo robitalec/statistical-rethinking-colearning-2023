@@ -61,6 +61,9 @@ dagify(
 ```
 
 ### Functional relationship
+
+First, fit with a log base 10 line. 
+
 ```{r m_h09_q01_function}
 range_age <- data.table(
     age = seq(min(DT_hunting$age), max(DT_hunting$age))
@@ -69,19 +72,13 @@ range_age <- data.table(
 ggplot(DT_hunting[, .(prob_success = sum(success) / .N), age], 
     aes(x = age, prob_success)) + 
     geom_point() + 
-    stat_function(fun = function(x) log(, 900))
-
-
-
-ggplot(range_age, aes(x = age)) + 
-    stat_function(fun = function(x) log(x, 30))
-
-
-    geom_point(aes(x = age, y = prob_success), data = 
-               DT_hunting[, .(prob_success = sum(success) / .N), age])
-
-range_age[, log10_age := log10(age)]
+    stat_function(fun = function(x) -1 + log10(x)) + 
+    labs(x = 'Age', y = 'Probability of success')
 ```
+
+Short of more background on these data, I am going to take it as practice fitting
+a GAM with `brms` (through `mgcv`).
+
 
 ### Priors
 ```{r}
