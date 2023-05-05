@@ -88,7 +88,9 @@ range_age[, log10_age := log10(age)]
 get_prior(success ~ log10_age, family = 'binomial', data = DT_hunting)
 ```
 
-```{r}
+Predicted draws returns posterior predictions on the scale of the response (0, 1), 
+epred draws returns posterior predictions with the inverse transformation. 
+
 tar_load(m_h09_q01_prior)
 m_h09_q01_prior$prior
 conditional_effects(m_h09_q01_prior)
