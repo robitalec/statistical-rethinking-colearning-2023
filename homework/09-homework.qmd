@@ -150,6 +150,17 @@ epred_q02 <- add_epred_draws(CJ(age = range_age$age, id = unique(DT_hunting$id))
 setDT(epred_q02)
 var_id <- epred_q02[, .(var_epred = var(.epred)), by = id]
 var_age <- epred_q02[, .(var_epred = var(.epred)), by = age]
+
+ggplot(var_id, aes(var_epred)) + 
+    stat_halfeye() + 
+    xlim(0, 0.1)
+
+ggplot(var_age, aes(age, var_epred)) + 
+    geom_point()
+
+ggplot(var_id[order(var_epred)]) + 
+    geom_point(aes(id, var_epred))
+
 ```
 
 ## Question 3
