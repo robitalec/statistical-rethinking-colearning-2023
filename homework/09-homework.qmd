@@ -161,6 +161,14 @@ ggplot(var_age, aes(age, var_epred)) +
 ggplot(var_id[order(var_epred)]) + 
     geom_point(aes(id, var_epred))
 
+
+ggplot(epred_q02) + 
+    stat_lineribbon(aes(age, .epred, group = id)) + 
+    ylim(0, 1) +
+    scale_fill_grey(start = 0.8, end = 0.4) + 
+    labs(x = 'Age', y = 'Posterior probability of success') + 
+    geom_point(aes(age, prob_success), 
+               data = DT_hunting[, .(prob_success = sum(success) / .N), age])
 ```
 
 ## Question 3
