@@ -320,6 +320,20 @@ targets_h09 <- c(
 		)
 	),
 	tar_target(
+		m_h09_q02_s_var_id,
+		brm(
+			success ~ s(age) + (1 | id),
+			family = 'bernoulli',
+			prior = c(
+				prior(normal(0, 0.5), class = b),
+				prior(normal(0, 1.5), class = Intercept),
+				prior(exponential(1), class = sds),
+                prior(exponential(1), class = sd)
+			),
+			data = DT_hunting
+		)
+	),
+	tar_target(
 		m_h09_q03_complete_cases,
 		brm(
 			success ~ t2(age, hours, by = id),
