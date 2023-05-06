@@ -141,11 +141,11 @@ unique(priors_q02$class)
 
 ### Posterior
 
-```{r}
+```{r h09_q02}
 tar_load(m_h09_q02)
-m_h09_q02
+#m_h09_q02
 
-mcmc_areas(m_h09_q02, regex_pars = 'sd|b')
+epred_q02 <- add_epred_draws(CJ(age = range_age$age, id = unique(DT_hunting$id)), m_h09_q02)
 ```
 
 ## Question 3
