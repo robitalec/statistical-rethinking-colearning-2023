@@ -145,7 +145,8 @@ unique(priors_q02$class)
 tar_load(m_h09_q02)
 #m_h09_q02
 
-epred_q02 <- add_epred_draws(CJ(age = range_age$age, id = unique(DT_hunting$id)), m_h09_q02)
+
+epred_q02 <- add_epred_draws(unique(DT_hunting[, .(age, id)]), m_h09_q02)
 
 setDT(epred_q02)
 var_id <- epred_q02[, .(var_epred = var(.epred)), by = id]
