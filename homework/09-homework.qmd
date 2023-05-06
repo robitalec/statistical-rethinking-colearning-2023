@@ -179,6 +179,7 @@ ggplot(epred_q02) +
                data = DT_hunting[, .(prob_success = sum(success) / .N), .(id, age)])
 ```
 
+
 ## Question 3
 
 > 3. Now include trip duration in the model from the previous problem. The focus
@@ -193,8 +194,9 @@ predictions.
 tar_load(m_h09_q03_complete_cases)
 m_h09_q03_complete_cases
 
-mcmc_areas(m_h09_q03_complete_cases, regex_pars = 'sd|b')
-conditional_effects(m_h09_q03_complete_cases)
+DT_hunting_naomit <- na.omit(copy(DT_hunting))[, id := factor(id)]
+epred_q03 <- add_epred_draws(DT_hunting_naomit, m_h09_q03_complete_cases)
+
 ```
 
 
