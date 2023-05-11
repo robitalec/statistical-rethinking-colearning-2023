@@ -10,6 +10,9 @@ library(palmerpenguins)
 library(lme4)
 library(brms)
 library(rethinking)
+library(tidybayes)
+library(ggdist)
+
 
 
 # Data --------------------------------------------------------------------
@@ -72,3 +75,44 @@ m_rethink <- ulam(
 
 plot(m_rethink, depth = 2)
 precis(m_rethink, depth = 2)
+
+
+
+
+# Tidy posterior ----------------------------------------------------------
+get_variables(m_brm)
+
+# Spread posterior draws, but note easier if goal is conditional effects
+#   to just use functions based on brms::fitted below
+draws_spread <- spread_draws(
+	m_brm,
+	b_body_mass_g,
+	b_sexmale
+)
+
+# Note fitted_draws deprecated for clarity
+#  in favor for predicted_draws, epred_draws, linpred_draws
+draws_predicted <- predicted_draws(
+	m_brm,
+	newdata = unique(complete_penguins[, .(sex, body_mass_g)])
+)
+
+ggplot(draws_predicted, aes(body_mass_g, .prediction, color = sex, fill = sex)) +
+	stat_lineribbon(.width = .76, alpha = 0.5) +
+	labs(y = 'Posterior predicted bill length mm') +
+	scale_color_scico_d() +
+	scale_fill_scico_d() +
+	theme_bw()
+
+# Epred
+draws_epred <- epred_draws(
+	m_brm,
+	newdata = unique(complete_penguins[, .(sex, body_mass_g)])
+)
+
+ggplot(draws_epred, aes(body_mass_g, .epred, color = sex, fill = sex)) +
+	stat_lineribbon(.width = .76, alpha = 0.5) +
+	labs(y = 'Expectation of the posterior predictive bill length mm') +
+	scale_color_scico_d() +
+	scale_fill_scico_d() +
+	theme_bw()
