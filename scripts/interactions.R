@@ -56,3 +56,19 @@ m_rethink <- ulam(
 plot(m_rethink, depth = 2)
 precis(m_rethink, depth = 2)
 
+
+
+m_rethink <- ulam(
+	alist(
+		bill_length_mm ~ dnorm(mu, sigma),
+		mu <- alpha[index_sex] + beta[index_sex] * body_mass_g,
+		alpha[index_sex] ~ dnorm(0, 10),
+		beta[index_sex] ~ dnorm(0, 1),
+		sigma ~ dexp(1)
+	),
+	chains = 4,
+	data = complete_penguins
+)
+
+plot(m_rethink, depth = 2)
+precis(m_rethink, depth = 2)
