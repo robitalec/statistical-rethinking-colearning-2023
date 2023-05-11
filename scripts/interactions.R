@@ -43,11 +43,16 @@ precis(m_brm$fit)
 m_rethink <- ulam(
 	alist(
 		bill_length_mm ~ dnorm(mu, sigma),
-		mu <- alpha + beta[sex] * body_mass_g,
+		mu <- alpha + beta_sex[index_sex] + beta_body * body_mass_g + beta_body_sex[index_sex] * beta_body,
 		alpha ~ dnorm(0, 10),
-		beta[sex] ~ dnorm(0, 1),
+		beta_sex[index_sex] ~ dnorm(0, 1),
+		beta_body ~ dnorm(0, 1),
+		beta_body_sex[index_sex] ~ dnorm(0, 1),
 		sigma ~ dexp(1)
 	),
+	chains = 4,
 	data = complete_penguins
 )
+plot(m_rethink, depth = 2)
+precis(m_rethink, depth = 2)
 
