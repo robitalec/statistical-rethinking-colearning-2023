@@ -34,8 +34,11 @@ ggplot(penguins, aes(body_mass_g, bill_length_mm, color = sex)) +
 
 # Model -------------------------------------------------------------------
 m_glm <- glm(bill_length_mm ~ body_mass_g * sex, data = complete_penguins)
+precis(m_glm)
 
 m_brm <- brm(bill_length_mm ~ body_mass_g * sex, data = complete_penguins)
+conditional_effects(m_brm, effects = 'body_mass_g:sex')
+precis(m_brm$fit)
 
 m_rethink <- ulam(
 	alist(
