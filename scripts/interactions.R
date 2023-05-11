@@ -16,6 +16,9 @@ library(rethinking)
 data("penguins")
 setDT(penguins)
 
+penguins[, index_sex := .GRP, sex]
+
+complete_penguins <- penguins[complete.cases(penguins)]
 
 
 
@@ -30,8 +33,6 @@ ggplot(penguins, aes(body_mass_g, bill_length_mm, color = sex)) +
 
 
 # Model -------------------------------------------------------------------
-complete_penguins <- penguins[complete.cases(penguins)]
-
 m_glm <- glm(bill_length_mm ~ body_mass_g * sex, data = complete_penguins)
 
 m_brm <- brm(bill_length_mm ~ body_mass_g * sex, data = complete_penguins)
