@@ -104,6 +104,7 @@ ggplot(draws_predicted, aes(body_mass_g, .prediction, color = sex, fill = sex)) 
 	scale_fill_scico_d() +
 	theme_bw()
 
+
 # Epred
 draws_epred <- epred_draws(
 	m_brm,
@@ -113,6 +114,28 @@ draws_epred <- epred_draws(
 ggplot(draws_epred, aes(body_mass_g, .epred, color = sex, fill = sex)) +
 	stat_lineribbon(.width = .76, alpha = 0.5) +
 	labs(y = 'Expectation posterior predictive bill length mm') +
+	scale_color_scico_d() +
+	scale_fill_scico_d() +
+	theme_bw()
+
+# Contrast
+draws_epred_cont <- epred_draws(
+	m_brm,
+	newdata = CJ(sex = c('male'),
+							 body_mass_g = seq.int(2000, 8000, by = 100))
+)
+
+draws_epred_f <- epred_draws(
+	m_brm,
+	newdata = CJ(sex = c('female'),
+							 body_mass_g = seq.int(2000, 8000, by = 100))
+)
+
+draws_epred_cont$contrast <- draws_epred_cont$.epred - draws_epred_f$.epred
+
+ggplot(draws_epred_cont, aes(body_mass_g, contrast, color = sex, fill = sex)) +
+	stat_lineribbon(.width = .76, alpha = 0.5) +
+	labs(y = 'Contrast') +
 	scale_color_scico_d() +
 	scale_fill_scico_d() +
 	theme_bw()
