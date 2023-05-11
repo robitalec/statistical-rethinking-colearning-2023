@@ -14,7 +14,14 @@ corrplot::corrplot(cor(data.frame(x, y, z)), diag = FALSE)
 
 
 
+library(ggplot2)
+data("penguins")
+setDT(penguins)
 
+ggplot(penguins, aes(body_mass_g, bill_length_mm, color = sex)) +
+	geom_point() +
+	geom_smooth(method = 'glm') +
+	theme_bw()
 
 add_random(subj = 4, item = 2) %>%
   add_between("subj", version = 1:2) %>%
