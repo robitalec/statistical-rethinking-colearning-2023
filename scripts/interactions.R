@@ -1,24 +1,19 @@
-library(faux)
-
-
-within <- list(
-  age = seq.int(0, 20, by = 1)
-)
-
-between <- list(
-  animal = c(''),
-  region =
-
-  fruit = c('orange', 'apple', 'banana'),
-  bread = c('whole wheat', 'white', 'rye')
-)
-
 n <- 100
+x <- runif(n, 1, 2)
+z <- runif(n, -2, -1)
+y <- (x * 0.9) + (z * -0.9)
 
-mu <- rnorm(sum(vapply(within, length, 42)) *
-              sum(vapply(between, length, 42)))
+plot(x)
+plot(z)
+plot(y)
 
-sim_design(within, between, n, mu)
+plot(y ~ x * z)
+
+corrplot::corrplot(cor(data.frame(x, y, z)), diag = FALSE)
+
+
+
+
 
 
 add_random(subj = 4, item = 2) %>%
