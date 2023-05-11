@@ -1,30 +1,31 @@
-n <- 100
-x <- runif(n, 1, 2)
-z <- runif(n, -2, -1)
-y <- (x * 0.9) + (z * -0.9)
-
-plot(x)
-plot(z)
-plot(y)
-
-plot(y ~ x * z)
-
-corrplot::corrplot(cor(data.frame(x, y, z)), diag = FALSE)
+# === Interactions --------------------------------------------------------
+# Alec L. Robitaille
 
 
 
-
+# Packages ----------------------------------------------------------------
 library(ggplot2)
+library(data.table)
+library(palmerpenguins)
+library(lme4)
+
+
+# Data --------------------------------------------------------------------
 data("penguins")
 setDT(penguins)
 
+
+
+
+# Plot --------------------------------------------------------------------
 ggplot(penguins, aes(body_mass_g, bill_length_mm, color = sex)) +
 	geom_point() +
 	geom_smooth(method = 'glm') +
 	theme_bw()
 
 
-library(lme4)
 
+
+# Model -------------------------------------------------------------------
 m <- glm(bill_length_mm ~ body_mass_g * sex, data = penguins)
 
