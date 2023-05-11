@@ -61,7 +61,7 @@ precis(m_rethink, depth = 2)
 
 
 
-m_rethink <- ulam(
+m_rethink_2 <- ulam(
 	alist(
 		bill_length_mm ~ dnorm(mu, sigma),
 		mu <- alpha[index_sex] + beta[index_sex] * body_mass_g,
@@ -73,8 +73,8 @@ m_rethink <- ulam(
 	data = complete_penguins
 )
 
-plot(m_rethink, depth = 2)
-precis(m_rethink, depth = 2)
+plot(m_rethink_2, depth = 2)
+precis(m_rethink_2, depth = 2)
 
 
 
