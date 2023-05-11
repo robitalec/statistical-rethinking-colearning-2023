@@ -23,13 +23,8 @@ ggplot(penguins, aes(body_mass_g, bill_length_mm, color = sex)) +
 	geom_smooth(method = 'glm') +
 	theme_bw()
 
-add_random(subj = 4, item = 2) %>%
-  add_between("subj", version = 1:2) %>%
-  # add by-subject random intercept
-  add_ranef("subj", u0s = 1.3) %>%
-  # add by-item random intercept and slope
-  add_ranef("item", u0i = 1.5, u1i = 1.5, .cors = 0.3) %>%
-  # add by-subject:item random intercept
-  add_ranef(c("subj", "item"), u0si = 1.7) %>%
-  # add error term (by observation)
-  add_ranef(sigma = 2.2)
+
+library(lme4)
+
+m <- glm(bill_length_mm ~ body_mass_g * sex, data = penguins)
+
