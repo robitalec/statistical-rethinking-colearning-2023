@@ -112,6 +112,39 @@ draws_epred <- epred_draws(
 
 ggplot(draws_epred, aes(body_mass_g, .epred, color = sex, fill = sex)) +
 	stat_lineribbon(.width = .76, alpha = 0.5) +
+	labs(y = 'Expectation posterior predictive bill length mm') +
+	scale_color_scico_d() +
+	scale_fill_scico_d() +
+	theme_bw()
+
+
+
+# Multilevel --------------------------------------------------------------
+m_brm_ml <- brm(bill_length_mm ~ body_mass_g + (1 | sex), data = complete_penguins)
+precis(m_brm_ml$fit, depth = 3)
+
+draws_epred_ml <- epred_draws(
+	m_brm_ml,
+	newdata = unique(complete_penguins[, .(sex, body_mass_g)])
+)
+
+ggplot(draws_epred_ml, aes(body_mass_g, .epred, color = sex, fill = sex)) +
+	stat_lineribbon(.width = .76, alpha = 0.5) +
+	labs(y = 'Expectation of the posterior predictive bill length mm') +
+	scale_color_scico_d() +
+	scale_fill_scico_d() +
+	theme_bw()
+
+m_brm_ml_slope <- brm(bill_length_mm ~ (body_mass_g | sex), data = complete_penguins)
+precis(m_brm_ml_slope$fit, depth = 3)
+
+draws_epred_ml_slope <- epred_draws(
+	m_brm_ml_slope,
+	newdata = unique(complete_penguins[, .(sex, body_mass_g)])
+)
+
+ggplot(draws_epred_ml_slope, aes(body_mass_g, .epred, color = sex, fill = sex)) +
+	stat_lineribbon(.width = .76, alpha = 0.5) +
 	labs(y = 'Expectation of the posterior predictive bill length mm') +
 	scale_color_scico_d() +
 	scale_fill_scico_d() +
