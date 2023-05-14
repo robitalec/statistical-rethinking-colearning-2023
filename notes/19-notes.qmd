@@ -8,3 +8,93 @@ date: "2023-05-14"
 source('R/packages.R')
 ```
 
+Linear models are additive combinations of variables
+They can be used for many applications, the fit is ok but not ideal
+Using linear models gives up scientific information we could use to better inform statistical analysis
+
+
+LMs, GLMs, GLMMs are flexible machines for decscribing associations
+
+Without an external causal model, linear models have no causal interpretation
+
+
+## Example: height
+
+The weight of humans is proportional to height. For example, represent humans as a cylinder. 
+
+Starting from the equation for the volume of a cylinder:
+
+$V = \pi r^{2} h$
+
+Represent the radius as proportion of height
+
+$V = \pi (ph)^{2} h$
+
+Finally, the weight depends on the density (k) of the cylinder
+
+$W = kV = k \pi (ph)^{2} h$
+
+And simplified, the formula for the expected weight is
+
+$W = k \pi p^{2}h^{3}$
+
+This is not a regression model, it is a scientific model that arises from the physical structure of human bodies. 
+
+
+### Statistical model
+
+$W_{i} \sim Distribution(\mu_{i})$
+
+$\mu_{i} = k \pi p^{2} h^{3}$
+
+$p \sim Distribution($
+
+$k \sim Distribution()$
+
+
+Set priors: choose measurement scales and simulate. 
+
+Units: 
+- $\mu_{i}$: kg
+- $k$: $kg/cm^{3}}$ 
+- $h^{3}$
+
+Measurement scales are social constructs, and it can be easier to divide them out. 
+We can do that by rescaling by, eg. the mean height and weight, resulting in the same data dimensionless. 
+By dividing by the mean, anything larger than 1 is larger than the mean, anything less than 1 is less than the mean. 
+
+
+P is a proporiton, therefore between 0-1, less than 0.5 in this case because the radius of a body in this population is less than a half of its height. 
+
+k is a density, it is a positive real number, greater than 1. 
+
+Beta distribution is for proportions, 
+
+
+```{r}
+ggplot() + 
+    stat_function(fun = dbeta, args = list(shape1 = 25, shape2 = 50)) + 
+    xlim(0, 1) + 
+    labs(x = 'p', y = 'dbeta(x, 25, 50)')
+
+ggplot() + 
+    stat_function(fun = dexp, args = list(rate = 0.5)) + 
+    xlim(0, 5) + 
+    labs(x = 'k', y = 'dexp(0.5)')
+```
+
+
+$W_{i} \sim Distribution(\mu_{i})$
+
+$\mu_{i} = k \pi p^{2} h^{3}$
+
+$p \sim Beta(25, 50)$
+
+$k \sim Exponential(0.5)$
+
+```{r}
+b <- brm(
+    nlf()
+)
+
+```
