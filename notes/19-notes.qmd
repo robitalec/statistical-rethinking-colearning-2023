@@ -6,6 +6,7 @@ date: "2023-05-14"
 
 ```{r, include = FALSE}
 source('R/packages.R')
+source('R/data_Howell1.R')
 ```
 
 Linear models are additive combinations of variables
@@ -83,18 +84,50 @@ ggplot() +
     labs(x = 'k', y = 'dexp(0.5)')
 ```
 
+Weight is a positive real, variance scales with the mean. Growth is multiplicative, log-normal is natural choice. 
 
-$W_{i} \sim Distribution(\mu_{i})$
+LogNormal is parameterized using the mu and sigma: mu in log-normal is mean of log, not mean of observed. Therefore when we model, we need to exponentiate mu because the formula corresponds to weight on the natural scale. 
 
-$\mu_{i} = k \pi p^{2} h^{3}$
+
+$W_{i} \sim LogNormal(\mu_{i}, \sigma)$
+
+$exp(\mu_{i}) = k \pi p^{2} h^{3}$
 
 $p \sim Beta(25, 50)$
 
 $k \sim Exponential(0.5)$
 
+$\sigma \sim Exponential(1)$
+
 ```{r}
+DT <- data_Howell()
+
+form <- bf(scale_weight_div_mean ~ log(k * 3.1415 * p ^ 2 * scale_height_div_mean ^ 3),
+       p ~ 1,
+       k ~ 1,
+       nl = TRUE)
+
+get_prior(form, data = DT, family = 'lognormal')
+
 b <- brm(
-    nlf()
+    bf(scale_weight_div_mean ~ log(k * 3.1415 * p ^ 2 * scale_height_div_mean ^ 3),
+       p ~ 1,
+       k ~ 1,
+       nl = TRUE),
+    prior = c(
+        prior(beta(25, 50), nlpar = p, lb = 0, ub = 1),
+        prior(exponential(0.5), nlpar = k, lb = 0),
+        prior(exponential(1), class = sigma)
+    ),
+    data = DT,
+    family = 'lognormal'
 )
+
+pred <- add_predicted_draws(b, newdata = data.frame(scale_height_div_mean = seq(0, 1.3, 0.01)))
+
+ggplot(pred, aes(scale_height_div_mean, .prediction)) + 
+    stat_lineribbon() + 
+    scale_fill_grey(start = 0.8, end = 0.5) + 
+    geom_point(aes(scale_height_div_mean, scale_weight_div_mean), data = DT)
 
 ```
