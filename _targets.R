@@ -289,10 +289,22 @@ targets_lecture_19 <- c(
 				prior(exponential(0.5), nlpar = k, lb = 0),
 				prior(exponential(1), class = sigma)
 			),
-			data = DT,
+			data = data_Howell(),
 			family = 'lognormal'
-			)
 		)
+	),
+	tar_target(
+	m_l19_nl_howell_no_dim,
+	brm(
+		bf(
+			scale_weight_div_mean ~ log(scale_height_div_mean ^ 3)),
+		prior = c(
+			prior(exponential(1), class = sigma)
+		),
+		data = data_Howell(),
+		family = 'lognormal'
+		)
+	)
 )
 
 # Quarto ------------------------------------------------------------------
