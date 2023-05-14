@@ -99,6 +99,8 @@ $k \sim Exponential(0.5)$
 
 $\sigma \sim Exponential(1)$
 
+
+
 ```{r}
 DT <- data_Howell()
 
@@ -127,3 +129,5 @@ ggplot(pred, aes(scale_height_div_mean, .prediction)) +
     scale_fill_grey(start = 0.8, end = 0.5) + 
     labs(x = 'Height (scaled)', y = 'Weight (scaled)')
 ```
+
+Help translating this model from `rethinking` to `brms` from the [brms translation of Statistical Rethinking 2nd edition](https://bookdown.org/content/4857/generalized-linear-madness.html#geometric-people)
