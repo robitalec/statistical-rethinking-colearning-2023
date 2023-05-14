@@ -114,7 +114,7 @@ get_prior(form, data = DT, family = 'lognormal')
 
 
 ```{r l19_nl_howell}
-tar_read(m_l19_nl_howell)
+tar_load(m_l19_nl_howell)
 m_l19_nl_howell$prior
 m_l19_nl_howell
 
@@ -131,3 +131,59 @@ ggplot(pred, aes(scale_height_div_mean, .prediction)) +
 ```
 
 Help translating this model from `rethinking` to `brms` from the [brms translation of Statistical Rethinking 2nd edition](https://bookdown.org/content/4857/generalized-linear-madness.html#geometric-people)
+
+
+Models using scientific structure can be easier to tune, because differences from prediction error are more closely tied to the problem at hand, rather than geocentric type models. 
+
+The posterior shows that the relationship between k and p is a negative curve where as k increases the values for p decrease. The model has identified a mathematical function in our formula, that could be used directly instead of including these parameters in the model.
+
+```{r kp_rel}
+ggplot(as_draws_df(b)) + 
+    geom_point(aes(b_k_Intercept, b_p_Intercept)) + 
+    labs(x = 'k', y = 'p')
+```
+
+
+Taking an example individual with scaled height = 1 and scaled weight = 1, we can solve for k. 
+
+$\mu_{i} = k \pi p^{2} h^{3}$
+
+$(1) = k \pi p^{2} (1)^{3}$
+
+$k = \frac{1}{\pi p^{2}}$
+
+This is the relationship show in the graph above. 
+
+Further, given:
+
+$(1) = k \pi p^{2} (1)^{3}$
+
+Subbing in the expression for k above, we get:
+
+$(1) = \pi \theta (1)^{3}$
+
+$\theta$ is used to represent $k p^2$ and therefore it must be 
+
+$\theta \approx \pi^{-1}$
+
+Given this, there are no parameters in the model, it is dimensionless. 
+Restructuring the model without those two parameters, the model returns 
+the same result and, as a bonus, fits much more efficiently. 
+
+
+```{r l19_nl_howell_no_dim}
+tar_load(m_l19_nl_howell_no_dim)
+m_l19_nl_howell_no_dim$prior
+m_l19_nl_howell_no_dim
+
+pred_no_dim <- add_predicted_draws(
+    m_l19_nl_howell_no_dim, 
+    newdata = data.frame(scale_height_div_mean = seq(0, 1.3, 0.01))
+)
+
+ggplot(pred_no_dim, aes(scale_height_div_mean, .prediction)) + 
+    stat_lineribbon() + 
+    geom_point(aes(scale_height_div_mean, scale_weight_div_mean), data = DT) + 
+    scale_fill_grey(start = 0.8, end = 0.5) + 
+    labs(x = 'Height (scaled)', y = 'Weight (scaled)')
+```
