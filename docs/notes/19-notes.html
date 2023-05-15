@@ -5,8 +5,8 @@
 <meta name="generator" content="quarto-1.3.340">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Alec L. Robitaille">
-<meta name="dcterms.date" content="2023-02-10">
-<title>Statistical Rethinking colearning 2023 - Lecture 12 Notes</title>
+<meta name="dcterms.date" content="2023-05-14">
+<title>Statistical Rethinking colearning 2023 - Lecture 19 Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -99,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/01-notes.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/12-notes.html">Lecture 12 Notes</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/01-notes.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/19-notes.html">Lecture 19 Notes</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/12-notes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../notes/12-notes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 12 Notes</span></a>
   </div>
 </li>
@@ -206,7 +206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/19-notes.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/19-notes.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Lecture 19 Notes</span></a>
   </div>
 </li>
@@ -268,26 +268,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#multilevel-models" id="toc-multilevel-models" class="nav-link active" data-scroll-target="#multilevel-models">Multilevel models</a>
+<a href="#scientific-models" id="toc-scientific-models" class="nav-link active" data-scroll-target="#scientific-models">Scientific models</a>
   <ul class="collapse">
-<li><a href="#regularization" id="toc-regularization" class="nav-link" data-scroll-target="#regularization">Regularization</a></li>
-  <li><a href="#example-cafes" id="toc-example-cafes" class="nav-link" data-scroll-target="#example-cafes">Example: cafes</a></li>
-  <li><a href="#example-reedfrogs" id="toc-example-reedfrogs" class="nav-link" data-scroll-target="#example-reedfrogs">Example: reedfrogs</a></li>
+<li><a href="#example-height" id="toc-example-height" class="nav-link" data-scroll-target="#example-height">Example: height</a></li>
+  <li><a href="#statistical-model" id="toc-statistical-model" class="nav-link" data-scroll-target="#statistical-model">Statistical model</a></li>
   </ul>
 </li>
-  <li><a href="#varying-effects" id="toc-varying-effects" class="nav-link" data-scroll-target="#varying-effects">Varying effects</a></li>
   <li>
-<a href="#bonus-random-confounds" id="toc-bonus-random-confounds" class="nav-link" data-scroll-target="#bonus-random-confounds">Bonus: random confounds</a>
+<a href="#state-based-models" id="toc-state-based-models" class="nav-link" data-scroll-target="#state-based-models">State-based models</a>
   <ul class="collapse">
-<li><a href="#example-reedfrogs-1" id="toc-example-reedfrogs-1" class="nav-link" data-scroll-target="#example-reedfrogs-1">Example: reedfrogs</a></li>
-  <li><a href="#example-classrooms" id="toc-example-classrooms" class="nav-link" data-scroll-target="#example-classrooms">Example: classrooms</a></li>
+<li><a href="#example-social-conformity" id="toc-example-social-conformity" class="nav-link" data-scroll-target="#example-social-conformity">Example: social conformity</a></li>
+  <li><a href="#example-population-dynamics" id="toc-example-population-dynamics" class="nav-link" data-scroll-target="#example-population-dynamics">Example: population dynamics</a></li>
   </ul>
 </li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Lecture 12 Notes</h1>
+<h1 class="title">Lecture 19 Notes</h1>
 </div>
 
 
@@ -304,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 10, 2023</p>
+      <p class="date">May 14, 2023</p>
     </div>
   </div>
   
@@ -312,131 +310,251 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><section id="multilevel-models" class="level2"><h2 class="anchored" data-anchor-id="multilevel-models">Multilevel models</h2>
-<p>Repeat observations within groups can be modeled using categorical variables eg. a vector of alphas for each individual. Categorical variables have <em>anterograde amnesia</em>, when estimating eg. the beta for a new individual, this estimate does not contribute anything to the next individual.</p>
-<p>Multilevel models instead, have two kinds of models</p>
-<ol type="1">
-<li>Model observations (eg. responses) of groups/individuals</li>
-<li>Model population of groups/individuals (clusters)</li>
-</ol>
-<p>The population model creates a kind of memory. Advantages of multilevel model include:</p>
-<ul>
-<li>more efficient estimation</li>
-<li>resists overfitting</li>
-</ul>
-<p>The order that we estimate clusters does not matter, because we update the population level model with every cluster estimate and that population level model contributes to all clusters’ estimates. The information gathered from each cluster is pooled.</p>
-<section id="regularization" class="level3"><h3 class="anchored" data-anchor-id="regularization">Regularization</h3>
-<p>Types of pooling</p>
-<ul>
-<li>Complete pooling: all clusters are the same. This results in underfitting.</li>
-<li>No pooling: all clusters are unrelated. This results in overfitting.</li>
-<li>Partial pooling: adaptive compromise. There is shrinkage towards the global mean.</li>
-</ul>
-<p>Regularization with multilevel models is partial pooling, an adaptive compromise.</p>
-</section><section id="example-cafes" class="level3"><h3 class="anchored" data-anchor-id="example-cafes">Example: cafes</h3>
-<p>Grey distribution is the priors Red distribution is the posterior Blue distribution is the population</p>
-</section><section id="example-reedfrogs" class="level3"><h3 class="anchored" data-anchor-id="example-reedfrogs">Example: reedfrogs</h3>
-<ul>
-<li>48 tanks (T) of reedfrogs</li>
-<li>treatments: density (D), size (G), predation (P)</li>
-<li>outcome: survival (S)</li>
-</ul>
+</header><section id="scientific-models" class="level2"><h2 class="anchored" data-anchor-id="scientific-models">Scientific models</h2>
+<p>Linear models are additive combinations of variables They can be used for many applications, the fit is ok but not ideal Using linear models gives up scientific information we could use to better inform statistical analysis</p>
+<p>LMs, GLMs, GLMMs are flexible machines for decscribing associations</p>
+<p>Without an external causal model, linear models have no causal interpretation</p>
+<section id="example-height" class="level3"><h3 class="anchored" data-anchor-id="example-height">Example: height</h3>
+<p>The weight of humans is proportional to height. For example, represent humans as a cylinder.</p>
+<p>Starting from the equation for the volume of a cylinder:</p>
+<p><span class="math inline">\(V = \pi r^{2} h\)</span></p>
+<p>Represent the radius as proportion of height</p>
+<p><span class="math inline">\(V = \pi (ph)^{2} h\)</span></p>
+<p>Finally, the weight depends on the density (k) of the cylinder</p>
+<p><span class="math inline">\(W = kV = k \pi (ph)^{2} h\)</span></p>
+<p>And simplified, the formula for the expected weight is</p>
+<p><span class="math inline">\(W = k \pi p^{2}h^{3}\)</span></p>
+<p>This is not a regression model, it is a scientific model that arises from the physical structure of human bodies.</p>
+</section><section id="statistical-model" class="level3"><h3 class="anchored" data-anchor-id="statistical-model">Statistical model</h3>
+<p><span class="math inline">\(W_{i} \sim Distribution(\mu_{i})\)</span></p>
+<p><span class="math inline">\(\mu_{i} = k \pi p^{2} h^{3}\)</span></p>
+<p><span class="math inline">\(p \sim Distribution(\)</span></p>
+<p><span class="math inline">\(k \sim Distribution()\)</span></p>
+<p>Set priors: choose measurement scales and simulate.</p>
+<p>Units: - <span class="math inline">\(\mu_{i}\)</span>: kg - <span class="math inline">\(k\)</span>: <span class="math inline">\(kg/cm^{3}}\)</span> - <span class="math inline">\(h^{3}\)</span></p>
+<p>Measurement scales are social constructs, and it can be easier to divide them out. We can do that by rescaling by, eg. the mean height and weight, resulting in the same data dimensionless. By dividing by the mean, anything larger than 1 is larger than the mean, anything less than 1 is less than the mean.</p>
+<p>P is a proporiton, therefore between 0-1, less than 0.5 in this case because the radius of a body in this population is less than a half of its height.</p>
+<p>k is a density, it is a positive real number, greater than 1.</p>
+<p>Beta distribution is for proportions,</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'D'</span>, <span class="st">'G'</span>, <span class="st">'P'</span>, <span class="st">'T'</span>, <span class="st">'S'</span><span class="op">)</span>,</span>
-<span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">2</span>,   <span class="fl">3</span>,   <span class="fl">1</span>,    <span class="fl">2</span><span class="op">)</span>,</span>
-<span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">0</span>,   <span class="fl">0</span>,   <span class="fl">1</span>,  <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
-<span>    <span class="va">S</span> <span class="op">~</span> <span class="va">D</span> <span class="op">+</span> <span class="va">G</span> <span class="op">+</span> <span class="va">P</span> <span class="op">+</span> <span class="cn">T</span>,</span>
-<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span>, layout <span class="op">=</span> <span class="st">'auto'</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">stat_function</span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dbeta</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>shape1 <span class="op">=</span> <span class="fl">25</span>, shape2 <span class="op">=</span> <span class="fl">50</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">xlim</span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'p'</span>, y <span class="op">=</span> <span class="st">'dbeta(x, 25, 50)'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="12-notes_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="384"></p>
+<p><img src="19-notes_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">stat_function</span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dexp</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>rate <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">xlim</span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'k'</span>, y <span class="op">=</span> <span class="st">'dexp(0.5)'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="19-notes_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><span class="math inline">\(S_{i} \sim Binomial(D_{i}, p_{i})\)</span></p>
-<p><span class="math inline">\(logit(p_{i}) = \alpha_{T[i]}\)</span></p>
-<p><span class="math inline">\(\alpha_{j} \sim Normal(\bar{\alpha}, \sigma)\)</span></p>
-<p><span class="math inline">\(\bar{\alpha} \sim Normal(0, 1.5)\)</span></p>
-<p><img src="../graphics/stat_rethinking_l12_slide34.png" class="img-fluid"></p>
-<section id="sigma" class="level4"><h4 class="anchored" data-anchor-id="sigma">Sigma</h4>
-<p><span class="math inline">\(\alpha_{j} \sim Normal(\bar{\alpha}, 0.1)\)</span></p>
-<p>At sigma = 0.1, we tell the model that the tanks are all very similar and the result is estimates for each tank that are all close to the average.</p>
-<p><span class="math inline">\(\alpha_{j} \sim Normal(\bar{\alpha}, 5)\)</span></p>
-<p>At sigma = 5, we tell the model that the tanks vary a lot and the prior does not create any constraints. This is equivalent to a categorical variable with amnesia with estimates very close to their values with in essence no pooling across tanks.</p>
-<p>There is an optimal sigma for learning between total pooling/underfitting and no pooling/overfitting. We can find the optimal sigma using cross validation and comparing the PSIS values of each model. Note this is different than defining a prior using the model fit to the sample data because we are evaluating how the model fits to out of sample data (cross validation).</p>
-<p><span class="math inline">\(\alpha_{j} \sim Normal(\bar{\alpha}, 1.79)\)</span></p>
-<p>At the optimal sigma determined for this data, the estimate is not exactly at the value and we see shrinkage across the tanks towards the global mean.</p>
-<p>Alternatively, we can estimate as a parameter in the model.</p>
-<p><span class="math inline">\(S_{i} \sim Binomial(D_{i}, p_{i})\)</span></p>
-<p><span class="math inline">\(logit(p_{i}) = \alpha_{T[i]}\)</span></p>
-<p><span class="math inline">\(\alpha_{j} \sim Normal(\bar{\alpha}, \sigma)\)</span></p>
-<p><span class="math inline">\(\bar{\alpha} \sim Normal(0, 1.5)\)</span></p>
+<p>Weight is a positive real, variance scales with the mean. Growth is multiplicative, log-normal is natural choice.</p>
+<p>LogNormal is parameterized using the mu and sigma: mu in log-normal is mean of log, not mean of observed. Therefore when we model, we need to exponentiate mu because the formula corresponds to weight on the natural scale.</p>
+<p><span class="math inline">\(W_{i} \sim LogNormal(\mu_{i}, \sigma)\)</span></p>
+<p><span class="math inline">\(exp(\mu_{i}) = k \pi p^{2} h^{3}\)</span></p>
+<p><span class="math inline">\(p \sim Beta(25, 50)\)</span></p>
+<p><span class="math inline">\(k \sim Exponential(0.5)\)</span></p>
 <p><span class="math inline">\(\sigma \sim Exponential(1)\)</span></p>
-</section><section id="estimates" class="level4"><h4 class="anchored" data-anchor-id="estimates">Estimates</h4>
-<p>Note that estimates for smaller tanks (with less frogs/observations) have smaller evidence and result in more conservative estimates (closer) to the global mean. Alternatively, larger tanks with more observations are less conservative.</p>
-<p><img src="../graphics/stat_rethinking_l12_slide34.png" class="img-fluid"></p>
-</section><section id="predators" class="level4"><h4 class="anchored" data-anchor-id="predators">Predators</h4>
-<p>Add a beta for predators, estimate a reduction in tank level survival (obviously). But the interesting thing is that the predictions between the model with and without predators is extremely similar. The difference is, however, in the sigma values where the model with predators has an estimate sigma around half that of the model without predators. The predator variable has explained approximately half of the variation on the log odds scale of the tanks.</p>
-<p>The sigma is not the variation among the units, it’s the variation among the parameters net all the other effects in the model.</p>
-</section></section></section><section id="varying-effects" class="level2"><h2 class="anchored" data-anchor-id="varying-effects">Varying effects</h2>
-<p>Recommended default is to use partial pooling if there are &gt;1 clusters</p>
-<p>Superstitions:</p>
-<ol type="1">
-<li><del>Units must be sampled at random</del></li>
-<li><del>Number of units must be large</del></li>
-<li><del>Assumes Gaussian variation</del></li>
-</ol>
-<p>Practical difficulties</p>
-<ol type="1">
-<li>How to use more than one cluster type at the same time</li>
-<li>How to sample efficiently</li>
-<li>Slopes and confounds</li>
-</ol></section><section id="bonus-random-confounds" class="level2"><h2 class="anchored" data-anchor-id="bonus-random-confounds">Bonus: random confounds</h2>
-<p>Random confounds, when unobserved group features influence individually-varying causes. <strong>Group-level variables can have direct and indirect influences</strong>. Unmeasured features of the group can affect the response directly and indirectly through the traits of individuals.</p>
-<p>Related terminology..</p>
-<ul>
-<li>group-level confounding</li>
-<li>endogeneity</li>
-<li>correlated errors</li>
-<li>econometrics</li>
-</ul>
-<p>Options:</p>
-<ol type="1">
-<li>Fixed effects model. Inefficient but soak up group-level confounding. Cannot identify group-level effects.</li>
-<li>Multilevel model. Better estimates for group-level variables but worse estimates for individual-level effects.</li>
-<li>Mundlak machine. Estimate a different average rate for each group but not efficient and doesn’t respect the uncertainty in X-bar.</li>
-</ol>
-<p>Or use a latent measurement error model.</p>
-<section id="example-reedfrogs-1" class="level3"><h3 class="anchored" data-anchor-id="example-reedfrogs-1">Example: reedfrogs</h3>
-<p>Estimand: <span class="math inline">\(p(S|do(X))\)</span>, the distribution of survival intervening on X.</p>
-<p>The problem: there is a backdoor path through G</p>
-<ul>
-<li>Z group level trait</li>
-<li>X individual level trait</li>
-</ul>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'G'</span>, <span class="st">'S'</span>, <span class="st">'X'</span>, <span class="st">'Z'</span><span class="op">)</span>,</span>
-<span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">2</span>,    <span class="fl">2</span>,   <span class="fl">2</span><span class="op">)</span>,</span>
-<span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">0</span>,    <span class="fl">2</span>,  <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu">data_Howell</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">form</span> <span class="op">&lt;-</span> <span class="fu">bf</span><span class="op">(</span><span class="va">scale_weight_div_mean</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">k</span> <span class="op">*</span> <span class="fl">3.1415</span> <span class="op">*</span> <span class="va">p</span> <span class="op">^</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">scale_height_div_mean</span> <span class="op">^</span> <span class="fl">3</span><span class="op">)</span>,</span>
+<span>       <span class="va">p</span> <span class="op">~</span> <span class="fl">1</span>,</span>
+<span>       <span class="va">k</span> <span class="op">~</span> <span class="fl">1</span>,</span>
+<span>       nl <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">get_prior</span><span class="op">(</span><span class="va">form</span>, data <span class="op">=</span> <span class="va">DT</span>, family <span class="op">=</span> <span class="st">'lognormal'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                prior class      coef group resp dpar nlpar lb ub       source
+ student_t(3, 0, 2.5) sigma                                  0         default
+               (flat)     b                               k            default
+               (flat)     b Intercept                     k       (vectorized)
+               (flat)     b                               p            default
+               (flat)     b Intercept                     p       (vectorized)</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
-<span>    <span class="va">S</span> <span class="op">~</span> <span class="va">G</span> <span class="op">+</span> <span class="va">X</span> <span class="op">+</span> <span class="va">Z</span>,</span>
-<span>    <span class="va">X</span> <span class="op">~</span> <span class="va">G</span>,</span>
-<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span>, layout <span class="op">=</span> <span class="st">'auto'</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_l19_nl_howell</span><span class="op">)</span></span>
+<span><span class="va">m_l19_nl_howell</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            prior class      coef group resp dpar nlpar lb ub       source
+ exponential(0.5)     b                               k  0            user
+ exponential(0.5)     b Intercept                     k  0    (vectorized)
+     beta(25, 50)     b                               p  0  1         user
+     beta(25, 50)     b Intercept                     p  0  1 (vectorized)
+   exponential(1) sigma                                  0            user</code></pre>
+</div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_l19_nl_howell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Family: lognormal 
+  Links: mu = identity; sigma = identity 
+Formula: scale_weight_div_mean ~ log(k * 3.1415 * p^2 * scale_height_div_mean^3) 
+         p ~ 1
+         k ~ 1
+   Data: data_Howell() (Number of observations: 544) 
+  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
+         total post-warmup draws = 4000
+
+Population-Level Effects: 
+            Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+p_Intercept     0.34      0.05     0.25     0.45 1.01      905     1149
+k_Intercept     2.76      0.91     1.52     4.91 1.00      907     1152
+
+Family Specific Parameters: 
+      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sigma     0.21      0.01     0.19     0.22 1.00     1433     1392
+
+Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+</div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu">add_predicted_draws</span><span class="op">(</span></span>
+<span>    <span class="va">m_l19_nl_howell</span>, </span>
+<span>    newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>scale_height_div_mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.3</span>, <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">pred</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">scale_height_div_mean</span>, <span class="va">.prediction</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">stat_lineribbon</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">scale_height_div_mean</span>, <span class="va">scale_weight_div_mean</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">DT</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">scale_fill_grey</span><span class="op">(</span>start <span class="op">=</span> <span class="fl">0.8</span>, end <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Height (scaled)'</span>, y <span class="op">=</span> <span class="st">'Weight (scaled)'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="12-notes_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="384"></p>
+<p><img src="19-notes_files/figure-html/l19_nl_howell-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section><section id="example-classrooms" class="level3"><h3 class="anchored" data-anchor-id="example-classrooms">Example: classrooms</h3>
-<p><img src="../graphics/stat_rethinking_l12_slide73.png" class="img-fluid"></p>
+<p>Help translating this model from <code>rethinking</code> to <code>brms</code> from the <a href="https://bookdown.org/content/4857/generalized-linear-madness.html#geometric-people">brms translation of Statistical Rethinking 2nd edition</a></p>
+<p>Models using scientific structure can be easier to tune, because differences from prediction error are more closely tied to the problem at hand, rather than geocentric type models.</p>
+<p>The posterior shows that the relationship between k and p is a negative curve where as k increases the values for p decrease. The model has identified a mathematical function in our formula, that could be used directly instead of including these parameters in the model.</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="fu">as_draws_df</span><span class="op">(</span><span class="va">m_l19_nl_howell</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">b_k_Intercept</span>, <span class="va">b_p_Intercept</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'k'</span>, y <span class="op">=</span> <span class="st">'p'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="19-notes_files/figure-html/kp_rel-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Taking an example individual with scaled height = 1 and scaled weight = 1, we can solve for k.</p>
+<p><span class="math inline">\(\mu_{i} = k \pi p^{2} h^{3}\)</span></p>
+<p><span class="math inline">\((1) = k \pi p^{2} (1)^{3}\)</span></p>
+<p><span class="math inline">\(k = \frac{1}{\pi p^{2}}\)</span></p>
+<p>This is the relationship show in the graph above.</p>
+<p>Further, given:</p>
+<p><span class="math inline">\((1) = k \pi p^{2} (1)^{3}\)</span></p>
+<p>Subbing in the expression for k above, we get:</p>
+<p><span class="math inline">\((1) = \pi \theta (1)^{3}\)</span></p>
+<p><span class="math inline">\(\theta\)</span> is used to represent <span class="math inline">\(k p^2\)</span> and therefore it must be</p>
+<p><span class="math inline">\(\theta \approx \pi^{-1}\)</span></p>
+<p>Given this, there are no parameters in the model, it is dimensionless. Restructuring the model without those two fparameters, the model returns the same result and, as a bonus, fits much more efficiently.</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tar_load</span><span class="op">(</span><span class="va">m_l19_nl_howell_no_dim</span><span class="op">)</span></span>
+<span><span class="va">m_l19_nl_howell_no_dim</span><span class="op">$</span><span class="va">prior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  prior     class                       coef group resp dpar
+                 (flat)         b                                           
+                 (flat)         b logscale_height_div_meanE3                
+ student_t(3, 0.1, 2.5) Intercept                                           
+         exponential(1)     sigma                                           
+ nlpar lb ub       source
+                  default
+             (vectorized)
+                  default
+        0            user</code></pre>
+</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m_l19_nl_howell_no_dim</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Family: lognormal 
+  Links: mu = identity; sigma = identity 
+Formula: scale_weight_div_mean ~ log(scale_height_div_mean^3) 
+   Data: data_Howell() (Number of observations: 544) 
+  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
+         total post-warmup draws = 4000
+
+Population-Level Effects: 
+                           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
+Intercept                     -0.07      0.01    -0.08    -0.06 1.00     4947
+logscale_height_div_meanE3     0.77      0.01     0.76     0.79 1.00     3988
+                           Tail_ESS
+Intercept                      2800
+logscale_height_div_meanE3     2797
+
+Family Specific Parameters: 
+      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sigma     0.13      0.00     0.12     0.13 1.00     3007     2795
+
+Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+</div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pred_no_dim</span> <span class="op">&lt;-</span> <span class="fu">add_predicted_draws</span><span class="op">(</span></span>
+<span>    <span class="va">m_l19_nl_howell_no_dim</span>, </span>
+<span>    newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>scale_height_div_mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.3</span>, <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">pred_no_dim</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">scale_height_div_mean</span>, <span class="va">.prediction</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">stat_lineribbon</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">scale_height_div_mean</span>, <span class="va">scale_weight_div_mean</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">DT</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">scale_fill_grey</span><span class="op">(</span>start <span class="op">=</span> <span class="fl">0.8</span>, end <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Height (scaled)'</span>, y <span class="op">=</span> <span class="st">'Weight (scaled)'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="19-notes_files/figure-html/l19_nl_howell_no_dim-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section></section><section id="state-based-models" class="level2"><h2 class="anchored" data-anchor-id="state-based-models">State-based models</h2>
+<p>What we want is a latent state but what we have is only emissions or behaviours of a latent variable. A misguided approach would be to just analyse this data as if it is a categorical variable, disregarding the difference between the behaviour and the underlying latent state.</p>
+<p>This family of models if common in movement, learning, population dynamics, international relations, family planning.</p>
+<section id="example-social-conformity" class="level3"><h3 class="anchored" data-anchor-id="example-social-conformity">Example: social conformity</h3>
+<p>Do children copy the majority?</p>
+<p>We can’t see the strategy selected, we can only see the choice.</p>
+<p>Majority choice is consistent with many strategies:</p>
+<ul>
+<li>random color would follow majority 1/3 the time</li>
+<li>random demonstrator would follow majority 3/4 the time</li>
+<li>random demonstration would follow majority 1/2 the time</li>
+</ul>
+<p>Total evidence for majority choice is exaggerated because multiple processes lead to the majority choice beyond a majority preference.</p>
+<p>Strategy space:</p>
+<ol type="1">
+<li>Majority</li>
+<li>Minority</li>
+<li>Maverick (unchosen)</li>
+<li>Random color (ignore demonstrators)</li>
+<li>Follow first (copy the first demonstrator)</li>
+</ol>
+<p>This is a state based model. There are three possible observations: unchosen, majority or minority.</p>
+<p><span class="math inline">\(Y_{i} \sim Categorical(\theta)\)</span></p>
+<p><span class="math inline">\(\theta_{j} = \sum_{S=1}^{5} p_{s} Pr(Y = j | S)\)</span></p>
+<p><span class="math inline">\(p \sim Dirichlet([4, 4, 4, 4, 4])\)</span></p>
+<ul>
+<li>
+<span class="math inline">\(\theta_{j}\)</span> is the probability of choice j</li>
+<li>
+<span class="math inline">\(S = 1\)</span> is the average over strategies</li>
+<li>
+<span class="math inline">\(p_{s}\)</span> is the prior probability of strategy S</li>
+<li>
+<span class="math inline">\(Pr(Y=j | S)\)</span> is the probability of choice j assuming strategy S</li>
+</ul></section><section id="example-population-dynamics" class="level3"><h3 class="anchored" data-anchor-id="example-population-dynamics">Example: population dynamics</h3>
+<p>Latent states can be time varying. Example: ecological dynamics with numbers of different species over time.</p>
+<p>Estimand: how do different species interact? How do interactions influence population dynamics?</p>
+<p>Lotka Voltera equations specify the change in number of individuals over time.</p>
+<p><span class="math inline">\(\frac{dH}{dt} = H_{t} * \texttt{birth rate} - H_{t} * \texttt{death rate}\)</span></p>
+<p><span class="math inline">\(\frac{dL}{dt} = H_{t} * \texttt{birth rate} - H_{t} * \texttt{death rate}\)</span></p>
+<p>Filling in the interdependence</p>
+<p><span class="math inline">\(\frac{dH}{dt} = H_{t} b_{H} - H_{t} (L_{t} m_{H})\)</span></p>
+<p><span class="math inline">\(\frac{dL}{dt} = H_{t} * (H_{t} b_{L}) - H_{t} * m_{L}\)</span></p>
+<ul>
+<li>
+<span class="math inline">\(m_{H}\)</span> is the impact of lynx on hares</li>
+</ul>
+<p>Model</p>
+<p><span class="math inline">\(h_{t} \sim LogNormal(log(p_{H}H_{t}, \sigma_{H})\)</span></p>
+<p><span class="math inline">\(l_{t} \sim LogNormal(log(p_{L}L_{t}, \sigma_{L})\)</span></p>
+<p>Without causal model, little hope to understand ecological interventions</p>
+<p>This is an example of cyclic (vs acyclic), but because it is modeled through time it is</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
