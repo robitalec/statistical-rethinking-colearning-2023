@@ -5,8 +5,8 @@
 <meta name="generator" content="quarto-1.3.340">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Alec L. Robitaille">
-<meta name="dcterms.date" content="2023-01-26">
-<title>Statistical Rethinking colearning 2023 - Lecture 04 Notes</title>
+<meta name="dcterms.date" content="2023-05-14">
+<title>Statistical Rethinking colearning 2023 - Lecture 20 Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,40 +18,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -90,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script>
 </head>
 <body class="nav-sidebar floating">
 
@@ -99,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/01-notes.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/04-notes.html">Lecture 04 Notes</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/01-notes.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/20-notes.html">Lecture 20 Notes</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/04-notes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../notes/04-notes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 04 Notes</span></a>
   </div>
 </li>
@@ -212,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/20-notes.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/20-notes.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Lecture 20 Notes</span></a>
   </div>
 </li>
@@ -274,25 +240,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#categories" id="toc-categories" class="nav-link active" data-scroll-target="#categories">Categories</a>
+<a href="#planning" id="toc-planning" class="nav-link active" data-scroll-target="#planning">Planning</a>
   <ul class="collapse">
-<li><a href="#example-weights-in-howell-data" id="toc-example-weights-in-howell-data" class="nav-link" data-scroll-target="#example-weights-in-howell-data">Example: weights in Howell data</a></li>
-  <li><a href="#analyze-the-data" id="toc-analyze-the-data" class="nav-link" data-scroll-target="#analyze-the-data">5. Analyze the data</a></li>
+<li><a href="#goal-setting" id="toc-goal-setting" class="nav-link" data-scroll-target="#goal-setting">Goal setting</a></li>
+  <li><a href="#theory-building" id="toc-theory-building" class="nav-link" data-scroll-target="#theory-building">Theory building</a></li>
+  <li><a href="#justified-sampling-plan" id="toc-justified-sampling-plan" class="nav-link" data-scroll-target="#justified-sampling-plan">Justified sampling plan</a></li>
+  <li><a href="#justified-analysis-plan" id="toc-justified-analysis-plan" class="nav-link" data-scroll-target="#justified-analysis-plan">Justified analysis plan</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">Documentation</a></li>
+  <li><a href="#open-software-and-data-formats" id="toc-open-software-and-data-formats" class="nav-link" data-scroll-target="#open-software-and-data-formats">Open software and data formats</a></li>
   </ul>
 </li>
   <li>
-<a href="#curves" id="toc-curves" class="nav-link" data-scroll-target="#curves">Curves</a>
+<a href="#working" id="toc-working" class="nav-link" data-scroll-target="#working">Working</a>
   <ul class="collapse">
-<li><a href="#splines" id="toc-splines" class="nav-link" data-scroll-target="#splines">Splines</a></li>
-  <li><a href="#example-heights-as-a-function-of-age" id="toc-example-heights-as-a-function-of-age" class="nav-link" data-scroll-target="#example-heights-as-a-function-of-age">Example: heights as a function of age</a></li>
+<li><a href="#control" id="toc-control" class="nav-link" data-scroll-target="#control">Control</a></li>
+  <li><a href="#incremental-testing" id="toc-incremental-testing" class="nav-link" data-scroll-target="#incremental-testing">Incremental testing</a></li>
+  <li><a href="#documentation-1" id="toc-documentation-1" class="nav-link" data-scroll-target="#documentation-1">Documentation</a></li>
+  <li><a href="#review" id="toc-review" class="nav-link" data-scroll-target="#review">Review</a></li>
   </ul>
 </li>
-  <li><a href="#full-luxury-bayes" id="toc-full-luxury-bayes" class="nav-link" data-scroll-target="#full-luxury-bayes">Full Luxury Bayes</a></li>
+  <li>
+<a href="#reporting" id="toc-reporting" class="nav-link" data-scroll-target="#reporting">Reporting</a>
+  <ul class="collapse">
+<li><a href="#sharing-materials" id="toc-sharing-materials" class="nav-link" data-scroll-target="#sharing-materials">Sharing materials</a></li>
+  <li><a href="#describing-methods" id="toc-describing-methods" class="nav-link" data-scroll-target="#describing-methods">Describing methods</a></li>
+  <li><a href="#describing-data" id="toc-describing-data" class="nav-link" data-scroll-target="#describing-data">Describing data</a></li>
+  <li><a href="#describing-results" id="toc-describing-results" class="nav-link" data-scroll-target="#describing-results">Describing results</a></li>
+  <li><a href="#making-decisions" id="toc-making-decisions" class="nav-link" data-scroll-target="#making-decisions">Making decisions</a></li>
+  </ul>
+</li>
+  <li><a href="#horoscopes-for-research" id="toc-horoscopes-for-research" class="nav-link" data-scroll-target="#horoscopes-for-research">Horoscopes for research</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Lecture 04 Notes</h1>
+<h1 class="title">Lecture 20 Notes</h1>
 </div>
 
 
@@ -309,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 26, 2023</p>
+      <p class="date">May 14, 2023</p>
     </div>
   </div>
   
@@ -317,102 +299,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><section id="categories" class="level2"><h2 class="anchored" data-anchor-id="categories">Categories</h2>
-<p>Problem: discrete unordered types</p>
-<p>Solution: stratify by category and fit a separate line for each</p>
-<p>Two options for coding categorical variables:</p>
+</header><p>Stargazing</p>
+<p>Fortune telling frameworks (eg. horoscopes, tarot cards, linear models) has to be vague, derived from vague facts the advice has to be vague. Also often an exaggerated importance.</p>
+<p>Cannot offload subjective responsibility onto an objective procedure</p>
+<p>Tendency to focus on parts that are mathematical, objective - the quality of the data analysis</p>
+<p>Other things that are also important</p>
 <ul>
-<li>indicator variables (0/1)</li>
-<li>index variables (1, 2, 3, 4, …)</li>
+<li>quality of theory</li>
+<li>quality of data</li>
+<li>quality of code and procedures</li>
+<li>code documentation</li>
+<li>reporting</li>
 </ul>
-<p>Index variables offer an advantage of allowing you to flexibly add or remove indexes without having to rewrite the model. Indicator variables are limited to 2 groups.</p>
-<p>Then the variable, eg. an <span class="math inline">\(\alpha\)</span> intercept, becomes a vector of intercepts for each index.</p>
-<p><span class="math inline">\(W_{i} \sim Normal(\mu_{i}, \sigma)\)</span></p>
-<p><span class="math inline">\(\mu_{i} = \alpha_{S[i]}\)</span></p>
-<p><span class="math inline">\(\alpha \sim Normal(60, 10)\)</span></p>
-<p><span class="math inline">\(\sigma \sim Uniform(0, 10)\)</span></p>
-<section id="example-weights-in-howell-data" class="level3"><h3 class="anchored" data-anchor-id="example-weights-in-howell-data">Example: weights in Howell data</h3>
-<section id="estimand" class="level4"><h4 class="anchored" data-anchor-id="estimand">1. Estimand</h4>
+<section id="planning" class="level2"><h2 class="anchored" data-anchor-id="planning">Planning</h2>
+<section id="goal-setting" class="level3"><h3 class="anchored" data-anchor-id="goal-setting">Goal setting</h3>
 <ul>
-<li>Causal effect of height on weight?</li>
-<li>Causal effect of sex on weight?</li>
-<li>Direct causal effect of sex on weight?</li>
-</ul></section><section id="generative-model" class="level4"><h4 class="anchored" data-anchor-id="generative-model">2. Generative model</h4>
-<p>Stratify by sex</p>
-<div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'H'</span>, <span class="st">'W'</span>, <span class="st">'S'</span>, <span class="st">'A'</span><span class="op">)</span>,</span>
-<span>    x <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,    <span class="fl">3</span>,   <span class="fl">2</span>,    <span class="fl">2</span><span class="op">)</span>,</span>
-<span>    y <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,    <span class="fl">0</span>,  <span class="op">-</span><span class="fl">1</span>,    <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
-<span>    <span class="va">W</span> <span class="op">~</span> <span class="va">H</span> <span class="op">+</span> <span class="va">S</span>,</span>
-<span>    <span class="va">H</span> <span class="op">~</span> <span class="va">S</span>,</span>
-<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span>, layout <span class="op">=</span> <span class="st">'auto'</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="04-notes_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="384"></p>
-</div>
-</div>
-<p>Most interventions on height will influence weight but the reverse is not necessarily true. Sex is a mediator which indirectly influences weight through height and directly influences weight.</p>
-<p><span class="math inline">\(H = f_{H} (S)\)</span></p>
-<p><span class="math inline">\(W = f_{W}(H, S)\)</span></p>
-<p>Note that unobserved confounds can be ignored unless they are shared by multiple variables.</p>
-</section><section id="statistical-model" class="level4"><h4 class="anchored" data-anchor-id="statistical-model">3. Statistical model</h4>
-<p>Causal effect of S on W</p>
-<p><span class="math inline">\(W_{i} \sim Normal(\mu_{i}, \sigma)\)</span></p>
-<p><span class="math inline">\(\mu_{i} = \alpha_{S[i]}\)</span></p>
-<p><span class="math inline">\(\alpha \sim Normal(60, 10)\)</span></p>
-<p><span class="math inline">\(\sigma \sim Uniform(0, 10)\)</span></p>
-<p>Direct causal effect of S on W</p>
-<p><span class="math inline">\(W_{i} \sim Normal(\mu_{i}, \sigma)\)</span></p>
-<p><span class="math inline">\(\mu_{i} = \alpha_{i} + \beta(H_{i} - \bar{H})\)</span></p>
-<p>Centering H by subtracting the mean from each value means that alpha represents the average weight of a person with average height. This makes it easy to define justifiable priors for alpha</p>
-<p><span class="math inline">\(\alpha \sim Normal(60, 10)\)</span></p>
-<p><span class="math inline">\(\beta \sim Normal(0, 1)\)</span></p>
-<p><span class="math inline">\(\sigma \sim Uniform(0, 10)\)</span></p>
-</section><section id="validate" class="level4"><h4 class="anchored" data-anchor-id="validate">4. Validate</h4>
-<p>Test with simulated individuals</p>
-</section></section><section id="analyze-the-data" class="level3"><h3 class="anchored" data-anchor-id="analyze-the-data">5. Analyze the data</h3>
-<p>Analyze the real data with the statistical model defined in 3 (and validated in 4).</p>
-<p>Extract samples from the posterior and compute a contrast. Note, it is insufficient to compare the posterior mean parameter estimates or to plot the densities of parameter estimates. Take the entire sample of the posterior distribution and compute the contrast distribution. No comparing confidence intervals or p-values.</p>
-<p>Always summarize last. We want the mean different and not mean of differences.</p>
-</section></section><section id="curves" class="level2"><h2 class="anchored" data-anchor-id="curves">Curves</h2>
-<p>H -&gt; W obviously not linear</p>
-<p>We can use linear models to curves, but note, like all linear models, this is not mechanistic.</p>
-<p>Solution: splines and generalized additive models</p>
-<p>We avoid polynomial linear models because there is forced symmetry and explosive uncertainty at the edges. There is no local smoothing, only global.</p>
-<section id="splines" class="level3"><h3 class="anchored" data-anchor-id="splines">Splines</h3>
-<p>Splines offer a locally inferred function, where many locally trained functions that are combined and smoothed into a continuous function. They are powerful geocentric devices.</p>
-<p>Basis splines are linear models with synthetic variables.</p>
-<p><span class="math inline">\(\mu_{i} = \alpha + w_{1} B_{i, 1} + w_{2} B_{i, 2} + w_{3} B_{i, 3} + ...\)</span></p>
-<p>Weights w are like slopes and basis functions B are synthetic variables. Spline is the sum of the weights at any point on the x-axis (eg. age).</p>
-</section><section id="example-heights-as-a-function-of-age" class="level3"><h3 class="anchored" data-anchor-id="example-heights-as-a-function-of-age">Example: heights as a function of age</h3>
-<p>Height as a function of age</p>
-<div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dagify</span><span class="op">(</span></span>
-<span>    <span class="va">W</span> <span class="op">~</span> <span class="va">H</span> <span class="op">+</span> <span class="va">S</span> <span class="op">+</span> <span class="va">A</span>, </span>
-<span>    <span class="va">H</span> <span class="op">~</span> <span class="va">S</span> <span class="op">+</span> <span class="va">A</span>,</span>
-<span>  coords <span class="op">=</span> <span class="va">coords</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggdag</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2</span>, layout <span class="op">=</span> <span class="st">'auto'</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_dag</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="04-notes_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="384"></p>
-</div>
-</div>
-<p>Strange to consider age as a cause because what is a definable intervention? Does age simply represent accumulated growth? In this case, those are not measured so we will consider it as a proxy for those variables.</p>
-</section></section><section id="full-luxury-bayes" class="level2"><h2 class="anchored" data-anchor-id="full-luxury-bayes">Full Luxury Bayes</h2>
-<p>In the heights in Howell data example above, we used two models for two estimands: the total causal effect and the direct causal effect of sex on weight.</p>
-<p>An alternative and equivalent approach is to use one model of the entire causal system, then use the join posterior to compute each estimand. Multiple models approach requires more models, full luxury bayes approach requires more simulation.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../graphics/stat_rethinking_l04_slide98.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Lecture 4 - Slide 98</figcaption></figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../graphics/stat_rethinking_l04_slide102.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Lecture 4 - Slide 102</figcaption></figure>
-</div>
+<li>estimands defined at the beginning</li>
+</ul></section><section id="theory-building" class="level3"><h3 class="anchored" data-anchor-id="theory-building">Theory building</h3>
+<ul>
+<li>Which assumptions will we make to construct an appropriate estimator?</li>
+<li>causal model</li>
+</ul>
+<p>Levels of theory building</p>
+<ol type="1">
+<li>Heuristic causal model (DAGs)</li>
+<li>Structural causal models (synthetic functions that identify in precise mathematical ways the relationships between variables)</li>
+<li>Dynamic models (eg. ODEs)</li>
+<li>Agent-based models (most fine grained approach)</li>
+</ol>
+<p>These all specify or imply algebraic systems that can be analysed for their implications.</p>
+<p>Best way to learn models is to read models</p>
+<section id="dags" class="level4"><h4 class="anchored" data-anchor-id="dags">DAGs</h4>
+<p>Heuristic causal models</p>
+<ol type="1">
+<li>Treatment and outcome</li>
+<li>Other causes</li>
+<li>Other effects</li>
+<li>Unobserved causes</li>
+</ol></section></section><section id="justified-sampling-plan" class="level3"><h3 class="anchored" data-anchor-id="justified-sampling-plan">Justified sampling plan</h3>
+</section><section id="justified-analysis-plan" class="level3"><h3 class="anchored" data-anchor-id="justified-analysis-plan">Justified analysis plan</h3>
+</section><section id="documentation" class="level3"><h3 class="anchored" data-anchor-id="documentation">Documentation</h3>
+</section><section id="open-software-and-data-formats" class="level3"><h3 class="anchored" data-anchor-id="open-software-and-data-formats">Open software and data formats</h3>
+</section></section><section id="working" class="level2"><h2 class="anchored" data-anchor-id="working">Working</h2>
+<ol type="1">
+<li>Express theory as probabilistic program</li>
+<li>Prove planned analysis could work (conditionally on assumptions)</li>
+<li>Test pipeline on synthetic data</li>
+<li>Run pipeline on empirical data</li>
+</ol>
+<section id="control" class="level3"><h3 class="anchored" data-anchor-id="control">Control</h3>
+<ul>
+<li>version control (Git)</li>
+<li>history</li>
+<li>backup</li>
+<li>accountability</li>
+</ul></section><section id="incremental-testing" class="level3"><h3 class="anchored" data-anchor-id="incremental-testing">Incremental testing</h3>
+<ul>
+<li>build things iteratively</li>
+<li>test each piece</li>
+</ul></section><section id="documentation-1" class="level3"><h3 class="anchored" data-anchor-id="documentation-1">Documentation</h3>
+<ul>
+<li>comment everything</li>
+<li>for you and for others</li>
+</ul></section><section id="review" class="level3"><h3 class="anchored" data-anchor-id="review">Review</h3>
+<ul>
+<li>at least two people should look at each thing you do</li>
+<li>explain the code to someone (rubber ducky)</li>
+</ul></section></section><section id="reporting" class="level2"><h2 class="anchored" data-anchor-id="reporting">Reporting</h2>
+<section id="sharing-materials" class="level3"><h3 class="anchored" data-anchor-id="sharing-materials">Sharing materials</h3>
+<p>Papers are an advertisement, the data and its analysis are the product. Data and code should be available through a link, not “by request”</p>
+</section><section id="describing-methods" class="level3"><h3 class="anchored" data-anchor-id="describing-methods">Describing methods</h3>
+<ul>
+<li>math-stats notation of statistical model (software independent)</li>
+<li>explanation of how math-stats model provides estimand</li>
+<li>algorithm used to produce estimate</li>
+<li>diagnostics, code tests</li>
+<li>cite software packages</li>
+</ul>
+<p>Justifying priors</p>
+<p>“Priors were chosen through prior predictive simulation so that pre-data predictions span the range of scientifically plausible outcomes. In the results, we explicitly compared the posterior distribution to the prior, so that the impact of the sample is obvious.”</p>
+<p>Responding to reviewers: change discussion from statistics to causal models, scientific models.</p>
+<p>Point readers to a primer paper on Bayesian statistics in your field.</p>
+</section><section id="describing-data" class="level3"><h3 class="anchored" data-anchor-id="describing-data">Describing data</h3>
+<p>Sample size, but specifically the structure of your data - how many observations of how many units?</p>
+<p>At which level (across or within clusters) are variables measured?</p>
+<p>Missing values</p>
+</section><section id="describing-results" class="level3"><h3 class="anchored" data-anchor-id="describing-results">Describing results</h3>
+<p>Focus of results typically are on estimands, presented using marginal causal effects</p>
+<p>Warn against causal interpretation of control variables (Table 2 fallacy)</p>
+<p>Sample realizations &gt; Densities &gt; Intervals</p>
+</section><section id="making-decisions" class="level3"><h3 class="anchored" data-anchor-id="making-decisions">Making decisions</h3>
+<p>Academic research: communicate uncertainty, conditional on sample and models</p>
+<p>Industry, applied research: what should we do, given uncertainty, conditional on sample and models?</p>
+<p>Bayesian decision theory:</p>
+<ol type="1">
+<li>State costs and benefits of outcomes</li>
+<li>Compute posterior benefits of hypothetical policy choices (interventions)</li>
+</ol></section></section><section id="horoscopes-for-research" class="level2"><h2 class="anchored" data-anchor-id="horoscopes-for-research">Horoscopes for research</h2>
+<p>Fixes:</p>
+<ol type="1">
+<li>No statistics without associated causal model</li>
+<li>Prove that your code works in principle</li>
+<li>Share as much as possible</li>
+<li>Beware of proxies for research quality</li>
+</ol>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

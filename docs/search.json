@@ -137,7 +137,7 @@
     "href": "homework/01-homework.html#question-3",
     "title": "Homework 01",
     "section": "Question 3",
-    "text": "Question 3\n\nUse the posterior predictive distribution from 2 to calculate the probability of 3 or more water samples in the next 5 tosses.\n\n\n# Predicted probability of 3 or more water samples in the next 5 tosses\n#  given posterior predictive distribution\ntable(posterior_predict &gt;= 3) / size\n\n\n FALSE   TRUE \n0.8129 0.1871 \n\n# and beta distribution prediction\ntable(beta_predict &gt;= 3) / size\n\n\nFALSE  TRUE \n0.818 0.182"
+    "text": "Question 3\n\nUse the posterior predictive distribution from 2 to calculate the probability of 3 or more water samples in the next 5 tosses.\n\n\n# Predicted probability of 3 or more water samples in the next 5 tosses\n#  given posterior predictive distribution\ntable(posterior_predict &gt;= 3) / size\n\n\n FALSE   TRUE \n0.8259 0.1741 \n\n# and beta distribution prediction\ntable(beta_predict &gt;= 3) / size\n\n\n FALSE   TRUE \n0.8153 0.1847"
   },
   {
     "objectID": "homework/01-homework.html#question-4-optional",
@@ -551,6 +551,41 @@
     "title": "Lecture 12 Notes",
     "section": "Bonus: random confounds",
     "text": "Bonus: random confounds\nRandom confounds, when unobserved group features influence individually-varying causes. Group-level variables can have direct and indirect influences. Unmeasured features of the group can affect the response directly and indirectly through the traits of individuals.\nRelated terminology..\n\ngroup-level confounding\nendogeneity\ncorrelated errors\neconometrics\n\nOptions:\n\nFixed effects model. Inefficient but soak up group-level confounding. Cannot identify group-level effects.\nMultilevel model. Better estimates for group-level variables but worse estimates for individual-level effects.\nMundlak machine. Estimate a different average rate for each group but not efficient and doesn’t respect the uncertainty in X-bar.\n\nOr use a latent measurement error model.\nExample: reedfrogs\nEstimand: \\(p(S|do(X))\\), the distribution of survival intervening on X.\nThe problem: there is a backdoor path through G\n\nZ group level trait\nX individual level trait\n\n\ncoords &lt;- data.frame(\n    name = c('G', 'S', 'X', 'Z'),\n    x =    c(1,    2,    2,   2),\n    y =    c(0,    0,    2,  -1)\n)\n\n\ndagify(\n    S ~ G + X + Z,\n    X ~ G,\n  coords = coords\n) |&gt; ggdag(seed = 2, layout = 'auto') + theme_dag()\n\n\n\n\nExample: classrooms"
+  },
+  {
+    "objectID": "notes/20-notes.html",
+    "href": "notes/20-notes.html",
+    "title": "Lecture 20 Notes",
+    "section": "",
+    "text": "Stargazing\nFortune telling frameworks (eg. horoscopes, tarot cards, linear models) has to be vague, derived from vague facts the advice has to be vague. Also often an exaggerated importance.\nCannot offload subjective responsibility onto an objective procedure\nTendency to focus on parts that are mathematical, objective - the quality of the data analysis\nOther things that are also important"
+  },
+  {
+    "objectID": "notes/20-notes.html#planning",
+    "href": "notes/20-notes.html#planning",
+    "title": "Lecture 20 Notes",
+    "section": "Planning",
+    "text": "Planning\nGoal setting\n\nestimands defined at the beginning\nTheory building\n\nWhich assumptions will we make to construct an appropriate estimator?\ncausal model\n\nLevels of theory building\n\nHeuristic causal model (DAGs)\nStructural causal models (synthetic functions that identify in precise mathematical ways the relationships between variables)\nDynamic models (eg. ODEs)\nAgent-based models (most fine grained approach)\n\nThese all specify or imply algebraic systems that can be analysed for their implications.\nBest way to learn models is to read models\nDAGs\nHeuristic causal models\n\nTreatment and outcome\nOther causes\nOther effects\nUnobserved causes\nJustified sampling plan\nJustified analysis plan\nDocumentation\nOpen software and data formats"
+  },
+  {
+    "objectID": "notes/20-notes.html#working",
+    "href": "notes/20-notes.html#working",
+    "title": "Lecture 20 Notes",
+    "section": "Working",
+    "text": "Working\n\nExpress theory as probabilistic program\nProve planned analysis could work (conditionally on assumptions)\nTest pipeline on synthetic data\nRun pipeline on empirical data\n\nControl\n\nversion control (Git)\nhistory\nbackup\naccountability\nIncremental testing\n\nbuild things iteratively\ntest each piece\nDocumentation\n\ncomment everything\nfor you and for others\nReview\n\nat least two people should look at each thing you do\nexplain the code to someone (rubber ducky)"
+  },
+  {
+    "objectID": "notes/20-notes.html#reporting",
+    "href": "notes/20-notes.html#reporting",
+    "title": "Lecture 20 Notes",
+    "section": "Reporting",
+    "text": "Reporting\nSharing materials\nPapers are an advertisement, the data and its analysis are the product. Data and code should be available through a link, not “by request”\nDescribing methods\n\nmath-stats notation of statistical model (software independent)\nexplanation of how math-stats model provides estimand\nalgorithm used to produce estimate\ndiagnostics, code tests\ncite software packages\n\nJustifying priors\n“Priors were chosen through prior predictive simulation so that pre-data predictions span the range of scientifically plausible outcomes. In the results, we explicitly compared the posterior distribution to the prior, so that the impact of the sample is obvious.”\nResponding to reviewers: change discussion from statistics to causal models, scientific models.\nPoint readers to a primer paper on Bayesian statistics in your field.\nDescribing data\nSample size, but specifically the structure of your data - how many observations of how many units?\nAt which level (across or within clusters) are variables measured?\nMissing values\nDescribing results\nFocus of results typically are on estimands, presented using marginal causal effects\nWarn against causal interpretation of control variables (Table 2 fallacy)\nSample realizations &gt; Densities &gt; Intervals\nMaking decisions\nAcademic research: communicate uncertainty, conditional on sample and models\nIndustry, applied research: what should we do, given uncertainty, conditional on sample and models?\nBayesian decision theory:\n\nState costs and benefits of outcomes\nCompute posterior benefits of hypothetical policy choices (interventions)"
+  },
+  {
+    "objectID": "notes/20-notes.html#horoscopes-for-research",
+    "href": "notes/20-notes.html#horoscopes-for-research",
+    "title": "Lecture 20 Notes",
+    "section": "Horoscopes for research",
+    "text": "Horoscopes for research\nFixes:\n\nNo statistics without associated causal model\nProve that your code works in principle\nShare as much as possible\nBeware of proxies for research quality"
   },
   {
     "objectID": "CODE_OF_CONDUCT.html",

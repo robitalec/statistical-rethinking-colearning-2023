@@ -140,7 +140,7 @@ Models using scientific structure can be easier to tune, because differences fro
 The posterior shows that the relationship between k and p is a negative curve where as k increases the values for p decrease. The model has identified a mathematical function in our formula, that could be used directly instead of including these parameters in the model.
 
 ```{r kp_rel}
-ggplot(as_draws_df(b)) + 
+ggplot(as_draws_df(m_l19_nl_howell)) + 
     geom_point(aes(b_k_Intercept, b_p_Intercept)) + 
     labs(x = 'k', y = 'p')
 ```
