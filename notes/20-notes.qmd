@@ -1,0 +1,168 @@
+---
+title: "Lecture 20 Notes"
+author: "Alec L. Robitaille"
+date: "2023-05-14"
+---
+
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+
+Stargazing
+
+
+Fortune telling frameworks (eg. horoscopes, tarot cards, linear models) has to be vague, derived from vague facts the advice has to be vague. Also often an exaggerated importance. 
+
+Cannot offload subjective responsibility onto an objective procedure
+
+Tendency to focus on parts that are mathematical, objective - the quality of the data analysis
+
+Other things that are also important
+
+- quality of theory
+- quality of data
+- quality of code and procedures
+- code documentation
+- reporting
+
+## Planning
+
+### Goal setting
+
+- estimands defined at the beginning
+
+### Theory building
+
+- Which assumptions will we make to construct an appropriate estimator?
+- causal model
+
+Levels of theory building
+
+1. Heuristic causal model (DAGs)
+1. Structural causal models (synthetic functions that identify in precise mathematical ways the relationships between variables)
+1. Dynamic models (eg. ODEs)
+1. Agent-based models (most fine grained approach)
+
+These all specify or imply algebraic systems that can be analysed for their implications.
+
+Best way to learn models is to read models
+
+#### DAGs
+
+Heuristic causal models
+
+1. Treatment and outcome
+1. Other causes
+1. Other effects
+1. Unobserved causes
+
+
+### Justified sampling plan
+
+
+### Justified analysis plan
+
+
+### Documentation
+
+
+### Open software and data formats
+
+
+## Working
+
+1. Express theory as probabilistic program
+1. Prove planned analysis could work (conditionally on assumptions)
+1. Test pipeline on synthetic data
+1. Run pipeline on empirical data
+
+
+### Control
+
+- version control (Git)
+- history
+- backup
+- accountability
+
+
+### Incremental testing
+
+- build things iteratively
+- test each piece
+
+### Documentation
+
+- comment everything
+- for you and for others
+
+
+### Review
+
+- at least two people should look at each thing you do
+- explain the code to someone (rubber ducky)
+
+
+
+## Reporting
+
+
+### Sharing materials
+
+Papers are an advertisement, the data and its analysis are the product. Data and code should be available through a link, not "by request"
+
+
+### Describing methods
+
+- math-stats notation of statistical model (software independent)
+- explanation of how math-stats model provides estimand
+- algorithm used to produce estimate
+- diagnostics, code tests
+- cite software packages
+
+Justifying priors
+
+"Priors were chosen through prior predictive simulation so that pre-data predictions span the range of scientifically plausible outcomes. In the results, we explicitly compared the posterior distribution to the prior, so that the impact of the sample is obvious. "
+
+Responding to reviewers: change discussion from statistics to causal models, scientific models. 
+
+Point readers to a primer paper on Bayesian statistics in your field. 
+
+### Describing data
+
+Sample size, but specifically the structure of your data - how many observations of how many units?
+
+At which level (across or within clusters) are variables measured?
+
+Missing values
+
+
+### Describing results
+
+Focus of results typically are on estimands, presented using marginal causal effects
+
+Warn against causal interpretation of control variables (Table 2 fallacy)
+
+Sample realizations > Densities > Intervals
+
+
+### Making decisions
+
+Academic research: communicate uncertainty, conditional on sample and models
+
+Industry, applied research: what should we do, given uncertainty, conditional on sample and models?
+
+Bayesian decision theory:
+
+1. State costs and benefits of outcomes
+1. Compute posterior benefits of hypothetical policy choices (interventions)
+
+
+## Horoscopes for research
+
+Fixes:
+
+1. No statistics without associated causal model
+1. Prove that your code works in principle
+1. Share as much as possible
+1. Beware of proxies for research quality
