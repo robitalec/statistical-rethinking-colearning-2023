@@ -167,8 +167,8 @@ $\theta$ is used to represent $k p^2$ and therefore it must be
 $\theta \approx \pi^{-1}$
 
 Given this, there are no parameters in the model, it is dimensionless. 
-Restructuring the model without those two parameters, the model returns 
-the same result and, as a bonus, fits much more efficiently. 
+Restructuring the model without those two fparameters, the model returns 
+the same result and, as a bonus, fits much more efficiently.   
 
 
 ```{r l19_nl_howell_no_dim}
@@ -187,3 +187,44 @@ ggplot(pred_no_dim, aes(scale_height_div_mean, .prediction)) +
     scale_fill_grey(start = 0.8, end = 0.5) + 
     labs(x = 'Height (scaled)', y = 'Weight (scaled)')
 ```
+
+
+## Example: social conformity
+
+Do children copy the majority?
+
+We can't see the strategy selected, we can only see the choice. 
+
+Majority choice is consistent with many strategies:
+
+- random color would follow majority 1/3 the time
+- random demonstrator would follow majority 3/4 the time 
+- random demonstration would follow majority 1/2 the time
+
+
+Total evidence for majority choice is exaggerated because multiple processes lead to the majority choice beyond a majority preference. 
+
+
+Strategy space:
+
+1. Majority
+1. Minority
+1. Maverick (unchosen)
+1. Random color (ignore demonstrators)
+1. Follow first (copy the first demonstrator)
+
+
+
+This is a state based model. There are three possible observations: unchosen, majority or minority. 
+
+$Y_{i} \sim Categorical(\theta)$
+
+$\theta_{j} = \sum_{S=1}^{5} p_{s} Pr(Y = j | S)$ 
+
+- $\theta_{j}$ is the probability of choice j
+- $S = 1$ is the average over strategies
+- $p_{s}$ is the prior probability of strategy S
+- $Pr(Y=j | S)$ is the probability of choice j assuming strategy S
+
+
+
