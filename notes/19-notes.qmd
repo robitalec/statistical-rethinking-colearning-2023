@@ -239,3 +239,38 @@ $p \sim Dirichlet([4, 4, 4, 4, 4])$
 - $Pr(Y=j | S)$ is the probability of choice j assuming strategy S
 
 
+
+### Example: population dynamics
+
+Latent states can be time varying. Example: ecological dynamics with numbers of different species over time. 
+
+Estimand: how do different species interact? How do interactions influence population dynamics?
+
+Lotka Voltera equations specify the change in number of individuals over time. 
+
+$\frac{dH}{dt} = H_{t} * \texttt{birth rate} - H_{t} * \texttt{death rate}$
+
+$\frac{dL}{dt} = H_{t} * \texttt{birth rate} - H_{t} * \texttt{death rate}$
+
+Filling in the interdependence
+
+$\frac{dH}{dt} = H_{t} b_{H} - H_{t} (L_{t} m_{H})$
+
+$\frac{dL}{dt} = H_{t} * (H_{t} b_{L}) - H_{t} * m_{L}$
+
+
+- $m_{H}$ is the impact of lynx on hares
+
+
+Model
+
+$h_{t} \sim LogNormal(log(p_{H}H_{t}, \sigma_{H})$ 
+
+$l_{t} \sim LogNormal(log(p_{L}L_{t}, \sigma_{L})$ 
+
+
+Without causal model, little hope to understand ecological interventions
+
+
+This is an example of cyclic (vs acyclic), but because it is modeled through time it is 
+
