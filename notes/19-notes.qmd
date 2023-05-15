@@ -9,6 +9,8 @@ source('R/packages.R')
 source('R/data_Howell1.R')
 ```
 
+## Scientific models
+
 Linear models are additive combinations of variables
 They can be used for many applications, the fit is ok but not ideal
 Using linear models gives up scientific information we could use to better inform statistical analysis
@@ -19,7 +21,7 @@ LMs, GLMs, GLMMs are flexible machines for decscribing associations
 Without an external causal model, linear models have no causal interpretation
 
 
-## Example: height
+### Example: height
 
 The weight of humans is proportional to height. For example, represent humans as a cylinder. 
 
@@ -189,7 +191,15 @@ ggplot(pred_no_dim, aes(scale_height_div_mean, .prediction)) +
 ```
 
 
-## Example: social conformity
+## State-based models
+
+What we want is a latent state but what we have is only emissions or behaviours of a latent variable. A misguided approach would be to just analyse this data as if it is a categorical variable, disregarding the difference between the behaviour and the underlying latent state. 
+
+This family of models if common in movement, learning, population dynamics, international relations, family planning.
+
+
+
+### Example: social conformity
 
 Do children copy the majority?
 
@@ -221,10 +231,11 @@ $Y_{i} \sim Categorical(\theta)$
 
 $\theta_{j} = \sum_{S=1}^{5} p_{s} Pr(Y = j | S)$ 
 
+$p \sim Dirichlet([4, 4, 4, 4, 4])$
+
 - $\theta_{j}$ is the probability of choice j
 - $S = 1$ is the average over strategies
 - $p_{s}$ is the prior probability of strategy S
 - $Pr(Y=j | S)$ is the probability of choice j assuming strategy S
-
 
 
