@@ -14,11 +14,7 @@ Stargazing
 
 Fortune telling frameworks (eg. horoscopes, tarot cards, linear models) has to be vague, derived from vague facts the advice has to be vague. Also often an exaggerated importance. 
 
-Without scientific facts, a statistical 
-
-
 Cannot offload subjective responsibility onto an objective procedure
-
 
 Tendency to focus on parts that are mathematical, objective - the quality of the data analysis
 
@@ -160,3 +156,13 @@ Bayesian decision theory:
 
 1. State costs and benefits of outcomes
 1. Compute posterior benefits of hypothetical policy choices (interventions)
+
+
+## Horoscopes for research
+
+Fixes:
+
+1. No statistics without associated causal model
+1. Prove that your code works in principle
+1. Share as much as possible
+1. Beware of proxies for research quality
