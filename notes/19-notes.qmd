@@ -58,8 +58,9 @@ $k \sim Distribution()$
 Set priors: choose measurement scales and simulate. 
 
 Units: 
+
 - $\mu_{i}$: kg
-- $k$: $kg/cm^{3}}$ 
+- $k$: $kg/cm^{3}$ 
 - $h^{3}$
 
 Measurement scales are social constructs, and it can be easier to divide them out. 
