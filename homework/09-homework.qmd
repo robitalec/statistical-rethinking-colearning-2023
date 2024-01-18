@@ -1,0 +1,218 @@
+---
+title: "Homework 09"
+author: "Alec L. Robitaille"
+date: "2023-05-04"
+---
+
+```{r, include = FALSE}
+source('R/packages.R')
+```
+
+```{r, eval = FALSE}
+source('R/packages.R')
+```
+
+
+## Data 
+
+The data in data(Achehunting) are 14,364 individual hunting trips by 147 men
+among the indigenous Aché of Paraguay. Each trip has recorded the hunter’s identity
+(anonymized id), hunter’s age at the time of the trip, the duration in hours of the
+trip, and the kilograms of meat returned. Many of the trips have missing values for
+duration.
+
+```{r}
+# Data
+source('R/data_achehunting.R')
+
+# month : Month of record
+# day : Day of record
+# year : Year of record
+# id : Identifier of individual man
+# age : Man's age at time of record
+# kg.meat : Kilograms of meat returned from hunt
+# hours : Duration in hours of hunting trip
+# datatype : 1 if duration of trip known, 3 otherwise
+
+DT_hunting <- data_achehunting()
+```
+
+
+
+## Question 1
+
+> 1. In this first problem, estimate the influence of age on the probability of trip success. Define “success” as a trip that returns any non-zero amount of meat. Ignore
+individual hunter identities for now. You can use any functional relationship for age
+and success that you think is sensible, but be sure to justify it and check it against
+posterior predictions.
+
+
+```{r h09_dag_q01}
+coords <- data.frame(
+    name = c('S', 'A'),
+    x =    c(1,    2),
+    y =    c(0,    1)
+)
+
+dagify(
+	S ~ A,
+	coords = coords
+) |> ggdag(seed = 2) + theme_dag()
+```
+
+### Functional relationship
+
+First, fit with a log base 10 line. 
+
+```{r m_h09_q01_function}
+range_age <- data.table(
+    age = seq(min(DT_hunting$age), max(DT_hunting$age))
+)
+
+ggplot(DT_hunting[, .(prob_success = sum(success) / .N), age], 
+    aes(x = age, prob_success)) + 
+    geom_point() + 
+    stat_function(fun = function(x) -1 + log10(x)) + 
+    labs(x = 'Age', y = 'Probability of success')
+```
+
+Short of more background on these data, I am going to take it as practice fitting
+a GAM with `brms` (through `mgcv`).
+
+
+### Priors
+```{r}
+get_prior(success ~ s(age), family = 'binomial', data = DT_hunting)
+```
+
+
+Recall: predicted draws returns posterior predictions on the scale of the response 
+(0, 1), epred draws returns posterior predictions with the inverse transformation. 
+
+```{r h09_q01_prior}
+tar_load(m_h09_q01_prior)
+m_h09_q01_prior$prior
+
+pred_q01_prior <- add_predicted_draws(range_age, m_h09_q01_prior)
+table(pred_q01_prior$.prediction)
+
+epred_q01_prior <- add_epred_draws(range_age, m_h09_q01_prior)
+range(epred_q01_prior$.epred)
+
+ggplot(epred_q01_prior) + 
+    stat_lineribbon(aes(age, .epred)) + 
+    ylim(0, 1) +
+    scale_fill_grey(start = 0.8, end = 0.4) + 
+    labs(x = 'Age', y = 'Prior probability of success')
+```
+
+### Posterior
+
+```{r h09_q01}
+tar_load(m_h09_q01)
+m_h09_q01
+
+epred_q01 <- add_epred_draws(range_age, m_h09_q01)
+range(epred_q01$.epred)
+
+ggplot(epred_q01) + 
+    stat_lineribbon(aes(age, .epred)) + 
+    ylim(0, 1) +
+    scale_fill_grey(start = 0.8, end = 0.4) + 
+    labs(x = 'Age', y = 'Posterior probability of success') + 
+    geom_point(aes(age, prob_success), 
+               data = DT_hunting[, .(prob_success = sum(success) / .N), age])
+```
+
+
+## Question 2
+
+> 2. Now incorporate individual hunter varying effects into your analysis from the
+previous problem. Allow the influence of age on success to vary by each individual.
+How much variation in success is explained by individuals and how much by age?
+
+### Priors
+
+```{r}
+priors_q02 <- get_prior(success ~ t2(age, by = id), family = 'binomial', data = DT_hunting)
+unique(priors_q02$class)
+```
+
+### Posterior
+
+```{r h09_q02}
+tar_load(m_h09_q02)
+#m_h09_q02
+m_h09_q02_s_var_id
+DT_hunting[, uniqueN(id), age]
+
+epred_q02 <- add_epred_draws(unique(DT_hunting[, .(age, id)]), m_h09_q02)
+
+setDT(epred_q02)
+var_id <- epred_q02[, .(var_epred = var(.epred)), by = id]
+var_age <- epred_q02[, .(var_epred = var(.epred)), by = age]
+
+var_id[, mean(var_epred)]
+var_age[, mean(var_epred)]
+
+ggplot(var_id, aes(var_epred)) + 
+    stat_halfeye() + 
+    xlim(0, 0.1)
+
+ggplot(var_age, aes(var_epred)) + 
+    stat_halfeye() + 
+    xlim(0, 0.1)
+
+ggplot(var_age, aes(age, var_epred)) + 
+    geom_point()
+
+ggplot(var_id[order(var_epred)]) + 
+    geom_point(aes(id, var_epred))
+
+
+ggplot(epred_q02) + 
+    stat_lineribbon(aes(age, .epred)) + 
+    ylim(0, 1) +
+    scale_fill_grey(start = 0.8, end = 0.4) + 
+    labs(x = 'Age', y = 'Posterior probability of success') + 
+    geom_point(aes(age, prob_success), 
+               data = DT_hunting[, .(prob_success = sum(success) / .N), .(id, age)])
+```
+
+
+## Question 3
+
+> 3. Now include trip duration in the model from the previous problem. The focus
+is still the causal relationship between age and success, but duration is a potential
+competing cause or a mediator, so it can be useful to include it for either increased
+efficiency (competing cause) or to study how variation in trip durations mediate differences in hunting returns. Since there are many missing values for trip duration,
+compare (1) a complete case analysis, which drops all the trips with missing durations, to (2) an analysis which uses all 14,364 trips and imputes missing duration
+values where necessary. Use any functional relationship between duration and success that you think is sensible, but be sure to justify it and check it against posterior
+predictions.
+
+```{r}
+tar_load(m_h09_q03_complete_cases)
+m_h09_q03_complete_cases
+
+DT_hunting_naomit <- na.omit(copy(DT_hunting))[, id := factor(id)]
+epred_q03 <- add_epred_draws(DT_hunting_naomit, m_h09_q03_complete_cases)
+
+```
+
+
+
+
+
+```{r}
+
+imp <- tar_read(DT_hunting_mice)
+
+
+
+tar_load(m_h09_q03_mice)
+m_h09_q03_mice
+
+mcmc_areas(m_h09_q03_mice, regex_pars = 'sd|b')
+
+conditional_effects(m_h09_q03_mice)
+```
