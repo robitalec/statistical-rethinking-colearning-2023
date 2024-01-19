@@ -190,24 +190,20 @@ compare (1) a complete case analysis, which drops all the trips with missing dur
 values where necessary. Use any functional relationship between duration and success that you think is sensible, but be sure to justify it and check it against posterior
 predictions.
 
-```{r}
+```{r, eval = FALSE}
 tar_load(m_h09_q03_complete_cases)
 m_h09_q03_complete_cases
 
 DT_hunting_naomit <- na.omit(copy(DT_hunting))[, id := factor(id)]
 epred_q03 <- add_epred_draws(DT_hunting_naomit, m_h09_q03_complete_cases)
-
 ```
 
 
 
 
 
-```{r}
-
+```{r, eval = FALSE}
 imp <- tar_read(DT_hunting_mice)
-
-
 
 tar_load(m_h09_q03_mice)
 m_h09_q03_mice
