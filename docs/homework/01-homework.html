@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Alec L. Robitaille">
 <meta name="dcterms.date" content="2023-02-01">
@@ -88,7 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 </head>
@@ -102,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/01-homework.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/01-homework.html">Homework 01</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -259,6 +260,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../homework/09-homework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 09</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../homework/targets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">_targets.R</span></a>
   </div>
@@ -313,6 +320,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">'R/packages.R'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
+<pre><code>qs 0.25.7</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: usethis</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'ggdag'</code></pre>
 </div>
@@ -322,34 +335,16 @@ Attaching package: 'ggdag'</code></pre>
     filter</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: rstan</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: StanHeaders</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>rstan (Version 2.21.8, GitRev: 2e1f913d3ca3)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>For execution on a local, multicore CPU with excess RAM we recommend calling
-options(mc.cores = parallel::detectCores()).
-To avoid recompilation of unchanged Stan programs, we recommend calling
-rstan_options(auto_write = TRUE)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: cmdstanr</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>This is cmdstanr version 0.5.3</code></pre>
+<pre><code>This is cmdstanr version 0.7.1</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>- CmdStanR documentation and vignettes: mc-stan.org/cmdstanr</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>- CmdStan path: /home/alecr/.cmdstan/cmdstan-2.27.0</code></pre>
+<pre><code>- CmdStan path: /home/alecr/.cmdstan/cmdstan-2.33.1</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>- CmdStan version: 2.27.0</code></pre>
+<pre><code>- CmdStan version: 2.33.1</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
@@ -357,19 +352,34 @@ A newer version of CmdStan is available. See ?install_cmdstan() to install it.
 To disable this check set option or environment variable CMDSTANR_NO_VER_CHECK=TRUE.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: posterior</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>This is posterior version 1.5.0</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'posterior'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    mad, sd, var</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    %in%, match</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: parallel</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>rethinking (Version 2.21)</code></pre>
+<pre><code>rethinking (Version 2.40)</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'rethinking'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:rstan':
-
-    stan</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>The following object is masked from 'package:stats':
@@ -380,7 +390,7 @@ Attaching package: 'rethinking'</code></pre>
 <pre><code>Loading required package: Rcpp</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Loading 'brms' package (version 2.18.0). Useful instructions
+<pre><code>Loading 'brms' package (version 2.20.4). Useful instructions
 can be found by typing help('brms'). A more detailed introduction
 to the package is available through vignette('brms_overview').</code></pre>
 </div>
@@ -392,11 +402,6 @@ Attaching package: 'brms'</code></pre>
 <pre><code>The following objects are masked from 'package:rethinking':
 
     LOO, stancode, WAIC</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:rstan':
-
-    loo</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>The following objects are masked from 'package:ggdist':
@@ -434,6 +439,43 @@ Attaching package: 'tidybayes'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
+Attaching package: 'bayesplot'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:brms':
+
+    rhat</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:posterior':
+
+    rhat</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'emmeans'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:devtools':
+
+    test</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'mice'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    filter</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    cbind, rbind</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
 Attaching package: 'janitor'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -441,10 +483,10 @@ Attaching package: 'janitor'</code></pre>
 
     chisq.test, fisher.test</code></pre>
 </div>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">'R/compute_posterior_globe.R'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">'R/compute_posterior_globe.R'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_water</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_water</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
 <span><span class="va">n_land</span> <span class="op">&lt;-</span> <span class="fl">11</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">'W'</span>, <span class="va">n_water</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">'L'</span>, <span class="va">n_land</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">n_possibilities</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
@@ -499,7 +541,7 @@ Attaching package: 'janitor'</code></pre>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Using a finer grid with more potential possibilities</span></span>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Using a finer grid with more potential possibilities</span></span>
 <span><span class="va">n_possibilities</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
 <span><span class="va">posterior</span> <span class="op">&lt;-</span> <span class="fu">compute_posterior_globe</span><span class="op">(</span><span class="va">x</span>, n_possibilities <span class="op">=</span> <span class="va">n_possibilities</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -508,7 +550,7 @@ Attaching package: 'janitor'</code></pre>
 <p>Using the posterior distribution from 1, compute the posterior predictive distribution for the next 5 tosses of the same globe. I recommend you use the sampling method.</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">possibilities</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, length.out <span class="op">=</span> <span class="va">n_possibilities</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">possibilities</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, length.out <span class="op">=</span> <span class="va">n_possibilities</span><span class="op">)</span></span>
 <span><span class="va">size</span> <span class="op">&lt;-</span> <span class="fl">1e4</span></span>
 <span><span class="va">n_tosses</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
 <span></span>
@@ -532,7 +574,7 @@ Attaching package: 'janitor'</code></pre>
 <div class="cell-output-display">
 <p><img src="01-homework_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># === Sampling approach from representative Beta distribution</span></span>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># === Sampling approach from representative Beta distribution</span></span>
 <span><span class="va">beta_samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Beta.html">rbeta</a></span><span class="op">(</span></span>
 <span>    <span class="va">size</span>,</span>
 <span>    <span class="va">n_water</span> <span class="op">+</span> <span class="fl">1</span>,</span>
@@ -554,20 +596,20 @@ Attaching package: 'janitor'</code></pre>
 <p>Use the posterior predictive distribution from 2 to calculate the probability of 3 or more water samples in the next 5 tosses.</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Predicted probability of 3 or more water samples in the next 5 tosses</span></span>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Predicted probability of 3 or more water samples in the next 5 tosses</span></span>
 <span><span class="co">#  given posterior predictive distribution</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">posterior_predict</span> <span class="op">&gt;=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">/</span> <span class="va">size</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
- FALSE   TRUE 
-0.8259 0.1741 </code></pre>
+FALSE  TRUE 
+0.817 0.183 </code></pre>
 </div>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># and beta distribution prediction</span></span>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># and beta distribution prediction</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">beta_predict</span> <span class="op">&gt;=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">/</span> <span class="va">size</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  FALSE   TRUE 
-0.8153 0.1847 </code></pre>
+0.8195 0.1805 </code></pre>
 </div>
 </div>
 </section><section id="question-4-optional" class="level2"><h2 class="anchored" data-anchor-id="question-4-optional">Question 4 (optional)</h2>
@@ -575,7 +617,7 @@ Attaching package: 'janitor'</code></pre>
 <p>This problem is an optional challenge for people who are taking the course for a second or third time. Suppose you observe W = 5 water points, but you forgot to write down how many times the globe was tossed, so you don’t know the number of land points L. Assume that p = 0.7 and compute the posterior distribution of the number of tosses N. Hint: Use the binomial distribution.</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">0.7</span></span>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">0.7</span></span>
 <span><span class="va">n_water</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
 <span></span>
 <span><span class="va">n_samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">15</span><span class="op">)</span></span>

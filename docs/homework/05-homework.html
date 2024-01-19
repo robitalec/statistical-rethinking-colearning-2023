@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Alec L. Robitaille">
 <meta name="dcterms.date" content="2023-04-28">
@@ -88,7 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 </head>
@@ -102,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/01-homework.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/05-homework.html">Homework 05</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -259,6 +260,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../homework/09-homework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 09</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../homework/targets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">_targets.R</span></a>
   </div>
@@ -396,8 +403,8 @@ Formula: awards | trials(applications) ~ gender
 
 Population-Level Effects: 
           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept    -1.73      0.08    -1.90    -1.58 1.00     2037     2043
-genderm       0.20      0.10     0.00     0.41 1.00     2615     2378
+Intercept    -1.74      0.08    -1.89    -1.59 1.00     2211     2503
+genderm       0.20      0.10     0.01     0.40 1.00     2691     2575
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -414,8 +421,8 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <span><span class="va">emmean_total_gender</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> gender  prob lower.HPD upper.HPD
- f      0.150     0.130     0.170
- m      0.177     0.161     0.197
+ f      0.150     0.131     0.170
+ m      0.177     0.158     0.194
 
 Point estimate displayed: median 
 HPD interval probability: 0.95 </code></pre>
@@ -430,7 +437,7 @@ HPD interval probability: 0.95 </code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">contrast</span><span class="op">(</span><span class="va">emmean_total_gender</span>, method <span class="op">=</span> <span class="st">'pairwise'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> contrast estimate lower.HPD upper.HPD
- f - m     -0.0272   -0.0548 -0.000696
+ f - m     -0.0273   -0.0544  -0.00148
 
 Point estimate displayed: median 
 HPD interval probability: 0.95 </code></pre>
@@ -455,43 +462,43 @@ Formula: awards | trials(applications) ~ gender * discipline
 
 Population-Level Effects: 
                                      Estimate Est.Error l-95% CI u-95% CI Rhat
-Intercept                               -1.40      0.17    -1.73    -1.07 1.00
-genderm                                  0.15      0.18    -0.19     0.50 1.00
-disciplineEarthDlifesciences            -0.26      0.24    -0.74     0.21 1.00
-disciplineHumanities                    -0.09      0.22    -0.54     0.35 1.00
-disciplineInterdisciplinary             -0.05      0.26    -0.56     0.45 1.00
-disciplineMedicalsciences               -0.56      0.21    -0.99    -0.14 1.00
-disciplinePhysicalsciences               0.05      0.29    -0.55     0.61 1.00
-disciplinePhysics                        0.12      0.34    -0.59     0.78 1.00
-disciplineSocialsciences                -0.58      0.21    -0.99    -0.18 1.00
-disciplineTechnicalsciences             -0.05      0.27    -0.59     0.47 1.00
-genderm:disciplineEarthDlifesciences     0.32      0.27    -0.20     0.86 1.00
-genderm:disciplineHumanities            -0.40      0.26    -0.91     0.13 1.00
-genderm:disciplineInterdisciplinary     -0.57      0.31    -1.19     0.05 1.00
-genderm:disciplineMedicalsciences        0.30      0.26    -0.20     0.80 1.00
-genderm:disciplinePhysicalsciences      -0.20      0.33    -0.85     0.46 1.00
-genderm:disciplinePhysics                0.09      0.36    -0.61     0.78 1.00
-genderm:disciplineSocialsciences         0.11      0.24    -0.35     0.57 1.00
-genderm:disciplineTechnicalsciences     -0.33      0.30    -0.90     0.27 1.00
+Intercept                               -1.39      0.17    -1.72    -1.07 1.00
+genderm                                  0.15      0.18    -0.21     0.50 1.00
+disciplineEarthDlifesciences            -0.26      0.25    -0.76     0.21 1.00
+disciplineHumanities                    -0.09      0.22    -0.54     0.32 1.00
+disciplineInterdisciplinary             -0.06      0.26    -0.56     0.45 1.00
+disciplineMedicalsciences               -0.56      0.22    -1.00    -0.15 1.00
+disciplinePhysicalsciences               0.03      0.29    -0.53     0.59 1.00
+disciplinePhysics                        0.11      0.35    -0.57     0.80 1.00
+disciplineSocialsciences                -0.59      0.20    -0.98    -0.20 1.00
+disciplineTechnicalsciences             -0.05      0.27    -0.58     0.46 1.00
+genderm:disciplineEarthDlifesciences     0.32      0.28    -0.23     0.88 1.00
+genderm:disciplineHumanities            -0.40      0.26    -0.93     0.12 1.00
+genderm:disciplineInterdisciplinary     -0.56      0.33    -1.21     0.08 1.00
+genderm:disciplineMedicalsciences        0.31      0.26    -0.18     0.81 1.00
+genderm:disciplinePhysicalsciences      -0.19      0.31    -0.80     0.42 1.00
+genderm:disciplinePhysics                0.09      0.37    -0.61     0.81 1.00
+genderm:disciplineSocialsciences         0.11      0.24    -0.36     0.57 1.00
+genderm:disciplineTechnicalsciences     -0.33      0.29    -0.89     0.25 1.00
                                      Bulk_ESS Tail_ESS
-Intercept                                3507     3131
-genderm                                  2944     3209
-disciplineEarthDlifesciences             4845     2967
-disciplineHumanities                     4152     3304
-disciplineInterdisciplinary              4853     2845
-disciplineMedicalsciences                4275     3111
-disciplinePhysicalsciences               4934     2755
-disciplinePhysics                        5296     3264
-disciplineSocialsciences                 3964     3046
-disciplineTechnicalsciences              5469     3097
-genderm:disciplineEarthDlifesciences     4819     3115
-genderm:disciplineHumanities             4552     3353
-genderm:disciplineInterdisciplinary      5902     3019
-genderm:disciplineMedicalsciences        4323     2971
-genderm:disciplinePhysicalsciences       4627     2555
-genderm:disciplinePhysics                4951     3545
-genderm:disciplineSocialsciences         3848     3329
-genderm:disciplineTechnicalsciences      5328     3040
+Intercept                                3049     3085
+genderm                                  3420     3139
+disciplineEarthDlifesciences             4020     2646
+disciplineHumanities                     3883     3121
+disciplineInterdisciplinary              4820     3325
+disciplineMedicalsciences                3890     3053
+disciplinePhysicalsciences               4429     2894
+disciplinePhysics                        4788     2639
+disciplineSocialsciences                 3646     2997
+disciplineTechnicalsciences              4453     3311
+genderm:disciplineEarthDlifesciences     5047     3279
+genderm:disciplineHumanities             4354     2747
+genderm:disciplineInterdisciplinary      5120     2880
+genderm:disciplineMedicalsciences        4444     3457
+genderm:disciplinePhysicalsciences       4971     3365
+genderm:disciplinePhysics                4965     2604
+genderm:disciplineSocialsciences         4069     3360
+genderm:disciplineTechnicalsciences      4916     3102
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -508,24 +515,24 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <span><span class="va">emmean_direct_gender</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> gender discipline           prob lower.HPD upper.HPD
- f      Chemical sciences   0.197    0.1482     0.252
- m      Chemical sciences   0.224    0.1671     0.287
- f      Earth/life sciences 0.161    0.1082     0.215
- m      Earth/life sciences 0.236    0.1796     0.302
- f      Humanities          0.184    0.1343     0.239
- m      Humanities          0.151    0.1107     0.197
- f      Interdisciplinary   0.191    0.1221     0.264
- m      Interdisciplinary   0.136    0.0838     0.197
- f      Medical sciences    0.124    0.0888     0.160
- m      Medical sciences    0.182    0.1357     0.226
- f      Physical sciences   0.206    0.1277     0.300
- m      Physical sciences   0.198    0.1375     0.260
- f      Physics             0.219    0.1202     0.348
- m      Physics             0.263    0.1691     0.363
- f      Social sciences     0.121    0.0936     0.151
- m      Social sciences     0.152    0.1199     0.186
- f      Technical sciences  0.190    0.1236     0.271
- m      Technical sciences  0.165    0.1188     0.219
+ f      Chemical sciences   0.199    0.1506     0.252
+ m      Chemical sciences   0.224    0.1658     0.286
+ f      Earth/life sciences 0.161    0.1076     0.218
+ m      Earth/life sciences 0.234    0.1746     0.295
+ f      Humanities          0.184    0.1343     0.237
+ m      Humanities          0.150    0.1082     0.197
+ f      Interdisciplinary   0.191    0.1243     0.264
+ m      Interdisciplinary   0.135    0.0833     0.199
+ f      Medical sciences    0.124    0.0924     0.163
+ m      Medical sciences    0.182    0.1441     0.232
+ f      Physical sciences   0.205    0.1239     0.296
+ m      Physical sciences   0.197    0.1359     0.262
+ f      Physics             0.217    0.1069     0.340
+ m      Physics             0.260    0.1662     0.358
+ f      Social sciences     0.121    0.0949     0.153
+ m      Social sciences     0.152    0.1174     0.183
+ f      Technical sciences  0.192    0.1223     0.269
+ m      Technical sciences  0.165    0.1187     0.217
 
 Point estimate displayed: median 
 HPD interval probability: 0.95 </code></pre>

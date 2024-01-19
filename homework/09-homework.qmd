@@ -143,7 +143,7 @@ unique(priors_q02$class)
 ```{r h09_q02}
 tar_load(m_h09_q02)
 #m_h09_q02
-m_h09_q02_s_var_id
+# m_h09_q02_s_var_id
 DT_hunting[, uniqueN(id), age]
 
 epred_q02 <- add_epred_draws(unique(DT_hunting[, .(age, id)]), m_h09_q02)

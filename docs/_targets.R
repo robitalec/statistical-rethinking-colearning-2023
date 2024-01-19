@@ -272,7 +272,99 @@ targets_h06 <- c(
 	)
 )
 
+# Targets: homework 9 -----------------------------------------------------
+targets_h09 <- c(
+	tar_target(
+		DT_hunting,
+		data_achehunting()
+	),
+	tar_target(
+		m_h09_q01_prior,
+		brm(
+			success ~ s(age),
+			family = 'bernoulli',
+			prior = c(
+				prior(normal(0, 0.5), class = b),
+				prior(normal(0, 1.5), class = Intercept),
+				prior(exponential(1), class = sds)
+			),
+			data = DT_hunting,
+			sample_prior = 'only',
+			chains = 1
+		)
+	),
+	tar_target(
+		m_h09_q01,
+		brm(
+			success ~ s(age),
+			family = 'bernoulli',
+			prior = c(
+				prior(normal(0, 0.5), class = b),
+				prior(normal(0, 1.5), class = Intercept),
+				prior(exponential(1), class = sds)
+			),
+			data = DT_hunting
+		)
+	),
+	tar_target(
+		m_h09_q02,
+		brm(
+			success ~ t2(age, by = id),
+			family = 'bernoulli',
+			prior = c(
+				prior(normal(0, 0.5), class = b),
+				prior(normal(0, 1.5), class = Intercept),
+				prior(exponential(1), class = sds)
+			),
+			data = DT_hunting
+		)
+	),
+# 	tar_target(
+# 		m_h09_q02_s_var_id,
+# 		brm(
+# 			success ~ s(age) + (1 | id),
+# 			family = 'bernoulli',
+# 			prior = c(
+# 				prior(normal(0, 0.5), class = b),
+# 				prior(normal(0, 1.5), class = Intercept),
+# 				prior(exponential(1), class = sds),
+#                 prior(exponential(1), class = sd)
+# 			),
+# 			data = DT_hunting
+# 		)
+# 	),
+	# tar_target(
+	# 	m_h09_q03_complete_cases,
+	# 	brm(
+	# 		success ~ t2(age, hours, by = id),
+	# 		family = 'bernoulli',
+	# 		prior = c(
+	# 			prior(normal(0, 0.5), class = b),
+	# 			prior(normal(0, 1.5), class = Intercept),
+	# 			prior(exponential(1), class = sds)
+	# 		),
+	# 		data = na.omit(DT_hunting)
+	# 	)
+	# ),
+	tar_target(
+		DT_hunting_mice,
+		mice(DT_hunting)
+	)#,
+	# tar_target(
+	# 	m_h09_q03_mice,
+	# 	brm_multiple(
+	# 		success ~ t2(age, hours, by = id),
+	# 		family = 'bernoulli',
+	# 		prior = c(
+	# 			prior(normal(0, 0.5), class = b),
+	# 			prior(normal(0, 1.5), class = Intercept),
+	# 			prior(exponential(1), class = sds)
+	# 		),
+	# 		data = DT_hunting_mice
+	# 	)
+	# )
 
+)
 
 # Lecture 19 --------------------------------------------------------------
 targets_lecture_19 <- c(
@@ -309,7 +401,7 @@ targets_lecture_19 <- c(
 
 # Quarto ------------------------------------------------------------------
 targets_quarto <- c(
-	tar_quarto(site, path = '.')
+	tar_quarto(site, path = '.')#, cue = tar_cue('never'))
 )
 
 
