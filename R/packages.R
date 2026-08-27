@@ -1,10 +1,9 @@
 # Packages ----------------------------------------------------------------
 # Alec L. Robitaille
 
-
 library(targets)
 library(tarchetypes)
-library(qs)
+library(qs2)
 
 # library(conflicted)
 
@@ -32,7 +31,6 @@ library(emmeans)
 library(mice)
 
 library(janitor)
-
 
 # Installs ----------------------------------------------------------------
 # Sys.setenv(DOWNLOAD_STATIC_LIBV8 = 1)
